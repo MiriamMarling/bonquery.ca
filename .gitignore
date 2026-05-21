@@ -12,5 +12,8 @@
 !/data/bayesian_gender.json
 !/data/last_pull_date.txt
 
+# Internal dev notes — must not appear in public repo
+DailyOccupancy_gh_sync.md
+
 # macOS
 .DS_Store

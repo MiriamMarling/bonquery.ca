@@ -23,18 +23,18 @@ format:
         .cell-output-display svg .tick text { font-size: 13px; }
         /* KPI card layout */
         .kpi-hero { text-align: center; padding: 1.5rem 0 1rem; }
-        .kpi-hero .kpi-box { display: inline-block; background: #E8E8E8; padding: 1rem 2.5rem; border-radius: 0.5rem; max-width: 100%; }
-        .kpi-hero .kpi-label { font-size: 0.9rem; font-weight: 500; color: #666; margin-bottom: 0.5rem; }
-        .kpi-hero .kpi-value { font-size: 2.5rem; font-weight: 700; color: #333; }
+        .kpi-hero .kpi-box { display: inline-block; background: var(--bq-kpi-bg); padding: 1rem 2.5rem; border-radius: 0.5rem; max-width: 100%; }
+        .kpi-hero .kpi-label { font-size: 0.9rem; font-weight: 500; color: var(--bq-kpi-label); margin-bottom: 0.5rem; }
+        .kpi-hero .kpi-value { font-size: 2.5rem; font-weight: 700; color: var(--bq-kpi-value); }
         @media (min-width: 769px) { .kpi-hero .kpi-label { white-space: nowrap; } }
         .kpi-row { display: flex; gap: 1.5rem; margin: 0.5rem 0 1.5rem; flex-wrap: wrap; }
         .kpi-card { flex: 1; min-width: 180px; border-radius: 0.5rem; padding: 1.25rem 1.5rem; text-align: center; }
-        .kpi-card .kpi-label { font-size: 0.85rem; font-weight: 500; color: #555; margin-bottom: 0.4rem; }
+        .kpi-card .kpi-label { font-size: 0.85rem; font-weight: 500; color: var(--bq-kpi-label-sm); margin-bottom: 0.4rem; }
         .kpi-card .kpi-value { font-size: 1.8rem; font-weight: 700; }
         @media (min-width: 769px) { .mobile-page-nav { display: none !important; } }
         @media (max-width: 768px) {
           .mobile-page-nav { display: block; padding: 1rem 0; margin-top: 1.5rem;
-            border-top: 1px solid #dee2e6; }
+            border-top: 1px solid var(--bq-border-control); }
           .mobile-page-nav p { font-weight: 600; margin-bottom: 0.5rem; }
         }
         </style>
@@ -117,19 +117,19 @@ html`<div class="kpi-hero">
 ```{ojs}
 //| echo: false
 html`<div class="kpi-row">
-  <div class="kpi-card" style="background:#FBE4EB;">
+  <div class="kpi-card" style="background:var(--bq-kpi-inflow-bg);">
     <div class="kpi-label">Shelter System Inflow</div>
-    <div class="kpi-value" style="color:#C2185B;">+${inflowTotal.toLocaleString()}</div>
+    <div class="kpi-value" style="color:var(--bq-kpi-inflow);">+${inflowTotal.toLocaleString()}</div>
   </div>
-  <div class="kpi-card" style="background:${netChange > 0 ? '#FFEBEE' : netChange < 0 ? '#E8F5E9' : '#E8E8E8'};">
+  <div class="kpi-card" style="background:${netChange > 0 ? 'var(--bq-kpi-net-pos-bg)' : netChange < 0 ? 'var(--bq-kpi-net-neg-bg)' : 'var(--bq-kpi-net-zero-bg)'};">
     <div class="kpi-label">Change (Inflow − Outflow)</div>
-    <div class="kpi-value" style="color:${netChange > 0 ? '#C62828' : netChange < 0 ? '#2E7D32' : '#333333'};">
+    <div class="kpi-value" style="color:${netChange > 0 ? 'var(--bq-kpi-net-pos)' : netChange < 0 ? 'var(--bq-kpi-net-neg)' : 'var(--bq-kpi-net-zero)'};">
       ${netChange >= 0 ? '+' : ''}${netChange.toLocaleString()}
     </div>
   </div>
-  <div class="kpi-card" style="background:#E8F5E9;">
+  <div class="kpi-card" style="background:var(--bq-kpi-outflow-bg);">
     <div class="kpi-label">Shelter System Outflow</div>
-    <div class="kpi-value" style="color:#2E7D32;">−${outflowTotal.toLocaleString()}</div>
+    <div class="kpi-value" style="color:var(--bq-kpi-outflow);">−${outflowTotal.toLocaleString()}</div>
   </div>
 </div>`
 ```
@@ -143,9 +143,13 @@ html`<div class="kpi-row">
 ```{ojs}
 //| echo: false
 chronicPct    = chronicRow ? chronicRow.population_group_pct / 100 : 0
+_cs = getComputedStyle(document.documentElement)
+_nonChronicFill = _cs.getPropertyValue("--bq-bg-alt").trim() || "#CCCCCC"
+_chartFg = _cs.getPropertyValue("--bq-fg").trim() || "#333"
+
 chronicData   = [
   {label: "Chronic",     pct: chronicPct,       fill: "#5856D6"},
-  {label: "Non-Chronic", pct: 1 - chronicPct,   fill: "#CCCCCC"}
+  {label: "Non-Chronic", pct: 1 - chronicPct,   fill: _nonChronicFill}
 ]
 
 Plot.plot({
@@ -155,14 +159,14 @@ Plot.plot({
   marginRight: 10,
   x: {domain: [0, 1], axis: null},
   y: {axis: null},
-  color: {domain: ["Chronic","Non-Chronic"], range: ["#5856D6","#CCCCCC"], legend: true},
+  color: {domain: ["Chronic","Non-Chronic"], range: ["#5856D6", _nonChronicFill], legend: true},
   marks: [
     Plot.barX(chronicData, Plot.stackX({x: "pct", y: () => "", fill: "label", inset: 0})),
     Plot.text(chronicData, Plot.stackX({
       x: "pct",
       y: () => "",
       text: d => d.pct >= 0.04 ? `${d.label}\n${(d.pct * 100).toFixed(1)}%` : "",
-      fill: d => d.label === "Chronic" ? "white" : "#333",
+      fill: d => d.label === "Chronic" ? "white" : _chartFg,
       textAnchor: "middle",
       lineWidth: 8,
       fontSize: 13,
@@ -534,3 +538,249 @@ dataset](https://open.toronto.ca/dataset/toronto-shelter-system-flow/){target="_
 published monthly on the City's open data portal.
 
 Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/){target="_blank"}.
+
+---
+
+```{ojs}
+//| echo: false
+bayesian_gender = FileAttachment("../data/bayesian_gender.json").json()
+spike_detection = FileAttachment("../data/spike_detection.json").json()
+shelter_flow    = data
+```
+
+::: {.key-finding-box}
+
+```{=html}
+<div class="key-finding-box-header">KEY DATA FINDING</div>
+```
+
+### The most affected group — and the one we hear least about
+
+```{ojs}
+//| echo: false
+// All months, All Population row — used for time-series statistics
+_allFlow = shelter_flow
+  .filter(d => d.population_group === "All Population"
+            && d.gender_male != null && d.gender_female != null)
+
+// Most recent month — for the hero ratio and sub-line
+_latestFlow = _allFlow.sort((a, b) => b.flow_date.localeCompare(a.flow_date))[0]
+
+_menCount   = _latestFlow ? _latestFlow.gender_male : 0
+_womenCount = _latestFlow ? _latestFlow.gender_female : 0
+_transCount = _latestFlow ? _latestFlow.gender_trans_nb_two_spirit : 0
+_ratio      = _womenCount > 0 ? (_menCount / _womenCount).toFixed(1) : "—"
+_flowMonth  = _latestFlow
+  ? new Date(_latestFlow.flow_date + "T00:00:00")
+      .toLocaleString("default", {month: "long", year: "numeric"})
+  : ""
+
+function _mean(arr) { return arr.reduce((a, b) => a + b, 0) / arr.length }
+function _sd(arr) {
+  const m = _mean(arr)
+  return Math.sqrt(arr.reduce((s, x) => s + (x - m) ** 2, 0) / (arr.length - 1))
+}
+function _se(arr) { return _sd(arr) / Math.sqrt(arr.length) }
+
+function _Phi(z) {
+  const c = [0.319381530, -0.356563782, 1.781477937, -1.821255978, 1.330274429]
+  const t = 1 / (1 + 0.2316419 * Math.abs(z))
+  const tail = t*(c[0]+t*(c[1]+t*(c[2]+t*(c[3]+t*c[4])))) * Math.exp(-z*z/2) / Math.sqrt(2*Math.PI)
+  return z >= 0 ? 1 - tail : tail
+}
+
+_menSeries   = _allFlow.map(d => d.gender_male)
+_womenSeries = _allFlow.map(d => d.gender_female)
+_transSeries = _allFlow.map(d => d.gender_trans_nb_two_spirit).filter(v => v != null)
+
+_menMean   = _mean(_menSeries);   _menSE   = _se(_menSeries)
+_womenMean = _mean(_womenSeries); _womenSE = _se(_womenSeries)
+_transMean = _mean(_transSeries); _transSE = _se(_transSeries)
+
+_n1 = _menSeries.length;   _s1 = _sd(_menSeries)
+_n2 = _womenSeries.length; _s2 = _sd(_womenSeries)
+_n3 = _transSeries.length; _s3 = _sd(_transSeries)
+
+function _wt(m1, s1, n1, m2, s2, n2) {
+  const v1 = s1**2/n1, v2 = s2**2/n2
+  const t  = (m1 - m2) / Math.sqrt(v1 + v2)
+  const df = (v1 + v2)**2 / (v1**2/(n1-1) + v2**2/(n2-1))
+  return {t, df}
+}
+
+_pw_mw = _wt(_menMean,   _s1, _n1, _womenMean, _s2, _n2)
+_pw_mt = _wt(_menMean,   _s1, _n1, _transMean, _s3, _n3)
+_pw_wt = _wt(_womenMean, _s2, _n2, _transMean, _s3, _n3)
+
+function _pAdj(t) { return Math.min(1, 3 * 2 * _Phi(-Math.abs(t))) }
+function _pLabel(t) {
+  const p = _pAdj(t)
+  return p < 0.0001 ? "< 0.0001 ***" : p < 0.001 ? "< 0.001 **" : p < 0.05 ? p.toFixed(3) + " *" : p.toFixed(3)
+}
+
+_yearRange = _allFlow.length > 0
+  ? _allFlow[_allFlow.length - 1].flow_date.slice(0, 4) + "–" + _latestFlow.flow_date.slice(0, 4)
+  : ""
+
+_menShareSeries = _allFlow.map(d => d.gender_male / d.actively_homeless)
+_menShareMinPct = Math.floor(Math.min(..._menShareSeries) * 100)
+
+_gapAvg    = Math.round(_menMean - (_womenMean + _transMean))
+_gapAvgStr = _gapAvg.toLocaleString()
+
+_recordStartYear = _allFlow.map(d => d.flow_date.slice(0, 4)).sort()[0]
+_recordEndYear   = _latestFlow.flow_date.slice(0, 4)
+```
+
+```{ojs}
+//| echo: false
+html`<div class="crisis-hero">
+  <div class="hero-number">${_ratio}×</div>
+  <div class="hero-text">
+    <div class="hero-label">more <strong>men</strong> than women are actively homeless in Toronto's shelter system</div>
+    <div class="hero-sub"><strong>${_menCount.toLocaleString()} men</strong> · ${_womenCount.toLocaleString()} women · ${_transCount.toLocaleString()} transgender, non-binary, or two-spirit · ${_flowMonth}</div>
+  </div>
+</div>`
+```
+
+```{ojs}
+//| echo: false
+_genderStats = [
+  {label: "Men",          mean: _menMean,   ci_lo: _menMean   - 1.96 * _menSE,   ci_hi: _menMean   + 1.96 * _menSE,   isFocus: true},
+  {label: "Women",        mean: _womenMean, ci_lo: _womenMean - 1.96 * _womenSE, ci_hi: _womenMean + 1.96 * _womenSE, isFocus: false},
+  {label: "Trans/NB/2S",  mean: _transMean, ci_lo: _transMean - 1.96 * _transSE, ci_hi: _transMean + 1.96 * _transSE, isFocus: false}
+].sort((a, b) => b.mean - a.mean)
+
+Plot.plot({
+  width, height: 300, marginBottom: 36, marginLeft: 70, marginRight: 20,
+  title: `Mean monthly actively homeless count by gender — ${_yearRange} (${_n1} months)`,
+  caption: "Error bars show 95% confidence intervals of the monthly mean. Source: City of Toronto Shelter System Flow dataset (open.toronto.ca).",
+  x: {label: null, domain: _genderStats.map(d => d.label)},
+  y: {label: "Mean individuals actively homeless / month", grid: true,
+      tickFormat: d => d.toLocaleString(),
+      domain: [0, Math.max(..._genderStats.map(d => d.ci_hi)) * 1.12]},
+  marks: [
+    Plot.barY(_genderStats, {
+      x: "label", y: "mean",
+      fill: d => d.isFocus ? "#ff3b30" : "#4a6fa5",
+      fillOpacity: d => d.isFocus ? 1 : 0.55
+    }),
+    Plot.ruleY(_genderStats, {
+      x: "label", y1: "ci_lo", y2: "ci_hi",
+      stroke: "#222", strokeWidth: 1.8
+    }),
+    Plot.tickY(_genderStats, {
+      x: "label", y: "ci_hi",
+      stroke: "#222", strokeWidth: 1.8,
+      insetLeft: 18, insetRight: 18
+    }),
+    Plot.tickY(_genderStats, {
+      x: "label", y: "ci_lo",
+      stroke: "#222", strokeWidth: 1.8,
+      insetLeft: 18, insetRight: 18
+    }),
+    Plot.text(_genderStats, {
+      x: "label", y: "ci_hi",
+      text: d => Math.round(d.mean).toLocaleString(),
+      dy: -10, textAnchor: "middle", fontSize: 13,
+      fill: d => d.isFocus ? "#cc1f15" : "#333",
+      fontWeight: "600"
+    }),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+{
+  const bg   = bayesian_gender
+  const rr   = bg.rate_ratios
+  const pd   = bg.pairwise_diffs
+  const diag = bg.diagnostics
+  const fmt1 = x => Number(x).toFixed(1)
+  const fmtN = x => Math.round(x).toLocaleString()
+
+  const bayesPairs = [
+    {comp: "Men vs Women",         rr: rr.men_vs_women,       diff: pd.men_vs_women,       note: false},
+    {comp: "Men vs Trans/NB/2S",   rr: rr.men_vs_transnb2s,   diff: pd.men_vs_transnb2s,   note: true},
+    {comp: "Women vs Trans/NB/2S", rr: rr.women_vs_transnb2s, diff: pd.women_vs_transnb2s, note: true}
+  ]
+  const bayesRows = bayesPairs.map(p => html`<tr>
+    <td style="padding:3px 10px 3px 0">${p.comp}${p.note ? html`<sup> †</sup>` : ""}</td>
+    <td style="padding:3px 10px;text-align:right;font-variant-numeric:tabular-nums">
+      ${fmt1(p.rr.median)}&times; (${fmt1(p.rr.hdi[0])}&ndash;${fmt1(p.rr.hdi[1])})
+    </td>
+    <td style="padding:3px 0;text-align:right;font-variant-numeric:tabular-nums;font-weight:${p.note?"400":"700"}">
+      ${fmtN(p.diff.median)} (${fmtN(p.diff.hdi[0])}&ndash;${fmtN(p.diff.hdi[1])})
+    </td>
+  </tr>`)
+
+  return html`<div class="bq-bayes">
+    <p style="margin:0 0 0.3rem">
+      <strong>Bayesian analysis (negative-binomial regression, fit with
+      <code>brms</code> ${bg.brms_version} on ${bg.n_months} months of data):</strong>
+      Weakly informative priors were used throughout.
+      Sampling diagnostics: R&#x0302;&nbsp;${diag.max_rhat},
+      ESS&nbsp;${diag.min_ess_bulk.toLocaleString()},
+      ${diag.n_divergent} divergent transitions.
+    </p>
+    <table>
+      <thead><tr>
+        <th style="text-align:left;padding:3px 10px 3px 0;font-weight:600">Comparison</th>
+        <th style="text-align:right;padding:3px 10px;font-weight:600">Rate ratio (95% HDI)</th>
+        <th style="text-align:right;padding:3px 0;font-weight:600">Difference in count (95% HDI)</th>
+      </tr></thead>
+      <tbody>${bayesRows}</tbody>
+    </table>
+    <p class="bq-note" style="margin:0 0 0.5rem">
+      † The Trans/NB/2S group averages ~${Math.round(_transMean)} individuals per month,
+      a small count that is also likely under-reported in administrative shelter records.
+      Tests involving this group should be interpreted with caution.
+    </p>
+    <p style="margin:0 0 0.3rem">
+      <strong>Men vs Women:</strong>
+      Men's expected monthly count is roughly
+      <strong>${fmt1(rr.men_vs_women.median)}&times; that of women</strong>
+      (95% HDI ${fmt1(rr.men_vs_women.hdi[0])}&ndash;${fmt1(rr.men_vs_women.hdi[1])}&times;),
+      an average gap of about
+      <strong>${fmtN(pd.men_vs_women.median)} people per month</strong>
+      (95% HDI ${fmtN(pd.men_vs_women.hdi[0])}&ndash;${fmtN(pd.men_vs_women.hdi[1])}).
+      Across a wide range of reasonable priors, the posterior probability that the true mean
+      monthly count of men exceeds women is indistinguishable from 1.
+    </p>
+    <div class="plain-eng">
+      <div class="pe-label">Plain English</div>
+      A posterior probability indistinguishable from 1 means the estimated probability is
+      close to 100% that men's true monthly count exceeds women's. The 95% HDI also indicates
+      the gap is consistently large — men's running about ${fmt1(rr.men_vs_women.median)}&times;
+      women's, or roughly ${fmtN(pd.men_vs_women.median)} more people per month.
+      <strong>Men are the largest and most consistently over-represented group in the city's shelter system.</strong>
+    </div>
+  </div>`
+}
+```
+
+```{ojs}
+//| echo: false
+md`Men have accounted for at least **${_menShareMinPct}%** of Toronto's actively homeless population every single month on record (${_recordStartYear} to ${_recordEndYear}). That figure is the **lowest single-month share of men observed across the entire data record**; in most months the share is higher. The average monthly gap between men and everyone else (women plus transgender, non-binary, and two-spirit individuals combined) is roughly **${_gapAvgStr} people**, and it has barely moved as the total has risen and fallen. The pattern is not new, not subtle, and not hidden in the data. Yet it rarely makes headlines, and few of the city's public conversations about homelessness lead with it.`
+```
+
+```{ojs}
+//| echo: false
+_spikeTopSector = (() => {
+  const sectors = ["men","women","mixed_adult","youth","families"]
+  const counts = sectors.map(s => ({
+    key: s,
+    n: spike_detection.filter(d => d.series === s && d.spike_flag !== "none").length
+  }))
+  counts.sort((a, b) => b.n - a.n)
+  return counts[0].key
+})()
+
+_spikeTopSector === "men"
+  ? md`[The impact on men is also highlighted here: Occupancy Spike Detection →](spike-detection.html)`
+  : html``
+```
+
+:::

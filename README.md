@@ -32,3 +32,5 @@ Les pipelines de traitement des données brutes, les scripts d'analyse principau
 - Toutes les analyses publiées reposent sur des données accessibles au public.
 - Les résultats présentés sur le site sont reproductibles à partir des données sources.
 - L'objectif est de rendre les données publiques plus accessibles, compréhensibles et utiles.
+
+  📬 Vous pouvez me contacter à miriam@bonquery.ca pour toute question ou pour demander l’accès au dépôt privé (analyses plus approfondies).

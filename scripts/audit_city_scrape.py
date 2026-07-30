@@ -32,6 +32,13 @@ OCCUPANCY_FILE   = DATA_DIR / "daily_occupancy.json"
 REPORT_FILE      = DATA_DIR / "city_audit_report.json"
 SUMMARY_FILE     = DATA_DIR / "city_audit_summary.md"
 
+# Keys scraped from the City page that have no CKAN/BonQuery counterpart.
+# The City's 2026-07-20 page redesign added "Shelter Programs, Singles,
+# Total"; we archive it in city_daily_table.json but cannot audit it —
+# without this exclusion its city-only value would register as a mismatch
+# on every run and fire a phantom audit email daily.
+CITY_ONLY_KEYS = {"singles_shelter_total"}
+
 # Pairs of (city column, our column) to compare.
 COLUMN_PAIRS = [
     ("city_ind",   "ind",   "individuals"),
@@ -154,6 +161,8 @@ def run_audit(city_date, city_rows, our_rows):
     for city_row in city_rows:
         key   = city_row["key"]
         label = city_row["label"]
+        if key in CITY_ONLY_KEYS:
+            continue
         our   = our_rows.get(key)
 
         for city_col, our_col, col_label in COLUMN_PAIRS:

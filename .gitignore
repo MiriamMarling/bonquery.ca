@@ -25,6 +25,15 @@
 # Bridging & Triage scraped daily from City census page — committed to main
 # so each CI run can accumulate entries from previous runs.
 !/data/city_bridging_triage.json
+# Full City-table scrape archive + audit report — committed so the day-by-day
+# record of what the City published accumulates instead of resetting each run.
+!/data/city_daily_table.json
+!/data/city_audit_report.json
+# Email-dedup sentinels — committed so audit / scrape-health emails fire once
+# per state change, not on every run. (Without these exceptions the workflow's
+# `git add` silently no-ops on the gitignored paths.)
+!/data/last_audit_signature.txt
+!/data/last_scrape_health.txt
 
 # Claude Code — local session data and project memory
 .claude/

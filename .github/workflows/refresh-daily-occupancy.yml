@@ -263,6 +263,91 @@ jobs:
       - name: Validate against City of Toronto shelter census page
         run: python scripts/validate_city_page.py
 
+      # ---- Scrape-health alert (day-1 warning on page-format changes) ----
+      # validate_city_page.py writes data/scrape_health.json on every run.
+      # scrape_broken=true means the City's page contains something
+      # table-shaped but the parser extracted nothing usable — i.e. the page
+      # format changed (NOT the "City didn't publish today" case). The email
+      # fires once per distinct failure state via the committed sentinel
+      # (data/last_scrape_health.txt), not on every run; recovery resets the
+      # sentinel so the next breakage alerts again.
+      - name: Check scrape health
+        id: scrape_health
+        run: |
+          python3 -c "
+          import hashlib, json, os, sys
+          from pathlib import Path
+
+          path = Path('data/scrape_health.json')
+          if not path.exists():
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                  f.write('scrape_broken=false\nhealth_changed=false\n')
+                  f.write('health_signature=\n')
+              print('No scrape health file; skipping.')
+              sys.exit(0)
+
+          h = json.loads(path.read_text())
+          broken = bool(h.get('scrape_broken', False))
+
+          # Stable fingerprint of the failure mode: alert when it appears or
+          # morphs, stay quiet while it persists unchanged.
+          sig_src = json.dumps({
+              'broken': broken,
+              'fetch_ok': h.get('fetch_ok'),
+              'table_detected': h.get('table_detected'),
+              'date_heading_found': h.get('date_heading_found'),
+              'rows_extracted_zero': h.get('rows_extracted', 0) == 0,
+              'bt_empty': not h.get('bt_dates_extracted'),
+          }, sort_keys=True)
+          sig = hashlib.sha256(sig_src.encode()).hexdigest()
+
+          sentinel = Path('data/last_scrape_health.txt')
+          old = sentinel.read_text().strip() if sentinel.exists() else ''
+          changed = broken and sig != old
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f'scrape_broken={\"true\" if broken else \"false\"}\n')
+              f.write(f'health_changed={\"true\" if changed else \"false\"}\n')
+              f.write(f'health_signature={sig}\n')
+
+          print(f'scrape_broken={broken}, health_changed={changed}')
+          print(f'  table_detected     : {h.get(\"table_detected\")}')
+          print(f'  date_heading_found : {h.get(\"date_heading_found\")}')
+          print(f'  rows_extracted     : {h.get(\"rows_extracted\")}')
+          print(f'  bt_dates_extracted : {h.get(\"bt_dates_extracted\")}')
+          "
+        continue-on-error: true
+
+      - name: Email notification — City table present but scrape failed
+        if: steps.scrape_health.outputs.scrape_broken == 'true' && steps.scrape_health.outputs.health_changed == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.mail.me.com
+          server_port: 587
+          secure: false
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "[bonquery] City page scrape BROKEN — table present but unparseable"
+          to: miriam@bonquery.ca
+          from: ${{ secrets.MAIL_USERNAME }}
+          body: |
+            The City's shelter page appears to contain a data table, but
+            validate_city_page.py could not extract usable data from it.
+            This usually means the City changed the page format (heading
+            text, row labels, or layout) — it is NOT the "City did not
+            publish today" case, because a table was detected on the page.
+
+            Until this is fixed, Bridging & Triage capture, the City-table
+            archive, and audit emails are all silently stalled. Each day the
+            scrape stays broken is likely unrecoverable later (the page
+            shows one day at a time, and web archives rarely capture it).
+
+            Inspect the live page:
+            https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/
+
+            Triggered by: ${{ github.event_name }}
+            Run log: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
       # Audit the City's full table against our published figures.
       # Runs after both validate_city_page.py (which writes city_daily_table.json)
       # and generate_daily_occupancy.py (which writes daily_occupancy.json).
@@ -445,6 +530,15 @@ jobs:
           printf '%s\n' "${{ steps.audit_check.outputs.audit_signature }}" \
             > data/last_audit_signature.txt
 
+      # Write the scrape-health fingerprint sentinel. Written on healthy runs
+      # too, so recovery advances the sentinel and the next distinct breakage
+      # alerts again.
+      - name: Write scrape health sentinel
+        if: steps.scrape_health.outputs.health_signature != ''
+        run: |
+          printf '%s\n' "${{ steps.scrape_health.outputs.health_signature }}" \
+            > data/last_scrape_health.txt
+
       # Write the CKAN metadata_modified sentinel to disk. This is committed below
       # (in all three commit steps) so the guard job can skip the heavy job on the
       # next scheduled fire when the dataset hasn't advanced.
@@ -459,7 +553,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/last_pull_date.txt data/last_pull_hash.txt data/last_ckan_modified.txt
-          git add data/last_audit_signature.txt 2>/dev/null || true
+          git add data/last_audit_signature.txt data/last_scrape_health.txt 2>/dev/null || true
           git add data/city_bridging_triage.json 2>/dev/null || true
           git add data/city_daily_table.json data/city_audit_report.json 2>/dev/null || true
           if [ "${{ env.REBUILD_REASON }}" = "new-day" ]; then
@@ -476,7 +570,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/city_bridging_triage.json data/last_ckan_modified.txt
-          git add data/last_audit_signature.txt 2>/dev/null || true
+          git add data/last_audit_signature.txt data/last_scrape_health.txt 2>/dev/null || true
+          git add data/city_daily_table.json data/city_audit_report.json 2>/dev/null || true
           git commit -m "data: bridging & triage entries updated [skip ci]"
           git pull --rebase origin main
           git push origin main
@@ -493,7 +588,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/last_ckan_modified.txt
-          git add data/last_audit_signature.txt 2>/dev/null || true
+          git add data/last_audit_signature.txt data/last_scrape_health.txt 2>/dev/null || true
+          git add data/city_daily_table.json data/city_audit_report.json 2>/dev/null || true
           git diff --staged --quiet || (
             git commit -m "data: CKAN freshness sentinel updated [skip ci]" &&
             git pull --rebase origin main &&

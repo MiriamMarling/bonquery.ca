@@ -14,6 +14,7 @@ OCCUPANCY_FILE    = DATA_DIR / "daily_occupancy.json"
 OUTPUT_FILE       = DATA_DIR / "city_validation.json"
 BRIDGING_FILE     = DATA_DIR / "city_bridging_triage.json"
 CITY_TABLE_FILE   = DATA_DIR / "city_daily_table.json"
+HEALTH_FILE       = DATA_DIR / "scrape_health.json"
 
 # Maps exact City table label text → BonQuery key.
 # Only rows where the City label is stable and maps cleanly to a BonQuery key.
@@ -158,6 +159,48 @@ def parse_date_str(month_str, day_str):
         return None
     year = datetime.now(timezone.utc).year
     return f"{year}-{month:02d}-{int(day_str):02d}"
+
+
+def write_scrape_health(fetch_ok, soup, bt_entries, table_entries, city_date):
+    """Write data/scrape_health.json — the scrape's self-diagnosis.
+
+    Distinguishes "the City published nothing" from "the City published a
+    table this parser can no longer read", so CI can alert on day 1 of a
+    page-format change instead of failing silently (cf. the 2026-07-20
+    redesign, which went unnoticed for 9 days).
+
+    scrape_broken is the alert condition: the page was fetched, something
+    table-shaped is present on it, yet the parser extracted no usable data
+    (no date heading, no mapped rows, or no B&T entry).
+    """
+    if soup is not None:
+        td_count = len(soup.find_all("td"))
+        page_text = soup.get_text(" ", strip=True)
+        known_labels_seen = sum(1 for lbl in LABEL_TO_KEY if lbl in page_text)
+        table_detected = td_count >= 20 or known_labels_seen >= 3
+    else:
+        td_count = 0
+        known_labels_seen = 0
+        table_detected = False
+
+    parser_ok = bool(city_date) and bool(table_entries) and bool(bt_entries)
+    health = {
+        "checked_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "fetch_ok": fetch_ok,
+        "table_detected": table_detected,
+        "td_cell_count": td_count,
+        "known_labels_seen": known_labels_seen,
+        "date_heading_found": bool(city_date),
+        "bt_dates_extracted": sorted(bt_entries),
+        "table_dates_extracted": sorted(table_entries),
+        "rows_extracted": sum(len(v) for v in table_entries.values()),
+        "parser_ok": parser_ok,
+        "scrape_broken": fetch_ok and table_detected and not parser_ok,
+    }
+    HEALTH_FILE.write_text(json.dumps(health, indent=2))
+    print(f"scrape_health.json: parser_ok={parser_ok}, "
+          f"table_detected={table_detected}, "
+          f"scrape_broken={health['scrape_broken']}")
 
 
 def extract_city_date(soup):
@@ -433,6 +476,7 @@ def main():
         resp = requests.get(CITY_URL, timeout=30, headers=HEADERS)
         resp.raise_for_status()
     except Exception as exc:
+        write_scrape_health(False, None, {}, {}, None)
         write_result(
             city_reachable=False,
             passed=False,
@@ -462,6 +506,10 @@ def main():
 
     # ── Parse primary date heading (for validation) ───────────────────────────
     city_date = extract_city_date(soup)
+
+    # ── Scrape self-diagnosis — always written, whatever happens below ───────
+    write_scrape_health(True, soup, bt_entries, table_entries, city_date)
+
     if not city_date:
         write_result(
             city_reachable=False,

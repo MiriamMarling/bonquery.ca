@@ -17,10 +17,14 @@ CITY_TABLE_FILE   = DATA_DIR / "city_daily_table.json"
 
 # Maps exact City table label text → BonQuery key.
 # Only rows where the City label is stable and maps cleanly to a BonQuery key.
+# The City redesigned the page ~2026-07-20 ("Shelter Census" → "Daily Shelter
+# & Overnight Service Usage"); legacy labels are kept so Wayback Machine
+# snapshots of the pre-redesign page still parse (see backfill_from_wayback.py).
 LABEL_TO_KEY = {
     "All Shelter Programs, Total":            "all_shelter",
     "Shelter Programs, Room-Based, Total":    "room_based",
     "Singles Sector Programs, Total":         "singles_sector",
+    "Shelter Programs, Singles, Total":       "singles_shelter_total",
     "Family Sector, Total":                   "fam_total",
     "Families, Emergency Shelter Programs":   "fam_emerg",
     "Families, Transitional Shelter Programs":"fam_trans_r",
@@ -43,7 +47,8 @@ LABEL_TO_KEY = {
     "24-Hour Women's Drop-ins":               "dropin",
     "24-Hour Temporary Response Sites":       "temp_resp",
     "Hotels":                                 "hotels",
-    "Isolation/Recovery Programs Combined Total": "iso",
+    "Isolation/Recovery Programs Combined Total": "iso",  # legacy (pre-2026-07-20)
+    "Temporary Isolation/Recovery Programs Combined Total": "iso",
     "Temporary Programs, Total":                 "temp_summ",
 }
 
@@ -60,6 +65,7 @@ KEY_META = {
     "all_shelter":    {"section": "summary",       "col_type": "summary"},
     "room_based":     {"section": "summary",       "col_type": "summary"},
     "singles_sector": {"section": "summary",       "col_type": "summary"},
+    "singles_shelter_total": {"section": "summary", "col_type": "summary"},
     "fam_total":      {"section": "room_based",    "col_type": "room"},
     "fam_emerg":      {"section": "room_based",    "col_type": "room"},
     "fam_trans_r":    {"section": "room_based",    "col_type": "room"},
@@ -92,7 +98,15 @@ HEADERS = {
     "Accept-Language": "en-CA,en;q=0.9",
 }
 
-DATE_PAT = re.compile(r"Daily Occupancy\s*&\s*Capacity for\s+(\w+)\s+(\d+)")
+# Matches the daily-table heading in both page generations:
+#   pre-2026-07-20:  "Daily Occupancy & Capacity for July 18"
+#   post-redesign:   "Daily Shelter & Overnight Service Usage for July 28"
+#     (heading now lives on an accordion toggle <div>; the walk-based section
+#      detection below is tag-agnostic, so only the text pattern matters)
+DATE_PAT = re.compile(
+    r"Daily (?:Occupancy\s*&\s*Capacity|Shelter\s*&\s*Overnight Service Usage)"
+    r" for\s+(\w+)\s+(\d+)"
+)
 
 
 def get_bonquery_latest_date():

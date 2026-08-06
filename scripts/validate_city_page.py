@@ -539,7 +539,18 @@ def main():
         )
         sys.exit(0)
 
-    daily_occ = json.loads(OCCUPANCY_FILE.read_text())
+    try:
+        daily_occ = json.loads(OCCUPANCY_FILE.read_text())
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        write_result(
+            city_reachable=True,
+            passed=False,
+            city_date=city_date,
+            bonquery_latest_date=bonquery_latest_date,
+            mismatches=[{"label": "BonQuery occupancy data unavailable", "key": None,
+                         "city": None, "bonquery": str(exc)}],
+        )
+        sys.exit(0)
     bonquery_rows = {r["key"]: r for r in daily_occ if r["date"] == city_date}
 
     if not bonquery_rows:

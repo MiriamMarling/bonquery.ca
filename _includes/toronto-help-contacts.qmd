@@ -1,0 +1,19 @@
+```{=html}
+<div id="help-now" class="bq-help-strip" role="complementary" aria-label="Immediate shelter, violence, outreach, and emergency contacts">
+  <div class="bq-help-copy">
+    <strong>Need a safe place or support now?</strong>
+    <span>These contacts serve Toronto unless another area is named. BonQuery is an independent data project, not a service provider.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Toronto Central Intake: 416-338-4766</a>
+    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Toronto Central Intake, toll-free: 1-877-338-3398</a>
+    <a href="tel:+18668630511"><i class="bi bi-heart-fill" aria-hidden="true"></i> Assaulted Women's Helpline, free and confidential, Ontario 24/7: 1-866-863-0511</a>
+    <a href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i> Abuse or social-support referrals in Toronto: 211</a>
+    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto street outreach: 311</a>
+    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto 311 from outside city limits: 416-392-2489</a>
+    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> City services TTY relay: 711</a>
+    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Immediate danger: 911 (Canada)</a>
+    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
+  </div>
+</div>
+```

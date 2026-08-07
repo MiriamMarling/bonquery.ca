@@ -55,15 +55,22 @@ quote, a research title, or a search term people use to find this work. We do
 not call people “the homeless.” We will keep listening to people with lived
 experience and change our wording when needed.
 
-**Needing shelter is not the same as being homeless.** Someone may still have an
-address but be unable to return safely. Adults, children, and families fleeing
-violence may need an emergency shelter or a warm place without being homeless.
+**Needing shelter does not settle the label.** Someone may still have an address
+but be unable to return safely. Canada's formal definition includes people
+staying in emergency shelters because of family violence under homelessness,
+but a person may describe their own situation differently. [See the Canadian
+definition](https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/){target="_blank"}.
 
-**Housing insecure** is broader than **unhoused**. It includes people whose
-housing is unsafe, unstable, unaffordable, or about to be lost. That can include
-someone staying temporarily with other people or fleeing violence. A person can
-be housing insecure without appearing in the City shelter data at all. We use
-this term only when we mean that wider group.
+BonQuery uses **housing insecure** for a wider group: people whose housing is
+unsafe, unstable, unaffordable, or about to be lost. That can include someone
+staying temporarily with other people or fleeing violence. A person can be
+housing insecure without appearing in the City shelter data at all.
+
+**Unhoused is not one experience.** People may use the word while sleeping
+outside, staying in emergency shelter, or moving between temporary places
+without a safe home they can count on. People also differ in the words they use
+for themselves. BonQuery will not guess someone's living situation or preferred
+word from a row in a data file.
 
 This approach follows [person-first language guidance](https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/){target="_blank"}
 and research on [why housing is central to the meaning of

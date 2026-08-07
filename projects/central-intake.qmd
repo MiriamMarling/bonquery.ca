@@ -1,16 +1,16 @@
 ---
-title: "Shelter System Requests for Referrals"
-subtitle: "Toronto Central Intake Calls — monthly averages"
-description: "Monthly average daily calls to Toronto's Central Intake shelter referral line, sourced from the City of Toronto's open data portal."
+title: "Calls Asking for Shelter"
+subtitle: "What happened when people called Toronto Central Intake"
+description: "See how many calls Toronto Central Intake handled, how many received a shelter referral, and how many people or couples still had no place at 4 a.m."
 author: "Miriam Marling"
 open-graph:
-  title: "Shelter System Requests for Referrals — Toronto Central Intake"
-  description: "Monthly average daily calls to Toronto's Central Intake shelter referral line, sourced from the City of Toronto's open data portal."
-  site_name: "BonQuery — Data for the Greater Good"
+  title: "Calls Asking for Shelter | BonQuery"
+  description: "What happened when people called Toronto Central Intake for shelter."
+  site_name: "BonQuery"
 twitter-card:
   card-style: summary
-  title: "Shelter System Requests for Referrals — Toronto Central Intake"
-  description: "Monthly average daily calls to Toronto's Central Intake shelter referral line, sourced from the City of Toronto's open data portal."
+  title: "Calls Asking for Shelter | BonQuery"
+  description: "What happened when people called Toronto Central Intake for shelter."
 format:
   html:
     page-layout: full
@@ -33,28 +33,19 @@ format:
         </style>
 ---
 
-Toronto Central Intake is the City's 24/7 phone line connecting people in need of
-emergency shelter with available shelter spaces. When someone needs a bed, they call
-Central Intake, where staff assess the request and refer callers to available spaces
-across the shelter system. It is the primary, though not the only, referral pathway
-into Toronto's emergency shelter system. Streets to Homes outreach workers also make
-direct referrals outside of Central Intake.
+Central Intake is Toronto's 24-hour shelter phone line. People call when they
+need a place to stay. Staff may give a caller a shelter location. Street
+outreach workers can also help people get a space.
 
-This page replicates three of the four charts on the City's [Shelter System Requests
-for Referrals page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/){target="_blank"}.
-The fourth — average nightly shelter occupancy — is excluded because the City's CKAN
-daily occupancy export omits Bridging and Triage programs, producing values
-systematically below the City's published figures. BonQuery publishes nightly
-occupancy separately on the [Daily Occupancy & Capacity page](/projects/daily-occupancy.html){target="_blank"};
-a monthly estimate of the Bridging and Triage gap is on the
-[Central Intake Validation page](/projects/data-validation-central-intake.html){target="_blank"}.
+We rebuild three charts from the [City's page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/){target="_blank"}.
+We leave out the City's fourth chart because its public data file is missing
+Bridging & Triage Programs. That makes the total too low. See daily shelter use
+on [Beds and Spaces Today](/projects/daily-occupancy.html){target="_blank"} and
+see the missing numbers on the [Central Intake data check](/projects/data-validation-central-intake.html){target="_blank"}.
 
-BonQuery's version adds interactive controls the City's static charts don't have. The
-toggle below switches between the City replication view (April 2024 onward, matching
-the City's published table) and a custom date range covering the full dataset back to
-November 2020. An optional checkbox adds ±2 standard-error bars for readers who want
-to see within-month variability — the bars represent the uncertainty around each
-monthly average given the daily variation within that month.
+Choose **Match the City's chart** to see April 2024 onward. Choose **Pick dates**
+to go back to November 2020. The technical checkbox adds a range around each
+monthly average.
 
 ```{ojs}
 //| echo: false
@@ -106,8 +97,8 @@ viewof controls = {
 
   // --- individual inputs ---
   const modeInput = Inputs.radio(
-    ["City replication", "Custom range"],
-    {value: "City replication"}
+    ["Match the City's chart", "Pick dates"],
+    {value: "Match the City's chart"}
   )
   const startInput = Inputs.select(allMonthOpts, {
     label: "From",
@@ -120,7 +111,7 @@ viewof controls = {
     value: last
   })
   const seInput = Inputs.checkbox(
-    ["Show ±2 SE bars (for technical readers)"],
+    ["Show technical range lines"],
     {value: []}   // unchecked by default
   )
 
@@ -136,8 +127,7 @@ viewof controls = {
     <div>
       ${seInput}
       <small class="bq-hint">
-        Standard error of the monthly mean, computed from daily values within
-        each month. ±2 SE approximates a 95% confidence band.
+        The lines show ±2 standard errors around each monthly average.
       </small>
     </div>
   </div>`
@@ -155,7 +145,7 @@ viewof controls = {
   // Re-evaluate on any input change; toggle range visibility on mode change
   const fire = () => {
     rangeSpan.style.display =
-      modeInput.value === "Custom range" ? "inline-flex" : "none"
+      modeInput.value === "Pick dates" ? "inline-flex" : "none"
     bar.value = getValue()
     bar.dispatchEvent(new Event("input", {bubbles: true}))
   }
@@ -175,7 +165,7 @@ viewof controls = {
 
 // Filter the monthly data to the active window
 activeRange = {
-  if (controls.viewMode === "City replication") return cityRange
+  if (controls.viewMode === "Match the City's chart") return cityRange
 
   const {startKey, endKey} = controls
   if (startKey > endKey) return []   // guard: start after end
@@ -203,7 +193,7 @@ activeYearTicks = (() => {
 
 // x-axis: year-only ticks in both modes, no rotation.
 // Avoids label overlap regardless of range width or screen size.
-activeX = controls.viewMode === "City replication"
+activeX = controls.viewMode === "Match the City's chart"
   ? {
       domain:     xDomain,
       ticks:      xYearLabels,
@@ -237,13 +227,13 @@ Tap or hover any bar to see the month, year, and average value.
       ⚠ "From" month must be before "To" month.</p>`
 
   return Plot.plot({
-    title: "Calls Referred to a Shelter Space",
+    title: "Calls given a shelter referral",
     width,
     marginTop: 40,
     marginBottom: activeMarginBottom,
     marginLeft: 55,
     x: activeX,
-    y: {grid: true, label: "Avg. daily calls"},
+    y: {grid: true, label: "Average each day"},
     marks: [
       Plot.barY(activeRange, {
         x: "month_label",
@@ -275,13 +265,13 @@ Tap or hover any bar to see the month, year, and average value.
       ⚠ "From" month must be before "To" month.</p>`
 
   return Plot.plot({
-    title: "Unmatched Individual Callers",
+    title: "People or couples still without a place at 4 a.m.",
     width,
     marginTop: 40,
     marginBottom: activeMarginBottom,
     marginLeft: 55,
     x: activeX,
-    y: {grid: true, label: "Avg. daily callers"},
+    y: {grid: true, label: "Average each day"},
     marks: [
       Plot.barY(activeRange, {
         x: "month_label",
@@ -312,13 +302,13 @@ Tap or hover any bar to see the month, year, and average value.
       ⚠ "From" month must be before "To" month.</p>`
 
   return Plot.plot({
-    title: "Calls Handled",
+    title: "Calls handled by staff",
     width,
     marginTop: 40,
     marginBottom: activeMarginBottom,
     marginLeft: 55,
     x: activeX,
-    y: {grid: true, label: "Avg. daily calls"},
+    y: {grid: true, label: "Average each day"},
     marks: [
       Plot.barY(activeRange, {
         x: "month_label",
@@ -340,9 +330,8 @@ Tap or hover any bar to see the month, year, and average value.
 }
 ```
 
-The table below shows the same monthly averages as the City's published table on the
-Shelter System Requests for Referrals page, computed independently by BonQuery from
-the daily values in the City's CKAN open data export.
+This table shows the same monthly averages as the City's page. BonQuery
+calculates them from the City's daily public data.
 
 ```{ojs}
 //| echo: false
@@ -364,9 +353,9 @@ html`<table style="width:100%;border-collapse:collapse;font-size:0.9em">
     <tr>
       <th style="${thStyle()}"></th>
       <th style="${thStyle()}"></th>
-      <th style="${thStyle()}">Calls referred to a shelter space [1]</th>
-      <th style="${thStyle()}">Unmatched individual callers [2]</th>
-      <th style="${thStyle()}">Calls handled [3]</th>
+      <th style="${thStyle()}">Calls given a shelter referral [1]</th>
+      <th style="${thStyle()}">People or couples still without a place [2]</th>
+      <th style="${thStyle()}">Calls handled by staff [3]</th>
     </tr>
   </thead>
   <tbody>
@@ -397,32 +386,26 @@ html`<table style="width:100%;border-collapse:collapse;font-size:0.9em">
 </table>`
 ```
 
-[1] Source: Central Intake Call Wrap-Up Codes — Code 1A (Referral to a Sleeping/Resting Space).\
-[2] Source: Central Intake Service Queue Data — Unmatched callers.\
-[3] Source: Central Intake Call Wrap-Up Codes — Total calls handled.
+[1] Calls marked as referred to a sleeping or resting space.\
+[2] People or couples still without a shelter place at 4 a.m. A couple counts once.\
+[3] All calls marked as handled by staff.
 
 ### Notes on the Data
 
-This page draws on two resources from the City's [Central Intake Calls open data
-package](https://open.toronto.ca/dataset/central-intake-calls/){target="_blank"}. The Call Wrap-Up 
-Codes dataset is a call-centre record tracking daily call outcomes by type: each
-call answered by a caseworker is assigned one of 13 wrap-up codes. The chart titled 
-"Calls referred to a shelter space" uses Code 1A (referral to a sleeping or resting 
-space); "Calls handled" uses the total calls handled field. The Service Queue dataset 
-comes from Toronto's Shelter Management Information System (SMIS) and records how many 
-unique individuals or couples remain unmatched to a shelter bed at the end of each day 
-(4 a.m.). Because the two datasets come from different source systems, track different 
-units (calls vs. individuals), and cover different populations, the City's own 
-documentation states they cannot be combined.
+The City publishes two public files for these charts. One counts phone calls.
+The other counts people or couples still without a shelter place at 4 a.m.
+Those are different things, so the numbers should not be added together.
+
+In the call file, staff choose a code for what happened on each call. A referral
+code means staff gave the caller a sleeping or resting place to try. It does not
+prove that the person got into that space.
 
 ### Data source
 
-All data comes from the City of Toronto's [Central Intake
-Calls](https://open.toronto.ca/dataset/central-intake-calls/){target="_blank"}
-dataset, published monthly on the City's open data portal.
-Monthly averages are computed by BonQuery from the daily values
-in the dataset's two resources: the Call Wrap-Up Codes Data and
-the Central Intake Service Queue Data.
+All numbers come from the City of Toronto's [Central Intake Calls public
+data](https://open.toronto.ca/dataset/central-intake-calls/){target="_blank"}.
+The City updates it monthly. BonQuery calculates each monthly average from the
+daily numbers.
 
 Contains information licensed under the [Open Government
-Licence – Toronto](https://open.toronto.ca/open-data-licence/){target="_blank"}.
+Licence - Toronto](https://open.toronto.ca/open-data-licence/){target="_blank"}.

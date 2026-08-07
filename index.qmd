@@ -94,22 +94,9 @@ BonQuery rebuilds Toronto's public shelter dashboards using the City's public
 data files. We show how many spaces are available, how demand is changing, and when
 people who need somewhere safe to stay are still left without shelter.
 
-**Not everyone who needs shelter is homeless.** Adults, children, and families
-fleeing violence may still have an address but no safe home to return to. Other
-people are **housing insecure**, **unhoused**, or **experiencing homelessness**.
-These situations can overlap, but they are not the same.
-
-Being **unhoused** is not one experience either. It can mean sleeping outside,
-using a shelter, or moving between temporary places without one safe home to
-count on.
-
-The City's files count only the shelters and overnight programs listed in those
-files. They do not count everyone who needs safety.
-
-Whatever words people use, the questions are the same: Is there a safe place
-tonight? What is changing? Are the public numbers right?
-
-[Why we use more than one word →](about.qmd#language-homeless-unhoused-and-people-experiencing-homelessness)
+These files do not show everyone who needs a safe place or every form of
+homelessness. [See who the numbers include, who they miss, and why BonQuery uses
+more than one term →](projects/about-the-data.qmd#who-the-data-misses-and-why-words-matter)
 :::
 
 ```{=html}
@@ -160,22 +147,6 @@ We check whether people are still left without a place during dangerous cold.
 [See what happened in cold weather](projects/cold-response.qmd)
 
 [See where the numbers come from](projects/about-the-data.qmd)
-:::
-
-::: {.bq-status-note}
-### What the City files do not show
-
-The files do not count every person who needs safety. People may be missing if
-they are:
-
-- fleeing violence and using a women's shelter that is not in these files;
-- staying temporarily with friends or family;
-- sleeping outside without using a program in the files; or
-- living somewhere unsafe or unstable and trying to get help before losing it.
-
-Some people in these situations are counted when they use a listed program.
-Others are not. This site will never treat a City shelter count as everyone who
-needs help. [See exactly what is counted →](projects/about-the-data.qmd)
 :::
 
 ## Winter Accountability Monitor

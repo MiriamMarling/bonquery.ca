@@ -1,16 +1,16 @@
 ---
 title: "About the Data"
 subtitle: "How to read Toronto's shelter numbers, and where the data has limits"
-description: "Audit methodology for Toronto's shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions."
+description: "How to read Toronto shelter data: who is counted, who is missing, the City's estimated 18% undercount, and BonQuery's use of homeless and unhoused."
 author: "Miriam Marling"
 open-graph:
   title: "About the Data — Toronto Shelter System"
-  description: "Audit methodology for Toronto's shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions."
+  description: "How to read Toronto shelter data: who is counted, who is missing, the City's estimated 18% undercount, and BonQuery's use of homeless and unhoused."
   site_name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "About the Data — Toronto Shelter System"
-  description: "Audit methodology for Toronto's shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions."
+  description: "How to read Toronto shelter data: who is counted, who is missing, the City's estimated 18% undercount, and BonQuery's use of homeless and unhoused."
 ---
 
 ::: {.bq-status-note}
@@ -106,6 +106,50 @@ In practice: when the actively homeless count rises or falls, the change
 describes the shelter system specifically. Whether total homelessness is moving
 at the same rate depends on the part of the population this data does not see,
 which this dataset cannot answer on its own.
+
+## Who the data misses, and why words matter {#who-the-data-misses-and-why-words-matter}
+
+**The 18% estimate above concerns people experiencing absolute homelessness. It
+does not measure everyone who needs a safe place.** Adults, children, and
+families fleeing violence may still have an address but no safe home to return
+to. They may use a program that is not listed in these files, or they may not
+reach a listed service at all.
+
+People may be **housing insecure**, **unhoused**, or **experiencing
+homelessness**. These situations can overlap, but they are not the same. BonQuery
+uses **housing insecure** for the wider group of people whose housing is unsafe,
+unstable, unaffordable, or about to be lost.
+
+Being **unhoused** is not one experience either. It can mean sleeping outside,
+using a shelter, or moving between temporary places without one safe home to
+count on. A row in a data file cannot tell us which word a person uses for their
+own situation.
+
+### How BonQuery uses these words
+
+People use **homeless**, **unhoused**, and **people experiencing homelessness**.
+Some people and activists prefer **unhoused** because it names the lack of
+housing, not a fixed identity. Others use **homeless** for themselves and for
+established research, services, and advocacy. No single term speaks for
+everyone.
+
+BonQuery usually says **people experiencing homelessness** or **people without
+housing**. We use **homeless** when it is part of an official name, a direct
+quote, a research title, or a common search term. We do not call people “the
+homeless.” We will keep listening to people with lived experience and change our
+wording when needed.
+
+Canada's formal definition includes people staying in emergency shelters
+because of family violence, but a person may describe their own situation
+differently. This approach is informed by the [Canadian definition of
+homelessness](https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/){target="_blank"},
+[person-first language guidance](https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/){target="_blank"},
+and research on [why housing is central to the meaning of
+homelessness](https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf){target="_blank"}.
+
+The data can show only the people and programs captured in its files. Whatever
+words people use, the practical questions are the same: Is there a safe place
+tonight? What is changing? Are the public numbers right?
 
 ## How the population groups relate
 

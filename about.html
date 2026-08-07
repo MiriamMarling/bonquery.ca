@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miriam Marling">
+<meta name="description" content="About BonQuery’s independent Toronto shelter data work and why the site uses homeless, unhoused, and people experiencing homelessness.">
 
 <title>About – BonQuery</title>
 <style>
@@ -41,7 +42,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
@@ -81,14 +81,21 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="About — BonQuery">
-<meta property="og:description" content="About Miriam Marling and BonQuery — open data research on humanitarian issues, starting with Toronto’s shelter system.">
-<meta property="og:image" content="https://bonquery.ca/images/miriam-headshot.jpg">
+<meta property="og:title" content="About | BonQuery">
+<meta property="og:description" content="About BonQuery’s independent Toronto shelter data work and its use of homeless, unhoused, and people experiencing homelessness.">
+<meta property="og:image" content="https://bonquery.ca/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
-<meta name="twitter:title" content="About — BonQuery">
-<meta name="twitter:description" content="About Miriam Marling and BonQuery — open data research on humanitarian issues, starting with Toronto’s shelter system.">
-<meta name="twitter:image" content="https://bonquery.ca/images/miriam-headshot.jpg">
+<meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="About | BonQuery">
+<meta name="twitter:description" content="About BonQuery’s independent Toronto shelter data work and its use of homeless, unhoused, and people experiencing homelessness.">
+<meta name="twitter:image" content="https://bonquery.ca/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<link rel="canonical" href="https://bonquery.ca/about.html">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -234,7 +241,8 @@ ul.task-list li input[type="checkbox"] {
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -247,6 +255,14 @@ ul.task-list li input[type="checkbox"] {
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -275,61 +291,29 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./projects/toronto-shelter.html"> 
+<span class="menu-text">Dashboards</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./projects/cold-response.html"> 
 <span class="menu-text">Left in the Cold</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-audits" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Audits</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--methods" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data &amp; Methods</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-audits">    
-        <li class="dropdown-header">INDEPENDENT OVERSIGHT</li>
-        <li>
-    <a class="dropdown-item" href="./projects/discrepancy-tracker.html">
- <span class="dropdown-text">Discrepancy Tracker</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./projects/data-validation.html">
- <span class="dropdown-text">Emergency Occupancy Audit</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./projects/data-validation-central-intake.html">
- <span class="dropdown-text">Central Intake Audit</span></a>
-  </li>  
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data--methods">    
         <li>
     <a class="dropdown-item" href="./projects/about-the-data.html">
  <span class="dropdown-text">About the Data</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shelter-dashboards" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Shelter Dashboards</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-shelter-dashboards">    
         <li>
-    <a class="dropdown-item" href="./projects/toronto-shelter.html">
- <span class="dropdown-text">Inside Toronto’s Shelter System</span></a>
+    <a class="dropdown-item" href="./projects/data-validation.html">
+ <span class="dropdown-text">Occupancy Data Validation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./projects/monthly-snapshot.html">
- <span class="dropdown-text">Monthly System Flow Replication</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./projects/ytd-comparison.html">
- <span class="dropdown-text">Year-to-Date Capacity Match</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./projects/historical-trends.html">
- <span class="dropdown-text">Historical Trend Lines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./projects/central-intake.html">
- <span class="dropdown-text">Referral Requests Analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./projects/daily-occupancy.html">
- <span class="dropdown-text">Daily Occupancy &amp; Capacity</span></a>
+    <a class="dropdown-item" href="./projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Central Intake Validation</span></a>
   </li>  
     </ul>
   </li>
@@ -358,62 +342,84 @@ ul.task-list li input[type="checkbox"] {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
-   
   <ul>
-  <li><a href="#get-in-touch" id="toc-get-in-touch" class="nav-link active" data-scroll-target="#get-in-touch">Get in touch</a></li>
+  <li><a href="#language-homeless-unhoused-and-people-experiencing-homelessness" id="toc-language-homeless-unhoused-and-people-experiencing-homelessness" class="nav-link active" data-scroll-target="#language-homeless-unhoused-and-people-experiencing-homelessness">Language: homeless, unhoused, and people experiencing homelessness</a></li>
+  <li><a href="#open-methods-and-public-code" id="toc-open-methods-and-public-code" class="nav-link" data-scroll-target="#open-methods-and-public-code">Open methods and public code</a></li>
+  <li><a href="#get-in-touch" id="toc-get-in-touch" class="nav-link" data-scroll-target="#get-in-touch">Get in touch</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
+<div class="quarto-about-trestles">
+  <div class="about-entity">
+    <img src="images/miriam-headshot.jpg" alt="Portrait of the founder of BonQuery" class="about-image
+  round " style="height: 14em; width: 14em;">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">About</h1>
 </div>
-
-
-
+<div>
+  <div class="description">
+    About BonQuery’s independent Toronto shelter data work and why the site uses homeless, unhoused, and people experiencing homelessness.
+  </div>
+</div>
 <div class="quarto-title-meta">
-
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
              <p>Miriam Marling </p>
           </div>
   </div>
-    
-  
-    
   </div>
-  
-
-
 </header>
-
-
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/miriam-headshot.jpg" class="rounded img-fluid quarto-figure quarto-figure-center figure-img" width="250"></p>
-</figure>
+    <div class="about-links">
+  <a href="https://github.com/MiriamMarling/bonquery.ca" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text">GitHub</span>
+  </a>
+  <a href="https://www.linkedin.com/in/mmarling" class="about-link" rel="" target="">
+    <i class="bi bi-linkedin"></i>
+     <span class="about-link-text">LinkedIn</span>
+  </a>
+  <a href="mailto:info@BonQuery.ca" class="about-link" rel="" target="">
+    <i class="bi bi-envelope"></i>
+     <span class="about-link-text">Email</span>
+  </a>
 </div>
+  </div>
+  <div class="about-contents"><main class="content" id="quarto-document-content">
+
+
 <p>I’m a Toronto-based data researcher with a Master’s in cognitive neuroscience, two peer-reviewed publications, and a public-service role at Statistics Canada.</p>
-<p>R is my native analytical language. I’m also using Oracle SQL, APEX, and Python to build BonQuery’s projects end-to-end — database, dashboard, analysis, and writing.</p>
+<p>R is my native analytical language. I’m also using Oracle SQL, APEX, and Python to build BonQuery’s projects end to end: database, dashboard, analysis, and writing.</p>
 <p>I started BonQuery because so much of the publicly available data on humanitarian issues in Canada sits on government open-data pages where most people will never see it. The first project focuses on Toronto’s taxed shelter system. More to follow.</p>
+<section id="language-homeless-unhoused-and-people-experiencing-homelessness" class="level2">
+<h2 data-anchor-id="language-homeless-unhoused-and-people-experiencing-homelessness">Language: homeless, unhoused, and people experiencing homelessness</h2>
+<p>People use <strong>homeless</strong>, <strong>unhoused</strong>, and <strong>people experiencing homelessness</strong>. Some people and activists prefer <strong>unhoused</strong> because it names the lack of housing, not a fixed identity. Others use <strong>homeless</strong> for themselves and for established research, services, and advocacy. No single term speaks for everyone.</p>
+<p>BonQuery usually says <strong>people experiencing homelessness</strong> or <strong>people without housing</strong>. We use <strong>homeless</strong> when it is part of an official name, a direct quote, a research title, or a search term people use to find this work. We do not call people “the homeless.” We will keep listening to people with lived experience and change our wording when needed.</p>
+<p><strong>Needing shelter does not settle the label.</strong> Someone may still have an address but be unable to return safely. Canada’s formal definition includes people staying in emergency shelters because of family violence under homelessness, but a person may describe their own situation differently. <a href="https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/" target="_blank">See the Canadian definition</a>.</p>
+<p>BonQuery uses <strong>housing insecure</strong> for a wider group: people whose housing is unsafe, unstable, unaffordable, or about to be lost. That can include someone staying temporarily with other people or fleeing violence. A person can be housing insecure without appearing in the City shelter data at all.</p>
+<p><strong>Unhoused is not one experience.</strong> People may use the word while sleeping outside, staying in emergency shelter, or moving between temporary places without a safe home they can count on. People also differ in the words they use for themselves. BonQuery will not guess someone’s living situation or preferred word from a row in a data file.</p>
+<p>This approach follows <a href="https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/" target="_blank">person-first language guidance</a> and research on <a href="https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf" target="_blank">why housing is central to the meaning of homelessness</a>. It also follows the <a href="https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/" target="_blank">Canadian definition of homelessness</a> and recognizes the established name of York University’s <a href="https://yorkspace.library.yorku.ca/communities/081a5bc9-a172-4b31-a371-60715b0130c7" target="_blank">Canadian Observatory on Homelessness</a>.</p>
+</section>
+<section id="open-methods-and-public-code" class="level2">
+<h2 data-anchor-id="open-methods-and-public-code">Open methods and public code</h2>
+<p>The <a href="https://github.com/MiriamMarling/bonquery.ca" target="_blank">BonQuery.ca repository</a> is public. It contains the Quarto pages, styles, publishing workflows, and aggregated data used by the website. The raw-data pipelines and primary research analysis remain in a separate private repository while manuscript work is underway.</p>
+<p>If you find a problem in the website or its published data, you can <a href="https://github.com/MiriamMarling/bonquery.ca/issues" target="_blank">open an issue on GitHub</a>.</p>
+</section>
 <section id="get-in-touch" class="level2">
-<h2 class="anchored" data-anchor-id="get-in-touch">Get in touch</h2>
+<h2 data-anchor-id="get-in-touch">Get in touch</h2>
 <p>If you work with this data, have questions about the project, or want to collaborate:</p>
 <ul>
 <li>Get in touch with Miriam Marling at <a href="mailto:miriam@BonQuery.ca">miriam@BonQuery.ca</a></li>
 <li>General inquiries: <a href="mailto:info@BonQuery.ca">info@BonQuery.ca</a></li>
-<li><a href="https://www.linkedin.com/in/mmarling">LinkedIn</a></li>
 </ul>
 
 
 </section>
-
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main></div>
+</div>
+ <!-- /main -->
 <script>
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
@@ -471,11 +477,14 @@ ul.task-list li input[type="checkbox"] {
 (function () {
   var tog = document.querySelector(".quarto-color-scheme-toggle");
   if (!tog) return;
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
   var label = document.createElement("span");
   label.className = "bq-theme-label";
   var update = function () {
     var isDark = document.body.classList.contains("quarto-dark");
-    label.textContent = isDark ? "Light" : "Dark";
+    label.textContent = isFR
+      ? (isDark ? "Clair" : "Sombre")
+      : (isDark ? "Light" : "Dark");
   };
   tog.appendChild(label);
   update();
@@ -484,23 +493,178 @@ ul.task-list li input[type="checkbox"] {
   );
 })();
 
-// ── Bilingual alert toggle (EN | FR) ─────────────────────────────────────
-// Sets data-lang on each .bq-bilingual block; CSS controls visibility.
-var pageLang = (location.pathname.startsWith("/fr/") || location.pathname === "/fr")
-  ? "fr" : "en";
-document.querySelectorAll(".bq-bilingual").forEach(function (block) {
-  var btns = block.querySelectorAll(".bq-lang-btn");
-  function setLang(lang) {
-    block.setAttribute("data-lang", lang);
-    btns.forEach(function (b) {
-      b.classList.toggle("active", b.dataset.set === lang);
-    });
+// Live dashboard-card previews. This runs only on pages that contain the
+// shared dashboard cards and uses the same generated file as the dashboards.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var locale = isFR ? "fr-CA" : "en-CA";
+  var copy = isFR ? {
+    unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
+    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    activelyHomeless: "personnes en situation d'itinérance active",
+    newlyIdentified: "Nouvellement identifiées",
+    movedToHousing: "Ont obtenu un logement",
+    januaryTo: "De janvier à ",
+    latest: "Plus récent : ",
+    trend: "Tendance de l'itinérance active jusqu'à "
+  } : {
+    unavailable: "Preview unavailable. Open the dashboard.",
+    offlineBeds: "funded shelter beds for single adults were unavailable",
+    acrossPrograms: " people staying in shelter programs",
+    activelyHomeless: "people counted as homeless",
+    newlyIdentified: "Newly counted as homeless",
+    movedToHousing: "Moved into housing",
+    januaryTo: "January to ",
+    latest: "Latest: ",
+    trend: "People counted as homeless through "
+  };
+  var dailyMount = document.getElementById("bq-preview-daily");
+  var monthlyMount = document.getElementById("bq-preview-monthly");
+  var ytdMount = document.getElementById("bq-preview-ytd");
+  var historyMount = document.getElementById("bq-preview-history");
+  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.dataset.set); });
-  });
-  setLang(block.getAttribute("data-lang") || pageLang);
-});
+
+  function metricRow(label, value) {
+    var row = make("div");
+    row.append(make("span", "", label), make("strong", "", value));
+    return row;
+  }
+
+  function meter(value, maximum, good) {
+    var track = make("i");
+    var bar = make("b", good ? "bq-preview-bar-good" : "");
+    bar.style.width = ((value / maximum) * 100) + "%";
+    track.append(bar);
+    return track;
+  }
+
+  function showUnavailable(mount) {
+    if (!mount) return;
+    mount.replaceChildren(make("span", "", copy.unavailable));
+  }
+
+  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Daily preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      if (!dailyMount || !data.length) return;
+      var latestDate = data.reduce(function (latest, row) {
+        return row.date > latest ? row.date : latest;
+      }, "");
+      var rows = data.filter(function (row) { return row.date === latestDate; });
+      var singles = rows.find(function (row) { return row.key === "singles_total"; });
+      var system = rows.find(function (row) { return row.key === "all_shelter"; });
+      if (!singles || !system) throw new Error("Daily preview rows unavailable");
+      var dateParts = latestDate.split("-").map(Number);
+      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
+        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
+      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      daily.append(
+        make("strong", "", Number(offline).toLocaleString(locale)),
+        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+      );
+      dailyMount.replaceChildren(daily);
+    })
+    .catch(function () { showUnavailable(dailyMount); });
+
+  fetch("/data/shelter_flow.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Dashboard preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var rows = data
+        .filter(function (row) { return row.population_group === "All Population"; })
+        .slice()
+        .sort(function (a, b) { return a.flow_date.localeCompare(b.flow_date); });
+      if (!rows.length) throw new Error("Dashboard preview data empty");
+
+      var latest = rows[rows.length - 1];
+      var dateParts = latest.flow_date.split("-").map(Number);
+      var latestYear = dateParts[0];
+      var latestMonth = dateParts[1];
+      var latestLabel = new Date(latestYear, latestMonth - 1, 1)
+        .toLocaleDateString(locale, {month: "long", year: "numeric"});
+      var fmt = function (value) {
+        return Number(value).toLocaleString(locale);
+      };
+
+      if (monthlyMount) {
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", fmt(latest.actively_homeless)),
+          make("span", "", copy.activelyHomeless + " · " + latestLabel)
+        );
+        monthlyMount.replaceChildren(kpi);
+      }
+
+      var ytdRows = rows.filter(function (row) {
+        var parts = row.flow_date.split("-").map(Number);
+        return parts[0] === latestYear && parts[1] <= latestMonth;
+      });
+      var ytdNew = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.newly_identified || 0);
+      }, 0);
+      var ytdHoused = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.moved_to_housing || 0);
+      }, 0);
+      var ytdMax = Math.max(ytdNew, ytdHoused, 1);
+
+      if (ytdMount) {
+        var bars = make("div", "bq-preview-bars");
+        bars.append(
+          metricRow(copy.newlyIdentified, fmt(ytdNew)),
+          meter(ytdNew, ytdMax, false),
+          metricRow(copy.movedToHousing, fmt(ytdHoused)),
+          meter(ytdHoused, ytdMax, true),
+          make("small", "", copy.januaryTo + latestLabel)
+        );
+        ytdMount.replaceChildren(bars);
+      }
+
+      if (historyMount) {
+        var trend = rows.slice(-48).map(function (row) {
+          return +row.actively_homeless;
+        });
+        var minimum = Math.min.apply(null, trend);
+        var maximum = Math.max.apply(null, trend);
+        var spread = Math.max(maximum - minimum, 1);
+        var wrap = make("div", "bq-preview-history-wrap");
+        var spark = make("div", "bq-preview-spark");
+        spark.setAttribute("role", "img");
+        spark.setAttribute(
+          "aria-label",
+          copy.trend + latestLabel +
+            (isFR ? "; valeur la plus récente " : "; latest value ") +
+            fmt(latest.actively_homeless)
+        );
+        trend.forEach(function (value, index) {
+          var bar = make("span", index === trend.length - 1 ? "is-latest" : "");
+          bar.style.height = (20 + ((value - minimum) / spread) * 80) + "%";
+          spark.append(bar);
+        });
+        wrap.append(spark, make("small", "", copy.latest + fmt(latest.actively_homeless)));
+        historyMount.replaceChildren(wrap);
+      }
+    })
+    .catch(function () {
+      showUnavailable(monthlyMount);
+      showUnavailable(ytdMount);
+      showUnavailable(historyMount);
+    });
+})();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
 // Computes the exact mirror URL from the current pathname and updates the
@@ -515,7 +679,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
     enPath = (path === "/fr" || path === "/fr/")
       ? "/"
       : path.replace(frPfx, "/");
-    frPath = path.endsWith("/") ? path : path + "/";
+    frPath = (path === "/fr") ? "/fr/" : path;
   } else {
     enPath = path;
     frPath = frPfx + path.replace(/^\//, "");
@@ -568,13 +732,6 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
       window.document.body.appendChild(a);
     }
     setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -973,7 +1130,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>An independent data audit for Toronto residents. / Un audit de données indépendant pour les résidents de Toronto. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
+<p>Independent public-interest analysis of Toronto’s shelter system. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

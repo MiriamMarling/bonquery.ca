@@ -121,10 +121,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Inside Toronto’s Shelter System">
 <meta property="og:description" content="Toronto shelter system data — daily occupancy and capacity, monthly system flow, validated against the City of Toronto’s open data. Interactive tables with date selectors.">
+<meta property="og:image" content="https://bonquery.ca/projects/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
+<meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
 <meta name="twitter:title" content="Inside Toronto’s Shelter System">
 <meta name="twitter:description" content="Toronto shelter system data — daily occupancy and capacity, monthly system flow, validated against the City of Toronto’s open data. Interactive tables with date selectors.">
+<meta name="twitter:image" content="https://bonquery.ca/projects/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<link rel="canonical" href="https://bonquery.ca/projects/toronto-shelter.html">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -270,7 +275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -283,6 +289,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -311,61 +325,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link active" href="../projects/toronto-shelter.html" aria-current="page"> 
+<span class="menu-text">Dashboards</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../projects/cold-response.html"> 
 <span class="menu-text">Left in the Cold</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-audits" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Audits</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--methods" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data &amp; Methods</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-audits">    
-        <li class="dropdown-header">INDEPENDENT OVERSIGHT</li>
-        <li>
-    <a class="dropdown-item" href="../projects/discrepancy-tracker.html">
- <span class="dropdown-text">Discrepancy Tracker</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/data-validation.html">
- <span class="dropdown-text">Emergency Occupancy Audit</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/data-validation-central-intake.html">
- <span class="dropdown-text">Central Intake Audit</span></a>
-  </li>  
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data--methods">    
         <li>
     <a class="dropdown-item" href="../projects/about-the-data.html">
  <span class="dropdown-text">About the Data</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shelter-dashboards" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Shelter Dashboards</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-shelter-dashboards">    
         <li>
-    <a class="dropdown-item" href="../projects/toronto-shelter.html">
- <span class="dropdown-text">Inside Toronto’s Shelter System</span></a>
+    <a class="dropdown-item" href="../projects/data-validation.html">
+ <span class="dropdown-text">Occupancy Data Validation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../projects/monthly-snapshot.html">
- <span class="dropdown-text">Monthly System Flow Replication</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/ytd-comparison.html">
- <span class="dropdown-text">Year-to-Date Capacity Match</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/historical-trends.html">
- <span class="dropdown-text">Historical Trend Lines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/central-intake.html">
- <span class="dropdown-text">Referral Requests Analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/daily-occupancy.html">
- <span class="dropdown-text">Daily Occupancy &amp; Capacity</span></a>
+    <a class="dropdown-item" href="../projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Central Intake Validation</span></a>
   </li>  
     </ul>
   </li>
@@ -391,8 +373,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#choose-a-dashboard" id="toc-choose-a-dashboard" class="nav-link active" data-scroll-target="#choose-a-dashboard">Choose a dashboard</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -447,72 +435,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>This page is a hub for Toronto shelter system datasets sourced from the City of Toronto’s open data portal. Each section covers one dataset — use the headings to jump to what you need.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Monthly Shelter System Flow
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<section id="the-dashboards" class="level3 callout-body-container callout-body">
-<h3 class="anchored" data-anchor-id="the-dashboards">The dashboards</h3>
-<div class="mobile-dashboard-links">
-<p>Open each dashboard directly in your browser — they’re built for interactive use and work best full-screen on a phone.</p>
-<ul>
-<li><a href="monthly-snapshot.html">Monthly Snapshot →</a></li>
-<li><a href="ytd-comparison.html">Year-to-Date Comparison →</a></li>
-<li><a href="historical-trends.html">Historical Trends →</a></li>
-</ul>
-</div>
-<div class="desktop-dashboard-tabs">
-<p>The three tabs below show different views of the data, with interactive filters on every chart.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Monthly Snapshot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Year-to-Date Comparison</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Historical Trends</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>A point-in-time view of the shelter system for any month from January 2018 forward. Use the date filter at the top to change months.</p>
-<p><a href="monthly-snapshot.html" target="_blank">Open in a new tab →</a></p>
-<iframe src="monthly-snapshot.html" width="100%" height="2800" class="bq-embed" loading="lazy">
-</iframe>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Compares the current year’s cumulative figures against the same period the prior year. Useful for seeing whether the system is on track to exceed, match, or fall below last year.</p>
-<p><a href="ytd-comparison.html" target="_blank">Open in a new tab →</a></p>
-<iframe src="ytd-comparison.html" width="100%" height="900" class="bq-embed" loading="lazy">
-</iframe>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>Multi-year time series for the headline metrics, with filters for population group, year, and month. Useful for spotting long-term patterns or seasonal trends.</p>
-<p><a href="historical-trends.html" target="_blank">Open in a new tab →</a></p>
-<iframe src="historical-trends.html" width="100%" height="3800" class="bq-embed" loading="lazy">
-</iframe>
-</div>
-</div>
-</div>
-</div>
-<style>
-.mobile-dashboard-links { display: none !important; }
-.desktop-dashboard-tabs { display: block; }
-@media (max-width: 768px) {
-  .desktop-dashboard-tabs iframe {
-    width: 100vw !important;
-    margin-left: calc(50% - 50vw) !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-}
-</style>
-</section>
-</div>
+<p>This page brings together BonQuery’s interactive views of Toronto shelter data. Choose the question you want to answer, or continue to the detailed daily tables below.</p>
+<section id="choose-a-dashboard" class="level2">
+<h2 class="anchored" data-anchor-id="choose-a-dashboard">Choose a dashboard</h2>
+<div class="bq-dashboard-grid">
+
+<a class="bq-dashboard-card bq-card-daily" href="../projects/daily-occupancy.html">
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW FULL ARE SHELTERS TODAY?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST PUBLISHED</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3 class="anchored">Beds and Spaces Today</h3></div>
+  <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>See how many shelter beds and spaces were used, empty, or unavailable. Browse every day since January 2021.</p>
+  <span class="bq-card-link">See today's numbers <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card bq-card-monthly" href="../projects/monthly-snapshot.html">
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW MANY PEOPLE NEED SHELTER?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST PUBLISHED</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-people-fill" aria-hidden="true"></i></span><h3 class="anchored">Monthly Snapshot</h3></div>
+  <div class="bq-card-preview" id="bq-preview-monthly"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>See how many people were counted as homeless, entered or left the shelter system, and moved into housing. Choose any month from 2018 onward.</p>
+  <span class="bq-card-link">Open the snapshot <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card bq-card-history" href="../projects/historical-trends.html">
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW DID WE GET HERE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST PUBLISHED</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span><h3 class="anchored">Historical Trends</h3></div>
+  <div class="bq-card-preview" id="bq-preview-history"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>See how homelessness and shelter use have changed since January 2021.</p>
+  <span class="bq-card-link">Explore the trends <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card bq-card-ytd" href="../projects/ytd-comparison.html">
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">IS THE SYSTEM IMPROVING?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST PUBLISHED</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span><h3 class="anchored">This Year So Far</h3></div>
+  <div class="bq-card-preview" id="bq-preview-ytd"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>Compare how many people were newly counted as homeless or moved into housing this year and in earlier years.</p>
+  <span class="bq-card-link">Compare years <span aria-hidden="true">→</span></span>
+</a>
+
 </div>
 <hr>
 <div class="bq-green callout callout-style-default callout-note callout-titled" title="Daily Occupancy &amp; Capacity">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -521,18 +484,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="120" data-source-offset="-78"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 119;"><span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fmtDate</span>(s) {</span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [y<span class="op">,</span> m<span class="op">,</span> d] <span class="op">=</span> s<span class="op">.</span><span class="fu">split</span>(<span class="st">"-"</span>)<span class="op">.</span><span class="fu">map</span>(<span class="bu">Number</span>)</span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">new</span> <span class="bu">Date</span>(y<span class="op">,</span> m <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> d)<span class="op">.</span><span class="fu">toLocaleDateString</span>(<span class="st">"en-US"</span><span class="op">,</span> {</span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span><span class="op">:</span> <span class="st">"numeric"</span><span class="op">,</span> <span class="dt">month</span><span class="op">:</span> <span class="st">"long"</span><span class="op">,</span> <span class="dt">day</span><span class="op">:</span> <span class="st">"numeric"</span></span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>allDates <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(daily_occ<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">date</span>))]<span class="op">.</span><span class="fu">sort</span>()<span class="op">.</span><span class="fu">reverse</span>()</span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>latestDate <span class="op">=</span> allDates[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="37" data-source-offset="-78"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 36;"><span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">fmtDate</span>(s) {</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> [y<span class="op">,</span> m<span class="op">,</span> d] <span class="op">=</span> s<span class="op">.</span><span class="fu">split</span>(<span class="st">"-"</span>)<span class="op">.</span><span class="fu">map</span>(<span class="bu">Number</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">new</span> <span class="bu">Date</span>(y<span class="op">,</span> m <span class="op">-</span> <span class="dv">1</span><span class="op">,</span> d)<span class="op">.</span><span class="fu">toLocaleDateString</span>(<span class="st">"en-US"</span><span class="op">,</span> {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="dt">year</span><span class="op">:</span> <span class="st">"numeric"</span><span class="op">,</span> <span class="dt">month</span><span class="op">:</span> <span class="st">"long"</span><span class="op">,</span> <span class="dt">day</span><span class="op">:</span> <span class="st">"numeric"</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>allDates <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(daily_occ<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">date</span>))]<span class="op">.</span><span class="fu">sort</span>()<span class="op">.</span><span class="fu">reverse</span>()</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>latestDate <span class="op">=</span> allDates[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -559,98 +522,98 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="daily-occupancy-capacity-for-fmtdateselecteddate" class="level2">
 <h2 class="anchored" data-anchor-id="daily-occupancy-capacity-for-fmtdateselecteddate">Daily Occupancy &amp; Capacity for <span><span id="ojs-element-id-1"></span></span></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="143" data-source-offset="-216"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 142;"><span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>latestRows <span class="op">=</span> daily_occ<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">date</span> <span class="op">===</span> latestDate)</span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getVal</span>(rows<span class="op">,</span> key) {</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> row <span class="op">=</span> rows<span class="op">.</span><span class="fu">find</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">key</span> <span class="op">===</span> key)</span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> row <span class="op">?</span> row<span class="op">.</span><span class="at">ind</span> <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>validationChecks <span class="op">=</span> {</span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> latestRows</span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> checks <span class="op">=</span> []</span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 1: all expected keys present</span></span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> expectedKeys <span class="op">=</span> [</span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>    <span class="st">"all_shelter"</span><span class="op">,</span><span class="st">"room_based"</span><span class="op">,</span><span class="st">"singles_sector"</span><span class="op">,</span><span class="st">"singles_shelter"</span><span class="op">,</span><span class="st">"allied_summ"</span><span class="op">,</span></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    <span class="st">"temp_summ"</span><span class="op">,</span><span class="st">"iso_summ"</span><span class="op">,</span><span class="st">"fam_total"</span><span class="op">,</span><span class="st">"fam_emerg"</span><span class="op">,</span><span class="st">"fam_trans_r"</span><span class="op">,</span><span class="st">"fam_hotel"</span><span class="op">,</span></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sng_hotel"</span><span class="op">,</span><span class="st">"singles_total"</span><span class="op">,</span><span class="st">"emerg_total"</span><span class="op">,</span><span class="st">"mix_emerg"</span><span class="op">,</span><span class="st">"men_emerg"</span><span class="op">,</span><span class="st">"wom_emerg"</span><span class="op">,</span></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>    <span class="st">"yth_emerg"</span><span class="op">,</span><span class="st">"trans_total"</span><span class="op">,</span><span class="st">"mix_trans"</span><span class="op">,</span><span class="st">"fam_trans_b"</span><span class="op">,</span><span class="st">"men_trans"</span><span class="op">,</span><span class="st">"wom_trans"</span><span class="op">,</span></span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>    <span class="st">"yth_trans"</span><span class="op">,</span><span class="st">"allied_total"</span><span class="op">,</span><span class="st">"respites"</span><span class="op">,</span><span class="st">"dropin"</span><span class="op">,</span><span class="st">"temp_resp"</span><span class="op">,</span><span class="st">"hotels"</span><span class="op">,</span><span class="st">"iso"</span></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> presentKeys <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(rows<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">key</span>))</span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> missingKeys <span class="op">=</span> expectedKeys<span class="op">.</span><span class="fu">filter</span>(k <span class="kw">=&gt;</span> <span class="op">!</span>presentKeys<span class="op">.</span><span class="fu">has</span>(k))</span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"All expected rows present"</span><span class="op">,</span></span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> missingKeys<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> missingKeys<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="vs">`Missing: </span><span class="sc">${</span>missingKeys<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 2: All Shelter Programs total = sum of components</span></span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> allShelter <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"all_shelter"</span>)</span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> compSum <span class="op">=</span> [<span class="st">"fam_total"</span><span class="op">,</span><span class="st">"sng_hotel"</span><span class="op">,</span><span class="st">"singles_total"</span><span class="op">,</span><span class="st">"allied_total"</span><span class="op">,</span><span class="st">"temp_resp"</span><span class="op">,</span><span class="st">"hotels"</span><span class="op">,</span><span class="st">"iso"</span>]</span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">reduce</span>((s<span class="op">,</span> k) <span class="kw">=&gt;</span> s <span class="op">+</span> (<span class="fu">getVal</span>(rows<span class="op">,</span> k) <span class="op">??</span> <span class="dv">0</span>)<span class="op">,</span> <span class="dv">0</span>)</span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"All Shelter Programs rollup matches components"</span><span class="op">,</span></span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> allShelter <span class="op">===</span> compSum<span class="op">,</span></span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> allShelter <span class="op">!==</span> compSum</span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="vs">`all_shelter.ind=</span><span class="sc">${</span>allShelter<span class="sc">}</span><span class="vs">, component sum=</span><span class="sc">${</span>compSum<span class="sc">}</span><span class="vs">, diff=</span><span class="sc">${</span>allShelter <span class="op">-</span> compSum<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 3: Singles sectors total = emergency + transitional</span></span>
-<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> singlesTotal <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"singles_total"</span>)</span>
-<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> emergTotal <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"emerg_total"</span>)</span>
-<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> transTotal <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"trans_total"</span>)</span>
-<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Singles sectors rollup: emergency + transitional = singles total"</span><span class="op">,</span></span>
-<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> singlesTotal <span class="op">===</span> (emergTotal <span class="op">+</span> transTotal)<span class="op">,</span></span>
-<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> singlesTotal <span class="op">!==</span> (emergTotal <span class="op">+</span> transTotal)</span>
-<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="vs">`singles=</span><span class="sc">${</span>singlesTotal<span class="sc">}</span><span class="vs">, emerg+trans=</span><span class="sc">${</span>emergTotal <span class="op">+</span> transTotal<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 4: For every row with non-null cap, occ + unocc = cap (within 1, for rounding)</span></span>
-<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> capRows <span class="op">=</span> rows<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">cap</span> <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> r<span class="op">.</span><span class="at">cap</span> <span class="op">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> arithFails <span class="op">=</span> capRows<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(r<span class="op">.</span><span class="at">occ</span> <span class="op">+</span> r<span class="op">.</span><span class="at">unocc</span> <span class="op">-</span> r<span class="op">.</span><span class="at">cap</span>) <span class="op">&gt;</span> <span class="fl">0.5</span>)</span>
-<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
-<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Internal arithmetic: occupied + unoccupied = actual capacity"</span><span class="op">,</span></span>
-<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> arithFails<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> arithFails<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
-<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> arithFails<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>r<span class="op">.</span><span class="at">key</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>r<span class="op">.</span><span class="at">occ</span><span class="sc">}</span><span class="vs">+</span><span class="sc">${</span>r<span class="op">.</span><span class="at">unocc</span><span class="sc">}</span><span class="vs">≠</span><span class="sc">${</span>r<span class="op">.</span><span class="at">cap</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">"; "</span>)</span>
-<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> checks</span>
-<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>allPass <span class="op">=</span> validationChecks<span class="op">.</span><span class="fu">every</span>(c <span class="kw">=&gt;</span> c<span class="op">.</span><span class="at">pass</span>)</span>
-<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Validation banner ─────────────────────────────────────────────────────</span></span>
-<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>validationBanner <span class="op">=</span> {</span>
-<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> CITY_CENSUS_URL <span class="op">=</span> <span class="st">"https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"</span></span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>allPass) {</span>
-<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> failedChecks <span class="op">=</span> validationChecks<span class="op">.</span><span class="fu">filter</span>(c <span class="kw">=&gt;</span> <span class="op">!</span>c<span class="op">.</span><span class="at">pass</span>)</span>
-<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div style="</span></span>
-<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="vs">      background:var(--bq-warn-bg);border:1px solid var(--bq-warn-border);border-radius:4px;</span></span>
-<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="vs">      padding:8px 14px;font-size:0.88em;color:var(--bq-warn-fg);margin-bottom:12px"&gt;</span></span>
-<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;strong&gt;⚠ Validation issue detected for </span><span class="sc">${</span><span class="fu">fmtDate</span>(latestDate)<span class="sc">}</span><span class="vs">&lt;/strong&gt;</span></span>
-<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;details style="margin-top:6px"&gt;</span></span>
-<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;summary style="cursor:pointer"&gt;Show details&lt;/summary&gt;</span></span>
-<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;ul style="margin:6px 0 0;padding-left:20px"&gt;</span></span>
-<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>failedChecks<span class="op">.</span><span class="fu">map</span>(c <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;li&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">name</span><span class="sc">}${</span>c<span class="op">.</span><span class="at">detail</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">` — &lt;em&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">detail</span><span class="sc">}</span><span class="vs">&lt;/em&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/li&gt;`</span>)<span class="sc">}</span></span>
-<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/ul&gt;</span></span>
-<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/details&gt;</span></span>
-<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;`</span></span>
-<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ── City-vs-BonQuery banner hidden ────────────────────────────────────────</span></span>
-<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Bridging &amp; Triage (29 ppl) and known capacity differences cause the</span></span>
-<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>  <span class="co">// current validator to always fail. Re-enable after the capacity</span></span>
-<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>  <span class="co">// reconciliation analysis so we can show a clean ✓ / * / status that</span></span>
-<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>  <span class="co">// distinguishes documented structural differences from genuine discrepancies.</span></span>
-<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">``</span></span>
-<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="60" data-source-offset="-216"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 59;"><span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>latestRows <span class="op">=</span> daily_occ<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">date</span> <span class="op">===</span> latestDate)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">getVal</span>(rows<span class="op">,</span> key) {</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> row <span class="op">=</span> rows<span class="op">.</span><span class="fu">find</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">key</span> <span class="op">===</span> key)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> row <span class="op">?</span> row<span class="op">.</span><span class="at">ind</span> <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>validationChecks <span class="op">=</span> {</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> latestRows</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> checks <span class="op">=</span> []</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 1: all expected keys present</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> expectedKeys <span class="op">=</span> [</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>    <span class="st">"all_shelter"</span><span class="op">,</span><span class="st">"room_based"</span><span class="op">,</span><span class="st">"singles_sector"</span><span class="op">,</span><span class="st">"singles_shelter"</span><span class="op">,</span><span class="st">"allied_summ"</span><span class="op">,</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>    <span class="st">"temp_summ"</span><span class="op">,</span><span class="st">"iso_summ"</span><span class="op">,</span><span class="st">"fam_total"</span><span class="op">,</span><span class="st">"fam_emerg"</span><span class="op">,</span><span class="st">"fam_trans_r"</span><span class="op">,</span><span class="st">"fam_hotel"</span><span class="op">,</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sng_hotel"</span><span class="op">,</span><span class="st">"singles_total"</span><span class="op">,</span><span class="st">"emerg_total"</span><span class="op">,</span><span class="st">"mix_emerg"</span><span class="op">,</span><span class="st">"men_emerg"</span><span class="op">,</span><span class="st">"wom_emerg"</span><span class="op">,</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>    <span class="st">"yth_emerg"</span><span class="op">,</span><span class="st">"trans_total"</span><span class="op">,</span><span class="st">"mix_trans"</span><span class="op">,</span><span class="st">"fam_trans_b"</span><span class="op">,</span><span class="st">"men_trans"</span><span class="op">,</span><span class="st">"wom_trans"</span><span class="op">,</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>    <span class="st">"yth_trans"</span><span class="op">,</span><span class="st">"allied_total"</span><span class="op">,</span><span class="st">"respites"</span><span class="op">,</span><span class="st">"dropin"</span><span class="op">,</span><span class="st">"temp_resp"</span><span class="op">,</span><span class="st">"hotels"</span><span class="op">,</span><span class="st">"iso"</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> presentKeys <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(rows<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">key</span>))</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> missingKeys <span class="op">=</span> expectedKeys<span class="op">.</span><span class="fu">filter</span>(k <span class="kw">=&gt;</span> <span class="op">!</span>presentKeys<span class="op">.</span><span class="fu">has</span>(k))</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"All expected rows present"</span><span class="op">,</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> missingKeys<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> missingKeys<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="vs">`Missing: </span><span class="sc">${</span>missingKeys<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 2: All Shelter Programs total = sum of components</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> allShelter <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"all_shelter"</span>)</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> compSum <span class="op">=</span> [<span class="st">"fam_total"</span><span class="op">,</span><span class="st">"sng_hotel"</span><span class="op">,</span><span class="st">"singles_total"</span><span class="op">,</span><span class="st">"allied_total"</span><span class="op">,</span><span class="st">"temp_resp"</span><span class="op">,</span><span class="st">"hotels"</span><span class="op">,</span><span class="st">"iso"</span>]</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">reduce</span>((s<span class="op">,</span> k) <span class="kw">=&gt;</span> s <span class="op">+</span> (<span class="fu">getVal</span>(rows<span class="op">,</span> k) <span class="op">??</span> <span class="dv">0</span>)<span class="op">,</span> <span class="dv">0</span>)</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"All Shelter Programs rollup matches components"</span><span class="op">,</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> allShelter <span class="op">===</span> compSum<span class="op">,</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> allShelter <span class="op">!==</span> compSum</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="vs">`all_shelter.ind=</span><span class="sc">${</span>allShelter<span class="sc">}</span><span class="vs">, component sum=</span><span class="sc">${</span>compSum<span class="sc">}</span><span class="vs">, diff=</span><span class="sc">${</span>allShelter <span class="op">-</span> compSum<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 3: Singles sectors total = emergency + transitional</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> singlesTotal <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"singles_total"</span>)</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> emergTotal <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"emerg_total"</span>)</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> transTotal <span class="op">=</span> <span class="fu">getVal</span>(rows<span class="op">,</span> <span class="st">"trans_total"</span>)</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Singles sectors rollup: emergency + transitional = singles total"</span><span class="op">,</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> singlesTotal <span class="op">===</span> (emergTotal <span class="op">+</span> transTotal)<span class="op">,</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> singlesTotal <span class="op">!==</span> (emergTotal <span class="op">+</span> transTotal)</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="vs">`singles=</span><span class="sc">${</span>singlesTotal<span class="sc">}</span><span class="vs">, emerg+trans=</span><span class="sc">${</span>emergTotal <span class="op">+</span> transTotal<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check 4: For every row with non-null cap, occ + unocc = cap (within 1, for rounding)</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> capRows <span class="op">=</span> rows<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">cap</span> <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> r<span class="op">.</span><span class="at">cap</span> <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> arithFails <span class="op">=</span> capRows<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(r<span class="op">.</span><span class="at">occ</span> <span class="op">+</span> r<span class="op">.</span><span class="at">unocc</span> <span class="op">-</span> r<span class="op">.</span><span class="at">cap</span>) <span class="op">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>  checks<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>    <span class="dt">name</span><span class="op">:</span> <span class="st">"Internal arithmetic: occupied + unoccupied = actual capacity"</span><span class="op">,</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pass</span><span class="op">:</span> arithFails<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>    <span class="dt">detail</span><span class="op">:</span> arithFails<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> arithFails<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>r<span class="op">.</span><span class="at">key</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>r<span class="op">.</span><span class="at">occ</span><span class="sc">}</span><span class="vs">+</span><span class="sc">${</span>r<span class="op">.</span><span class="at">unocc</span><span class="sc">}</span><span class="vs">≠</span><span class="sc">${</span>r<span class="op">.</span><span class="at">cap</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">"; "</span>)</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> checks</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>allPass <span class="op">=</span> validationChecks<span class="op">.</span><span class="fu">every</span>(c <span class="kw">=&gt;</span> c<span class="op">.</span><span class="at">pass</span>)</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Validation banner ─────────────────────────────────────────────────────</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>validationBanner <span class="op">=</span> {</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> CITY_CENSUS_URL <span class="op">=</span> <span class="st">"https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>allPass) {</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> failedChecks <span class="op">=</span> validationChecks<span class="op">.</span><span class="fu">filter</span>(c <span class="kw">=&gt;</span> <span class="op">!</span>c<span class="op">.</span><span class="at">pass</span>)</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div style="</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="vs">      background:var(--bq-warn-bg);border:1px solid var(--bq-warn-border);border-radius:4px;</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="vs">      padding:8px 14px;font-size:0.88em;color:var(--bq-warn-fg);margin-bottom:12px"&gt;</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;strong&gt;⚠ Validation issue detected for </span><span class="sc">${</span><span class="fu">fmtDate</span>(latestDate)<span class="sc">}</span><span class="vs">&lt;/strong&gt;</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;details style="margin-top:6px"&gt;</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;summary style="cursor:pointer"&gt;Show details&lt;/summary&gt;</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;ul style="margin:6px 0 0;padding-left:20px"&gt;</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>failedChecks<span class="op">.</span><span class="fu">map</span>(c <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;li&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">name</span><span class="sc">}${</span>c<span class="op">.</span><span class="at">detail</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">` — &lt;em&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">detail</span><span class="sc">}</span><span class="vs">&lt;/em&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/li&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/ul&gt;</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/details&gt;</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;`</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ── City-vs-BonQuery banner hidden ────────────────────────────────────────</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Bridging &amp; Triage (29 ppl) and known capacity differences cause the</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  <span class="co">// current validator to always fail. Re-enable after the capacity</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>  <span class="co">// reconciliation analysis so we can show a clean ✓ / * / status that</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>  <span class="co">// distinguishes documented structural differences from genuine discrepancies.</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">``</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -688,10 +651,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="238" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 237;"><span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a>viewof selectedDate <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allDates<span class="op">,</span> {</span>
-<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Date"</span><span class="op">,</span></span>
-<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="fu">fmtDate</span>(d)</span>
-<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="155" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 154;"><span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>viewof selectedDate <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allDates<span class="op">,</span> {</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Date"</span><span class="op">,</span></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="fu">fmtDate</span>(d)</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-4" data-nodetype="declaration">
 
@@ -699,7 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="246" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 245;"><span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;p class="bq-ckan-note"&gt;Latest available from City of Toronto Open Data: &lt;strong&gt;</span><span class="sc">${</span><span class="fu">fmtDate</span>(latestDate)<span class="sc">}</span><span class="vs">&lt;/strong&gt;.&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="163" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 162;"><span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;p class="bq-ckan-note"&gt;Latest available from City of Toronto Open Data: &lt;strong&gt;</span><span class="sc">${</span><span class="fu">fmtDate</span>(latestDate)<span class="sc">}</span><span class="vs">&lt;/strong&gt;.&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-5" data-nodetype="expression">
 
@@ -707,145 +670,145 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="253" data-source-offset="-78"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 252;"><span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a>dayRows <span class="op">=</span> daily_occ<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">date</span> <span class="op">===</span> selectedDate)</span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">n</span>(v) { <span class="cf">return</span> v <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> v <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> v<span class="op">.</span><span class="fu">toLocaleString</span>() <span class="op">:</span> <span class="st">"—"</span> }</span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pct</span>(v) { <span class="cf">return</span> v <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> v <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">+</span> <span class="st">"%"</span> <span class="op">:</span> <span class="st">"—"</span> }</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="170" data-source-offset="-78"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 169;"><span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>dayRows <span class="op">=</span> daily_occ<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">date</span> <span class="op">===</span> selectedDate)</span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">n</span>(v) { <span class="cf">return</span> v <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> v <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> v<span class="op">.</span><span class="fu">toLocaleString</span>() <span class="op">:</span> <span class="st">"—"</span> }</span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pct</span>(v) { <span class="cf">return</span> v <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> v <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">+</span> <span class="st">"%"</span> <span class="op">:</span> <span class="st">"—"</span> }</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">offlineCell</span>(r) {</span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="op">.</span><span class="at">cap</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">||</span> r<span class="op">.</span><span class="at">cap</span> <span class="op">===</span> <span class="kw">undefined</span>) <span class="cf">return</span> <span class="vs">`&lt;td&gt;&lt;/td&gt;`</span></span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="op">.</span><span class="at">cap_funding</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">||</span> r<span class="op">.</span><span class="at">cap_funding</span> <span class="op">===</span> <span class="kw">undefined</span>) <span class="cf">return</span> <span class="vs">`&lt;td&gt;&lt;/td&gt;`</span></span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> offline <span class="op">=</span> r<span class="op">.</span><span class="at">cap_funding</span> <span class="op">-</span> r<span class="op">.</span><span class="at">cap</span></span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (offline <span class="op">&lt;=</span> <span class="dv">0</span>) {</span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="vs">`&lt;td class="bq-num"&gt;</span><span class="sc">${</span>offline<span class="op">.</span><span class="fu">toLocaleString</span>()<span class="sc">}</span><span class="vs">&lt;/td&gt;`</span></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;td class="bq-num bq-danger"&gt;</span><span class="sc">${</span>offline<span class="op">.</span><span class="fu">toLocaleString</span>()<span class="sc">}</span><span class="vs">&lt;/td&gt;`</span></span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tableRow</span>(r<span class="op">,</span> col1Label) {</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pad <span class="op">=</span> (r<span class="op">.</span><span class="at">indent</span> <span class="op">??</span> <span class="dv">0</span>) <span class="op">*</span> <span class="dv">16</span></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cls <span class="op">=</span> r<span class="op">.</span><span class="at">is_total</span> <span class="op">?</span> <span class="st">"bq-row-total"</span> <span class="op">:</span> <span class="st">"bq-row"</span></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bld <span class="op">=</span> r<span class="op">.</span><span class="at">is_total</span> <span class="op">?</span> <span class="st">" bq-bold"</span> <span class="op">:</span> <span class="st">""</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="op">.</span><span class="at">col_type</span> <span class="op">===</span> <span class="st">"summary"</span>) {</span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="vs">`&lt;tr class="</span><span class="sc">${</span>cls<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;td style="padding-left:</span><span class="sc">${</span>pad<span class="sc">}</span><span class="vs">px" class="</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>r<span class="op">.</span><span class="at">label</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;td class="bq-num</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">ind</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;`</span></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;tr class="</span><span class="sc">${</span>cls<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td style="padding-left:</span><span class="sc">${</span>pad<span class="sc">}</span><span class="vs">px" class="</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>r<span class="op">.</span><span class="at">label</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">ind</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">occ</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">unocc</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">cap</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span><span class="fu">offlineCell</span>(r)<span class="sc">}</span></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">pct</span>(r<span class="op">.</span><span class="at">rate</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sectionHeader</span>(label<span class="op">,</span> col1<span class="op">,</span> col2<span class="op">,</span> col3<span class="op">,</span> col4) {</span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;tr class="bq-th"&gt;</span></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;</span><span class="sc">${</span>label<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;Individuals&lt;/td&gt;</span></span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col1<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col2<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col3<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col4<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;Occupancy Rate&lt;/td&gt;</span></span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">summaryHeader</span>() {</span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;tr class="bq-th"&gt;</span></span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;Occupancy Summary&lt;/td&gt;</span></span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;Individuals&lt;/td&gt;</span></span>
+<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td colspan="5"&gt;&lt;/td&gt;</span></span>
+<span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
+<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>dailyTable <span class="op">=</span> {</span>
+<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s <span class="op">=</span> (key) <span class="kw">=&gt;</span> dayRows<span class="op">.</span><span class="fu">find</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">key</span> <span class="op">===</span> key)</span>
+<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> allShelterInd <span class="op">=</span> <span class="fu">s</span>(<span class="st">"all_shelter"</span>) <span class="op">?</span> <span class="fu">s</span>(<span class="st">"all_shelter"</span>)<span class="op">.</span><span class="at">ind</span> <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> btEntry  <span class="op">=</span> bt_data <span class="op">&amp;&amp;</span> bt_data<span class="op">.</span><span class="at">entries</span> <span class="op">?</span> bt_data<span class="op">.</span><span class="at">entries</span>[selectedDate] <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> btInd    <span class="op">=</span> btEntry <span class="op">?</span> btEntry<span class="op">.</span><span class="at">bridging_triage</span> <span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> btStart  <span class="op">=</span> bt_data <span class="op">&amp;&amp;</span> bt_data<span class="op">.</span><span class="at">first_captured</span></span>
+<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> bt_data<span class="op">.</span><span class="at">first_captured</span></span>
+<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> <span class="st">"the date scraping began"</span></span>
+<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalInd <span class="op">=</span> (allShelterInd <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> btInd <span class="op">!==</span> <span class="kw">null</span>)</span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> allShelterInd <span class="op">+</span> btInd</span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> allShelterInd</span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalAccomRow <span class="op">=</span> <span class="vs">`&lt;tr class="bq-row-total bq-bold"&gt;</span></span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;Total People Accommodated †&lt;/td&gt;</span></span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(totalInd)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bridgingRow <span class="op">=</span> btInd <span class="op">!==</span> <span class="kw">null</span></span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="vs">`&lt;tr class="bq-row-alt"&gt;</span></span>
+<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="padding-left:26px"&gt;Bridging &amp;amp; Triage Programs&lt;/td&gt;</span></span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(btInd)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
+<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a><span class="vs">       &lt;/tr&gt;`</span></span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> <span class="vs">`&lt;tr class="bq-row-na"&gt;</span></span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="padding-left:26px"&gt;Bridging &amp;amp; Triage Programs&lt;/td&gt;</span></span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num" style="font-size:0.85em"</span></span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a><span class="vs">          &gt;Not available for this date&lt;/td&gt;</span></span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a><span class="vs">       &lt;/tr&gt;`</span></span>
 <span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">offlineCell</span>(r) {</span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="op">.</span><span class="at">cap</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">||</span> r<span class="op">.</span><span class="at">cap</span> <span class="op">===</span> <span class="kw">undefined</span>) <span class="cf">return</span> <span class="vs">`&lt;td&gt;&lt;/td&gt;`</span></span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="op">.</span><span class="at">cap_funding</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">||</span> r<span class="op">.</span><span class="at">cap_funding</span> <span class="op">===</span> <span class="kw">undefined</span>) <span class="cf">return</span> <span class="vs">`&lt;td&gt;&lt;/td&gt;`</span></span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> offline <span class="op">=</span> r<span class="op">.</span><span class="at">cap_funding</span> <span class="op">-</span> r<span class="op">.</span><span class="at">cap</span></span>
-<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (offline <span class="op">&lt;=</span> <span class="dv">0</span>) {</span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="vs">`&lt;td class="bq-num"&gt;</span><span class="sc">${</span>offline<span class="op">.</span><span class="fu">toLocaleString</span>()<span class="sc">}</span><span class="vs">&lt;/td&gt;`</span></span>
-<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;td class="bq-num bq-danger"&gt;</span><span class="sc">${</span>offline<span class="op">.</span><span class="fu">toLocaleString</span>()<span class="sc">}</span><span class="vs">&lt;/td&gt;`</span></span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tableRow</span>(r<span class="op">,</span> col1Label) {</span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pad <span class="op">=</span> (r<span class="op">.</span><span class="at">indent</span> <span class="op">??</span> <span class="dv">0</span>) <span class="op">*</span> <span class="dv">16</span></span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cls <span class="op">=</span> r<span class="op">.</span><span class="at">is_total</span> <span class="op">?</span> <span class="st">"bq-row-total"</span> <span class="op">:</span> <span class="st">"bq-row"</span></span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bld <span class="op">=</span> r<span class="op">.</span><span class="at">is_total</span> <span class="op">?</span> <span class="st">" bq-bold"</span> <span class="op">:</span> <span class="st">""</span></span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="op">.</span><span class="at">col_type</span> <span class="op">===</span> <span class="st">"summary"</span>) {</span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="vs">`&lt;tr class="</span><span class="sc">${</span>cls<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;td style="padding-left:</span><span class="sc">${</span>pad<span class="sc">}</span><span class="vs">px" class="</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>r<span class="op">.</span><span class="at">label</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;td class="bq-num</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">ind</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;`</span></span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;tr class="</span><span class="sc">${</span>cls<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td style="padding-left:</span><span class="sc">${</span>pad<span class="sc">}</span><span class="vs">px" class="</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>r<span class="op">.</span><span class="at">label</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num</span><span class="sc">${</span>bld<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">ind</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">occ</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">unocc</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(r<span class="op">.</span><span class="at">cap</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span><span class="fu">offlineCell</span>(r)<span class="sc">}</span></span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">pct</span>(r<span class="op">.</span><span class="at">rate</span>)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sectionHeader</span>(label<span class="op">,</span> col1<span class="op">,</span> col2<span class="op">,</span> col3<span class="op">,</span> col4) {</span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;tr class="bq-th"&gt;</span></span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;</span><span class="sc">${</span>label<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;Individuals&lt;/td&gt;</span></span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col1<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col2<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col3<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span>col4<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;Occupancy Rate&lt;/td&gt;</span></span>
-<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
-<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">summaryHeader</span>() {</span>
-<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`&lt;tr class="bq-th"&gt;</span></span>
-<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;Occupancy Summary&lt;/td&gt;</span></span>
-<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;Individuals&lt;/td&gt;</span></span>
-<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td colspan="5"&gt;&lt;/td&gt;</span></span>
-<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
-<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a>dailyTable <span class="op">=</span> {</span>
-<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s <span class="op">=</span> (key) <span class="kw">=&gt;</span> dayRows<span class="op">.</span><span class="fu">find</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">key</span> <span class="op">===</span> key)</span>
-<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> allShelterInd <span class="op">=</span> <span class="fu">s</span>(<span class="st">"all_shelter"</span>) <span class="op">?</span> <span class="fu">s</span>(<span class="st">"all_shelter"</span>)<span class="op">.</span><span class="at">ind</span> <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> btEntry  <span class="op">=</span> bt_data <span class="op">&amp;&amp;</span> bt_data<span class="op">.</span><span class="at">entries</span> <span class="op">?</span> bt_data<span class="op">.</span><span class="at">entries</span>[selectedDate] <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> btInd    <span class="op">=</span> btEntry <span class="op">?</span> btEntry<span class="op">.</span><span class="at">bridging_triage</span> <span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> btStart  <span class="op">=</span> bt_data <span class="op">&amp;&amp;</span> bt_data<span class="op">.</span><span class="at">first_captured</span></span>
-<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> bt_data<span class="op">.</span><span class="at">first_captured</span></span>
-<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> <span class="st">"the date scraping began"</span></span>
-<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalInd <span class="op">=</span> (allShelterInd <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> btInd <span class="op">!==</span> <span class="kw">null</span>)</span>
-<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> allShelterInd <span class="op">+</span> btInd</span>
-<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> allShelterInd</span>
-<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalAccomRow <span class="op">=</span> <span class="vs">`&lt;tr class="bq-row-total bq-bold"&gt;</span></span>
-<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;Total People Accommodated †&lt;/td&gt;</span></span>
-<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(totalInd)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
-<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tr&gt;`</span></span>
-<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bridgingRow <span class="op">=</span> btInd <span class="op">!==</span> <span class="kw">null</span></span>
-<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> <span class="vs">`&lt;tr class="bq-row-alt"&gt;</span></span>
-<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="padding-left:26px"&gt;Bridging &amp;amp; Triage Programs&lt;/td&gt;</span></span>
-<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;</span><span class="sc">${</span><span class="fu">n</span>(btInd)<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
-<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a><span class="vs">       &lt;/tr&gt;`</span></span>
-<span id="cb6-334"><a href="#cb6-334" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> <span class="vs">`&lt;tr class="bq-row-na"&gt;</span></span>
-<span id="cb6-335"><a href="#cb6-335" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="padding-left:26px"&gt;Bridging &amp;amp; Triage Programs&lt;/td&gt;</span></span>
-<span id="cb6-336"><a href="#cb6-336" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num" style="font-size:0.85em"</span></span>
-<span id="cb6-337"><a href="#cb6-337" aria-hidden="true" tabindex="-1"></a><span class="vs">          &gt;Not available for this date&lt;/td&gt;</span></span>
-<span id="cb6-338"><a href="#cb6-338" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;</span></span>
-<span id="cb6-339"><a href="#cb6-339" aria-hidden="true" tabindex="-1"></a><span class="vs">       &lt;/tr&gt;`</span></span>
-<span id="cb6-340"><a href="#cb6-340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-341"><a href="#cb6-341" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> summaryKeys <span class="op">=</span> [<span class="st">"all_shelter"</span><span class="op">,</span><span class="st">"room_based"</span><span class="op">,</span><span class="st">"singles_sector"</span><span class="op">,</span><span class="st">"singles_shelter"</span><span class="op">,</span><span class="st">"allied_summ"</span><span class="op">,</span><span class="st">"temp_summ"</span><span class="op">,</span><span class="st">"iso_summ"</span>]</span>
-<span id="cb6-342"><a href="#cb6-342" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> roomKeys    <span class="op">=</span> [<span class="st">"fam_total"</span><span class="op">,</span><span class="st">"fam_emerg"</span><span class="op">,</span><span class="st">"fam_trans_r"</span><span class="op">,</span><span class="st">"fam_hotel"</span><span class="op">,</span><span class="st">"sng_hotel"</span>]</span>
-<span id="cb6-343"><a href="#cb6-343" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bedKeys     <span class="op">=</span> [<span class="st">"singles_total"</span><span class="op">,</span><span class="st">"emerg_total"</span><span class="op">,</span><span class="st">"mix_emerg"</span><span class="op">,</span><span class="st">"men_emerg"</span><span class="op">,</span><span class="st">"wom_emerg"</span><span class="op">,</span><span class="st">"yth_emerg"</span><span class="op">,</span></span>
-<span id="cb6-344"><a href="#cb6-344" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"trans_total"</span><span class="op">,</span><span class="st">"mix_trans"</span><span class="op">,</span><span class="st">"fam_trans_b"</span><span class="op">,</span><span class="st">"men_trans"</span><span class="op">,</span><span class="st">"wom_trans"</span><span class="op">,</span><span class="st">"yth_trans"</span>]</span>
-<span id="cb6-345"><a href="#cb6-345" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> alliedKeys  <span class="op">=</span> [<span class="st">"allied_total"</span><span class="op">,</span><span class="st">"respites"</span><span class="op">,</span><span class="st">"dropin"</span>]</span>
-<span id="cb6-346"><a href="#cb6-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-347"><a href="#cb6-347" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb6-348"><a href="#cb6-348" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="overflow-x:auto;margin:0 0 1rem"&gt;</span></span>
-<span id="cb6-349"><a href="#cb6-349" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;table class="bq-table"&gt;</span></span>
-<span id="cb6-350"><a href="#cb6-350" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">summaryHeader</span>()<span class="sc">}</span></span>
-<span id="cb6-351"><a href="#cb6-351" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>totalAccomRow<span class="sc">}</span></span>
-<span id="cb6-352"><a href="#cb6-352" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>bridgingRow<span class="sc">}</span></span>
-<span id="cb6-353"><a href="#cb6-353" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>summaryKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
-<span id="cb6-354"><a href="#cb6-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-355"><a href="#cb6-355" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Shelter Programs, Room-Based"</span><span class="op">,</span> <span class="st">"Occupied Rooms"</span><span class="op">,</span> <span class="st">"Unoccupied Rooms"</span><span class="op">,</span> <span class="st">"Actual Room Capacity"</span><span class="op">,</span> <span class="st">"Offline Rooms"</span>)<span class="sc">}</span></span>
-<span id="cb6-356"><a href="#cb6-356" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>roomKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
-<span id="cb6-357"><a href="#cb6-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-358"><a href="#cb6-358" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Shelter Programs, Bed-Based"</span><span class="op">,</span> <span class="st">"Occupied Beds"</span><span class="op">,</span> <span class="st">"Unoccupied Beds"</span><span class="op">,</span> <span class="st">"Actual Bed Capacity"</span><span class="op">,</span> <span class="st">"Offline Beds"</span>)<span class="sc">}</span></span>
-<span id="cb6-359"><a href="#cb6-359" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>bedKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
-<span id="cb6-360"><a href="#cb6-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-361"><a href="#cb6-361" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Allied Services"</span><span class="op">,</span> <span class="st">"Occupied Spaces"</span><span class="op">,</span> <span class="st">"Unoccupied Spaces"</span><span class="op">,</span> <span class="st">"Actual Space Capacity"</span><span class="op">,</span> <span class="st">"Offline Spaces"</span>)<span class="sc">}</span></span>
-<span id="cb6-362"><a href="#cb6-362" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>alliedKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
-<span id="cb6-363"><a href="#cb6-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-364"><a href="#cb6-364" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr class="bq-th"&gt;</span></span>
-<span id="cb6-365"><a href="#cb6-365" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td&gt;Temporary Programs, Bed/Space-Based&lt;/td&gt;</span></span>
-<span id="cb6-366"><a href="#cb6-366" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Individuals&lt;/td&gt;</span></span>
-<span id="cb6-367"><a href="#cb6-367" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Occupied Beds/Spaces&lt;/td&gt;</span></span>
-<span id="cb6-368"><a href="#cb6-368" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Unoccupied&lt;/td&gt;</span></span>
-<span id="cb6-369"><a href="#cb6-369" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Actual Capacity&lt;/td&gt;</span></span>
-<span id="cb6-370"><a href="#cb6-370" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Offline Beds/Spaces&lt;/td&gt;</span></span>
-<span id="cb6-371"><a href="#cb6-371" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Occupancy Rate&lt;/td&gt;</span></span>
-<span id="cb6-372"><a href="#cb6-372" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tr&gt;</span></span>
-<span id="cb6-373"><a href="#cb6-373" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">s</span>(<span class="st">"temp_resp"</span>) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(<span class="st">"temp_resp"</span>)) <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
-<span id="cb6-374"><a href="#cb6-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-375"><a href="#cb6-375" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Temporary Programs, Room/Unit-Based"</span><span class="op">,</span> <span class="st">"Occupied Rooms"</span><span class="op">,</span> <span class="st">"Unoccupied Rooms"</span><span class="op">,</span> <span class="st">"Actual Room Capacity"</span><span class="op">,</span> <span class="st">"Offline Rooms"</span>)<span class="sc">}</span></span>
-<span id="cb6-376"><a href="#cb6-376" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">s</span>(<span class="st">"hotels"</span>) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(<span class="st">"hotels"</span>)) <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
-<span id="cb6-377"><a href="#cb6-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-378"><a href="#cb6-378" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Temporary Isolation/Recovery Programs"</span><span class="op">,</span> <span class="st">"Occupied Rooms"</span><span class="op">,</span> <span class="st">"Unoccupied Rooms"</span><span class="op">,</span> <span class="st">"Actual Room Capacity"</span><span class="op">,</span> <span class="st">"Offline Rooms"</span>)<span class="sc">}</span></span>
-<span id="cb6-379"><a href="#cb6-379" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">s</span>(<span class="st">"iso"</span>) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(<span class="st">"iso"</span>)) <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
-<span id="cb6-380"><a href="#cb6-380" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/table&gt;</span></span>
-<span id="cb6-381"><a href="#cb6-381" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;p class="bq-footnote"&gt;</span></span>
-<span id="cb6-382"><a href="#cb6-382" aria-hidden="true" tabindex="-1"></a><span class="vs">      † Total People Accommodated = All Shelter Programs + Bridging &amp;amp; Triage Programs.</span></span>
-<span id="cb6-383"><a href="#cb6-383" aria-hidden="true" tabindex="-1"></a><span class="vs">      Bridging &amp;amp; Triage figures are not published to the City of Toronto open data (CKAN)</span></span>
-<span id="cb6-384"><a href="#cb6-384" aria-hidden="true" tabindex="-1"></a><span class="vs">      export. BonQuery scrapes them daily from the City's shelter census page when the City</span></span>
-<span id="cb6-385"><a href="#cb6-385" aria-hidden="true" tabindex="-1"></a><span class="vs">      posts the table; data is available from </span><span class="sc">${</span>btStart<span class="sc">}</span><span class="vs"> onward.</span></span>
-<span id="cb6-386"><a href="#cb6-386" aria-hidden="true" tabindex="-1"></a><span class="vs">      On days when the City has not yet published (weekends, holidays, or publication delays),</span></span>
-<span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a><span class="vs">      the Bridging &amp;amp; Triage row will show "Not available for this date" and the Total</span></span>
-<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a><span class="vs">      will reflect All Shelter Programs only.</span></span>
-<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/p&gt;</span></span>
-<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;`</span></span>
-<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> summaryKeys <span class="op">=</span> [<span class="st">"all_shelter"</span><span class="op">,</span><span class="st">"room_based"</span><span class="op">,</span><span class="st">"singles_sector"</span><span class="op">,</span><span class="st">"singles_shelter"</span><span class="op">,</span><span class="st">"allied_summ"</span><span class="op">,</span><span class="st">"temp_summ"</span><span class="op">,</span><span class="st">"iso_summ"</span>]</span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> roomKeys    <span class="op">=</span> [<span class="st">"fam_total"</span><span class="op">,</span><span class="st">"fam_emerg"</span><span class="op">,</span><span class="st">"fam_trans_r"</span><span class="op">,</span><span class="st">"fam_hotel"</span><span class="op">,</span><span class="st">"sng_hotel"</span>]</span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bedKeys     <span class="op">=</span> [<span class="st">"singles_total"</span><span class="op">,</span><span class="st">"emerg_total"</span><span class="op">,</span><span class="st">"mix_emerg"</span><span class="op">,</span><span class="st">"men_emerg"</span><span class="op">,</span><span class="st">"wom_emerg"</span><span class="op">,</span><span class="st">"yth_emerg"</span><span class="op">,</span></span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"trans_total"</span><span class="op">,</span><span class="st">"mix_trans"</span><span class="op">,</span><span class="st">"fam_trans_b"</span><span class="op">,</span><span class="st">"men_trans"</span><span class="op">,</span><span class="st">"wom_trans"</span><span class="op">,</span><span class="st">"yth_trans"</span>]</span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> alliedKeys  <span class="op">=</span> [<span class="st">"allied_total"</span><span class="op">,</span><span class="st">"respites"</span><span class="op">,</span><span class="st">"dropin"</span>]</span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div style="overflow-x:auto;margin:0 0 1rem"&gt;</span></span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;table class="bq-table"&gt;</span></span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">summaryHeader</span>()<span class="sc">}</span></span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>totalAccomRow<span class="sc">}</span></span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>bridgingRow<span class="sc">}</span></span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>summaryKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Shelter Programs, Room-Based"</span><span class="op">,</span> <span class="st">"Occupied Rooms"</span><span class="op">,</span> <span class="st">"Unoccupied Rooms"</span><span class="op">,</span> <span class="st">"Actual Room Capacity"</span><span class="op">,</span> <span class="st">"Offline Rooms"</span>)<span class="sc">}</span></span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>roomKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Shelter Programs, Bed-Based"</span><span class="op">,</span> <span class="st">"Occupied Beds"</span><span class="op">,</span> <span class="st">"Unoccupied Beds"</span><span class="op">,</span> <span class="st">"Actual Bed Capacity"</span><span class="op">,</span> <span class="st">"Offline Beds"</span>)<span class="sc">}</span></span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>bedKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Allied Services"</span><span class="op">,</span> <span class="st">"Occupied Spaces"</span><span class="op">,</span> <span class="st">"Unoccupied Spaces"</span><span class="op">,</span> <span class="st">"Actual Space Capacity"</span><span class="op">,</span> <span class="st">"Offline Spaces"</span>)<span class="sc">}</span></span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>alliedKeys<span class="op">.</span><span class="fu">map</span>(k <span class="kw">=&gt;</span> <span class="fu">s</span>(k) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(k)) <span class="op">:</span> <span class="st">""</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="sc">}</span></span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr class="bq-th"&gt;</span></span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td&gt;Temporary Programs, Bed/Space-Based&lt;/td&gt;</span></span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Individuals&lt;/td&gt;</span></span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Occupied Beds/Spaces&lt;/td&gt;</span></span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Unoccupied&lt;/td&gt;</span></span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Actual Capacity&lt;/td&gt;</span></span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Offline Beds/Spaces&lt;/td&gt;</span></span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td class="bq-num"&gt;Occupancy Rate&lt;/td&gt;</span></span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tr&gt;</span></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">s</span>(<span class="st">"temp_resp"</span>) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(<span class="st">"temp_resp"</span>)) <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Temporary Programs, Room/Unit-Based"</span><span class="op">,</span> <span class="st">"Occupied Rooms"</span><span class="op">,</span> <span class="st">"Unoccupied Rooms"</span><span class="op">,</span> <span class="st">"Actual Room Capacity"</span><span class="op">,</span> <span class="st">"Offline Rooms"</span>)<span class="sc">}</span></span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">s</span>(<span class="st">"hotels"</span>) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(<span class="st">"hotels"</span>)) <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">sectionHeader</span>(<span class="st">"Temporary Isolation/Recovery Programs"</span><span class="op">,</span> <span class="st">"Occupied Rooms"</span><span class="op">,</span> <span class="st">"Unoccupied Rooms"</span><span class="op">,</span> <span class="st">"Actual Room Capacity"</span><span class="op">,</span> <span class="st">"Offline Rooms"</span>)<span class="sc">}</span></span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">s</span>(<span class="st">"iso"</span>) <span class="op">?</span> <span class="fu">tableRow</span>(<span class="fu">s</span>(<span class="st">"iso"</span>)) <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/table&gt;</span></span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;p class="bq-footnote"&gt;</span></span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a><span class="vs">      † Total People Accommodated = All Shelter Programs + Bridging &amp;amp; Triage Programs.</span></span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a><span class="vs">      Bridging &amp;amp; Triage figures are not published to the City of Toronto open data (CKAN)</span></span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a><span class="vs">      export. BonQuery scrapes them daily from the City's shelter census page when the City</span></span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a><span class="vs">      posts the table; data is available from </span><span class="sc">${</span>btStart<span class="sc">}</span><span class="vs"> onward.</span></span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a><span class="vs">      On days when the City has not yet published (weekends, holidays, or publication delays),</span></span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a><span class="vs">      the Bridging &amp;amp; Triage row will show "Not available for this date" and the Total</span></span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a><span class="vs">      will reflect All Shelter Programs only.</span></span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/p&gt;</span></span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;`</span></span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-6-1" data-nodetype="declaration">
@@ -912,7 +875,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <hr>
 <div class="bq-purple callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -921,7 +884,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Monthly average daily calls to Toronto’s 24/7 shelter referral line — calls referred to a shelter space, unmatched individual callers, and total calls handled — with interactive date controls. Replicates and extends the City’s <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/">Shelter System Requests for Referrals</a> page. Data sourced from two separate CKAN resources (call wrap-up codes and service queue); see the page for important caveats on combining the two series.</p>
 <div class="mobile-dashboard-links">
@@ -945,8 +908,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNvdXJjZSI6Imh0bC5odG1sYDxzcGFuPiR7Zm10RGF0ZShzZWxlY3RlZERhdGUpfTwvc3Bhbj5gIiwgImNlbGxOYW1lIjoib2pzLWVsZW1lbnQtaWQtMSJ9XX0=
 </script>
 </div>
+</section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script>
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
@@ -1004,11 +968,14 @@ eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNv
 (function () {
   var tog = document.querySelector(".quarto-color-scheme-toggle");
   if (!tog) return;
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
   var label = document.createElement("span");
   label.className = "bq-theme-label";
   var update = function () {
     var isDark = document.body.classList.contains("quarto-dark");
-    label.textContent = isDark ? "Light" : "Dark";
+    label.textContent = isFR
+      ? (isDark ? "Clair" : "Sombre")
+      : (isDark ? "Light" : "Dark");
   };
   tog.appendChild(label);
   update();
@@ -1017,23 +984,178 @@ eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNv
   );
 })();
 
-// ── Bilingual alert toggle (EN | FR) ─────────────────────────────────────
-// Sets data-lang on each .bq-bilingual block; CSS controls visibility.
-var pageLang = (location.pathname.startsWith("/fr/") || location.pathname === "/fr")
-  ? "fr" : "en";
-document.querySelectorAll(".bq-bilingual").forEach(function (block) {
-  var btns = block.querySelectorAll(".bq-lang-btn");
-  function setLang(lang) {
-    block.setAttribute("data-lang", lang);
-    btns.forEach(function (b) {
-      b.classList.toggle("active", b.dataset.set === lang);
-    });
+// Live dashboard-card previews. This runs only on pages that contain the
+// shared dashboard cards and uses the same generated file as the dashboards.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var locale = isFR ? "fr-CA" : "en-CA";
+  var copy = isFR ? {
+    unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
+    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    activelyHomeless: "personnes en situation d'itinérance active",
+    newlyIdentified: "Nouvellement identifiées",
+    movedToHousing: "Ont obtenu un logement",
+    januaryTo: "De janvier à ",
+    latest: "Plus récent : ",
+    trend: "Tendance de l'itinérance active jusqu'à "
+  } : {
+    unavailable: "Preview unavailable. Open the dashboard.",
+    offlineBeds: "funded shelter beds for single adults were unavailable",
+    acrossPrograms: " people staying in shelter programs",
+    activelyHomeless: "people counted as homeless",
+    newlyIdentified: "Newly counted as homeless",
+    movedToHousing: "Moved into housing",
+    januaryTo: "January to ",
+    latest: "Latest: ",
+    trend: "People counted as homeless through "
+  };
+  var dailyMount = document.getElementById("bq-preview-daily");
+  var monthlyMount = document.getElementById("bq-preview-monthly");
+  var ytdMount = document.getElementById("bq-preview-ytd");
+  var historyMount = document.getElementById("bq-preview-history");
+  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.dataset.set); });
-  });
-  setLang(block.getAttribute("data-lang") || pageLang);
-});
+
+  function metricRow(label, value) {
+    var row = make("div");
+    row.append(make("span", "", label), make("strong", "", value));
+    return row;
+  }
+
+  function meter(value, maximum, good) {
+    var track = make("i");
+    var bar = make("b", good ? "bq-preview-bar-good" : "");
+    bar.style.width = ((value / maximum) * 100) + "%";
+    track.append(bar);
+    return track;
+  }
+
+  function showUnavailable(mount) {
+    if (!mount) return;
+    mount.replaceChildren(make("span", "", copy.unavailable));
+  }
+
+  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Daily preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      if (!dailyMount || !data.length) return;
+      var latestDate = data.reduce(function (latest, row) {
+        return row.date > latest ? row.date : latest;
+      }, "");
+      var rows = data.filter(function (row) { return row.date === latestDate; });
+      var singles = rows.find(function (row) { return row.key === "singles_total"; });
+      var system = rows.find(function (row) { return row.key === "all_shelter"; });
+      if (!singles || !system) throw new Error("Daily preview rows unavailable");
+      var dateParts = latestDate.split("-").map(Number);
+      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
+        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
+      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      daily.append(
+        make("strong", "", Number(offline).toLocaleString(locale)),
+        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+      );
+      dailyMount.replaceChildren(daily);
+    })
+    .catch(function () { showUnavailable(dailyMount); });
+
+  fetch("/data/shelter_flow.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Dashboard preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var rows = data
+        .filter(function (row) { return row.population_group === "All Population"; })
+        .slice()
+        .sort(function (a, b) { return a.flow_date.localeCompare(b.flow_date); });
+      if (!rows.length) throw new Error("Dashboard preview data empty");
+
+      var latest = rows[rows.length - 1];
+      var dateParts = latest.flow_date.split("-").map(Number);
+      var latestYear = dateParts[0];
+      var latestMonth = dateParts[1];
+      var latestLabel = new Date(latestYear, latestMonth - 1, 1)
+        .toLocaleDateString(locale, {month: "long", year: "numeric"});
+      var fmt = function (value) {
+        return Number(value).toLocaleString(locale);
+      };
+
+      if (monthlyMount) {
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", fmt(latest.actively_homeless)),
+          make("span", "", copy.activelyHomeless + " · " + latestLabel)
+        );
+        monthlyMount.replaceChildren(kpi);
+      }
+
+      var ytdRows = rows.filter(function (row) {
+        var parts = row.flow_date.split("-").map(Number);
+        return parts[0] === latestYear && parts[1] <= latestMonth;
+      });
+      var ytdNew = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.newly_identified || 0);
+      }, 0);
+      var ytdHoused = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.moved_to_housing || 0);
+      }, 0);
+      var ytdMax = Math.max(ytdNew, ytdHoused, 1);
+
+      if (ytdMount) {
+        var bars = make("div", "bq-preview-bars");
+        bars.append(
+          metricRow(copy.newlyIdentified, fmt(ytdNew)),
+          meter(ytdNew, ytdMax, false),
+          metricRow(copy.movedToHousing, fmt(ytdHoused)),
+          meter(ytdHoused, ytdMax, true),
+          make("small", "", copy.januaryTo + latestLabel)
+        );
+        ytdMount.replaceChildren(bars);
+      }
+
+      if (historyMount) {
+        var trend = rows.slice(-48).map(function (row) {
+          return +row.actively_homeless;
+        });
+        var minimum = Math.min.apply(null, trend);
+        var maximum = Math.max.apply(null, trend);
+        var spread = Math.max(maximum - minimum, 1);
+        var wrap = make("div", "bq-preview-history-wrap");
+        var spark = make("div", "bq-preview-spark");
+        spark.setAttribute("role", "img");
+        spark.setAttribute(
+          "aria-label",
+          copy.trend + latestLabel +
+            (isFR ? "; valeur la plus récente " : "; latest value ") +
+            fmt(latest.actively_homeless)
+        );
+        trend.forEach(function (value, index) {
+          var bar = make("span", index === trend.length - 1 ? "is-latest" : "");
+          bar.style.height = (20 + ((value - minimum) / spread) * 80) + "%";
+          spark.append(bar);
+        });
+        wrap.append(spark, make("small", "", copy.latest + fmt(latest.actively_homeless)));
+        historyMount.replaceChildren(wrap);
+      }
+    })
+    .catch(function () {
+      showUnavailable(monthlyMount);
+      showUnavailable(ytdMount);
+      showUnavailable(historyMount);
+    });
+})();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
 // Computes the exact mirror URL from the current pathname and updates the
@@ -1048,7 +1170,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
     enPath = (path === "/fr" || path === "/fr/")
       ? "/"
       : path.replace(frPfx, "/");
-    frPath = path.endsWith("/") ? path : path + "/";
+    frPath = (path === "/fr") ? "/fr/" : path;
   } else {
     enPath = path;
     frPath = frPfx + path.replace(/^\//, "");
@@ -1517,7 +1639,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>An independent data audit for Toronto residents. / Un audit de données indépendant pour les résidents de Toronto. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
+<p>Independent public-interest analysis of Toronto’s shelter system. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

@@ -8,9 +8,9 @@
 
 <meta name="author" content="Miriam Marling">
 <meta name="dcterms.date" content="2026-06-04">
-<meta name="description" content="On 95.9% of nights below −5 °C across six Toronto winters, people were left unplaced at 4 a.m. The overnight shelter queue tripled, then fell — proof that zero is a budget choice the city makes each summer.">
+<meta name="description" content="Toronto cold-weather shelter data for people who need a safe, warm place, including people who are housing insecure, unhoused, or experiencing homelessness.">
 
-<title>Left in the Cold – BonQuery</title>
+<title>Left in the Cold: Toronto Shelter Access – BonQuery</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [{
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Left in the Cold — Toronto Shelter System",
+  "headline": "Left in the Cold: Toronto Shelter Access",
   "author": {
     "@type": "Person",
     "name": "Miriam Marling",
@@ -133,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "url": "https://bonquery.ca"
   },
   "datePublished": "2026-06-04",
-  "description": "Analysis of unplaced people in Toronto's shelter system on freezing nights across six cold seasons (2020-21 through 2025-26).",
+  "description": "Toronto cold-weather shelter access for people who need a safe, warm place, including people who are housing insecure, unhoused, or experiencing homelessness.",
   "about": {
     "@type": "Dataset",
     "name": "Toronto Central Intake — Overnight Unplaced People",
@@ -150,20 +150,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   },
   "url": "https://bonquery.ca/projects/cold-response.html",
-  "keywords": ["Toronto shelter system", "homelessness", "cold response",
-               "winter services", "Central Intake", "unplaced people",
-               "shelter capacity", "warming centres"]
+  "keywords": ["Toronto shelter system", "Toronto homelessness",
+               "unhoused people in Toronto", "people experiencing homelessness",
+               "cold-weather shelter access", "winter services",
+               "Central Intake", "shelter capacity", "warming centres"]
 }]
 </script>
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Left in the Cold — Toronto Shelter System">
-<meta property="og:description" content="On 95.9% of nights below −5 °C across six Toronto winters, people were left unplaced at 4 a.m. Zero is a budget choice the city makes each summer.">
+<meta property="og:title" content="Left in the Cold: Toronto Shelter Access">
+<meta property="og:description" content="Across six Toronto winters, at least one person or couple remained without a place at 4 a.m. on 257 of 268 nights at or below −5 °C.">
+<meta property="og:image" content="https://bonquery.ca/projects/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
-<meta name="twitter:title" content="Left in the Cold — Toronto Shelter System">
-<meta name="twitter:description" content="On 95.9% of nights below −5 °C across six Toronto winters, people were left unplaced at 4 a.m. Zero is a budget choice.">
+<meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<meta name="twitter:title" content="Left in the Cold: Toronto Shelter Access">
+<meta name="twitter:description" content="Across six Toronto winters, at least one person or couple remained without a place at 4 a.m. on 257 of 268 nights at or below −5 °C.">
+<meta name="twitter:image" content="https://bonquery.ca/projects/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<link rel="canonical" href="https://bonquery.ca/projects/cold-response.html">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -309,7 +315,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -322,6 +329,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -350,61 +365,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../projects/toronto-shelter.html"> 
+<span class="menu-text">Dashboards</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="../projects/cold-response.html" aria-current="page"> 
 <span class="menu-text">Left in the Cold</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-audits" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Audits</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--methods" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data &amp; Methods</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-audits">    
-        <li class="dropdown-header">INDEPENDENT OVERSIGHT</li>
-        <li>
-    <a class="dropdown-item" href="../projects/discrepancy-tracker.html">
- <span class="dropdown-text">Discrepancy Tracker</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/data-validation.html">
- <span class="dropdown-text">Emergency Occupancy Audit</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/data-validation-central-intake.html">
- <span class="dropdown-text">Central Intake Audit</span></a>
-  </li>  
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data--methods">    
         <li>
     <a class="dropdown-item" href="../projects/about-the-data.html">
  <span class="dropdown-text">About the Data</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shelter-dashboards" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Shelter Dashboards</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-shelter-dashboards">    
         <li>
-    <a class="dropdown-item" href="../projects/toronto-shelter.html">
- <span class="dropdown-text">Inside Toronto’s Shelter System</span></a>
+    <a class="dropdown-item" href="../projects/data-validation.html">
+ <span class="dropdown-text">Occupancy Data Validation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../projects/monthly-snapshot.html">
- <span class="dropdown-text">Monthly System Flow Replication</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/ytd-comparison.html">
- <span class="dropdown-text">Year-to-Date Capacity Match</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/historical-trends.html">
- <span class="dropdown-text">Historical Trend Lines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/central-intake.html">
- <span class="dropdown-text">Referral Requests Analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../projects/daily-occupancy.html">
- <span class="dropdown-text">Daily Occupancy &amp; Capacity</span></a>
+    <a class="dropdown-item" href="../projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Central Intake Validation</span></a>
   </li>  
     </ul>
   </li>
@@ -435,8 +418,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#people-are-being-left-in-the-cold-and-we-can-count-them" id="toc-people-are-being-left-in-the-cold-and-we-can-count-them" class="nav-link active" data-scroll-target="#people-are-being-left-in-the-cold-and-we-can-count-them">People are being left in the cold — and we can count them</a></li>
+  <li><a href="#people-still-without-shelter-at-4-a.m." id="toc-people-still-without-shelter-at-4-a.m." class="nav-link active" data-scroll-target="#people-still-without-shelter-at-4-a.m.">People still without shelter at 4 a.m.</a></li>
   <li><a href="#this-is-a-choice-and-the-choice-is-being-made-right-now" id="toc-this-is-a-choice-and-the-choice-is-being-made-right-now" class="nav-link" data-scroll-target="#this-is-a-choice-and-the-choice-is-being-made-right-now">This is a choice, and the choice is being made right now</a></li>
+  <li><a href="#the-reserve-the-city-did-not-plan-for" id="toc-the-reserve-the-city-did-not-plan-for" class="nav-link" data-scroll-target="#the-reserve-the-city-did-not-plan-for">The reserve the City did not plan for</a></li>
   </ul>
 </nav>
     </div>
@@ -446,13 +430,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Left in the Cold</h1>
-<p class="subtitle lead">Toronto Shelter System — people unplaced at 4 a.m. on freezing nights, and how we get to zero</p>
+<h1 class="title">Left in the Cold: Toronto Shelter Access</h1>
+<p class="subtitle lead">People still without shelter at 4 a.m. on cold nights, and what changed across six winters</p>
 </div>
 
 <div>
   <div class="description">
-    On 95.9% of nights below −5 °C across six Toronto winters, people were left unplaced at 4 a.m. The overnight shelter queue tripled, then fell — proof that zero is a budget choice the city makes each summer.
+    Toronto cold-weather shelter data for people who need a safe, warm place, including people who are housing insecure, unhoused, or experiencing homelessness.
   </div>
 </div>
 
@@ -473,6 +457,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">August 7, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -481,43 +471,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="people-are-being-left-in-the-cold-and-we-can-count-them" class="level2">
-<h2 class="anchored" data-anchor-id="people-are-being-left-in-the-cold-and-we-can-count-them">People are being left in the cold — and we can count them</h2>
-<p>Toronto’s shelter system keeps a number every night: how many people asked for a safe place to sleep and were still without one at 4 a.m., when Central Intake closes its overnight count. On warm nights, that number is a logistics problem. On freezing nights, it is people outside in weather the city itself has declared dangerous.</p>
+<section id="people-still-without-shelter-at-4-a.m." class="level2">
+<h2 class="anchored" data-anchor-id="people-still-without-shelter-at-4-a.m.">People still without shelter at 4 a.m.</h2>
+<p>Toronto’s Central Intake counts how many people or couples who asked through its system had not been connected to a shelter space by 4 a.m. We call this <strong>still without a place at 4 a.m.</strong> It does not count everyone outside or people turned away at a shelter door.</p>
 <div class="bq-alert">
-<p>The City of Toronto’s own policy recognizes temperatures at −5 °C as cold enough to trigger emergency action — a threshold that is effectively a matter of life and death. Yet our data reveals a stark, repeated failure: on <strong>95.9%</strong> of nights hitting this limit over the last six winters, people were still left unplaced at 4 a.m. This is not a weather event; it is a choice to expose residents to <strong>severe harm</strong>. We know this is fixable: last winter proved that when the system has room to breathe, we can reach zero. This winter, it is a choice to do it again.</p>
+<p>Across six winters, at least one person or couple was <strong>still without a place at 4 a.m. on 257 of 268 nights</strong> at or below −5 °C. <strong>People turned away at a door are not counted.</strong></p>
+<p>Access improved in 2023–24 to 2025–26. Even so, cold-weather spaces were almost completely full on <strong>64 of 137 nights</strong> at or below −5 °C. These numbers show both the improvement and the space still missing. They do not show every person outside or explain why each operating decision was made.</p>
 </div>
 <p>The chart below shows every one of those nights.</p>
 <div class="cell hidden">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="92" data-source-offset="-147"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 91;"><span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>seasonRug <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/season_rug.csv"</span>)<span class="op">.</span><span class="fu">csv</span>()<span class="op">.</span><span class="fu">then</span>(rows <span class="kw">=&gt;</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>  rows<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min_temp</span><span class="op">:</span>      <span class="op">+</span>d<span class="op">.</span><span class="at">min_temp</span><span class="op">,</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="dt">winter_season</span><span class="op">:</span> d<span class="op">.</span><span class="at">winter_season</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>binnedSC <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/cold_response_binned_by_winter_sc.csv"</span>)<span class="op">.</span><span class="fu">csv</span>()</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">then</span>(rows <span class="kw">=&gt;</span> rows<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min_temp_bin</span><span class="op">:</span>  <span class="op">+</span>d<span class="op">.</span><span class="at">min_temp_bin</span><span class="op">,</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>    <span class="dt">winter_season</span><span class="op">:</span> d<span class="op">.</span><span class="at">winter_season</span><span class="op">,</span></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    <span class="dt">mean_unplaced</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">mean_unplaced</span><span class="op">,</span></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    <span class="dt">n</span><span class="op">:</span>             <span class="op">+</span>d<span class="op">.</span><span class="at">n</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>  })))</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Theme-aware palette ──────────────────────────────────────────────────────</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>cs      <span class="op">=</span> <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)</span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>refLine <span class="op">=</span> cs<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">.</span><span class="fu">trim</span>()</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Season color map ─────────────────────────────────────────────────────────</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="co">// Explicit domain+range so the rug and dots share identical season → colour</span></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="co">// bindings across any chart added to this page.</span></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>seasonColorMap <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>([</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2020-21"</span><span class="op">,</span> <span class="st">"#4DF884"</span>]<span class="op">,</span></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2021-22"</span><span class="op">,</span> <span class="st">"#2F9DF5"</span>]<span class="op">,</span></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2022-23"</span><span class="op">,</span> <span class="st">"#DEDD32"</span>]<span class="op">,</span></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2023-24"</span><span class="op">,</span> <span class="st">"#E63946"</span>]<span class="op">,</span></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2024-25"</span><span class="op">,</span> <span class="st">"#F65F18"</span>]<span class="op">,</span></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2025-26"</span><span class="op">,</span> <span class="st">"#900C00"</span>]</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="87" data-source-offset="-147"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 86;"><span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>seasonRug <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/season_rug.csv"</span>)<span class="op">.</span><span class="fu">csv</span>()<span class="op">.</span><span class="fu">then</span>(rows <span class="kw">=&gt;</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>  rows<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min_temp</span><span class="op">:</span>      <span class="op">+</span>d<span class="op">.</span><span class="at">min_temp</span><span class="op">,</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="dt">winter_season</span><span class="op">:</span> d<span class="op">.</span><span class="at">winter_season</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>binnedSC <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/cold_response_binned_by_winter_sc.csv"</span>)<span class="op">.</span><span class="fu">csv</span>()</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">then</span>(rows <span class="kw">=&gt;</span> rows<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min_temp_bin</span><span class="op">:</span>  <span class="op">+</span>d<span class="op">.</span><span class="at">min_temp_bin</span><span class="op">,</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>    <span class="dt">winter_season</span><span class="op">:</span> d<span class="op">.</span><span class="at">winter_season</span><span class="op">,</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>    <span class="dt">mean_unplaced</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">mean_unplaced</span><span class="op">,</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>    <span class="dt">n</span><span class="op">:</span>             <span class="op">+</span>d<span class="op">.</span><span class="at">n</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  })))</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Theme-aware palette ──────────────────────────────────────────────────────</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>cs      <span class="op">=</span> <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>refLine <span class="op">=</span> cs<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">.</span><span class="fu">trim</span>()</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="co">// ── Season color map ─────────────────────────────────────────────────────────</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="co">// Explicit domain+range so the rug and dots share identical season → colour</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="co">// bindings across any chart added to this page.</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>seasonColorMap <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>([</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2020-21"</span><span class="op">,</span> <span class="st">"#4DF884"</span>]<span class="op">,</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2021-22"</span><span class="op">,</span> <span class="st">"#2F9DF5"</span>]<span class="op">,</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2022-23"</span><span class="op">,</span> <span class="st">"#DEDD32"</span>]<span class="op">,</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2023-24"</span><span class="op">,</span> <span class="st">"#E63946"</span>]<span class="op">,</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2024-25"</span><span class="op">,</span> <span class="st">"#F65F18"</span>]<span class="op">,</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"2025-26"</span><span class="op">,</span> <span class="st">"#900C00"</span>]</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display hidden">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -555,101 +546,101 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="124" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 123;"><span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>viewof selectedWinters <span class="op">=</span> {</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> allSeasons <span class="op">=</span> [</span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2020-21"</span><span class="op">,</span><span class="st">"2021-22"</span><span class="op">,</span><span class="st">"2022-23"</span><span class="op">,</span><span class="st">"2023-24"</span><span class="op">,</span><span class="st">"2024-25"</span><span class="op">,</span><span class="st">"2025-26"</span></span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> selected <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(allSeasons)<span class="op">;</span></span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Inject custom checkbox styles once — guarded so OJS re-runs don't duplicate</span></span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"bq-season-cb-style"</span>)) {</span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> s <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"style"</span>)<span class="op">;</span></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span><span class="at">id</span> <span class="op">=</span> <span class="st">"bq-season-cb-style"</span><span class="op">;</span></span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="vs">`</span></span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb {</span></span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="vs">        appearance: none;</span></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="vs">        -webkit-appearance: none;</span></span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="vs">        width: 14px;</span></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="vs">        height: 14px;</span></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="vs">        border-radius: 2px;</span></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="vs">        margin: 0;</span></span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="vs">        border: 1.5px solid #888;</span></span>
-<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="vs">        cursor: pointer;</span></span>
-<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="vs">        display: inline-flex;</span></span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="vs">        align-items: center;</span></span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="vs">        justify-content: center;</span></span>
-<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="vs">        flex-shrink: 0;</span></span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="vs">        background: transparent;</span></span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb:checked {</span></span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="vs">        background-color: var(--season-color);</span></span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="vs">        border-color: var(--season-color);</span></span>
-<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
-<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb:checked::after {</span></span>
-<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a><span class="vs">        content: "✓";</span></span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="vs">        color: #fff;</span></span>
-<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="vs">        font-size: 10px;</span></span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="vs">        font-weight: 700;</span></span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="vs">        line-height: 1;</span></span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb:hover {</span></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="vs">        transform: scale(1.15);</span></span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="vs">        box-shadow: 0 0 0 2px rgba(0,0,0,0.15);</span></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-lbl {</span></span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="vs">        display: inline-flex;</span></span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a><span class="vs">        align-items: center;</span></span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a><span class="vs">        gap: 8px;</span></span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="vs">        cursor: pointer;</span></span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="vs">        user-select: none;</span></span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">head</span><span class="op">.</span><span class="fu">appendChild</span>(s)<span class="op">;</span></span>
-<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> <span class="bu">root</span> <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>  <span class="bu">root</span><span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span> <span class="st">"font-family:var(--sans-serif,sans-serif);font-size:13.5px;"</span><span class="op">;</span></span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> labelEl <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>  labelEl<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">"Seasons shown"</span><span class="op">;</span></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>  labelEl<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span> <span class="st">"font-weight:600;margin-bottom:3px;"</span><span class="op">;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="119" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 118;"><span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>viewof selectedWinters <span class="op">=</span> {</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> allSeasons <span class="op">=</span> [</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>    <span class="st">"2020-21"</span><span class="op">,</span><span class="st">"2021-22"</span><span class="op">,</span><span class="st">"2022-23"</span><span class="op">,</span><span class="st">"2023-24"</span><span class="op">,</span><span class="st">"2024-25"</span><span class="op">,</span><span class="st">"2025-26"</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> selected <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>(allSeasons)<span class="op">;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Inject custom checkbox styles once — guarded so OJS re-runs don't duplicate</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"bq-season-cb-style"</span>)) {</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> s <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"style"</span>)<span class="op">;</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span><span class="at">id</span> <span class="op">=</span> <span class="st">"bq-season-cb-style"</span><span class="op">;</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb {</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a><span class="vs">        appearance: none;</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="vs">        -webkit-appearance: none;</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a><span class="vs">        width: 14px;</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a><span class="vs">        height: 14px;</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a><span class="vs">        border-radius: 2px;</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="vs">        margin: 0;</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="vs">        border: 1.5px solid #888;</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a><span class="vs">        cursor: pointer;</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="vs">        display: inline-flex;</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="vs">        align-items: center;</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a><span class="vs">        justify-content: center;</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="vs">        flex-shrink: 0;</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="vs">        background: transparent;</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb:checked {</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a><span class="vs">        background-color: var(--season-color);</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="vs">        border-color: var(--season-color);</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb:checked::after {</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a><span class="vs">        content: "✓";</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="vs">        color: #fff;</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="vs">        font-size: 10px;</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a><span class="vs">        font-weight: 700;</span></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a><span class="vs">        line-height: 1;</span></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-cb:hover {</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="vs">        transform: scale(1.15);</span></span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="vs">        box-shadow: 0 0 0 2px rgba(0,0,0,0.15);</span></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="vs">      .bq-season-lbl {</span></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="vs">        display: inline-flex;</span></span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="vs">        align-items: center;</span></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="vs">        gap: 8px;</span></span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a><span class="vs">        cursor: pointer;</span></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a><span class="vs">        user-select: none;</span></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="vs">      }</span></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a><span class="vs">    `</span><span class="op">;</span></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">head</span><span class="op">.</span><span class="fu">appendChild</span>(s)<span class="op">;</span></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> <span class="bu">root</span> <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>  <span class="bu">root</span><span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span> <span class="st">"font-family:var(--sans-serif,sans-serif);font-size:13.5px;"</span><span class="op">;</span></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> labelEl <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>  labelEl<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">"Seasons shown"</span><span class="op">;</span></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>  labelEl<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span> <span class="st">"font-weight:600;margin-bottom:3px;"</span><span class="op">;</span></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hint <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>  hint<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">"Click a season to show or hide it"</span><span class="op">;</span></span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>  hint<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font-size:11.5px;font-weight:400;color:var(--bq-fg-faint);margin-bottom:6px;"</span><span class="op">;</span></span>
 <span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hint <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>  hint<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="st">"Click a season to show or hide it"</span><span class="op">;</span></span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>  hint<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
-<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>    <span class="st">"font-size:11.5px;font-weight:400;color:var(--bq-fg-faint);margin-bottom:6px;"</span><span class="op">;</span></span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> row <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>  row<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>    <span class="st">"display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;"</span><span class="op">;</span></span>
-<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> season <span class="kw">of</span> allSeasons) {</span>
-<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> color <span class="op">=</span> seasonColorMap<span class="op">.</span><span class="fu">get</span>(season)<span class="op">;</span></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> row <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)<span class="op">;</span></span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>  row<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>    <span class="st">"display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;"</span><span class="op">;</span></span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> season <span class="kw">of</span> allSeasons) {</span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> color <span class="op">=</span> seasonColorMap<span class="op">.</span><span class="fu">get</span>(season)<span class="op">;</span></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> cb <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"input"</span>)<span class="op">;</span></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="at">type</span> <span class="op">=</span> <span class="st">"checkbox"</span><span class="op">;</span> cb<span class="op">.</span><span class="at">value</span> <span class="op">=</span> season<span class="op">;</span> cb<span class="op">.</span><span class="at">checked</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"bq-season-cb"</span><span class="op">;</span></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="fu">setProperty</span>(<span class="st">"--season-color"</span><span class="op">,</span> color)<span class="op">;</span></span>
 <span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> cb <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"input"</span>)<span class="op">;</span></span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="at">type</span> <span class="op">=</span> <span class="st">"checkbox"</span><span class="op">;</span> cb<span class="op">.</span><span class="at">value</span> <span class="op">=</span> season<span class="op">;</span> cb<span class="op">.</span><span class="at">checked</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"bq-season-cb"</span><span class="op">;</span></span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="fu">setProperty</span>(<span class="st">"--season-color"</span><span class="op">,</span> color)<span class="op">;</span></span>
-<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> txt <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"span"</span>)<span class="op">;</span></span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>    txt<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> season<span class="op">;</span></span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> txt <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"span"</span>)<span class="op">;</span></span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>    txt<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> season<span class="op">;</span></span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lbl <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"label"</span>)<span class="op">;</span></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>    lbl<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"bq-season-lbl"</span><span class="op">;</span></span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>    lbl<span class="op">.</span><span class="fu">append</span>(cb<span class="op">,</span> txt)<span class="op">;</span></span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>    row<span class="op">.</span><span class="fu">append</span>(lbl)<span class="op">;</span></span>
 <span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lbl <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"label"</span>)<span class="op">;</span></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>    lbl<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"bq-season-lbl"</span><span class="op">;</span></span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>    lbl<span class="op">.</span><span class="fu">append</span>(cb<span class="op">,</span> txt)<span class="op">;</span></span>
-<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>    row<span class="op">.</span><span class="fu">append</span>(lbl)<span class="op">;</span></span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"change"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (cb<span class="op">.</span><span class="at">checked</span>) selected<span class="op">.</span><span class="fu">add</span>(season)<span class="op">;</span> <span class="cf">else</span> selected<span class="op">.</span><span class="fu">delete</span>(season)<span class="op">;</span></span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>      <span class="bu">root</span><span class="op">.</span><span class="at">value</span> <span class="op">=</span> [<span class="op">...</span>selected]<span class="op">;</span></span>
-<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>      <span class="bu">root</span><span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(<span class="st">"input"</span>))<span class="op">;</span></span>
-<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>  <span class="bu">root</span><span class="op">.</span><span class="fu">append</span>(labelEl<span class="op">,</span> hint<span class="op">,</span> row)<span class="op">;</span></span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>  <span class="bu">root</span><span class="op">.</span><span class="at">value</span> <span class="op">=</span> allSeasons<span class="op">;</span></span>
-<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">root</span><span class="op">;</span></span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"change"</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (cb<span class="op">.</span><span class="at">checked</span>) selected<span class="op">.</span><span class="fu">add</span>(season)<span class="op">;</span> <span class="cf">else</span> selected<span class="op">.</span><span class="fu">delete</span>(season)<span class="op">;</span></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>      <span class="bu">root</span><span class="op">.</span><span class="at">value</span> <span class="op">=</span> [<span class="op">...</span>selected]<span class="op">;</span></span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>      <span class="bu">root</span><span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(<span class="st">"input"</span>))<span class="op">;</span></span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>  <span class="bu">root</span><span class="op">.</span><span class="fu">append</span>(labelEl<span class="op">,</span> hint<span class="op">,</span> row)<span class="op">;</span></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>  <span class="bu">root</span><span class="op">.</span><span class="at">value</span> <span class="op">=</span> allSeasons<span class="op">;</span></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">root</span><span class="op">;</span></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -657,7 +648,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell hidden">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="224" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 223;"><span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a>scSeasons <span class="op">=</span> selectedWinters</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="219" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 218;"><span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>scSeasons <span class="op">=</span> selectedWinters</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display hidden">
 <div id="ojs-cell-3" data-nodetype="declaration">
 
@@ -681,65 +672,65 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="248" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 247;"><span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> visibleBinned <span class="op">=</span> binnedSC<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> scSeasons<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">winter_season</span>))</span>
-<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> visibleRug    <span class="op">=</span> seasonRug<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> scSeasons<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">winter_season</span>))</span>
-<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span>        <span class="dv">720</span><span class="op">,</span></span>
-<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span>       <span class="dv">400</span><span class="op">,</span></span>
-<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span>   <span class="dv">70</span><span class="op">,</span></span>
-<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginRight</span><span class="op">:</span>  <span class="dv">20</span><span class="op">,</span></span>
-<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span>    <span class="dv">20</span><span class="op">,</span></span>
-<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span>   <span class="st">"ordinal"</span><span class="op">,</span></span>
-<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>      <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>  <span class="st">"Winter season"</span><span class="op">,</span></span>
-<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="op">...</span>seasonColorMap<span class="op">.</span><span class="fu">keys</span>()]<span class="op">,</span></span>
-<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>      <span class="dt">range</span><span class="op">:</span>  [<span class="op">...</span>seasonColorMap<span class="op">.</span><span class="fu">values</span>()]</span>
-<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a>    <span class="dt">r</span><span class="op">:</span> { <span class="dt">range</span><span class="op">:</span> [<span class="dv">2</span><span class="op">,</span> <span class="dv">8</span>] }<span class="op">,</span></span>
-<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Overnight minimum temperature (°C)"</span><span class="op">,</span></span>
-<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a>      <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"center"</span><span class="op">,</span></span>
-<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>      <span class="dt">reverse</span><span class="op">:</span> <span class="kw">true</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="243" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 242;"><span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> visibleBinned <span class="op">=</span> binnedSC<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> scSeasons<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">winter_season</span>))</span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> visibleRug    <span class="op">=</span> seasonRug<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> scSeasons<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">winter_season</span>))</span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span>        <span class="dv">720</span><span class="op">,</span></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span>       <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span>   <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginRight</span><span class="op">:</span>  <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span>    <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>    <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span>   <span class="st">"ordinal"</span><span class="op">,</span></span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>      <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>  <span class="st">"Winter season"</span><span class="op">,</span></span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="op">...</span>seasonColorMap<span class="op">.</span><span class="fu">keys</span>()]<span class="op">,</span></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>      <span class="dt">range</span><span class="op">:</span>  [<span class="op">...</span>seasonColorMap<span class="op">.</span><span class="fu">values</span>()]</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>    <span class="dt">r</span><span class="op">:</span> { <span class="dt">range</span><span class="op">:</span> [<span class="dv">2</span><span class="op">,</span> <span class="dv">8</span>] }<span class="op">,</span></span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Overnight minimum temperature (°C)"</span><span class="op">,</span></span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>      <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"center"</span><span class="op">,</span></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>      <span class="dt">reverse</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Mean people unplaced (singles/couples, observed)"</span><span class="op">,</span></span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a>      <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"top"</span><span class="op">,</span></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
 <span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Mean people unplaced (singles/couples, observed)"</span><span class="op">,</span></span>
-<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>      <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"top"</span><span class="op">,</span></span>
-<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">tickX</span>(visibleRug<span class="op">,</span> {</span>
-<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp"</span><span class="op">,</span></span>
-<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"winter_season"</span><span class="op">,</span></span>
-<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>        <span class="dt">frameAnchor</span><span class="op">:</span> <span class="st">"bottom"</span><span class="op">,</span></span>
-<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="fl">0.35</span><span class="op">,</span></span>
-<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">tickX</span>(visibleRug<span class="op">,</span> {</span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp"</span><span class="op">,</span></span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"winter_season"</span><span class="op">,</span></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>        <span class="dt">frameAnchor</span><span class="op">:</span> <span class="st">"bottom"</span><span class="op">,</span></span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="fl">0.35</span><span class="op">,</span></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="op">-</span><span class="dv">15</span>]<span class="op">,</span> {</span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> refLine<span class="op">,</span></span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span></span>
 <span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span><span class="op">,</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="op">-</span><span class="dv">15</span>]<span class="op">,</span> {</span>
-<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> refLine<span class="op">,</span></span>
-<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span></span>
-<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">dot</span>(visibleBinned<span class="op">,</span> {</span>
-<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp_bin"</span><span class="op">,</span></span>
-<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"mean_unplaced"</span><span class="op">,</span></span>
-<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"winter_season"</span><span class="op">,</span></span>
-<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a>        <span class="dt">r</span><span class="op">:</span> <span class="st">"n"</span></span>
-<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">tip</span>(visibleBinned<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointer</span>({</span>
-<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp_bin"</span><span class="op">,</span></span>
-<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"mean_unplaced"</span><span class="op">,</span></span>
-<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>        <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span></span>
-<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>          <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">winter_season</span><span class="sc">}\n</span><span class="vs">`</span> <span class="op">+</span></span>
-<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>          <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">min_temp_bin</span><span class="sc">}</span><span class="vs"> °C bin  ·  </span><span class="sc">${</span>d<span class="op">.</span><span class="at">n</span><span class="sc">}</span><span class="vs"> nights</span><span class="sc">\n</span><span class="vs">`</span> <span class="op">+</span></span>
-<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>          <span class="vs">`Observed mean: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">mean_unplaced</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> unplaced`</span></span>
-<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>      }))</span>
-<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">dot</span>(visibleBinned<span class="op">,</span> {</span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp_bin"</span><span class="op">,</span></span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"mean_unplaced"</span><span class="op">,</span></span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"winter_season"</span><span class="op">,</span></span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>        <span class="dt">r</span><span class="op">:</span> <span class="st">"n"</span></span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">tip</span>(visibleBinned<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointer</span>({</span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp_bin"</span><span class="op">,</span></span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"mean_unplaced"</span><span class="op">,</span></span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a>        <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span></span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>          <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">winter_season</span><span class="sc">}\n</span><span class="vs">`</span> <span class="op">+</span></span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>          <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">min_temp_bin</span><span class="sc">}</span><span class="vs"> °C bin  ·  </span><span class="sc">${</span>d<span class="op">.</span><span class="at">n</span><span class="sc">}</span><span class="vs"> nights</span><span class="sc">\n</span><span class="vs">`</span> <span class="op">+</span></span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>          <span class="vs">`Observed mean: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">mean_unplaced</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> unplaced`</span></span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>      }))</span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-observed" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-observed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -794,8 +785,254 @@ Figure&nbsp;1: <em>Observed mean unplaced people (singles and couples) at 4 a.m.
 </table>
 <p><em>Note.</em> Values are nightly means of people (singles and couples) still unmatched to a bed at the 4 a.m. Central Intake closeout, averaged across December, January, and February. The increase between 2021–22 and 2022–23 reflects a structural change in the series; the two periods should not be averaged together. Source: Toronto Central Intake (SMIS), BonQuery analysis.</p>
 <p>So what was different in the winters when the number was low? Not the cold — those winters were no milder. And not emergency warming centres, which were at their <em>largest ever</em> this past winter. The difference was that the regular shelter system had <strong>room to breathe</strong>: it ran near 97% full, instead of jammed against 99% or more as in the worst years. When the everyday system isn’t already at capacity, a cold snap doesn’t have to end with people on the street.</p>
+</section>
+<section id="the-reserve-the-city-did-not-plan-for" class="level2">
+<h2 class="anchored" data-anchor-id="the-reserve-the-city-did-not-plan-for">The reserve the City did not plan for</h2>
+<p>The City announced how many spaces it would activate, but not the operating reserve required to admit the next person. Its 2023–24 plan conditionally activated 170 warming-centre spaces while reporting approximately 275 people unmatched for shelter each night and acknowledging that the plan might not be sufficient. This was not a plan that unexpectedly encountered unmet demand. It was adopted with unmet demand already documented.</p>
+<p>The analysis below asks a deliberately narrow question: among people who were already admitted to the warming-centre and surge layer, how many additional spaces would have been required to preserve a small operating reserve on nights at or below −5 °C? A reserve is not waste. It is the room needed to admit the next person without first waiting for someone else to leave.</p>
+<div class="bq-warn">
+<p><strong>This is a lower bound, not an estimate of total need.</strong> Toronto does not count everyone turned away from a full walk-in site. The separate Central Intake queue is not added here because it uses a different access route. Every number below is calculated only from people the active walk-in layer had already admitted.</p>
+</div>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="367" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 366;"><span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a>reserveRows <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/cold_weather_capacity_reserve.csv"</span>)</span>
+<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">csv</span>()</span>
+<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">then</span>(rows <span class="kw">=&gt;</span> rows<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a>    <span class="dt">date</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">date</span><span class="sc">}</span><span class="vs">T00:00:00`</span>)<span class="op">,</span></span>
+<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>    <span class="dt">winter_season</span><span class="op">:</span> d<span class="op">.</span><span class="at">winter_season</span><span class="op">,</span></span>
+<span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min_temp</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">min_temp</span><span class="op">,</span></span>
+<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reserve_target_pct</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">reserve_target_pct</span><span class="op">,</span></span>
+<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a>    <span class="dt">observed_capacity</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">observed_capacity</span><span class="op">,</span></span>
+<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a>    <span class="dt">observed_occupancy</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">observed_occupancy</span><span class="op">,</span></span>
+<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a>    <span class="dt">observed_spare</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">observed_spare</span><span class="op">,</span></span>
+<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a>    <span class="dt">additional_spaces_needed</span><span class="op">:</span> <span class="op">+</span>d<span class="op">.</span><span class="at">additional_spaces_needed</span></span>
+<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a>  })))</span>
+<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a>reserveMedian <span class="op">=</span> values <span class="kw">=&gt;</span> {</span>
+<span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sorted <span class="op">=</span> [<span class="op">...</span>values]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)</span>
+<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> middle <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(sorted<span class="op">.</span><span class="at">length</span> <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> sorted<span class="op">.</span><span class="at">length</span> <span class="op">%</span> <span class="dv">2</span></span>
+<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> sorted[middle]</span>
+<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> (sorted[middle <span class="op">-</span> <span class="dv">1</span>] <span class="op">+</span> sorted[middle]) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a>reserveSummaryRows <span class="op">=</span> [<span class="dv">2</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">.</span><span class="fu">map</span>(target <span class="kw">=&gt;</span> {</span>
+<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rows <span class="op">=</span> reserveRows<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">reserve_target_pct</span> <span class="op">===</span> target)</span>
+<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> needed <span class="op">=</span> rows<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">additional_spaces_needed</span>)</span>
+<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> short <span class="op">=</span> needed<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a>    target<span class="op">,</span></span>
+<span id="cb5-394"><a href="#cb5-394" aria-hidden="true" tabindex="-1"></a>    <span class="dt">nights</span><span class="op">:</span> rows<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb5-395"><a href="#cb5-395" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shortfallNights</span><span class="op">:</span> short<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb5-396"><a href="#cb5-396" aria-hidden="true" tabindex="-1"></a>    <span class="dt">shortfallPct</span><span class="op">:</span> <span class="dv">100</span> <span class="op">*</span> short<span class="op">.</span><span class="at">length</span> <span class="op">/</span> rows<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb5-397"><a href="#cb5-397" aria-hidden="true" tabindex="-1"></a>    <span class="dt">medianAll</span><span class="op">:</span> <span class="fu">reserveMedian</span>(needed)<span class="op">,</span></span>
+<span id="cb5-398"><a href="#cb5-398" aria-hidden="true" tabindex="-1"></a>    <span class="dt">medianWhenShort</span><span class="op">:</span> <span class="fu">reserveMedian</span>(short)<span class="op">,</span></span>
+<span id="cb5-399"><a href="#cb5-399" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maximum</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>needed)<span class="op">,</span></span>
+<span id="cb5-400"><a href="#cb5-400" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bedNights</span><span class="op">:</span> needed<span class="op">.</span><span class="fu">reduce</span>((sum<span class="op">,</span> value) <span class="kw">=&gt;</span> sum <span class="op">+</span> value<span class="op">,</span> <span class="dv">0</span>)</span>
+<span id="cb5-401"><a href="#cb5-401" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-402"><a href="#cb5-402" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-5-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="406" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 405;"><span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a>viewof reserveTarget <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span> {</span>
+<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Minimum share of active beds kept free"</span><span class="op">,</span></span>
+<span id="cb6-408"><a href="#cb6-408" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb6-409"><a href="#cb6-409" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="sc">}</span><span class="vs">% reserve`</span></span>
+<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell hidden">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="417" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 416;"><span id="cb7-417"><a href="#cb7-417" aria-hidden="true" tabindex="-1"></a>selectedReserveRows <span class="op">=</span> reserveRows<span class="op">.</span><span class="fu">filter</span>(</span>
+<span id="cb7-418"><a href="#cb7-418" aria-hidden="true" tabindex="-1"></a>  d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">reserve_target_pct</span> <span class="op">===</span> reserveTarget</span>
+<span id="cb7-419"><a href="#cb7-419" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-420"><a href="#cb7-420" aria-hidden="true" tabindex="-1"></a>selectedReserveSummary <span class="op">=</span> reserveSummaryRows<span class="op">.</span><span class="fu">find</span>(</span>
+<span id="cb7-421"><a href="#cb7-421" aria-hidden="true" tabindex="-1"></a>  d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">target</span> <span class="op">===</span> reserveTarget</span>
+<span id="cb7-422"><a href="#cb7-422" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-7-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display hidden">
+<div>
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="426" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 425;"><span id="cb8-426"><a href="#cb8-426" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-427"><a href="#cb8-427" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s <span class="op">=</span> selectedReserveSummary</span>
+<span id="cb8-428"><a href="#cb8-428" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cards <span class="op">=</span> [</span>
+<span id="cb8-429"><a href="#cb8-429" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Cold nights below target"</span><span class="op">,</span> <span class="vs">`</span><span class="sc">${</span>s<span class="op">.</span><span class="at">shortfallNights</span><span class="sc">}</span><span class="vs">/</span><span class="sc">${</span>s<span class="op">.</span><span class="at">nights</span><span class="sc">}</span><span class="vs">`</span>]<span class="op">,</span></span>
+<span id="cb8-430"><a href="#cb8-430" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Share below target"</span><span class="op">,</span> <span class="vs">`</span><span class="sc">${</span>s<span class="op">.</span><span class="at">shortfallPct</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%`</span>]<span class="op">,</span></span>
+<span id="cb8-431"><a href="#cb8-431" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Median additional spaces"</span><span class="op">,</span> s<span class="op">.</span><span class="at">medianAll</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)]<span class="op">,</span></span>
+<span id="cb8-432"><a href="#cb8-432" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Maximum additional spaces"</span><span class="op">,</span> s<span class="op">.</span><span class="at">maximum</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)]</span>
+<span id="cb8-433"><a href="#cb8-433" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb8-434"><a href="#cb8-434" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> grid <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)</span>
+<span id="cb8-435"><a href="#cb8-435" aria-hidden="true" tabindex="-1"></a>  grid<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
+<span id="cb8-436"><a href="#cb8-436" aria-hidden="true" tabindex="-1"></a>    <span class="st">"display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));"</span> <span class="op">+</span></span>
+<span id="cb8-437"><a href="#cb8-437" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gap:0.8rem;margin:1rem 0;"</span></span>
+<span id="cb8-438"><a href="#cb8-438" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> [label<span class="op">,</span> value] <span class="kw">of</span> cards) {</span>
+<span id="cb8-439"><a href="#cb8-439" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> card <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)</span>
+<span id="cb8-440"><a href="#cb8-440" aria-hidden="true" tabindex="-1"></a>    card<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
+<span id="cb8-441"><a href="#cb8-441" aria-hidden="true" tabindex="-1"></a>      <span class="st">"background:var(--bq-kpi-bg);border:1px solid var(--bq-border);"</span> <span class="op">+</span></span>
+<span id="cb8-442"><a href="#cb8-442" aria-hidden="true" tabindex="-1"></a>      <span class="st">"border-radius:0.45rem;padding:0.9rem;"</span></span>
+<span id="cb8-443"><a href="#cb8-443" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> valueEl <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)</span>
+<span id="cb8-444"><a href="#cb8-444" aria-hidden="true" tabindex="-1"></a>    valueEl<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> value</span>
+<span id="cb8-445"><a href="#cb8-445" aria-hidden="true" tabindex="-1"></a>    valueEl<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
+<span id="cb8-446"><a href="#cb8-446" aria-hidden="true" tabindex="-1"></a>      <span class="st">"color:var(--bq-kpi-value);font-size:1.7rem;font-weight:700;line-height:1.1;"</span></span>
+<span id="cb8-447"><a href="#cb8-447" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> labelEl <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"div"</span>)</span>
+<span id="cb8-448"><a href="#cb8-448" aria-hidden="true" tabindex="-1"></a>    labelEl<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> label</span>
+<span id="cb8-449"><a href="#cb8-449" aria-hidden="true" tabindex="-1"></a>    labelEl<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">cssText</span> <span class="op">=</span></span>
+<span id="cb8-450"><a href="#cb8-450" aria-hidden="true" tabindex="-1"></a>      <span class="st">"color:var(--bq-kpi-label);font-size:0.86rem;margin-top:0.35rem;"</span></span>
+<span id="cb8-451"><a href="#cb8-451" aria-hidden="true" tabindex="-1"></a>    card<span class="op">.</span><span class="fu">append</span>(valueEl<span class="op">,</span> labelEl)</span>
+<span id="cb8-452"><a href="#cb8-452" aria-hidden="true" tabindex="-1"></a>    grid<span class="op">.</span><span class="fu">append</span>(card)</span>
+<span id="cb8-453"><a href="#cb8-453" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-454"><a href="#cb8-454" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> grid</span>
+<span id="cb8-455"><a href="#cb8-455" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="466" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 465;"><span id="cb9-466"><a href="#cb9-466" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-467"><a href="#cb9-467" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">720</span><span class="op">,</span></span>
+<span id="cb9-468"><a href="#cb9-468" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">390</span><span class="op">,</span></span>
+<span id="cb9-469"><a href="#cb9-469" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb9-470"><a href="#cb9-470" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb9-471"><a href="#cb9-471" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb9-472"><a href="#cb9-472" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
+<span id="cb9-473"><a href="#cb9-473" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb9-474"><a href="#cb9-474" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"ordinal"</span><span class="op">,</span></span>
+<span id="cb9-475"><a href="#cb9-475" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb9-476"><a href="#cb9-476" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Winter season"</span><span class="op">,</span></span>
+<span id="cb9-477"><a href="#cb9-477" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="op">...</span>seasonColorMap<span class="op">.</span><span class="fu">keys</span>()]<span class="op">,</span></span>
+<span id="cb9-478"><a href="#cb9-478" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="op">...</span>seasonColorMap<span class="op">.</span><span class="fu">values</span>()]</span>
+<span id="cb9-479"><a href="#cb9-479" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb9-480"><a href="#cb9-480" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb9-481"><a href="#cb9-481" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Overnight minimum temperature (°C)"</span><span class="op">,</span></span>
+<span id="cb9-482"><a href="#cb9-482" aria-hidden="true" tabindex="-1"></a>    <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"center"</span><span class="op">,</span></span>
+<span id="cb9-483"><a href="#cb9-483" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reverse</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-484"><a href="#cb9-484" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb9-485"><a href="#cb9-485" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb9-486"><a href="#cb9-486" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="vs">`Additional spaces for </span><span class="sc">${</span>reserveTarget<span class="sc">}</span><span class="vs">% reserve`</span><span class="op">,</span></span>
+<span id="cb9-487"><a href="#cb9-487" aria-hidden="true" tabindex="-1"></a>    <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"top"</span><span class="op">,</span></span>
+<span id="cb9-488"><a href="#cb9-488" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-489"><a href="#cb9-489" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb9-490"><a href="#cb9-490" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb9-491"><a href="#cb9-491" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> { <span class="dt">stroke</span><span class="op">:</span> refLine })<span class="op">,</span></span>
+<span id="cb9-492"><a href="#cb9-492" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="op">-</span><span class="dv">15</span>]<span class="op">,</span> {</span>
+<span id="cb9-493"><a href="#cb9-493" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> refLine<span class="op">,</span></span>
+<span id="cb9-494"><a href="#cb9-494" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb9-495"><a href="#cb9-495" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span></span>
+<span id="cb9-496"><a href="#cb9-496" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb9-497"><a href="#cb9-497" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(selectedReserveRows<span class="op">,</span> {</span>
+<span id="cb9-498"><a href="#cb9-498" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp"</span><span class="op">,</span></span>
+<span id="cb9-499"><a href="#cb9-499" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"additional_spaces_needed"</span><span class="op">,</span></span>
+<span id="cb9-500"><a href="#cb9-500" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"winter_season"</span><span class="op">,</span></span>
+<span id="cb9-501"><a href="#cb9-501" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb9-502"><a href="#cb9-502" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.75</span></span>
+<span id="cb9-503"><a href="#cb9-503" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb9-504"><a href="#cb9-504" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">tip</span>(selectedReserveRows<span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointer</span>({</span>
+<span id="cb9-505"><a href="#cb9-505" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"min_temp"</span><span class="op">,</span></span>
+<span id="cb9-506"><a href="#cb9-506" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"additional_spaces_needed"</span><span class="op">,</span></span>
+<span id="cb9-507"><a href="#cb9-507" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span></span>
+<span id="cb9-508"><a href="#cb9-508" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">date</span><span class="op">.</span><span class="fu">toISOString</span>()<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">10</span>)<span class="sc">}</span><span class="vs">  ·  </span><span class="sc">${</span>d<span class="op">.</span><span class="at">winter_season</span><span class="sc">}\n</span><span class="vs">`</span> <span class="op">+</span></span>
+<span id="cb9-509"><a href="#cb9-509" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">min_temp</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> °C</span><span class="sc">\n</span><span class="vs">`</span> <span class="op">+</span></span>
+<span id="cb9-510"><a href="#cb9-510" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">additional_spaces_needed</span><span class="sc">}</span><span class="vs"> additional spaces needed</span><span class="sc">\n</span><span class="vs">`</span> <span class="op">+</span></span>
+<span id="cb9-511"><a href="#cb9-511" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">observed_occupancy</span><span class="sc">}</span><span class="vs">/</span><span class="sc">${</span>d<span class="op">.</span><span class="at">observed_capacity</span><span class="sc">}</span><span class="vs"> beds occupied`</span></span>
+<span id="cb9-512"><a href="#cb9-512" aria-hidden="true" tabindex="-1"></a>    }))</span>
+<span id="cb9-513"><a href="#cb9-513" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb9-514"><a href="#cb9-514" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-reserve-shortfall" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reserve-shortfall-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="ojs-cell-9" data-nodetype="expression">
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reserve-shortfall-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: <em>Additional walk-in spaces required to preserve the selected operating reserve on nights at or below −5 °C, current activation period.</em> Each dot is one night. The calculation uses admitted occupancy only, so it is a lower bound on total need.
+</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Table 2.</strong> <em>Minimum additional walk-in capacity required under four operating reserve scenarios on nights at or below −5 °C, 2023–24 through 2025–26.</em></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb10" data-startfrom="523" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 522;"><span id="cb10-523"><a href="#cb10-523" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb10-524"><a href="#cb10-524" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> table <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"table"</span>)</span>
+<span id="cb10-525"><a href="#cb10-525" aria-hidden="true" tabindex="-1"></a>  table<span class="op">.</span><span class="at">className</span> <span class="op">=</span> <span class="st">"table table-striped"</span></span>
+<span id="cb10-526"><a href="#cb10-526" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> head <span class="op">=</span> table<span class="op">.</span><span class="fu">createTHead</span>()<span class="op">.</span><span class="fu">insertRow</span>()</span>
+<span id="cb10-527"><a href="#cb10-527" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> label <span class="kw">of</span> [</span>
+<span id="cb10-528"><a href="#cb10-528" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Reserve target"</span><span class="op">,</span></span>
+<span id="cb10-529"><a href="#cb10-529" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nights below target"</span><span class="op">,</span></span>
+<span id="cb10-530"><a href="#cb10-530" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Median additional spaces"</span><span class="op">,</span></span>
+<span id="cb10-531"><a href="#cb10-531" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Maximum additional spaces"</span><span class="op">,</span></span>
+<span id="cb10-532"><a href="#cb10-532" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Additional bed-nights"</span></span>
+<span id="cb10-533"><a href="#cb10-533" aria-hidden="true" tabindex="-1"></a>  ]) {</span>
+<span id="cb10-534"><a href="#cb10-534" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> th <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"th"</span>)</span>
+<span id="cb10-535"><a href="#cb10-535" aria-hidden="true" tabindex="-1"></a>    th<span class="op">.</span><span class="at">scope</span> <span class="op">=</span> <span class="st">"col"</span></span>
+<span id="cb10-536"><a href="#cb10-536" aria-hidden="true" tabindex="-1"></a>    th<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> label</span>
+<span id="cb10-537"><a href="#cb10-537" aria-hidden="true" tabindex="-1"></a>    head<span class="op">.</span><span class="fu">append</span>(th)</span>
+<span id="cb10-538"><a href="#cb10-538" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-539"><a href="#cb10-539" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> body <span class="op">=</span> table<span class="op">.</span><span class="fu">createTBody</span>()</span>
+<span id="cb10-540"><a href="#cb10-540" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> s <span class="kw">of</span> reserveSummaryRows) {</span>
+<span id="cb10-541"><a href="#cb10-541" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> row <span class="op">=</span> body<span class="op">.</span><span class="fu">insertRow</span>()</span>
+<span id="cb10-542"><a href="#cb10-542" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> values <span class="op">=</span> [</span>
+<span id="cb10-543"><a href="#cb10-543" aria-hidden="true" tabindex="-1"></a>      <span class="vs">`</span><span class="sc">${</span>s<span class="op">.</span><span class="at">target</span><span class="sc">}</span><span class="vs">%`</span><span class="op">,</span></span>
+<span id="cb10-544"><a href="#cb10-544" aria-hidden="true" tabindex="-1"></a>      <span class="vs">`</span><span class="sc">${</span>s<span class="op">.</span><span class="at">shortfallNights</span><span class="sc">}</span><span class="vs">/</span><span class="sc">${</span>s<span class="op">.</span><span class="at">nights</span><span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>s<span class="op">.</span><span class="at">shortfallPct</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%)`</span><span class="op">,</span></span>
+<span id="cb10-545"><a href="#cb10-545" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="at">medianAll</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb10-546"><a href="#cb10-546" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="at">maximum</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb10-547"><a href="#cb10-547" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="at">bedNights</span><span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">"en-CA"</span>)</span>
+<span id="cb10-548"><a href="#cb10-548" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb10-549"><a href="#cb10-549" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> value <span class="kw">of</span> values) {</span>
+<span id="cb10-550"><a href="#cb10-550" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> cell <span class="op">=</span> row<span class="op">.</span><span class="fu">insertCell</span>()</span>
+<span id="cb10-551"><a href="#cb10-551" aria-hidden="true" tabindex="-1"></a>      cell<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> value</span>
+<span id="cb10-552"><a href="#cb10-552" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-553"><a href="#cb10-553" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-554"><a href="#cb10-554" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> table</span>
+<span id="cb10-555"><a href="#cb10-555" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-10" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><em>Note.</em> “Additional spaces” is the minimum active capacity required to keep the selected percentage of beds free after accommodating the people already inside. It does not include unrecorded walk-in turnaways or unmatched Central Intake callers. The 2% row reproduces the manuscript’s locked saturation result: 64/137 nights (46.7%) were at least 98% full.</p>
+<p>At a modest <strong>10% reserve</strong>, the active layer fell short on <strong>121/137 nights (88.3%)</strong>. It would have needed a median of <strong>21 additional spaces per cold night</strong>, with a maximum of <strong>37</strong>. Those figures are not a generous surplus. They are the minimum breathing room calculated from people already admitted.</p>
+<p>The City also paid for capacity it did not make available. During 2023–24 deactivation periods, warming centres stopped admitting new clients while funded beds remained vacant. The Auditor General counted <strong>4,331 vacant bed-nights over 94 nights</strong>, about <strong>46 beds per night</strong>. The City paid third-party operators the maximum <strong>$12.5 million</strong> contribution based on full-capacity budgets; operators later reported <strong>$9.7 million</strong> in costs, and nearly <strong>$2.9 million</strong> in surplus remained unrecovered as of October 2024. The audit also found that the City’s cost review lacked supporting records and did not properly adjust for how long sites were actually open (<a href="https://www.toronto.ca/legdocs/mmis/2025/au/bgrd/backgroundfile-252902.pdf" target="_blank">Auditor General, pp.&nbsp;22–23 and 35–37</a>).</p>
+<p>Public money paid for capacity. Administrative rules kept that capacity from people who needed it. Because local evidence shows that cold injury and death occur well above −15 °C, deactivation did not mark the end of danger. It marked the point at which the City chose to stop admitting people despite available funding, physical beds, and continuing demand.</p>
 <p>That is the whole lever. And it is pulled in the summer — now — when the fall budget decides how many beds will exist on the first freezing night of November. By the time the cold arrives, the decision has already been made.</p>
-<p><strong>Zero is the only acceptable number of people left outside below freezing in a city as wealthy as Toronto.</strong> Reaching it next winter does not require a new program or a breakthrough. It requires deciding, in this summer’s budget, to fund enough standing shelter capacity that the system carries the same breathing room it had last winter — <em>before</em> the first freezing night, not after. The city has already shown it can get the number down. The only question left is whether it will choose to.</p>
+<p><strong>The goal should be zero people left without shelter below freezing.</strong> Moving toward that goal does not require a new type of program. It requires funding enough standing shelter capacity to preserve breathing room before the first freezing night, not adding temporary capacity only after demand has exceeded what is available. The City has already shown that the overnight queue can fall sharply. The question is whether it will preserve that capacity through the next winter.</p>
 <hr>
 <p><em>Data: Toronto Central Intake call records (SMIS), six cold seasons November 15–April 15, 2020–21 through 2025–26. Analysis by <a href="https://bonquery.ca">BonQuery</a>. Weather: Environment and Climate Change Canada hourly records, Toronto station, retrieved via the <a href="https://docs.ropensci.org/weathercan/" target="_blank">weathercan</a> R package.</em></p>
 <p>Contains information licensed under the <a href="https://open.toronto.ca/open-data-licence/">Open Government Licence – Toronto</a>.</p>
@@ -803,7 +1040,7 @@ Figure&nbsp;1: <em>Observed mean unplaced people (singles and couples) at 4 a.m.
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script>
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
@@ -861,11 +1098,14 @@ Figure&nbsp;1: <em>Observed mean unplaced people (singles and couples) at 4 a.m.
 (function () {
   var tog = document.querySelector(".quarto-color-scheme-toggle");
   if (!tog) return;
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
   var label = document.createElement("span");
   label.className = "bq-theme-label";
   var update = function () {
     var isDark = document.body.classList.contains("quarto-dark");
-    label.textContent = isDark ? "Light" : "Dark";
+    label.textContent = isFR
+      ? (isDark ? "Clair" : "Sombre")
+      : (isDark ? "Light" : "Dark");
   };
   tog.appendChild(label);
   update();
@@ -874,23 +1114,178 @@ Figure&nbsp;1: <em>Observed mean unplaced people (singles and couples) at 4 a.m.
   );
 })();
 
-// ── Bilingual alert toggle (EN | FR) ─────────────────────────────────────
-// Sets data-lang on each .bq-bilingual block; CSS controls visibility.
-var pageLang = (location.pathname.startsWith("/fr/") || location.pathname === "/fr")
-  ? "fr" : "en";
-document.querySelectorAll(".bq-bilingual").forEach(function (block) {
-  var btns = block.querySelectorAll(".bq-lang-btn");
-  function setLang(lang) {
-    block.setAttribute("data-lang", lang);
-    btns.forEach(function (b) {
-      b.classList.toggle("active", b.dataset.set === lang);
-    });
+// Live dashboard-card previews. This runs only on pages that contain the
+// shared dashboard cards and uses the same generated file as the dashboards.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var locale = isFR ? "fr-CA" : "en-CA";
+  var copy = isFR ? {
+    unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
+    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    activelyHomeless: "personnes en situation d'itinérance active",
+    newlyIdentified: "Nouvellement identifiées",
+    movedToHousing: "Ont obtenu un logement",
+    januaryTo: "De janvier à ",
+    latest: "Plus récent : ",
+    trend: "Tendance de l'itinérance active jusqu'à "
+  } : {
+    unavailable: "Preview unavailable. Open the dashboard.",
+    offlineBeds: "funded shelter beds for single adults were unavailable",
+    acrossPrograms: " people staying in shelter programs",
+    activelyHomeless: "people counted as homeless",
+    newlyIdentified: "Newly counted as homeless",
+    movedToHousing: "Moved into housing",
+    januaryTo: "January to ",
+    latest: "Latest: ",
+    trend: "People counted as homeless through "
+  };
+  var dailyMount = document.getElementById("bq-preview-daily");
+  var monthlyMount = document.getElementById("bq-preview-monthly");
+  var ytdMount = document.getElementById("bq-preview-ytd");
+  var historyMount = document.getElementById("bq-preview-history");
+  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.dataset.set); });
-  });
-  setLang(block.getAttribute("data-lang") || pageLang);
-});
+
+  function metricRow(label, value) {
+    var row = make("div");
+    row.append(make("span", "", label), make("strong", "", value));
+    return row;
+  }
+
+  function meter(value, maximum, good) {
+    var track = make("i");
+    var bar = make("b", good ? "bq-preview-bar-good" : "");
+    bar.style.width = ((value / maximum) * 100) + "%";
+    track.append(bar);
+    return track;
+  }
+
+  function showUnavailable(mount) {
+    if (!mount) return;
+    mount.replaceChildren(make("span", "", copy.unavailable));
+  }
+
+  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Daily preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      if (!dailyMount || !data.length) return;
+      var latestDate = data.reduce(function (latest, row) {
+        return row.date > latest ? row.date : latest;
+      }, "");
+      var rows = data.filter(function (row) { return row.date === latestDate; });
+      var singles = rows.find(function (row) { return row.key === "singles_total"; });
+      var system = rows.find(function (row) { return row.key === "all_shelter"; });
+      if (!singles || !system) throw new Error("Daily preview rows unavailable");
+      var dateParts = latestDate.split("-").map(Number);
+      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
+        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
+      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      daily.append(
+        make("strong", "", Number(offline).toLocaleString(locale)),
+        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+      );
+      dailyMount.replaceChildren(daily);
+    })
+    .catch(function () { showUnavailable(dailyMount); });
+
+  fetch("/data/shelter_flow.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Dashboard preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var rows = data
+        .filter(function (row) { return row.population_group === "All Population"; })
+        .slice()
+        .sort(function (a, b) { return a.flow_date.localeCompare(b.flow_date); });
+      if (!rows.length) throw new Error("Dashboard preview data empty");
+
+      var latest = rows[rows.length - 1];
+      var dateParts = latest.flow_date.split("-").map(Number);
+      var latestYear = dateParts[0];
+      var latestMonth = dateParts[1];
+      var latestLabel = new Date(latestYear, latestMonth - 1, 1)
+        .toLocaleDateString(locale, {month: "long", year: "numeric"});
+      var fmt = function (value) {
+        return Number(value).toLocaleString(locale);
+      };
+
+      if (monthlyMount) {
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", fmt(latest.actively_homeless)),
+          make("span", "", copy.activelyHomeless + " · " + latestLabel)
+        );
+        monthlyMount.replaceChildren(kpi);
+      }
+
+      var ytdRows = rows.filter(function (row) {
+        var parts = row.flow_date.split("-").map(Number);
+        return parts[0] === latestYear && parts[1] <= latestMonth;
+      });
+      var ytdNew = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.newly_identified || 0);
+      }, 0);
+      var ytdHoused = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.moved_to_housing || 0);
+      }, 0);
+      var ytdMax = Math.max(ytdNew, ytdHoused, 1);
+
+      if (ytdMount) {
+        var bars = make("div", "bq-preview-bars");
+        bars.append(
+          metricRow(copy.newlyIdentified, fmt(ytdNew)),
+          meter(ytdNew, ytdMax, false),
+          metricRow(copy.movedToHousing, fmt(ytdHoused)),
+          meter(ytdHoused, ytdMax, true),
+          make("small", "", copy.januaryTo + latestLabel)
+        );
+        ytdMount.replaceChildren(bars);
+      }
+
+      if (historyMount) {
+        var trend = rows.slice(-48).map(function (row) {
+          return +row.actively_homeless;
+        });
+        var minimum = Math.min.apply(null, trend);
+        var maximum = Math.max.apply(null, trend);
+        var spread = Math.max(maximum - minimum, 1);
+        var wrap = make("div", "bq-preview-history-wrap");
+        var spark = make("div", "bq-preview-spark");
+        spark.setAttribute("role", "img");
+        spark.setAttribute(
+          "aria-label",
+          copy.trend + latestLabel +
+            (isFR ? "; valeur la plus récente " : "; latest value ") +
+            fmt(latest.actively_homeless)
+        );
+        trend.forEach(function (value, index) {
+          var bar = make("span", index === trend.length - 1 ? "is-latest" : "");
+          bar.style.height = (20 + ((value - minimum) / spread) * 80) + "%";
+          spark.append(bar);
+        });
+        wrap.append(spark, make("small", "", copy.latest + fmt(latest.actively_homeless)));
+        historyMount.replaceChildren(wrap);
+      }
+    })
+    .catch(function () {
+      showUnavailable(monthlyMount);
+      showUnavailable(ytdMount);
+      showUnavailable(historyMount);
+    });
+})();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
 // Computes the exact mirror URL from the current pathname and updates the
@@ -905,7 +1300,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
     enPath = (path === "/fr" || path === "/fr/")
       ? "/"
       : path.replace(frPfx, "/");
-    frPath = path.endsWith("/") ? path : path + "/";
+    frPath = (path === "/fr") ? "/fr/" : path;
   } else {
     enPath = path;
     frPath = frPfx + path.replace(/^\//, "");
@@ -944,7 +1339,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
 })();
 </script>
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8g4pSA4pSAIERhdGEg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG4vLyBOdW1lcmljIGNvbHVtbnMgY29lcmNlZCBleHBsaWNpdGx5OyBzdHJpbmcgY29sdW1ucyBrZXB0IGFzLWlzLlxuc2Vhc29uUnVnID0gRmlsZUF0dGFjaG1lbnQoXCIuLi9kYXRhL3NlYXNvbl9ydWcuY3N2XCIpLmNzdigpLnRoZW4ocm93cyA9PlxuICByb3dzLm1hcChkID0+ICh7XG4gICAgbWluX3RlbXA6ICAgICAgK2QubWluX3RlbXAsXG4gICAgd2ludGVyX3NlYXNvbjogZC53aW50ZXJfc2Vhc29uXG4gIH0pKVxuKVxuYmlubmVkU0MgPSBGaWxlQXR0YWNobWVudChcIi4uL2RhdGEvY29sZF9yZXNwb25zZV9iaW5uZWRfYnlfd2ludGVyX3NjLmNzdlwiKS5jc3YoKVxuICAudGhlbihyb3dzID0+IHJvd3MubWFwKGQgPT4gKHtcbiAgICBtaW5fdGVtcF9iaW46ICArZC5taW5fdGVtcF9iaW4sXG4gICAgd2ludGVyX3NlYXNvbjogZC53aW50ZXJfc2Vhc29uLFxuICAgIG1lYW5fdW5wbGFjZWQ6ICtkLm1lYW5fdW5wbGFjZWQsXG4gICAgbjogICAgICAgICAgICAgK2QublxuICB9KSkpXG5cbi8vIOKUgOKUgCBUaGVtZS1hd2FyZSBwYWxldHRlIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuY3MgICAgICA9IGdldENvbXB1dGVkU3R5bGUoZG9jdW1lbnQuYm9keSlcbnJlZkxpbmUgPSBjcy5nZXRQcm9wZXJ0eVZhbHVlKFwiLS1icS1jaGFydC1zdHJva2VcIikudHJpbSgpXG5cbi8vIOKUgOKUgCBTZWFzb24gY29sb3IgbWFwIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuLy8gRXhwbGljaXQgZG9tYWluK3JhbmdlIHNvIHRoZSBydWcgYW5kIGRvdHMgc2hhcmUgaWRlbnRpY2FsIHNlYXNvbiDihpIgY29sb3VyXG4vLyBiaW5kaW5ncyBhY3Jvc3MgYW55IGNoYXJ0IGFkZGVkIHRvIHRoaXMgcGFnZS5cbnNlYXNvbkNvbG9yTWFwID0gbmV3IE1hcChbXG4gIFtcIjIwMjAtMjFcIiwgXCIjNERGODg0XCJdLFxuICBbXCIyMDIxLTIyXCIsIFwiIzJGOURGNVwiXSxcbiAgW1wiMjAyMi0yM1wiLCBcIiNERUREMzJcIl0sXG4gIFtcIjIwMjMtMjRcIiwgXCIjRTYzOTQ2XCJdLFxuICBbXCIyMDI0LTI1XCIsIFwiI0Y2NUYxOFwiXSxcbiAgW1wiMjAyNS0yNlwiLCBcIiM5MDBDMDBcIl1cbl0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2Ygc2VsZWN0ZWRXaW50ZXJzID0ge1xuICBjb25zdCBhbGxTZWFzb25zID0gW1xuICAgIFwiMjAyMC0yMVwiLFwiMjAyMS0yMlwiLFwiMjAyMi0yM1wiLFwiMjAyMy0yNFwiLFwiMjAyNC0yNVwiLFwiMjAyNS0yNlwiXG4gIF07XG4gIGNvbnN0IHNlbGVjdGVkID0gbmV3IFNldChhbGxTZWFzb25zKTtcblxuICAvLyBJbmplY3QgY3VzdG9tIGNoZWNrYm94IHN0eWxlcyBvbmNlIOKAlCBndWFyZGVkIHNvIE9KUyByZS1ydW5zIGRvbid0IGR1cGxpY2F0ZVxuICBpZiAoIWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiYnEtc2Vhc29uLWNiLXN0eWxlXCIpKSB7XG4gICAgY29uc3QgcyA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJzdHlsZVwiKTtcbiAgICBzLmlkID0gXCJicS1zZWFzb24tY2Itc3R5bGVcIjtcbiAgICBzLnRleHRDb250ZW50ID0gYFxuICAgICAgLmJxLXNlYXNvbi1jYiB7XG4gICAgICAgIGFwcGVhcmFuY2U6IG5vbmU7XG4gICAgICAgIC13ZWJraXQtYXBwZWFyYW5jZTogbm9uZTtcbiAgICAgICAgd2lkdGg6IDE0cHg7XG4gICAgICAgIGhlaWdodDogMTRweDtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMnB4O1xuICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgIGJvcmRlcjogMS41cHggc29saWQgIzg4ODtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIGZsZXgtc2hyaW5rOiAwO1xuICAgICAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tY2I6Y2hlY2tlZCB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXNlYXNvbi1jb2xvcik7XG4gICAgICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vhc29uLWNvbG9yKTtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tY2I6Y2hlY2tlZDo6YWZ0ZXIge1xuICAgICAgICBjb250ZW50OiBcIuKck1wiO1xuICAgICAgICBjb2xvcjogI2ZmZjtcbiAgICAgICAgZm9udC1zaXplOiAxMHB4O1xuICAgICAgICBmb250LXdlaWdodDogNzAwO1xuICAgICAgICBsaW5lLWhlaWdodDogMTtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tY2I6aG92ZXIge1xuICAgICAgICB0cmFuc2Zvcm06IHNjYWxlKDEuMTUpO1xuICAgICAgICBib3gtc2hhZG93OiAwIDAgMCAycHggcmdiYSgwLDAsMCwwLjE1KTtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tbGJsIHtcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICAgIGdhcDogOHB4O1xuICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICAgIHVzZXItc2VsZWN0OiBub25lO1xuICAgICAgfVxuICAgIGA7XG4gICAgZG9jdW1lbnQuaGVhZC5hcHBlbmRDaGlsZChzKTtcbiAgfVxuXG4gIGNvbnN0IHJvb3QgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICByb290LnN0eWxlLmNzc1RleHQgPSBcImZvbnQtZmFtaWx5OnZhcigtLXNhbnMtc2VyaWYsc2Fucy1zZXJpZik7Zm9udC1zaXplOjEzLjVweDtcIjtcblxuICBjb25zdCBsYWJlbEVsID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgbGFiZWxFbC50ZXh0Q29udGVudCA9IFwiU2Vhc29ucyBzaG93blwiO1xuICBsYWJlbEVsLnN0eWxlLmNzc1RleHQgPSBcImZvbnQtd2VpZ2h0OjYwMDttYXJnaW4tYm90dG9tOjNweDtcIjtcblxuICBjb25zdCBoaW50ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgaGludC50ZXh0Q29udGVudCA9IFwiQ2xpY2sgYSBzZWFzb24gdG8gc2hvdyBvciBoaWRlIGl0XCI7XG4gIGhpbnQuc3R5bGUuY3NzVGV4dCA9XG4gICAgXCJmb250LXNpemU6MTEuNXB4O2ZvbnQtd2VpZ2h0OjQwMDtjb2xvcjp2YXIoLS1icS1mZy1mYWludCk7bWFyZ2luLWJvdHRvbTo2cHg7XCI7XG5cbiAgY29uc3Qgcm93ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgcm93LnN0eWxlLmNzc1RleHQgPVxuICAgIFwiZGlzcGxheTpmbGV4O2ZsZXgtd3JhcDp3cmFwO2dhcDo2cHggMjBweDthbGlnbi1pdGVtczpjZW50ZXI7XCI7XG5cbiAgZm9yIChjb25zdCBzZWFzb24gb2YgYWxsU2Vhc29ucykge1xuICAgIGNvbnN0IGNvbG9yID0gc2Vhc29uQ29sb3JNYXAuZ2V0KHNlYXNvbik7XG5cbiAgICBjb25zdCBjYiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJpbnB1dFwiKTtcbiAgICBjYi50eXBlID0gXCJjaGVja2JveFwiOyBjYi52YWx1ZSA9IHNlYXNvbjsgY2IuY2hlY2tlZCA9IHRydWU7XG4gICAgY2IuY2xhc3NOYW1lID0gXCJicS1zZWFzb24tY2JcIjtcbiAgICBjYi5zdHlsZS5zZXRQcm9wZXJ0eShcIi0tc2Vhc29uLWNvbG9yXCIsIGNvbG9yKTtcblxuICAgIGNvbnN0IHR4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJzcGFuXCIpO1xuICAgIHR4dC50ZXh0Q29udGVudCA9IHNlYXNvbjtcblxuICAgIGNvbnN0IGxibCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJsYWJlbFwiKTtcbiAgICBsYmwuY2xhc3NOYW1lID0gXCJicS1zZWFzb24tbGJsXCI7XG4gICAgbGJsLmFwcGVuZChjYiwgdHh0KTtcbiAgICByb3cuYXBwZW5kKGxibCk7XG5cbiAgICBjYi5hZGRFdmVudExpc3RlbmVyKFwiY2hhbmdlXCIsICgpID0+IHtcbiAgICAgIGlmIChjYi5jaGVja2VkKSBzZWxlY3RlZC5hZGQoc2Vhc29uKTsgZWxzZSBzZWxlY3RlZC5kZWxldGUoc2Vhc29uKTtcbiAgICAgIHJvb3QudmFsdWUgPSBbLi4uc2VsZWN0ZWRdO1xuICAgICAgcm9vdC5kaXNwYXRjaEV2ZW50KG5ldyBFdmVudChcImlucHV0XCIpKTtcbiAgICB9KTtcbiAgfVxuXG4gIHJvb3QuYXBwZW5kKGxhYmVsRWwsIGhpbnQsIHJvdyk7XG4gIHJvb3QudmFsdWUgPSBhbGxTZWFzb25zO1xuICByZXR1cm4gcm9vdDtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNjU2Vhc29ucyA9IHNlbGVjdGVkV2ludGVyc1xuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG57XG4gIGNvbnN0IHZpc2libGVCaW5uZWQgPSBiaW5uZWRTQy5maWx0ZXIoZCA9PiBzY1NlYXNvbnMuaW5jbHVkZXMoZC53aW50ZXJfc2Vhc29uKSlcbiAgY29uc3QgdmlzaWJsZVJ1ZyAgICA9IHNlYXNvblJ1Zy5maWx0ZXIoZCA9PiBzY1NlYXNvbnMuaW5jbHVkZXMoZC53aW50ZXJfc2Vhc29uKSlcblxuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICB3aWR0aDogICAgICAgIDcyMCxcbiAgICBoZWlnaHQ6ICAgICAgIDQwMCxcbiAgICBtYXJnaW5MZWZ0OiAgIDcwLFxuICAgIG1hcmdpblJpZ2h0OiAgMjAsXG4gICAgbWFyZ2luVG9wOiAgICAyMCxcbiAgICBtYXJnaW5Cb3R0b206IDUwLFxuICAgIGNvbG9yOiB7XG4gICAgICB0eXBlOiAgIFwib3JkaW5hbFwiLFxuICAgICAgbGVnZW5kOiB0cnVlLFxuICAgICAgbGFiZWw6ICBcIldpbnRlciBzZWFzb25cIixcbiAgICAgIGRvbWFpbjogWy4uLnNlYXNvbkNvbG9yTWFwLmtleXMoKV0sXG4gICAgICByYW5nZTogIFsuLi5zZWFzb25Db2xvck1hcC52YWx1ZXMoKV1cbiAgICB9LFxuICAgIHI6IHsgcmFuZ2U6IFsyLCA4XSB9LFxuICAgIHg6IHtcbiAgICAgIGxhYmVsOiBcIk92ZXJuaWdodCBtaW5pbXVtIHRlbXBlcmF0dXJlICjCsEMpXCIsXG4gICAgICBsYWJlbEFuY2hvcjogXCJjZW50ZXJcIixcbiAgICAgIHJldmVyc2U6IHRydWVcbiAgICB9LFxuICAgIHk6IHtcbiAgICAgIGxhYmVsOiBcIk1lYW4gcGVvcGxlIHVucGxhY2VkIChzaW5nbGVzL2NvdXBsZXMsIG9ic2VydmVkKVwiLFxuICAgICAgbGFiZWxBbmNob3I6IFwidG9wXCIsXG4gICAgICBncmlkOiB0cnVlXG4gICAgfSxcbiAgICBtYXJrczogW1xuICAgICAgUGxvdC50aWNrWCh2aXNpYmxlUnVnLCB7XG4gICAgICAgIHg6IFwibWluX3RlbXBcIixcbiAgICAgICAgc3Ryb2tlOiBcIndpbnRlcl9zZWFzb25cIixcbiAgICAgICAgZnJhbWVBbmNob3I6IFwiYm90dG9tXCIsXG4gICAgICAgIHN0cm9rZU9wYWNpdHk6IDAuMzUsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAxXG4gICAgICB9KSxcbiAgICAgIFBsb3QucnVsZVgoWzAsIC01LCAtMTAsIC0xNV0sIHtcbiAgICAgICAgc3Ryb2tlOiByZWZMaW5lLFxuICAgICAgICBzdHJva2VXaWR0aDogMSxcbiAgICAgICAgc3Ryb2tlRGFzaGFycmF5OiBcIjQsM1wiXG4gICAgICB9KSxcbiAgICAgIFBsb3QuZG90KHZpc2libGVCaW5uZWQsIHtcbiAgICAgICAgeDogXCJtaW5fdGVtcF9iaW5cIixcbiAgICAgICAgeTogXCJtZWFuX3VucGxhY2VkXCIsXG4gICAgICAgIGZpbGw6IFwid2ludGVyX3NlYXNvblwiLFxuICAgICAgICByOiBcIm5cIlxuICAgICAgfSksXG4gICAgICBQbG90LnRpcCh2aXNpYmxlQmlubmVkLCBQbG90LnBvaW50ZXIoe1xuICAgICAgICB4OiBcIm1pbl90ZW1wX2JpblwiLFxuICAgICAgICB5OiBcIm1lYW5fdW5wbGFjZWRcIixcbiAgICAgICAgdGl0bGU6IGQgPT5cbiAgICAgICAgICBgJHtkLndpbnRlcl9zZWFzb259XFxuYCArXG4gICAgICAgICAgYCR7ZC5taW5fdGVtcF9iaW59IMKwQyBiaW4gIMK3ICAke2Qubn0gbmlnaHRzXFxuYCArXG4gICAgICAgICAgYE9ic2VydmVkIG1lYW46ICR7ZC5tZWFuX3VucGxhY2VkLnRvRml4ZWQoMSl9IHVucGxhY2VkYFxuICAgICAgfSkpXG4gICAgXVxuICB9KVxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZFdpbnRlcnMnKSJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8g4pSA4pSAIERhdGEg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSAXG4vLyBOdW1lcmljIGNvbHVtbnMgY29lcmNlZCBleHBsaWNpdGx5OyBzdHJpbmcgY29sdW1ucyBrZXB0IGFzLWlzLlxuc2Vhc29uUnVnID0gRmlsZUF0dGFjaG1lbnQoXCIuLi9kYXRhL3NlYXNvbl9ydWcuY3N2XCIpLmNzdigpLnRoZW4ocm93cyA9PlxuICByb3dzLm1hcChkID0+ICh7XG4gICAgbWluX3RlbXA6ICAgICAgK2QubWluX3RlbXAsXG4gICAgd2ludGVyX3NlYXNvbjogZC53aW50ZXJfc2Vhc29uXG4gIH0pKVxuKVxuYmlubmVkU0MgPSBGaWxlQXR0YWNobWVudChcIi4uL2RhdGEvY29sZF9yZXNwb25zZV9iaW5uZWRfYnlfd2ludGVyX3NjLmNzdlwiKS5jc3YoKVxuICAudGhlbihyb3dzID0+IHJvd3MubWFwKGQgPT4gKHtcbiAgICBtaW5fdGVtcF9iaW46ICArZC5taW5fdGVtcF9iaW4sXG4gICAgd2ludGVyX3NlYXNvbjogZC53aW50ZXJfc2Vhc29uLFxuICAgIG1lYW5fdW5wbGFjZWQ6ICtkLm1lYW5fdW5wbGFjZWQsXG4gICAgbjogICAgICAgICAgICAgK2QublxuICB9KSkpXG5cbi8vIOKUgOKUgCBUaGVtZS1hd2FyZSBwYWxldHRlIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuY3MgICAgICA9IGdldENvbXB1dGVkU3R5bGUoZG9jdW1lbnQuYm9keSlcbnJlZkxpbmUgPSBjcy5nZXRQcm9wZXJ0eVZhbHVlKFwiLS1icS1jaGFydC1zdHJva2VcIikudHJpbSgpXG5cbi8vIOKUgOKUgCBTZWFzb24gY29sb3IgbWFwIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgFxuLy8gRXhwbGljaXQgZG9tYWluK3JhbmdlIHNvIHRoZSBydWcgYW5kIGRvdHMgc2hhcmUgaWRlbnRpY2FsIHNlYXNvbiDihpIgY29sb3VyXG4vLyBiaW5kaW5ncyBhY3Jvc3MgYW55IGNoYXJ0IGFkZGVkIHRvIHRoaXMgcGFnZS5cbnNlYXNvbkNvbG9yTWFwID0gbmV3IE1hcChbXG4gIFtcIjIwMjAtMjFcIiwgXCIjNERGODg0XCJdLFxuICBbXCIyMDIxLTIyXCIsIFwiIzJGOURGNVwiXSxcbiAgW1wiMjAyMi0yM1wiLCBcIiNERUREMzJcIl0sXG4gIFtcIjIwMjMtMjRcIiwgXCIjRTYzOTQ2XCJdLFxuICBbXCIyMDI0LTI1XCIsIFwiI0Y2NUYxOFwiXSxcbiAgW1wiMjAyNS0yNlwiLCBcIiM5MDBDMDBcIl1cbl0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2Ygc2VsZWN0ZWRXaW50ZXJzID0ge1xuICBjb25zdCBhbGxTZWFzb25zID0gW1xuICAgIFwiMjAyMC0yMVwiLFwiMjAyMS0yMlwiLFwiMjAyMi0yM1wiLFwiMjAyMy0yNFwiLFwiMjAyNC0yNVwiLFwiMjAyNS0yNlwiXG4gIF07XG4gIGNvbnN0IHNlbGVjdGVkID0gbmV3IFNldChhbGxTZWFzb25zKTtcblxuICAvLyBJbmplY3QgY3VzdG9tIGNoZWNrYm94IHN0eWxlcyBvbmNlIOKAlCBndWFyZGVkIHNvIE9KUyByZS1ydW5zIGRvbid0IGR1cGxpY2F0ZVxuICBpZiAoIWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiYnEtc2Vhc29uLWNiLXN0eWxlXCIpKSB7XG4gICAgY29uc3QgcyA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJzdHlsZVwiKTtcbiAgICBzLmlkID0gXCJicS1zZWFzb24tY2Itc3R5bGVcIjtcbiAgICBzLnRleHRDb250ZW50ID0gYFxuICAgICAgLmJxLXNlYXNvbi1jYiB7XG4gICAgICAgIGFwcGVhcmFuY2U6IG5vbmU7XG4gICAgICAgIC13ZWJraXQtYXBwZWFyYW5jZTogbm9uZTtcbiAgICAgICAgd2lkdGg6IDE0cHg7XG4gICAgICAgIGhlaWdodDogMTRweDtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMnB4O1xuICAgICAgICBtYXJnaW46IDA7XG4gICAgICAgIGJvcmRlcjogMS41cHggc29saWQgIzg4ODtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIGZsZXgtc2hyaW5rOiAwO1xuICAgICAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tY2I6Y2hlY2tlZCB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXNlYXNvbi1jb2xvcik7XG4gICAgICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vhc29uLWNvbG9yKTtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tY2I6Y2hlY2tlZDo6YWZ0ZXIge1xuICAgICAgICBjb250ZW50OiBcIuKck1wiO1xuICAgICAgICBjb2xvcjogI2ZmZjtcbiAgICAgICAgZm9udC1zaXplOiAxMHB4O1xuICAgICAgICBmb250LXdlaWdodDogNzAwO1xuICAgICAgICBsaW5lLWhlaWdodDogMTtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tY2I6aG92ZXIge1xuICAgICAgICB0cmFuc2Zvcm06IHNjYWxlKDEuMTUpO1xuICAgICAgICBib3gtc2hhZG93OiAwIDAgMCAycHggcmdiYSgwLDAsMCwwLjE1KTtcbiAgICAgIH1cbiAgICAgIC5icS1zZWFzb24tbGJsIHtcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICAgIGdhcDogOHB4O1xuICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICAgIHVzZXItc2VsZWN0OiBub25lO1xuICAgICAgfVxuICAgIGA7XG4gICAgZG9jdW1lbnQuaGVhZC5hcHBlbmRDaGlsZChzKTtcbiAgfVxuXG4gIGNvbnN0IHJvb3QgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpO1xuICByb290LnN0eWxlLmNzc1RleHQgPSBcImZvbnQtZmFtaWx5OnZhcigtLXNhbnMtc2VyaWYsc2Fucy1zZXJpZik7Zm9udC1zaXplOjEzLjVweDtcIjtcblxuICBjb25zdCBsYWJlbEVsID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgbGFiZWxFbC50ZXh0Q29udGVudCA9IFwiU2Vhc29ucyBzaG93blwiO1xuICBsYWJlbEVsLnN0eWxlLmNzc1RleHQgPSBcImZvbnQtd2VpZ2h0OjYwMDttYXJnaW4tYm90dG9tOjNweDtcIjtcblxuICBjb25zdCBoaW50ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgaGludC50ZXh0Q29udGVudCA9IFwiQ2xpY2sgYSBzZWFzb24gdG8gc2hvdyBvciBoaWRlIGl0XCI7XG4gIGhpbnQuc3R5bGUuY3NzVGV4dCA9XG4gICAgXCJmb250LXNpemU6MTEuNXB4O2ZvbnQtd2VpZ2h0OjQwMDtjb2xvcjp2YXIoLS1icS1mZy1mYWludCk7bWFyZ2luLWJvdHRvbTo2cHg7XCI7XG5cbiAgY29uc3Qgcm93ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgcm93LnN0eWxlLmNzc1RleHQgPVxuICAgIFwiZGlzcGxheTpmbGV4O2ZsZXgtd3JhcDp3cmFwO2dhcDo2cHggMjBweDthbGlnbi1pdGVtczpjZW50ZXI7XCI7XG5cbiAgZm9yIChjb25zdCBzZWFzb24gb2YgYWxsU2Vhc29ucykge1xuICAgIGNvbnN0IGNvbG9yID0gc2Vhc29uQ29sb3JNYXAuZ2V0KHNlYXNvbik7XG5cbiAgICBjb25zdCBjYiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJpbnB1dFwiKTtcbiAgICBjYi50eXBlID0gXCJjaGVja2JveFwiOyBjYi52YWx1ZSA9IHNlYXNvbjsgY2IuY2hlY2tlZCA9IHRydWU7XG4gICAgY2IuY2xhc3NOYW1lID0gXCJicS1zZWFzb24tY2JcIjtcbiAgICBjYi5zdHlsZS5zZXRQcm9wZXJ0eShcIi0tc2Vhc29uLWNvbG9yXCIsIGNvbG9yKTtcblxuICAgIGNvbnN0IHR4dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJzcGFuXCIpO1xuICAgIHR4dC50ZXh0Q29udGVudCA9IHNlYXNvbjtcblxuICAgIGNvbnN0IGxibCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJsYWJlbFwiKTtcbiAgICBsYmwuY2xhc3NOYW1lID0gXCJicS1zZWFzb24tbGJsXCI7XG4gICAgbGJsLmFwcGVuZChjYiwgdHh0KTtcbiAgICByb3cuYXBwZW5kKGxibCk7XG5cbiAgICBjYi5hZGRFdmVudExpc3RlbmVyKFwiY2hhbmdlXCIsICgpID0+IHtcbiAgICAgIGlmIChjYi5jaGVja2VkKSBzZWxlY3RlZC5hZGQoc2Vhc29uKTsgZWxzZSBzZWxlY3RlZC5kZWxldGUoc2Vhc29uKTtcbiAgICAgIHJvb3QudmFsdWUgPSBbLi4uc2VsZWN0ZWRdO1xuICAgICAgcm9vdC5kaXNwYXRjaEV2ZW50KG5ldyBFdmVudChcImlucHV0XCIpKTtcbiAgICB9KTtcbiAgfVxuXG4gIHJvb3QuYXBwZW5kKGxhYmVsRWwsIGhpbnQsIHJvdyk7XG4gIHJvb3QudmFsdWUgPSBhbGxTZWFzb25zO1xuICByZXR1cm4gcm9vdDtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNjU2Vhc29ucyA9IHNlbGVjdGVkV2ludGVyc1xuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG57XG4gIGNvbnN0IHZpc2libGVCaW5uZWQgPSBiaW5uZWRTQy5maWx0ZXIoZCA9PiBzY1NlYXNvbnMuaW5jbHVkZXMoZC53aW50ZXJfc2Vhc29uKSlcbiAgY29uc3QgdmlzaWJsZVJ1ZyAgICA9IHNlYXNvblJ1Zy5maWx0ZXIoZCA9PiBzY1NlYXNvbnMuaW5jbHVkZXMoZC53aW50ZXJfc2Vhc29uKSlcblxuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICB3aWR0aDogICAgICAgIDcyMCxcbiAgICBoZWlnaHQ6ICAgICAgIDQwMCxcbiAgICBtYXJnaW5MZWZ0OiAgIDcwLFxuICAgIG1hcmdpblJpZ2h0OiAgMjAsXG4gICAgbWFyZ2luVG9wOiAgICAyMCxcbiAgICBtYXJnaW5Cb3R0b206IDUwLFxuICAgIGNvbG9yOiB7XG4gICAgICB0eXBlOiAgIFwib3JkaW5hbFwiLFxuICAgICAgbGVnZW5kOiB0cnVlLFxuICAgICAgbGFiZWw6ICBcIldpbnRlciBzZWFzb25cIixcbiAgICAgIGRvbWFpbjogWy4uLnNlYXNvbkNvbG9yTWFwLmtleXMoKV0sXG4gICAgICByYW5nZTogIFsuLi5zZWFzb25Db2xvck1hcC52YWx1ZXMoKV1cbiAgICB9LFxuICAgIHI6IHsgcmFuZ2U6IFsyLCA4XSB9LFxuICAgIHg6IHtcbiAgICAgIGxhYmVsOiBcIk92ZXJuaWdodCBtaW5pbXVtIHRlbXBlcmF0dXJlICjCsEMpXCIsXG4gICAgICBsYWJlbEFuY2hvcjogXCJjZW50ZXJcIixcbiAgICAgIHJldmVyc2U6IHRydWVcbiAgICB9LFxuICAgIHk6IHtcbiAgICAgIGxhYmVsOiBcIk1lYW4gcGVvcGxlIHVucGxhY2VkIChzaW5nbGVzL2NvdXBsZXMsIG9ic2VydmVkKVwiLFxuICAgICAgbGFiZWxBbmNob3I6IFwidG9wXCIsXG4gICAgICBncmlkOiB0cnVlXG4gICAgfSxcbiAgICBtYXJrczogW1xuICAgICAgUGxvdC50aWNrWCh2aXNpYmxlUnVnLCB7XG4gICAgICAgIHg6IFwibWluX3RlbXBcIixcbiAgICAgICAgc3Ryb2tlOiBcIndpbnRlcl9zZWFzb25cIixcbiAgICAgICAgZnJhbWVBbmNob3I6IFwiYm90dG9tXCIsXG4gICAgICAgIHN0cm9rZU9wYWNpdHk6IDAuMzUsXG4gICAgICAgIHN0cm9rZVdpZHRoOiAxXG4gICAgICB9KSxcbiAgICAgIFBsb3QucnVsZVgoWzAsIC01LCAtMTAsIC0xNV0sIHtcbiAgICAgICAgc3Ryb2tlOiByZWZMaW5lLFxuICAgICAgICBzdHJva2VXaWR0aDogMSxcbiAgICAgICAgc3Ryb2tlRGFzaGFycmF5OiBcIjQsM1wiXG4gICAgICB9KSxcbiAgICAgIFBsb3QuZG90KHZpc2libGVCaW5uZWQsIHtcbiAgICAgICAgeDogXCJtaW5fdGVtcF9iaW5cIixcbiAgICAgICAgeTogXCJtZWFuX3VucGxhY2VkXCIsXG4gICAgICAgIGZpbGw6IFwid2ludGVyX3NlYXNvblwiLFxuICAgICAgICByOiBcIm5cIlxuICAgICAgfSksXG4gICAgICBQbG90LnRpcCh2aXNpYmxlQmlubmVkLCBQbG90LnBvaW50ZXIoe1xuICAgICAgICB4OiBcIm1pbl90ZW1wX2JpblwiLFxuICAgICAgICB5OiBcIm1lYW5fdW5wbGFjZWRcIixcbiAgICAgICAgdGl0bGU6IGQgPT5cbiAgICAgICAgICBgJHtkLndpbnRlcl9zZWFzb259XFxuYCArXG4gICAgICAgICAgYCR7ZC5taW5fdGVtcF9iaW59IMKwQyBiaW4gIMK3ICAke2Qubn0gbmlnaHRzXFxuYCArXG4gICAgICAgICAgYE9ic2VydmVkIG1lYW46ICR7ZC5tZWFuX3VucGxhY2VkLnRvRml4ZWQoMSl9IHVucGxhY2VkYFxuICAgICAgfSkpXG4gICAgXVxuICB9KVxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG5yZXNlcnZlUm93cyA9IEZpbGVBdHRhY2htZW50KFwiLi4vZGF0YS9jb2xkX3dlYXRoZXJfY2FwYWNpdHlfcmVzZXJ2ZS5jc3ZcIilcbiAgLmNzdigpXG4gIC50aGVuKHJvd3MgPT4gcm93cy5tYXAoZCA9PiAoe1xuICAgIGRhdGU6IG5ldyBEYXRlKGAke2QuZGF0ZX1UMDA6MDA6MDBgKSxcbiAgICB3aW50ZXJfc2Vhc29uOiBkLndpbnRlcl9zZWFzb24sXG4gICAgbWluX3RlbXA6ICtkLm1pbl90ZW1wLFxuICAgIHJlc2VydmVfdGFyZ2V0X3BjdDogK2QucmVzZXJ2ZV90YXJnZXRfcGN0LFxuICAgIG9ic2VydmVkX2NhcGFjaXR5OiArZC5vYnNlcnZlZF9jYXBhY2l0eSxcbiAgICBvYnNlcnZlZF9vY2N1cGFuY3k6ICtkLm9ic2VydmVkX29jY3VwYW5jeSxcbiAgICBvYnNlcnZlZF9zcGFyZTogK2Qub2JzZXJ2ZWRfc3BhcmUsXG4gICAgYWRkaXRpb25hbF9zcGFjZXNfbmVlZGVkOiArZC5hZGRpdGlvbmFsX3NwYWNlc19uZWVkZWRcbiAgfSkpKVxuXG5yZXNlcnZlTWVkaWFuID0gdmFsdWVzID0+IHtcbiAgY29uc3Qgc29ydGVkID0gWy4uLnZhbHVlc10uc29ydCgoYSwgYikgPT4gYSAtIGIpXG4gIGNvbnN0IG1pZGRsZSA9IE1hdGguZmxvb3Ioc29ydGVkLmxlbmd0aCAvIDIpXG4gIHJldHVybiBzb3J0ZWQubGVuZ3RoICUgMlxuICAgID8gc29ydGVkW21pZGRsZV1cbiAgICA6IChzb3J0ZWRbbWlkZGxlIC0gMV0gKyBzb3J0ZWRbbWlkZGxlXSkgLyAyXG59XG5cbnJlc2VydmVTdW1tYXJ5Um93cyA9IFsyLCA1LCAxMCwgMTVdLm1hcCh0YXJnZXQgPT4ge1xuICBjb25zdCByb3dzID0gcmVzZXJ2ZVJvd3MuZmlsdGVyKGQgPT4gZC5yZXNlcnZlX3RhcmdldF9wY3QgPT09IHRhcmdldClcbiAgY29uc3QgbmVlZGVkID0gcm93cy5tYXAoZCA9PiBkLmFkZGl0aW9uYWxfc3BhY2VzX25lZWRlZClcbiAgY29uc3Qgc2hvcnQgPSBuZWVkZWQuZmlsdGVyKGQgPT4gZCA+IDApXG4gIHJldHVybiB7XG4gICAgdGFyZ2V0LFxuICAgIG5pZ2h0czogcm93cy5sZW5ndGgsXG4gICAgc2hvcnRmYWxsTmlnaHRzOiBzaG9ydC5sZW5ndGgsXG4gICAgc2hvcnRmYWxsUGN0OiAxMDAgKiBzaG9ydC5sZW5ndGggLyByb3dzLmxlbmd0aCxcbiAgICBtZWRpYW5BbGw6IHJlc2VydmVNZWRpYW4obmVlZGVkKSxcbiAgICBtZWRpYW5XaGVuU2hvcnQ6IHJlc2VydmVNZWRpYW4oc2hvcnQpLFxuICAgIG1heGltdW06IE1hdGgubWF4KC4uLm5lZWRlZCksXG4gICAgYmVkTmlnaHRzOiBuZWVkZWQucmVkdWNlKChzdW0sIHZhbHVlKSA9PiBzdW0gKyB2YWx1ZSwgMClcbiAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiByZXNlcnZlVGFyZ2V0ID0gSW5wdXRzLnJhZGlvKFsyLCA1LCAxMCwgMTVdLCB7XG4gIGxhYmVsOiBcIk1pbmltdW0gc2hhcmUgb2YgYWN0aXZlIGJlZHMga2VwdCBmcmVlXCIsXG4gIHZhbHVlOiAxMCxcbiAgZm9ybWF0OiBkID0+IGAke2R9JSByZXNlcnZlYFxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNlbGVjdGVkUmVzZXJ2ZVJvd3MgPSByZXNlcnZlUm93cy5maWx0ZXIoXG4gIGQgPT4gZC5yZXNlcnZlX3RhcmdldF9wY3QgPT09IHJlc2VydmVUYXJnZXRcbilcbnNlbGVjdGVkUmVzZXJ2ZVN1bW1hcnkgPSByZXNlcnZlU3VtbWFyeVJvd3MuZmluZChcbiAgZCA9PiBkLnRhcmdldCA9PT0gcmVzZXJ2ZVRhcmdldFxuKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC04IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICBjb25zdCBzID0gc2VsZWN0ZWRSZXNlcnZlU3VtbWFyeVxuICBjb25zdCBjYXJkcyA9IFtcbiAgICBbXCJDb2xkIG5pZ2h0cyBiZWxvdyB0YXJnZXRcIiwgYCR7cy5zaG9ydGZhbGxOaWdodHN9LyR7cy5uaWdodHN9YF0sXG4gICAgW1wiU2hhcmUgYmVsb3cgdGFyZ2V0XCIsIGAke3Muc2hvcnRmYWxsUGN0LnRvRml4ZWQoMSl9JWBdLFxuICAgIFtcIk1lZGlhbiBhZGRpdGlvbmFsIHNwYWNlc1wiLCBzLm1lZGlhbkFsbC50b0ZpeGVkKDApXSxcbiAgICBbXCJNYXhpbXVtIGFkZGl0aW9uYWwgc3BhY2VzXCIsIHMubWF4aW11bS50b0ZpeGVkKDApXVxuICBdXG4gIGNvbnN0IGdyaWQgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpXG4gIGdyaWQuc3R5bGUuY3NzVGV4dCA9XG4gICAgXCJkaXNwbGF5OmdyaWQ7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOnJlcGVhdChhdXRvLWZpdCxtaW5tYXgoMTUwcHgsMWZyKSk7XCIgK1xuICAgIFwiZ2FwOjAuOHJlbTttYXJnaW46MXJlbSAwO1wiXG4gIGZvciAoY29uc3QgW2xhYmVsLCB2YWx1ZV0gb2YgY2FyZHMpIHtcbiAgICBjb25zdCBjYXJkID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICAgIGNhcmQuc3R5bGUuY3NzVGV4dCA9XG4gICAgICBcImJhY2tncm91bmQ6dmFyKC0tYnEta3BpLWJnKTtib3JkZXI6MXB4IHNvbGlkIHZhcigtLWJxLWJvcmRlcik7XCIgK1xuICAgICAgXCJib3JkZXItcmFkaXVzOjAuNDVyZW07cGFkZGluZzowLjlyZW07XCJcbiAgICBjb25zdCB2YWx1ZUVsID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICAgIHZhbHVlRWwudGV4dENvbnRlbnQgPSB2YWx1ZVxuICAgIHZhbHVlRWwuc3R5bGUuY3NzVGV4dCA9XG4gICAgICBcImNvbG9yOnZhcigtLWJxLWtwaS12YWx1ZSk7Zm9udC1zaXplOjEuN3JlbTtmb250LXdlaWdodDo3MDA7bGluZS1oZWlnaHQ6MS4xO1wiXG4gICAgY29uc3QgbGFiZWxFbCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIilcbiAgICBsYWJlbEVsLnRleHRDb250ZW50ID0gbGFiZWxcbiAgICBsYWJlbEVsLnN0eWxlLmNzc1RleHQgPVxuICAgICAgXCJjb2xvcjp2YXIoLS1icS1rcGktbGFiZWwpO2ZvbnQtc2l6ZTowLjg2cmVtO21hcmdpbi10b3A6MC4zNXJlbTtcIlxuICAgIGNhcmQuYXBwZW5kKHZhbHVlRWwsIGxhYmVsRWwpXG4gICAgZ3JpZC5hcHBlbmQoY2FyZClcbiAgfVxuICByZXR1cm4gZ3JpZFxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC05IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG5QbG90LnBsb3Qoe1xuICB3aWR0aDogNzIwLFxuICBoZWlnaHQ6IDM5MCxcbiAgbWFyZ2luTGVmdDogNzAsXG4gIG1hcmdpblJpZ2h0OiAyMCxcbiAgbWFyZ2luVG9wOiAyMCxcbiAgbWFyZ2luQm90dG9tOiA1NSxcbiAgY29sb3I6IHtcbiAgICB0eXBlOiBcIm9yZGluYWxcIixcbiAgICBsZWdlbmQ6IHRydWUsXG4gICAgbGFiZWw6IFwiV2ludGVyIHNlYXNvblwiLFxuICAgIGRvbWFpbjogWy4uLnNlYXNvbkNvbG9yTWFwLmtleXMoKV0sXG4gICAgcmFuZ2U6IFsuLi5zZWFzb25Db2xvck1hcC52YWx1ZXMoKV1cbiAgfSxcbiAgeDoge1xuICAgIGxhYmVsOiBcIk92ZXJuaWdodCBtaW5pbXVtIHRlbXBlcmF0dXJlICjCsEMpXCIsXG4gICAgbGFiZWxBbmNob3I6IFwiY2VudGVyXCIsXG4gICAgcmV2ZXJzZTogdHJ1ZVxuICB9LFxuICB5OiB7XG4gICAgbGFiZWw6IGBBZGRpdGlvbmFsIHNwYWNlcyBmb3IgJHtyZXNlcnZlVGFyZ2V0fSUgcmVzZXJ2ZWAsXG4gICAgbGFiZWxBbmNob3I6IFwidG9wXCIsXG4gICAgZ3JpZDogdHJ1ZVxuICB9LFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVkoWzBdLCB7IHN0cm9rZTogcmVmTGluZSB9KSxcbiAgICBQbG90LnJ1bGVYKFstNSwgLTEwLCAtMTVdLCB7XG4gICAgICBzdHJva2U6IHJlZkxpbmUsXG4gICAgICBzdHJva2VXaWR0aDogMSxcbiAgICAgIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIlxuICAgIH0pLFxuICAgIFBsb3QuZG90KHNlbGVjdGVkUmVzZXJ2ZVJvd3MsIHtcbiAgICAgIHg6IFwibWluX3RlbXBcIixcbiAgICAgIHk6IFwiYWRkaXRpb25hbF9zcGFjZXNfbmVlZGVkXCIsXG4gICAgICBmaWxsOiBcIndpbnRlcl9zZWFzb25cIixcbiAgICAgIHI6IDQsXG4gICAgICBmaWxsT3BhY2l0eTogMC43NVxuICAgIH0pLFxuICAgIFBsb3QudGlwKHNlbGVjdGVkUmVzZXJ2ZVJvd3MsIFBsb3QucG9pbnRlcih7XG4gICAgICB4OiBcIm1pbl90ZW1wXCIsXG4gICAgICB5OiBcImFkZGl0aW9uYWxfc3BhY2VzX25lZWRlZFwiLFxuICAgICAgdGl0bGU6IGQgPT5cbiAgICAgICAgYCR7ZC5kYXRlLnRvSVNPU3RyaW5nKCkuc2xpY2UoMCwgMTApfSAgwrcgICR7ZC53aW50ZXJfc2Vhc29ufVxcbmAgK1xuICAgICAgICBgJHtkLm1pbl90ZW1wLnRvRml4ZWQoMSl9IMKwQ1xcbmAgK1xuICAgICAgICBgJHtkLmFkZGl0aW9uYWxfc3BhY2VzX25lZWRlZH0gYWRkaXRpb25hbCBzcGFjZXMgbmVlZGVkXFxuYCArXG4gICAgICAgIGAke2Qub2JzZXJ2ZWRfb2NjdXBhbmN5fS8ke2Qub2JzZXJ2ZWRfY2FwYWNpdHl9IGJlZHMgb2NjdXBpZWRgXG4gICAgfSkpXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTEwIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICBjb25zdCB0YWJsZSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJ0YWJsZVwiKVxuICB0YWJsZS5jbGFzc05hbWUgPSBcInRhYmxlIHRhYmxlLXN0cmlwZWRcIlxuICBjb25zdCBoZWFkID0gdGFibGUuY3JlYXRlVEhlYWQoKS5pbnNlcnRSb3coKVxuICBmb3IgKGNvbnN0IGxhYmVsIG9mIFtcbiAgICBcIlJlc2VydmUgdGFyZ2V0XCIsXG4gICAgXCJOaWdodHMgYmVsb3cgdGFyZ2V0XCIsXG4gICAgXCJNZWRpYW4gYWRkaXRpb25hbCBzcGFjZXNcIixcbiAgICBcIk1heGltdW0gYWRkaXRpb25hbCBzcGFjZXNcIixcbiAgICBcIkFkZGl0aW9uYWwgYmVkLW5pZ2h0c1wiXG4gIF0pIHtcbiAgICBjb25zdCB0aCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJ0aFwiKVxuICAgIHRoLnNjb3BlID0gXCJjb2xcIlxuICAgIHRoLnRleHRDb250ZW50ID0gbGFiZWxcbiAgICBoZWFkLmFwcGVuZCh0aClcbiAgfVxuICBjb25zdCBib2R5ID0gdGFibGUuY3JlYXRlVEJvZHkoKVxuICBmb3IgKGNvbnN0IHMgb2YgcmVzZXJ2ZVN1bW1hcnlSb3dzKSB7XG4gICAgY29uc3Qgcm93ID0gYm9keS5pbnNlcnRSb3coKVxuICAgIGNvbnN0IHZhbHVlcyA9IFtcbiAgICAgIGAke3MudGFyZ2V0fSVgLFxuICAgICAgYCR7cy5zaG9ydGZhbGxOaWdodHN9LyR7cy5uaWdodHN9ICgke3Muc2hvcnRmYWxsUGN0LnRvRml4ZWQoMSl9JSlgLFxuICAgICAgcy5tZWRpYW5BbGwudG9GaXhlZCgwKSxcbiAgICAgIHMubWF4aW11bS50b0ZpeGVkKDApLFxuICAgICAgcy5iZWROaWdodHMudG9Mb2NhbGVTdHJpbmcoXCJlbi1DQVwiKVxuICAgIF1cbiAgICBmb3IgKGNvbnN0IHZhbHVlIG9mIHZhbHVlcykge1xuICAgICAgY29uc3QgY2VsbCA9IHJvdy5pbnNlcnRDZWxsKClcbiAgICAgIGNlbGwudGV4dENvbnRlbnQgPSB2YWx1ZVxuICAgIH1cbiAgfVxuICByZXR1cm4gdGFibGVcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2VsZWN0ZWRXaW50ZXJzJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3Jlc2VydmVUYXJnZXQnKSJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -1374,7 +1769,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>An independent data audit for Toronto residents. / Un audit de données indépendant pour les résidents de Toronto. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
+<p>Independent public-interest analysis of Toronto’s shelter system. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

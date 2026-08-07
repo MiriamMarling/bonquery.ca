@@ -133,10 +133,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Demandes d’orientation en refuge — Admission centrale de Toronto">
 <meta property="og:description" content="Moyennes quotidiennes mensuelles des appels au service téléphonique d’orientation en refuge de l’Admission centrale de Toronto, provenant du portail de données ouvertes de la Ville de Toronto.">
+<meta property="og:image" content="https://bonquery.ca/fr/projects/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
+<meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
 <meta name="twitter:title" content="Demandes d’orientation en refuge — Admission centrale de Toronto">
 <meta name="twitter:description" content="Moyennes quotidiennes mensuelles des appels au service téléphonique d’orientation en refuge de l’Admission centrale de Toronto, provenant du portail de données ouvertes de la Ville de Toronto.">
+<meta name="twitter:image" content="https://bonquery.ca/fr/projects/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<link rel="canonical" href="https://bonquery.ca/fr/projects/central-intake.html">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -282,7 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -295,6 +301,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -323,61 +337,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../projects/toronto-shelter.html"> 
+<span class="menu-text">Dashboards</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../projects/cold-response.html"> 
 <span class="menu-text">Left in the Cold</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-audits" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Audits</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--methods" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data &amp; Methods</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-audits">    
-        <li class="dropdown-header">INDEPENDENT OVERSIGHT</li>
-        <li>
-    <a class="dropdown-item" href="../../projects/discrepancy-tracker.html">
- <span class="dropdown-text">Discrepancy Tracker</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/data-validation.html">
- <span class="dropdown-text">Emergency Occupancy Audit</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/data-validation-central-intake.html">
- <span class="dropdown-text">Central Intake Audit</span></a>
-  </li>  
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data--methods">    
         <li>
     <a class="dropdown-item" href="../../projects/about-the-data.html">
  <span class="dropdown-text">About the Data</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shelter-dashboards" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Shelter Dashboards</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-shelter-dashboards">    
         <li>
-    <a class="dropdown-item" href="../../projects/toronto-shelter.html">
- <span class="dropdown-text">Inside Toronto’s Shelter System</span></a>
+    <a class="dropdown-item" href="../../projects/data-validation.html">
+ <span class="dropdown-text">Occupancy Data Validation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../projects/monthly-snapshot.html">
- <span class="dropdown-text">Monthly System Flow Replication</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/ytd-comparison.html">
- <span class="dropdown-text">Year-to-Date Capacity Match</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/historical-trends.html">
- <span class="dropdown-text">Historical Trend Lines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/central-intake.html">
- <span class="dropdown-text">Referral Requests Analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/daily-occupancy.html">
- <span class="dropdown-text">Daily Occupancy &amp; Capacity</span></a>
+    <a class="dropdown-item" href="../../projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Central Intake Validation</span></a>
   </li>  
     </ul>
   </li>
@@ -390,61 +372,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../fr/projects/toronto-shelter.html"> 
+<span class="menu-text">Tableaux de bord</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../fr/projects/cold-response.html"> 
 <span class="menu-text">Laissés dans le froid</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-audits-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Audits</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-données-et-méthodes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Données et méthodes</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-audits-1">    
-        <li class="dropdown-header">SURVEILLANCE INDÉPENDANTE</li>
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/discrepancy-tracker.html">
- <span class="dropdown-text">Suivi des divergences</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/data-validation.html">
- <span class="dropdown-text">Audit de l’occupation d’urgence</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/data-validation-central-intake.html">
- <span class="dropdown-text">Audit de l’admission centrale</span></a>
-  </li>  
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-données-et-méthodes">    
         <li>
     <a class="dropdown-item" href="../../fr/projects/about-the-data.html">
  <span class="dropdown-text">À propos des données</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tableaux-de-bord" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Tableaux de bord</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-tableaux-de-bord">    
         <li>
-    <a class="dropdown-item" href="../../fr/projects/toronto-shelter.html">
- <span class="dropdown-text">Le réseau de refuges de Toronto</span></a>
+    <a class="dropdown-item" href="../../fr/projects/data-validation.html">
+ <span class="dropdown-text">Validation des données d’occupation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../fr/projects/monthly-snapshot.html">
- <span class="dropdown-text">Réplication du flux mensuel</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/ytd-comparison.html">
- <span class="dropdown-text">Concordance année en cours</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/historical-trends.html">
- <span class="dropdown-text">Tendances historiques</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/central-intake.html">
- <span class="dropdown-text">Analyse des demandes d’orientation</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/daily-occupancy.html">
- <span class="dropdown-text">Occupation et capacité quotidiennes</span></a>
+    <a class="dropdown-item" href="../../fr/projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Validation de l’admission centrale</span></a>
   </li>  
     </ul>
   </li>
@@ -511,10 +461,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>L’Admission centrale est le service téléphonique 24 h/24, 7 j/7 de la Ville qui met en relation les personnes ayant besoin d’un refuge d’urgence avec les places disponibles dans le réseau. Lorsqu’une personne a besoin d’un lit, elle appelle l’Admission centrale, où des agents évaluent la demande et orientent les appelants vers les places disponibles dans l’ensemble du réseau. C’est la voie d’orientation principale — mais non la seule — vers les refuges d’urgence de Toronto. Les travailleurs de rue de Streets to Homes font également des orientations directes en dehors de l’Admission centrale.</p>
+<div id="help-now" class="bq-help-strip" role="complementary" aria-label="Contacts immédiats pour un lieu sûr, un refuge, une crise ou une urgence">
+  <div class="bq-help-copy">
+    <strong>Besoin d'un endroit sûr ou de soutien maintenant?</strong>
+    <span>Ces services desservent Toronto, sauf si une autre région est indiquée. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Ligne d'aide aux femmes victimes de violence</strong><small>Gratuite et confidentielle, partout en Ontario, 24 h/24 et 7 j/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Jeunes : Jeunesse, J'écoute</strong><small>De 5 à 29 ans, service confidentiel 24 h/24 et 7 j/7. Appelez ou textez le 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Vous pensez au suicide ou vous vous inquiétez pour quelqu'un?</strong><small>Appelez ou textez le 988 partout au Canada, 24 h/24 et 7 j/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges d'urgence de Toronto</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges de Toronto, sans frais</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Soutien en cas de crise de santé mentale à Toronto</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Intervention de rue à Toronto</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 depuis l'extérieur de la ville</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>Service de relais ATS de la Ville</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Danger immédiat au Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
+  </div>
+</div>
 <p>Cette page reproduit trois des quatre graphiques de la page <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/" target="_blank">Demandes d’orientation vers le réseau de refuges</a> de la Ville. Le quatrième — taux d’occupation moyen par nuit — est exclu parce que l’exportation CKAN des données d’occupation quotidiennes omet les programmes de passerelle et de triage, produisant des valeurs systématiquement inférieures aux chiffres publiés par la Ville. BonQuery publie l’occupation nocturne séparément sur la <a href="daily-occupancy.html" target="_blank">page Occupation et capacité quotidiennes</a> ; une estimation mensuelle de l’écart lié aux programmes de passerelle et de triage se trouve sur la <a href="data-validation-central-intake.html" target="_blank">page de validation — Admission centrale</a>.</p>
 <p>La version BonQuery ajoute des contrôles interactifs absents des graphiques statiques de la Ville. Le bouton bascule ci-dessous permet de choisir entre la vue de réplication de la Ville (depuis avril 2024, correspondant au tableau publié par la Ville) et une plage de dates personnalisée couvrant l’ensemble des données depuis novembre 2020. Une case à cocher optionnelle ajoute des barres d’erreur ±2 erreurs standard pour les lecteurs souhaitant visualiser la variabilité intra-mensuelle — les barres représentent l’incertitude autour de chaque moyenne mensuelle compte tenu de la variation quotidienne au cours de ce mois.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="72" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 71;"><span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/central_intake.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="74" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 73;"><span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/central_intake.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -522,33 +503,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="78" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 77;"><span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>MONTH_ABB <span class="op">=</span> [<span class="st">""</span><span class="op">,</span><span class="st">"janv."</span><span class="op">,</span><span class="st">"févr."</span><span class="op">,</span><span class="st">"mars"</span><span class="op">,</span><span class="st">"avr."</span><span class="op">,</span><span class="st">"mai"</span><span class="op">,</span><span class="st">"juin"</span><span class="op">,</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>             <span class="st">"juill."</span><span class="op">,</span><span class="st">"août"</span><span class="op">,</span><span class="st">"sept."</span><span class="op">,</span><span class="st">"oct."</span><span class="op">,</span><span class="st">"nov."</span><span class="op">,</span><span class="st">"déc."</span>]</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>cityRange <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">&gt;</span> <span class="dv">2024</span> <span class="op">||</span> (d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2024</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">month</span> <span class="op">&gt;=</span> <span class="dv">4</span>))</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>xDomain <span class="op">=</span> cityRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="80" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 79;"><span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>MONTH_ABB <span class="op">=</span> [<span class="st">""</span><span class="op">,</span><span class="st">"janv."</span><span class="op">,</span><span class="st">"févr."</span><span class="op">,</span><span class="st">"mars"</span><span class="op">,</span><span class="st">"avr."</span><span class="op">,</span><span class="st">"mai"</span><span class="op">,</span><span class="st">"juin"</span><span class="op">,</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>             <span class="st">"juill."</span><span class="op">,</span><span class="st">"août"</span><span class="op">,</span><span class="st">"sept."</span><span class="op">,</span><span class="st">"oct."</span><span class="op">,</span><span class="st">"nov."</span><span class="op">,</span><span class="st">"déc."</span>]</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>cityRange <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">&gt;</span> <span class="dv">2024</span> <span class="op">||</span> (d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2024</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">month</span> <span class="op">&gt;=</span> <span class="dv">4</span>))</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>xYearLabels <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> first <span class="op">=</span> []</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  xDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>})()</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>xTickFormat <span class="op">=</span> l <span class="kw">=&gt;</span> xYearLabels<span class="op">.</span><span class="fu">includes</span>(l) <span class="op">?</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>) <span class="op">:</span> <span class="st">""</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>xDomain <span class="op">=</span> cityRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>xYearLabels <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> first <span class="op">=</span> []</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  xDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>})()</span>
 <span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>allMonthOpts <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    <span class="dt">key</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> d<span class="op">.</span><span class="at">month_label</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">key</span><span class="op">.</span><span class="fu">localeCompare</span>(b<span class="op">.</span><span class="at">key</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>xTickFormat <span class="op">=</span> l <span class="kw">=&gt;</span> xYearLabels<span class="op">.</span><span class="fu">includes</span>(l) <span class="op">?</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>) <span class="op">:</span> <span class="st">""</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>allMonthOpts <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>    <span class="dt">key</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> d<span class="op">.</span><span class="at">month_label</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">key</span><span class="op">.</span><span class="fu">localeCompare</span>(b<span class="op">.</span><span class="at">key</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -593,68 +574,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="108" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 107;"><span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>viewof controls <span class="op">=</span> {</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> jan2025 <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">find</span>(o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">key</span> <span class="op">===</span> <span class="st">"2025-01"</span>) <span class="op">??</span> allMonthOpts[<span class="dv">0</span>]</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> last     <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">at</span>(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modeInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Réplication de la Ville"</span><span class="op">,</span> <span class="st">"Période personnalisée"</span>]<span class="op">,</span></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> <span class="st">"Réplication de la Ville"</span>}</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> startInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"De"</span><span class="op">,</span></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> jan2025</span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> endInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"À"</span><span class="op">,</span></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> last</span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Afficher les barres ±2 ES (lecteurs techniques)"</span>]<span class="op">,</span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> []}</span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rangeSpan <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;span style="display:none;gap:12px;align-items:flex-end"&gt;</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>startInput<span class="sc">}${</span>endInput<span class="sc">}</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/span&gt;`</span></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bar <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="bq-control-bar"&gt;</span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>modeInput<span class="sc">}</span></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>rangeSpan<span class="sc">}</span></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>seInput<span class="sc">}</span></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;small class="bq-hint"&gt;</span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="vs">        Erreur standard de la moyenne mensuelle, calculée à partir des valeurs</span></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="vs">        quotidiennes du mois. ±2 ES approxime un intervalle de confiance à 95 %.</span></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/small&gt;</span></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;`</span></span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> getValue <span class="op">=</span> () <span class="kw">=&gt;</span> ({</span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>    <span class="dt">viewMode</span><span class="op">:</span> modeInput<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>    <span class="dt">startKey</span><span class="op">:</span> startInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">endKey</span><span class="op">:</span>   endInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="dt">showSE</span><span class="op">:</span>   seInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="110" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 109;"><span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>viewof controls <span class="op">=</span> {</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> jan2025 <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">find</span>(o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">key</span> <span class="op">===</span> <span class="st">"2025-01"</span>) <span class="op">??</span> allMonthOpts[<span class="dv">0</span>]</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> last     <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">at</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modeInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Réplication de la Ville"</span><span class="op">,</span> <span class="st">"Période personnalisée"</span>]<span class="op">,</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> <span class="st">"Réplication de la Ville"</span>}</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> startInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"De"</span><span class="op">,</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> jan2025</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> endInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"À"</span><span class="op">,</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> last</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Afficher les barres ±2 ES (lecteurs techniques)"</span>]<span class="op">,</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> []}</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rangeSpan <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;span style="display:none;gap:12px;align-items:flex-end"&gt;</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>startInput<span class="sc">}${</span>endInput<span class="sc">}</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/span&gt;`</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bar <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="bq-control-bar"&gt;</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>modeInput<span class="sc">}</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>rangeSpan<span class="sc">}</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>seInput<span class="sc">}</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;small class="bq-hint"&gt;</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="vs">        Erreur standard de la moyenne mensuelle, calculée à partir des valeurs</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="vs">        quotidiennes du mois. ±2 ES approxime un intervalle de confiance à 95 %.</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/small&gt;</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;`</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> getValue <span class="op">=</span> () <span class="kw">=&gt;</span> ({</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">viewMode</span><span class="op">:</span> modeInput<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="dt">startKey</span><span class="op">:</span> startInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>    <span class="dt">endKey</span><span class="op">:</span>   endInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    <span class="dt">showSE</span><span class="op">:</span>   seInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  })</span>
 <span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fire <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    rangeSpan<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>      modeInput<span class="op">.</span><span class="at">value</span> <span class="op">===</span> <span class="st">"Période personnalisée"</span> <span class="op">?</span> <span class="st">"inline-flex"</span> <span class="op">:</span> <span class="st">"none"</span></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(<span class="st">"input"</span><span class="op">,</span> {<span class="dt">bubbles</span><span class="op">:</span> <span class="kw">true</span>}))</span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>  modeInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>  fire)</span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>  startInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> fire)</span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>  endInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>   fire)</span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>  seInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>    fire)</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> bar</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>  bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fire <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>    rangeSpan<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>      modeInput<span class="op">.</span><span class="at">value</span> <span class="op">===</span> <span class="st">"Période personnalisée"</span> <span class="op">?</span> <span class="st">"inline-flex"</span> <span class="op">:</span> <span class="st">"none"</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(<span class="st">"input"</span><span class="op">,</span> {<span class="dt">bubbles</span><span class="op">:</span> <span class="kw">true</span>}))</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>  modeInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>  fire)</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>  startInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> fire)</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>  endInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>   fire)</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  seInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>    fire)</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> bar</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="declaration">
 
@@ -662,50 +643,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="175" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 174;"><span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>activeRange <span class="op">=</span> {</span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span>) <span class="cf">return</span> cityRange</span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> {startKey<span class="op">,</span> endKey} <span class="op">=</span> controls</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (startKey <span class="op">&gt;</span> endKey) <span class="cf">return</span> []</span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">.</span><span class="at">monthly</span></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> {</span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> k <span class="op">&gt;=</span> startKey <span class="op">&amp;&amp;</span> k <span class="op">&lt;=</span> endKey</span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>activeDomain <span class="op">=</span> activeRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="177" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 176;"><span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>activeRange <span class="op">=</span> {</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span>) <span class="cf">return</span> cityRange</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> {startKey<span class="op">,</span> endKey} <span class="op">=</span> controls</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (startKey <span class="op">&gt;</span> endKey) <span class="cf">return</span> []</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">.</span><span class="at">monthly</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> {</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> k <span class="op">&gt;=</span> startKey <span class="op">&amp;&amp;</span> k <span class="op">&lt;=</span> endKey</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>activeYearTicks <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()<span class="op">,</span> first <span class="op">=</span> []</span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>  activeDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>})()</span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>activeX <span class="op">=</span> controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> {</span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     xDomain<span class="op">,</span></span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      xYearLabels<span class="op">,</span></span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> xTickFormat<span class="op">,</span></span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> {</span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     activeDomain<span class="op">,</span></span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      activeYearTicks<span class="op">,</span></span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> l <span class="kw">=&gt;</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)<span class="op">,</span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>activeMarginBottom <span class="op">=</span> <span class="dv">40</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>activeDomain <span class="op">=</span> activeRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>activeYearTicks <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()<span class="op">,</span> first <span class="op">=</span> []</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>  activeDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>})()</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>activeX <span class="op">=</span> controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> {</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     xDomain<span class="op">,</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      xYearLabels<span class="op">,</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> xTickFormat<span class="op">,</span></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> {</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     activeDomain<span class="op">,</span></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      activeYearTicks<span class="op">,</span></span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> l <span class="kw">=&gt;</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)<span class="op">,</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>activeMarginBottom <span class="op">=</span> <span class="dv">40</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -746,38 +727,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la valeur moyenne.
 </p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="227" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 226;"><span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
-<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
-<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels orientés vers une place en refuge"</span><span class="op">,</span></span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
-<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
-<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"referred_mean"</span><span class="op">,</span></span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#5BA75B"</span><span class="op">,</span></span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
-<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="229" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 228;"><span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels orientés vers une place en refuge"</span><span class="op">,</span></span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"referred_mean"</span><span class="op">,</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#5BA75B"</span><span class="op">,</span></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-5" data-nodetype="expression">
 
@@ -785,38 +766,38 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="263" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 262;"><span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appelants individuels sans jumelage"</span><span class="op">,</span></span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appelants quotidiens (moy.)"</span>}<span class="op">,</span></span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"unmatched_mean"</span><span class="op">,</span></span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#FF2D55"</span><span class="op">,</span></span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="265" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 264;"><span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appelants individuels sans jumelage"</span><span class="op">,</span></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appelants quotidiens (moy.)"</span>}<span class="op">,</span></span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"unmatched_mean"</span><span class="op">,</span></span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#FF2D55"</span><span class="op">,</span></span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-6" data-nodetype="expression">
 
@@ -824,38 +805,38 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="299" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 298;"><span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
-<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
-<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
-<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels traités"</span><span class="op">,</span></span>
-<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
-<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
-<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
-<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
-<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"handled_mean"</span><span class="op">,</span></span>
-<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#4A90D9"</span><span class="op">,</span></span>
-<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
-<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
-<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="301" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 300;"><span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels traités"</span><span class="op">,</span></span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
+<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
+<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
+<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
+<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"handled_mean"</span><span class="op">,</span></span>
+<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#4A90D9"</span><span class="op">,</span></span>
+<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
+<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
+<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb7-331"><a href="#cb7-331" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb7-332"><a href="#cb7-332" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-7" data-nodetype="expression">
 
@@ -864,50 +845,50 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 </div>
 <p>Le tableau ci-dessous présente les mêmes moyennes mensuelles que le tableau publié par la Ville sur la page Demandes d’orientation vers le réseau de refuges, calculées indépendamment par BonQuery à partir des valeurs quotidiennes de l’exportation CKAN des données ouvertes de la Ville.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="341" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 340;"><span id="cb8-341"><a href="#cb8-341" aria-hidden="true" tabindex="-1"></a>thStyle <span class="op">=</span> (extra <span class="op">=</span> <span class="st">""</span>) <span class="kw">=&gt;</span></span>
-<span id="cb8-342"><a href="#cb8-342" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`border-bottom:2px solid var(--bq-chart-grid);padding:6px 10px;text-align:center;`</span> <span class="op">+</span></span>
-<span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`background:var(--bq-bg-accent);</span><span class="sc">${</span>extra<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;table style="width:100%;border-collapse:collapse;font-size:0.9em"&gt;</span></span>
-<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;thead&gt;</span></span>
-<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
-<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Année&lt;/th&gt;</span></span>
-<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Mois&lt;/th&gt;</span></span>
-<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th colspan="3" style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Quotidien moyen&lt;/th&gt;</span></span>
-<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
-<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
-<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
-<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
-<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels orientés vers une place en refuge [1]&lt;/th&gt;</span></span>
-<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appelants individuels sans jumelage [2]&lt;/th&gt;</span></span>
-<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels traités [3]&lt;/th&gt;</span></span>
-<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
-<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/thead&gt;</span></span>
-<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;tbody&gt;</span></span>
-<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>cityRange<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
-<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> bg <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span></span>
-<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="st">"var(--bq-bg-accent)"</span></span>
-<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"var(--bq-bg)"</span> <span class="op">:</span> <span class="st">"var(--bq-bg-alt)"</span>)</span>
-<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> fw <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"font-weight:600;"</span> <span class="op">:</span> <span class="st">""</span></span>
-<span id="cb8-366"><a href="#cb8-366" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> td <span class="op">=</span> () <span class="kw">=&gt;</span></span>
-<span id="cb8-367"><a href="#cb8-367" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`padding:5px 10px;border-bottom:1px solid var(--bq-border);`</span> <span class="op">+</span></span>
-<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`text-align:center;background:</span><span class="sc">${</span>bg<span class="sc">}</span><span class="vs">;</span><span class="sc">${</span>fw<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;</span></span>
-<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>MONTH_ABB[d<span class="op">.</span><span class="at">month</span>]<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">referred_mean</span>  <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)              <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
-<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
-<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)             <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
-<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
-<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">handled_mean</span>   <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">handled_mean</span>)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">"fr-CA"</span>) <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
-<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
-<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tr&gt;`</span></span>
-<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a>    })<span class="sc">}</span></span>
-<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tbody&gt;</span></span>
-<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/table&gt;`</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="343" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 342;"><span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a>thStyle <span class="op">=</span> (extra <span class="op">=</span> <span class="st">""</span>) <span class="kw">=&gt;</span></span>
+<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`border-bottom:2px solid var(--bq-chart-grid);padding:6px 10px;text-align:center;`</span> <span class="op">+</span></span>
+<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`background:var(--bq-bg-accent);</span><span class="sc">${</span>extra<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;table style="width:100%;border-collapse:collapse;font-size:0.9em"&gt;</span></span>
+<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;thead&gt;</span></span>
+<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
+<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Année&lt;/th&gt;</span></span>
+<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Mois&lt;/th&gt;</span></span>
+<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th colspan="3" style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Quotidien moyen&lt;/th&gt;</span></span>
+<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
+<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
+<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
+<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
+<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels orientés vers une place en refuge [1]&lt;/th&gt;</span></span>
+<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appelants individuels sans jumelage [2]&lt;/th&gt;</span></span>
+<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels traités [3]&lt;/th&gt;</span></span>
+<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
+<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/thead&gt;</span></span>
+<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;tbody&gt;</span></span>
+<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>cityRange<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> bg <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span></span>
+<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="st">"var(--bq-bg-accent)"</span></span>
+<span id="cb8-366"><a href="#cb8-366" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"var(--bq-bg)"</span> <span class="op">:</span> <span class="st">"var(--bq-bg-alt)"</span>)</span>
+<span id="cb8-367"><a href="#cb8-367" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> fw <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"font-weight:600;"</span> <span class="op">:</span> <span class="st">""</span></span>
+<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> td <span class="op">=</span> () <span class="kw">=&gt;</span></span>
+<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`padding:5px 10px;border-bottom:1px solid var(--bq-border);`</span> <span class="op">+</span></span>
+<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`text-align:center;background:</span><span class="sc">${</span>bg<span class="sc">}</span><span class="vs">;</span><span class="sc">${</span>fw<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;</span></span>
+<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>MONTH_ABB[d<span class="op">.</span><span class="at">month</span>]<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">referred_mean</span>  <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)              <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
+<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
+<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)             <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
+<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
+<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">handled_mean</span>   <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">handled_mean</span>)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">"fr-CA"</span>) <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
+<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
+<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tr&gt;`</span></span>
+<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a>    })<span class="sc">}</span></span>
+<span id="cb8-385"><a href="#cb8-385" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tbody&gt;</span></span>
+<span id="cb8-386"><a href="#cb8-386" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/table&gt;`</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-8-1" data-nodetype="declaration">
@@ -938,7 +919,7 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script>
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
@@ -996,11 +977,14 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 (function () {
   var tog = document.querySelector(".quarto-color-scheme-toggle");
   if (!tog) return;
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
   var label = document.createElement("span");
   label.className = "bq-theme-label";
   var update = function () {
     var isDark = document.body.classList.contains("quarto-dark");
-    label.textContent = isDark ? "Light" : "Dark";
+    label.textContent = isFR
+      ? (isDark ? "Clair" : "Sombre")
+      : (isDark ? "Light" : "Dark");
   };
   tog.appendChild(label);
   update();
@@ -1009,23 +993,178 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
   );
 })();
 
-// ── Bilingual alert toggle (EN | FR) ─────────────────────────────────────
-// Sets data-lang on each .bq-bilingual block; CSS controls visibility.
-var pageLang = (location.pathname.startsWith("/fr/") || location.pathname === "/fr")
-  ? "fr" : "en";
-document.querySelectorAll(".bq-bilingual").forEach(function (block) {
-  var btns = block.querySelectorAll(".bq-lang-btn");
-  function setLang(lang) {
-    block.setAttribute("data-lang", lang);
-    btns.forEach(function (b) {
-      b.classList.toggle("active", b.dataset.set === lang);
-    });
+// Live dashboard-card previews. This runs only on pages that contain the
+// shared dashboard cards and uses the same generated file as the dashboards.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var locale = isFR ? "fr-CA" : "en-CA";
+  var copy = isFR ? {
+    unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
+    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    activelyHomeless: "personnes en situation d'itinérance active",
+    newlyIdentified: "Nouvellement identifiées",
+    movedToHousing: "Ont obtenu un logement",
+    januaryTo: "De janvier à ",
+    latest: "Plus récent : ",
+    trend: "Tendance de l'itinérance active jusqu'à "
+  } : {
+    unavailable: "Preview unavailable. Open the dashboard.",
+    offlineBeds: "funded shelter beds for single adults were unavailable",
+    acrossPrograms: " people staying in shelter programs",
+    activelyHomeless: "people counted as homeless",
+    newlyIdentified: "Newly counted as homeless",
+    movedToHousing: "Moved into housing",
+    januaryTo: "January to ",
+    latest: "Latest: ",
+    trend: "People counted as homeless through "
+  };
+  var dailyMount = document.getElementById("bq-preview-daily");
+  var monthlyMount = document.getElementById("bq-preview-monthly");
+  var ytdMount = document.getElementById("bq-preview-ytd");
+  var historyMount = document.getElementById("bq-preview-history");
+  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.dataset.set); });
-  });
-  setLang(block.getAttribute("data-lang") || pageLang);
-});
+
+  function metricRow(label, value) {
+    var row = make("div");
+    row.append(make("span", "", label), make("strong", "", value));
+    return row;
+  }
+
+  function meter(value, maximum, good) {
+    var track = make("i");
+    var bar = make("b", good ? "bq-preview-bar-good" : "");
+    bar.style.width = ((value / maximum) * 100) + "%";
+    track.append(bar);
+    return track;
+  }
+
+  function showUnavailable(mount) {
+    if (!mount) return;
+    mount.replaceChildren(make("span", "", copy.unavailable));
+  }
+
+  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Daily preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      if (!dailyMount || !data.length) return;
+      var latestDate = data.reduce(function (latest, row) {
+        return row.date > latest ? row.date : latest;
+      }, "");
+      var rows = data.filter(function (row) { return row.date === latestDate; });
+      var singles = rows.find(function (row) { return row.key === "singles_total"; });
+      var system = rows.find(function (row) { return row.key === "all_shelter"; });
+      if (!singles || !system) throw new Error("Daily preview rows unavailable");
+      var dateParts = latestDate.split("-").map(Number);
+      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
+        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
+      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      daily.append(
+        make("strong", "", Number(offline).toLocaleString(locale)),
+        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+      );
+      dailyMount.replaceChildren(daily);
+    })
+    .catch(function () { showUnavailable(dailyMount); });
+
+  fetch("/data/shelter_flow.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Dashboard preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var rows = data
+        .filter(function (row) { return row.population_group === "All Population"; })
+        .slice()
+        .sort(function (a, b) { return a.flow_date.localeCompare(b.flow_date); });
+      if (!rows.length) throw new Error("Dashboard preview data empty");
+
+      var latest = rows[rows.length - 1];
+      var dateParts = latest.flow_date.split("-").map(Number);
+      var latestYear = dateParts[0];
+      var latestMonth = dateParts[1];
+      var latestLabel = new Date(latestYear, latestMonth - 1, 1)
+        .toLocaleDateString(locale, {month: "long", year: "numeric"});
+      var fmt = function (value) {
+        return Number(value).toLocaleString(locale);
+      };
+
+      if (monthlyMount) {
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", fmt(latest.actively_homeless)),
+          make("span", "", copy.activelyHomeless + " · " + latestLabel)
+        );
+        monthlyMount.replaceChildren(kpi);
+      }
+
+      var ytdRows = rows.filter(function (row) {
+        var parts = row.flow_date.split("-").map(Number);
+        return parts[0] === latestYear && parts[1] <= latestMonth;
+      });
+      var ytdNew = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.newly_identified || 0);
+      }, 0);
+      var ytdHoused = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.moved_to_housing || 0);
+      }, 0);
+      var ytdMax = Math.max(ytdNew, ytdHoused, 1);
+
+      if (ytdMount) {
+        var bars = make("div", "bq-preview-bars");
+        bars.append(
+          metricRow(copy.newlyIdentified, fmt(ytdNew)),
+          meter(ytdNew, ytdMax, false),
+          metricRow(copy.movedToHousing, fmt(ytdHoused)),
+          meter(ytdHoused, ytdMax, true),
+          make("small", "", copy.januaryTo + latestLabel)
+        );
+        ytdMount.replaceChildren(bars);
+      }
+
+      if (historyMount) {
+        var trend = rows.slice(-48).map(function (row) {
+          return +row.actively_homeless;
+        });
+        var minimum = Math.min.apply(null, trend);
+        var maximum = Math.max.apply(null, trend);
+        var spread = Math.max(maximum - minimum, 1);
+        var wrap = make("div", "bq-preview-history-wrap");
+        var spark = make("div", "bq-preview-spark");
+        spark.setAttribute("role", "img");
+        spark.setAttribute(
+          "aria-label",
+          copy.trend + latestLabel +
+            (isFR ? "; valeur la plus récente " : "; latest value ") +
+            fmt(latest.actively_homeless)
+        );
+        trend.forEach(function (value, index) {
+          var bar = make("span", index === trend.length - 1 ? "is-latest" : "");
+          bar.style.height = (20 + ((value - minimum) / spread) * 80) + "%";
+          spark.append(bar);
+        });
+        wrap.append(spark, make("small", "", copy.latest + fmt(latest.actively_homeless)));
+        historyMount.replaceChildren(wrap);
+      }
+    })
+    .catch(function () {
+      showUnavailable(monthlyMount);
+      showUnavailable(ytdMount);
+      showUnavailable(historyMount);
+    });
+})();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
 // Computes the exact mirror URL from the current pathname and updates the
@@ -1040,7 +1179,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
     enPath = (path === "/fr" || path === "/fr/")
       ? "/"
       : path.replace(frPfx, "/");
-    frPath = path.endsWith("/") ? path : path + "/";
+    frPath = (path === "/fr") ? "/fr/" : path;
   } else {
     enPath = path;
     frPath = frPfx + path.replace(/^\//, "");
@@ -1509,7 +1648,7 @@ window._ojs.runtime.interpretFromScriptTags();
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Un audit de données indépendant pour les résidents de Toronto. / An independent data audit for Toronto residents. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
+<p>Analyse indépendante d’intérêt public du réseau de refuges de Toronto. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

@@ -84,10 +84,15 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="À propos des données — Réseau de refuges de Toronto">
 <meta property="og:description" content="Méthodologie de l’audit des données du réseau de refuges de Toronto — sources, vérifications d’intégrité et limites structurelles.">
+<meta property="og:image" content="https://bonquery.ca/fr/projects/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
+<meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
 <meta name="twitter:title" content="À propos des données — Réseau de refuges de Toronto">
 <meta name="twitter:description" content="Méthodologie de l’audit des données du réseau de refuges de Toronto — sources, vérifications d’intégrité et limites structurelles.">
+<meta name="twitter:image" content="https://bonquery.ca/fr/projects/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<link rel="canonical" href="https://bonquery.ca/fr/projects/about-the-data.html">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -233,7 +238,8 @@ ul.task-list li input[type="checkbox"] {
       }
     };
     const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
       document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
       document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
@@ -246,6 +252,14 @@ ul.task-list li input[type="checkbox"] {
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
     };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
       toggleColorMode(true);
@@ -274,61 +288,29 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../projects/toronto-shelter.html"> 
+<span class="menu-text">Dashboards</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../projects/cold-response.html"> 
 <span class="menu-text">Left in the Cold</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-audits" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Audits</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--methods" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data &amp; Methods</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-audits">    
-        <li class="dropdown-header">INDEPENDENT OVERSIGHT</li>
-        <li>
-    <a class="dropdown-item" href="../../projects/discrepancy-tracker.html">
- <span class="dropdown-text">Discrepancy Tracker</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/data-validation.html">
- <span class="dropdown-text">Emergency Occupancy Audit</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/data-validation-central-intake.html">
- <span class="dropdown-text">Central Intake Audit</span></a>
-  </li>  
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data--methods">    
         <li>
     <a class="dropdown-item" href="../../projects/about-the-data.html">
  <span class="dropdown-text">About the Data</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-shelter-dashboards" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Shelter Dashboards</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-shelter-dashboards">    
         <li>
-    <a class="dropdown-item" href="../../projects/toronto-shelter.html">
- <span class="dropdown-text">Inside Toronto’s Shelter System</span></a>
+    <a class="dropdown-item" href="../../projects/data-validation.html">
+ <span class="dropdown-text">Occupancy Data Validation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../projects/monthly-snapshot.html">
- <span class="dropdown-text">Monthly System Flow Replication</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/ytd-comparison.html">
- <span class="dropdown-text">Year-to-Date Capacity Match</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/historical-trends.html">
- <span class="dropdown-text">Historical Trend Lines</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/central-intake.html">
- <span class="dropdown-text">Referral Requests Analysis</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../projects/daily-occupancy.html">
- <span class="dropdown-text">Daily Occupancy &amp; Capacity</span></a>
+    <a class="dropdown-item" href="../../projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Central Intake Validation</span></a>
   </li>  
     </ul>
   </li>
@@ -341,61 +323,29 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../../fr/projects/toronto-shelter.html"> 
+<span class="menu-text">Tableaux de bord</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../../fr/projects/cold-response.html"> 
 <span class="menu-text">Laissés dans le froid</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-audits-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Audits</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-données-et-méthodes" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Données et méthodes</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-audits-1">    
-        <li class="dropdown-header">SURVEILLANCE INDÉPENDANTE</li>
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/discrepancy-tracker.html">
- <span class="dropdown-text">Suivi des divergences</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/data-validation.html">
- <span class="dropdown-text">Audit de l’occupation d’urgence</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/data-validation-central-intake.html">
- <span class="dropdown-text">Audit de l’admission centrale</span></a>
-  </li>  
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-données-et-méthodes">    
         <li>
     <a class="dropdown-item" href="../../fr/projects/about-the-data.html">
  <span class="dropdown-text">À propos des données</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tableaux-de-bord" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Tableaux de bord</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-tableaux-de-bord">    
         <li>
-    <a class="dropdown-item" href="../../fr/projects/toronto-shelter.html">
- <span class="dropdown-text">Le réseau de refuges de Toronto</span></a>
+    <a class="dropdown-item" href="../../fr/projects/data-validation.html">
+ <span class="dropdown-text">Validation des données d’occupation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../fr/projects/monthly-snapshot.html">
- <span class="dropdown-text">Réplication du flux mensuel</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/ytd-comparison.html">
- <span class="dropdown-text">Concordance année en cours</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/historical-trends.html">
- <span class="dropdown-text">Tendances historiques</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/central-intake.html">
- <span class="dropdown-text">Analyse des demandes d’orientation</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../fr/projects/daily-occupancy.html">
- <span class="dropdown-text">Occupation et capacité quotidiennes</span></a>
+    <a class="dropdown-item" href="../../fr/projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Validation de l’admission centrale</span></a>
   </li>  
     </ul>
   </li>
@@ -439,6 +389,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#nouvellement-repérés-a-une-signification-différente-pour-le-groupe-chroniques" id="toc-nouvellement-repérés-a-une-signification-différente-pour-le-groupe-chroniques" class="nav-link" data-scroll-target="#nouvellement-repérés-a-une-signification-différente-pour-le-groupe-chroniques">« Nouvellement repérés » a une signification différente pour le groupe Chroniques</a></li>
   </ul></li>
   <li><a href="#pour-les-analystes-la-répartition-par-statut-de-réfugié-est-une-partition-nette" id="toc-pour-les-analystes-la-répartition-par-statut-de-réfugié-est-une-partition-nette" class="nav-link" data-scroll-target="#pour-les-analystes-la-répartition-par-statut-de-réfugié-est-une-partition-nette">Pour les analystes : la répartition par statut de réfugié est une partition nette</a></li>
+  <li><a href="#corrections-contexte-et-collaboration" id="toc-corrections-contexte-et-collaboration" class="nav-link" data-scroll-target="#corrections-contexte-et-collaboration">Corrections, contexte et collaboration</a></li>
   <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
@@ -478,13 +429,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="bq-alert bq-alert-hero bq-bilingual">
-<div class="bq-lang bq-lang-fr">
-<p><strong>AUDIT ACTIF : SAISON HIVERNALE 2026–2027.</strong> Nous suivons l’écart entre la capacité déclarée par la Ville et les données brutes. Les écarts sont consignés dans notre <a href="../../fr/projects/discrepancy-tracker.html">Suivi des divergences</a>. Nous exigeons zéro personne sans place lorsque la température atteint −5 °C. Le suivi quotidien débutera à l’ouverture de la saison froide 2026–2027 en novembre.</p>
-</div>
-<div class="bq-lang bq-lang-en">
-<p><strong>ACTIVE AUDIT: 2026–2027 WINTER SEASON.</strong> We are tracking the gap between the City’s reported capacity and the raw data. Discrepancies are being logged in our <a href="../../fr/projects/discrepancy-tracker.html">Discrepancy Tracker</a>. We are demanding zero unplaced people on nights reaching −5 °C. Daily monitoring will start when the 2026–2027 cold season opens in November.</p>
-</div>
+<div class="bq-status-note">
+<p><strong>LE SUIVI HIVERNAL REPRENDRA EN NOVEMBRE 2026.</strong> BonQuery suivra l’écart entre la capacité déclarée par la Ville et les données sources qu’elle publie pendant toute la saison froide 2026–2027. La norme est de ne laisser personne sans place les nuits où la température atteint −5 °C.</p>
 </div>
 <p>Les chiffres affichés dans les tableaux de bord de BonQuery proviennent des données ouvertes que la Ville de Toronto publie sur son réseau de refuges. Cette page explique ce que sont ces données, d’où elles viennent, et les quelques endroits où une lecture attentive change la conclusion à en tirer. Ce sont des notes sur les données elles-mêmes, et non des conclusions sur le réseau de refuges de Toronto ; ces conclusions figurent dans les pages d’audit et les tableaux de bord. La façon dont ces chiffres sont vérifiés par rapport aux chiffres publiés par la Ville elle-même est documentée séparément dans les pages <a href="../../fr/projects/data-validation.html" target="_blank">Audit de l’occupation d’urgence</a> et <a href="../../fr/projects/data-validation-central-intake.html" target="_blank">Audit de l’admission centrale</a>.</p>
 <section id="doù-viennent-les-données" class="level2">
@@ -536,6 +482,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Dans chaque mois de janvier 2018 à aujourd’hui, les valeurs de Réfugiés et de Non-réfugiés s’additionnent exactement à la valeur de Toutes populations pour chaque colonne vérifiée : les entrées, les sorties et le stock de personnes en situation d’itinérance active. Aucune autre dimension de population ne se comporte ainsi.</p>
 <p>En pratique : si une analyse a besoin de catégories mutuellement exclusives — pour un graphique à barres empilées, un calcul de part du total, ou toute opération qui suppose que les groupes ne se chevauchent pas — la répartition par statut de réfugié est le seul endroit de ces données où cela est mathématiquement sûr.</p>
 </section>
+<section id="corrections-contexte-et-collaboration" class="level2">
+<h2 class="anchored" data-anchor-id="corrections-contexte-et-collaboration">Corrections, contexte et collaboration</h2>
+<p>BonQuery est indépendant, mais ce travail vise à être utile tant à la Ville qu’au public. Nous distinguons la politique publiée, les opérations observées et les résultats mesurés. Le personnel de la Ville, les exploitants de services, les chercheurs et les personnes qui défendent les droits sont invités à signaler des erreurs, à fournir un contexte manquant ou à nous orienter vers des documents publics plus récents. Lorsqu’une nouvelle preuve modifie un constat, nous documenterons la correction.</p>
+<p>L’objectif pratique est d’améliorer le dossier public et d’appuyer le travail que <a href="https://www.toronto.ca/legdocs/mmis/2025/au/bgrd/backgroundfile-252902.pdf" target="_blank">la vérificatrice générale a déjà recommandé</a> : de meilleures données sur les places temporaires et les refus, des estimations plus solides des besoins hivernaux, davantage de places financées disponibles pendant une plus grande partie de la saison, une préparation en temps opportun, des pratiques cohérentes d’augmentation et de réduction de la capacité et un plan de contingence lorsque le réseau de refuges est plein. La direction de la Ville a accepté ces recommandations. BonQuery appliquera la même norme aux progrès et aux lacunes qui subsistent.</p>
+<p>Pour transmettre une correction ou discuter d’une collaboration, écrivez à <a href="mailto:info@BonQuery.ca">info@BonQuery.ca</a>.</p>
+</section>
 <section id="sources" class="level2">
 <h2 class="anchored" data-anchor-id="sources">Sources</h2>
 <p>Les observations structurelles présentées sur cette page ont été vérifiées par interrogation directe des données. Les définitions et l’estimation du sous-dénombrement de 18 % proviennent de la <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/" target="_blank">page Données sur les flux du réseau de refuges</a> de la Ville de Toronto. Les trois jeux de données sont publiés sur le portail des données ouvertes de la Ville, tous sous la <a href="https://open.toronto.ca/open-data-licence/" target="_blank">Licence du gouvernement ouvert – Toronto</a>.</p>
@@ -543,7 +495,7 @@ ul.task-list li input[type="checkbox"] {
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script>
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
@@ -601,11 +553,14 @@ ul.task-list li input[type="checkbox"] {
 (function () {
   var tog = document.querySelector(".quarto-color-scheme-toggle");
   if (!tog) return;
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
   var label = document.createElement("span");
   label.className = "bq-theme-label";
   var update = function () {
     var isDark = document.body.classList.contains("quarto-dark");
-    label.textContent = isDark ? "Light" : "Dark";
+    label.textContent = isFR
+      ? (isDark ? "Clair" : "Sombre")
+      : (isDark ? "Light" : "Dark");
   };
   tog.appendChild(label);
   update();
@@ -614,23 +569,178 @@ ul.task-list li input[type="checkbox"] {
   );
 })();
 
-// ── Bilingual alert toggle (EN | FR) ─────────────────────────────────────
-// Sets data-lang on each .bq-bilingual block; CSS controls visibility.
-var pageLang = (location.pathname.startsWith("/fr/") || location.pathname === "/fr")
-  ? "fr" : "en";
-document.querySelectorAll(".bq-bilingual").forEach(function (block) {
-  var btns = block.querySelectorAll(".bq-lang-btn");
-  function setLang(lang) {
-    block.setAttribute("data-lang", lang);
-    btns.forEach(function (b) {
-      b.classList.toggle("active", b.dataset.set === lang);
-    });
+// Live dashboard-card previews. This runs only on pages that contain the
+// shared dashboard cards and uses the same generated file as the dashboards.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var locale = isFR ? "fr-CA" : "en-CA";
+  var copy = isFR ? {
+    unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
+    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    activelyHomeless: "personnes en situation d'itinérance active",
+    newlyIdentified: "Nouvellement identifiées",
+    movedToHousing: "Ont obtenu un logement",
+    januaryTo: "De janvier à ",
+    latest: "Plus récent : ",
+    trend: "Tendance de l'itinérance active jusqu'à "
+  } : {
+    unavailable: "Preview unavailable. Open the dashboard.",
+    offlineBeds: "funded shelter beds for single adults were unavailable",
+    acrossPrograms: " people staying in shelter programs",
+    activelyHomeless: "people counted as homeless",
+    newlyIdentified: "Newly counted as homeless",
+    movedToHousing: "Moved into housing",
+    januaryTo: "January to ",
+    latest: "Latest: ",
+    trend: "People counted as homeless through "
+  };
+  var dailyMount = document.getElementById("bq-preview-daily");
+  var monthlyMount = document.getElementById("bq-preview-monthly");
+  var ytdMount = document.getElementById("bq-preview-ytd");
+  var historyMount = document.getElementById("bq-preview-history");
+  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.dataset.set); });
-  });
-  setLang(block.getAttribute("data-lang") || pageLang);
-});
+
+  function metricRow(label, value) {
+    var row = make("div");
+    row.append(make("span", "", label), make("strong", "", value));
+    return row;
+  }
+
+  function meter(value, maximum, good) {
+    var track = make("i");
+    var bar = make("b", good ? "bq-preview-bar-good" : "");
+    bar.style.width = ((value / maximum) * 100) + "%";
+    track.append(bar);
+    return track;
+  }
+
+  function showUnavailable(mount) {
+    if (!mount) return;
+    mount.replaceChildren(make("span", "", copy.unavailable));
+  }
+
+  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Daily preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      if (!dailyMount || !data.length) return;
+      var latestDate = data.reduce(function (latest, row) {
+        return row.date > latest ? row.date : latest;
+      }, "");
+      var rows = data.filter(function (row) { return row.date === latestDate; });
+      var singles = rows.find(function (row) { return row.key === "singles_total"; });
+      var system = rows.find(function (row) { return row.key === "all_shelter"; });
+      if (!singles || !system) throw new Error("Daily preview rows unavailable");
+      var dateParts = latestDate.split("-").map(Number);
+      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
+        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
+      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      daily.append(
+        make("strong", "", Number(offline).toLocaleString(locale)),
+        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+      );
+      dailyMount.replaceChildren(daily);
+    })
+    .catch(function () { showUnavailable(dailyMount); });
+
+  fetch("/data/shelter_flow.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Dashboard preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var rows = data
+        .filter(function (row) { return row.population_group === "All Population"; })
+        .slice()
+        .sort(function (a, b) { return a.flow_date.localeCompare(b.flow_date); });
+      if (!rows.length) throw new Error("Dashboard preview data empty");
+
+      var latest = rows[rows.length - 1];
+      var dateParts = latest.flow_date.split("-").map(Number);
+      var latestYear = dateParts[0];
+      var latestMonth = dateParts[1];
+      var latestLabel = new Date(latestYear, latestMonth - 1, 1)
+        .toLocaleDateString(locale, {month: "long", year: "numeric"});
+      var fmt = function (value) {
+        return Number(value).toLocaleString(locale);
+      };
+
+      if (monthlyMount) {
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", fmt(latest.actively_homeless)),
+          make("span", "", copy.activelyHomeless + " · " + latestLabel)
+        );
+        monthlyMount.replaceChildren(kpi);
+      }
+
+      var ytdRows = rows.filter(function (row) {
+        var parts = row.flow_date.split("-").map(Number);
+        return parts[0] === latestYear && parts[1] <= latestMonth;
+      });
+      var ytdNew = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.newly_identified || 0);
+      }, 0);
+      var ytdHoused = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.moved_to_housing || 0);
+      }, 0);
+      var ytdMax = Math.max(ytdNew, ytdHoused, 1);
+
+      if (ytdMount) {
+        var bars = make("div", "bq-preview-bars");
+        bars.append(
+          metricRow(copy.newlyIdentified, fmt(ytdNew)),
+          meter(ytdNew, ytdMax, false),
+          metricRow(copy.movedToHousing, fmt(ytdHoused)),
+          meter(ytdHoused, ytdMax, true),
+          make("small", "", copy.januaryTo + latestLabel)
+        );
+        ytdMount.replaceChildren(bars);
+      }
+
+      if (historyMount) {
+        var trend = rows.slice(-48).map(function (row) {
+          return +row.actively_homeless;
+        });
+        var minimum = Math.min.apply(null, trend);
+        var maximum = Math.max.apply(null, trend);
+        var spread = Math.max(maximum - minimum, 1);
+        var wrap = make("div", "bq-preview-history-wrap");
+        var spark = make("div", "bq-preview-spark");
+        spark.setAttribute("role", "img");
+        spark.setAttribute(
+          "aria-label",
+          copy.trend + latestLabel +
+            (isFR ? "; valeur la plus récente " : "; latest value ") +
+            fmt(latest.actively_homeless)
+        );
+        trend.forEach(function (value, index) {
+          var bar = make("span", index === trend.length - 1 ? "is-latest" : "");
+          bar.style.height = (20 + ((value - minimum) / spread) * 80) + "%";
+          spark.append(bar);
+        });
+        wrap.append(spark, make("small", "", copy.latest + fmt(latest.actively_homeless)));
+        historyMount.replaceChildren(wrap);
+      }
+    })
+    .catch(function () {
+      showUnavailable(monthlyMount);
+      showUnavailable(ytdMount);
+      showUnavailable(historyMount);
+    });
+})();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
 // Computes the exact mirror URL from the current pathname and updates the
@@ -645,7 +755,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
     enPath = (path === "/fr" || path === "/fr/")
       ? "/"
       : path.replace(frPfx, "/");
-    frPath = path.endsWith("/") ? path : path + "/";
+    frPath = (path === "/fr") ? "/fr/" : path;
   } else {
     enPath = path;
     frPath = frPfx + path.replace(/^\//, "");
@@ -1103,7 +1213,7 @@ document.querySelectorAll(".bq-bilingual").forEach(function (block) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Un audit de données indépendant pour les résidents de Toronto. / An independent data audit for Toronto residents. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
+<p>Analyse indépendante d’intérêt public du réseau de refuges de Toronto. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

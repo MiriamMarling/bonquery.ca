@@ -33,6 +33,10 @@ vers les tableaux quotidiens détaillés ci-dessous.
 
 ---
 
+{{< include ../../_includes/monthly-dashboard-flow-fr.qmd >}}
+
+---
+
 ::: {.callout-note .bq-green collapse="true" title="Occupation et capacité quotidiennes"}
 
 ```{ojs}

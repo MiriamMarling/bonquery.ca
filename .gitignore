@@ -30,6 +30,7 @@
 # record of what the City published accumulates instead of resetting each run.
 !/data/city_daily_table.json
 !/data/city_audit_report.json
+!/data/city_audit_history.json
 # Email-dedup sentinels — committed so audit / scrape-health emails fire once
 # per state change, not on every run. (Without these exceptions the workflow's
 # `git add` silently no-ops on the gitignored paths.)

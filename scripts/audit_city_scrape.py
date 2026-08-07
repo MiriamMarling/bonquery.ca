@@ -8,6 +8,7 @@ Reads:
 
 Outputs:
   data/city_audit_report.json  — machine-readable report
+  data/city_audit_history.json: append-only, date-keyed audit history
   data/city_audit_summary.md   — markdown summary (also printed to stdout)
 
 The audit always exits 0 — it is a report, not a build gate.
@@ -17,8 +18,9 @@ Usage:
 
 If a date is omitted all dates currently displayed on the City page are audited.
 
-Author: Miriam Marling <miriam@BonQuery.ca>
 """
+
+# Author:  Miriam Marling <miriam@BonQuery.ca>
 
 import json
 import re
@@ -30,6 +32,7 @@ DATA_DIR         = Path(__file__).parent.parent / "data"
 CITY_TABLE_FILE  = DATA_DIR / "city_daily_table.json"
 OCCUPANCY_FILE   = DATA_DIR / "daily_occupancy.json"
 REPORT_FILE      = DATA_DIR / "city_audit_report.json"
+HISTORY_FILE     = DATA_DIR / "city_audit_history.json"
 SUMMARY_FILE     = DATA_DIR / "city_audit_summary.md"
 
 # Keys scraped from the City page that have no CKAN/BonQuery counterpart.
@@ -276,6 +279,74 @@ def _write_empty_report(generated_at):
     print("audit_city_scrape: no City scrape data available; skipping.")
 
 
+def update_history(dates_entry, generated_at, our_latest):
+    """Merge completed comparisons into the durable, date-keyed history.
+
+    The rolling report describes only the latest scrape. The history preserves
+    every successfully parsed comparison so later scrapes cannot erase prior
+    evidence. Pending dates remain in the rolling report but are not written as
+    completed history records.
+    """
+    if HISTORY_FILE.exists():
+        try:
+            history = json.loads(HISTORY_FILE.read_text())
+        except Exception as exc:
+            raise RuntimeError(
+                f"Failed to parse {HISTORY_FILE.name}; refusing to overwrite it: {exc}"
+            ) from exc
+    else:
+        history = {
+            "schema_version": 1,
+            "retrospective_evidence": [],
+            "records": [],
+        }
+
+    existing = {record["date"]: record for record in history.get("records", [])}
+    for entry in dates_entry:
+        if entry["status"] == "pending":
+            continue
+        prior = existing.get(entry["date"], {})
+        existing[entry["date"]] = {
+            "date": entry["date"],
+            "status": entry["status"],
+            "passed": entry["passed"],
+            "first_audited_at": prior.get("first_audited_at", generated_at),
+            "last_audited_at": generated_at,
+            "our_latest_date": our_latest,
+            "sectors_compared": entry["sectors_compared"],
+            "mismatch_count": entry["mismatch_count"],
+            "mismatches": entry["mismatches"],
+            "evidence_source": "automated-city-table-comparison",
+            "details_complete": True,
+        }
+
+    history["schema_version"] = 1
+    history["updated_at"] = generated_at
+    history["records"] = [existing[date] for date in sorted(existing)]
+
+    retro_dates = {
+        date
+        for group in history.get("retrospective_evidence", [])
+        for date in group.get("dates", [])
+    }
+    exact_dates = set(existing)
+    failed_dates = {
+        date for date, record in existing.items() if record.get("status") == "fail"
+    }
+    failed_dates.update(retro_dates)
+    parsed_dates = retro_dates | exact_dates
+    history["coverage"] = {
+        "first_audit_date": min(parsed_dates) if parsed_dates else None,
+        "last_audit_date": max(parsed_dates) if parsed_dates else None,
+        "successfully_parsed_dates": len(parsed_dates),
+        "dates_with_mismatches": len(failed_dates),
+        "exact_detail_records": len(exact_dates),
+        "parser_failures_counted_as_passes": False,
+    }
+
+    HISTORY_FILE.write_text(json.dumps(history, indent=2) + "\n")
+
+
 def main():
     date_arg     = sys.argv[1] if len(sys.argv) > 1 else None
     generated_at = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
@@ -388,6 +459,7 @@ def main():
         "mismatches":      date_results[-1]["mismatches"],
     }
     REPORT_FILE.write_text(json.dumps(report, indent=2))
+    update_history(dates_entry, generated_at, our_latest)
     print(
         f"\ncity_audit_report.json: {total_mismatches} total mismatch(es) "
         f"across {len(date_results)} date(s)"

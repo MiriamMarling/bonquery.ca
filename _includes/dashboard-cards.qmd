@@ -2,18 +2,18 @@
 <div class="bq-dashboard-grid">
 
 <a class="bq-dashboard-card bq-card-daily" href="/projects/daily-occupancy.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">WHAT IS THE LATEST DAILY CAPACITY?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
-  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3>Daily Occupancy &amp; Capacity</h3></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW FULL ARE SHELTERS TODAY?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3>Beds and Spaces Today</h3></div>
   <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
-  <p>See the latest City table rebuilt from open data, browse every date since January 2021, and identify funded capacity that was unavailable.</p>
-  <span class="bq-card-link">See the latest daily table <span aria-hidden="true">→</span></span>
+  <p>See how many shelter beds and spaces were used, empty, or unavailable. Browse every day since January 2021.</p>
+  <span class="bq-card-link">See today's numbers <span aria-hidden="true">→</span></span>
 </a>
 
 <a class="bq-dashboard-card bq-card-monthly" href="/projects/monthly-snapshot.html">
   <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW MANY PEOPLE NEED SHELTER?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-people-fill" aria-hidden="true"></i></span><h3>Monthly Snapshot</h3></div>
   <div class="bq-card-preview" id="bq-preview-monthly"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
-  <p>See the latest actively homeless count, entries, housing exits, and population breakdowns. Choose any month from 2018 onward.</p>
+  <p>See how many people were counted as homeless, entered or left the shelter system, and moved into housing. Choose any month from 2018 onward.</p>
   <span class="bq-card-link">Open the snapshot <span aria-hidden="true">→</span></span>
 </a>
 
@@ -21,15 +21,15 @@
   <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW DID WE GET HERE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span><h3>Historical Trends</h3></div>
   <div class="bq-card-preview" id="bq-preview-history"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
-  <p>Explore multi-year changes in active homelessness, chronic homelessness, housing exits, and who the system is serving.</p>
+  <p>See how homelessness and shelter use have changed since January 2021.</p>
   <span class="bq-card-link">Explore the trends <span aria-hidden="true">→</span></span>
 </a>
 
 <a class="bq-dashboard-card bq-card-ytd" href="/projects/ytd-comparison.html">
   <div class="bq-card-eyebrow"><span class="bq-card-kicker">IS THE SYSTEM IMPROVING?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
-  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span><h3>Year-to-Date Comparison</h3></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span><h3>This Year So Far</h3></div>
   <div class="bq-card-preview" id="bq-preview-ytd"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
-  <p>Compare this year's cumulative entries and housing exits with the same point in previous years.</p>
+  <p>Compare how many people were newly counted as homeless or moved into housing this year and in earlier years.</p>
   <span class="bq-card-link">Compare years <span aria-hidden="true">→</span></span>
 </a>
 

@@ -1,19 +1,19 @@
 ---
 title: "Toronto Shelter Data Updated Daily"
-subtitle: "Independent dashboard replication, source-data validation, and public accountability"
-description: "BonQuery independently rebuilds Toronto shelter dashboards from open data, updates occupancy and capacity data every day, and publishes cold-weather accountability evidence."
+subtitle: "We rebuild Toronto's shelter dashboards, check the numbers, and publish what we find"
+description: "BonQuery rebuilds Toronto shelter dashboards from open data, updates them every day, and shows where the City's public numbers do not match."
 author: "Miriam Marling"
 date-modified: 2026-08-07
 open-graph:
   title: "Toronto Shelter Data Updated Daily | BonQuery"
-  description: "Independent Toronto shelter dashboard replication, daily occupancy and capacity updates, source-data validation, and cold-weather accountability evidence."
+  description: "Toronto shelter dashboards rebuilt from open data, with daily updates and clear checks of the City's public numbers."
   site_name: "BonQuery"
   image: images/bonquery-social-card.png
   image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
 twitter-card:
   card-style: summary_large_image
   title: "Toronto Shelter Data Updated Daily | BonQuery"
-  description: "Toronto shelter dashboards rebuilt from open data, with daily capacity updates and cold-weather accountability evidence."
+  description: "Toronto shelter dashboards rebuilt from open data, with daily updates and clear checks of the City's public numbers."
   image: images/bonquery-social-card.png
   image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
 format:
@@ -27,7 +27,7 @@ format:
           "name": "BonQuery",
           "alternateName": "BonQuery Toronto Shelter Data",
           "url": "https://bonquery.ca/",
-          "description": "Independent public-interest analysis of Toronto shelter capacity, demand, and system flow, updated from City of Toronto open data.",
+          "description": "We rebuild Toronto shelter dashboards from open data, update them every day, and check whether the City's public numbers match.",
           "inLanguage": ["en-CA", "fr-CA"],
           "author": {
             "@type": "Person",
@@ -80,10 +80,9 @@ homeAuditLastLabel = homeAuditDateLabel(audit_history.coverage.last_audit_date)
 ```
 
 ::: {.bq-home-lede}
-BonQuery independently rebuilds Toronto's public shelter dashboards from source
-data so residents, journalists, researchers, and advocates can see how many
-spaces are available, how demand is changing, and where public decisions leave
-people without shelter.
+BonQuery rebuilds Toronto's public shelter dashboards using the City's public
+data files. We show how many spaces are available, how demand is changing, and when
+people are still left without shelter.
 :::
 
 ```{ojs}
@@ -97,13 +96,12 @@ html`<div class="bq-home-status" role="status">
 ```{ojs}
 //| echo: false
 html`<div class="bq-audit-alert" role="alert">
-  <p><strong>Daily audit finding:</strong> Mismatches appeared on
-  <strong>${audit_history.coverage.dates_with_mismatches} of ${audit_history.coverage.successfully_parsed_dates} successfully parsed audit dates</strong>
-  from ${homeAuditFirstLabel} through ${homeAuditLastLabel}. On August 5, the
-  City's dashboard reported <strong>82 more unoccupied emergency beds</strong>
-  than the corresponding open-data rows. The City's public dashboard does not
-  match its own open data. <a href="projects/data-validation.html">See the audit
-  and methods →</a></p>
+  <p><strong>Daily data check:</strong> The City's shelter dashboard did not
+  match its own public data files on
+  <strong>${audit_history.coverage.dates_with_mismatches} of the ${audit_history.coverage.successfully_parsed_dates} days we checked</strong>,
+  from ${homeAuditFirstLabel} to ${homeAuditLastLabel}. On August 5, the dashboard
+  showed <strong>82 more empty emergency beds</strong> than the public data showed.
+  <a href="projects/data-validation.html">See what differed →</a></p>
 </div>`
 ```
 
@@ -133,32 +131,30 @@ html`<div class="bq-audit-alert" role="alert">
 ::: {.bq-work-rhythm-item}
 **Every day**
 
-We rebuild occupancy and capacity figures from Toronto Open Data and flag funded
-spaces that are offline.
+We show how many shelter beds and spaces were used, empty, or unavailable.
 :::
 
 ::: {.bq-work-rhythm-item}
 **Every month**
 
-We update system-flow and Central Intake trends when the City releases new data.
+We show how many people entered shelters, left them, or moved into housing.
 :::
 
 ::: {.bq-work-rhythm-item}
 **Every winter**
 
-We test whether the cold-weather response leaves people unplaced when exposure
-can cause severe harm.
+We check whether people are still left without a place during dangerous cold.
 :::
 :::
 
 ::: {.bq-quick-links}
-[See daily occupancy and capacity](projects/daily-occupancy.qmd)
+[See how many shelter spaces are used](projects/daily-occupancy.qmd)
 
-[Review Central Intake demand](projects/central-intake.qmd)
+[See calls asking for shelter](projects/central-intake.qmd)
 
-[Read the cold-weather evidence](projects/cold-response.qmd)
+[See what happened in cold weather](projects/cold-response.qmd)
 
-[Check the methods and source data](projects/about-the-data.qmd)
+[See where the numbers come from](projects/about-the-data.qmd)
 :::
 
 ## Winter Accountability Monitor
@@ -168,32 +164,42 @@ can cause severe harm.
 daily throughout the
 [City's winter services period](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
 
-- **Better lately:** On milder 0 to −5 °C nights, a free walk-in bed rose from
-  about two nights in five to nine nights in ten.
-- **Still under pressure:** In the current period, the activated layer was at
-  least 98% full on 64 of 137 nights at or below −5 °C.
-- **Six-season record:** At least one person or couple remained unplaced on 257
-  of 268 nights at or below −5 °C. Door turnaways are not counted.
+**Why this matters:** Cold can damage the body, cause someone to lose a finger
+or toe, or kill. This work asks whether Toronto has a safe place available when
+and where someone needs it.
 
-A manuscript is in preparation. We welcome corrections, new public data, and
-operational context from the City and its service partners.
+- **More spaces in 2023–24 to 2025–26:** On nights from 0 to −5 °C, at
+  least one space that a person could go to directly was open on nine nights in
+  ten. It was open about two nights in five during 2020–21 to
+  2022–23.
+- **Still nearly full (2023–24 to 2025–26):** Cold-weather beds and spaces were
+  almost completely full on **64 of 137 nights** at or below −5 °C. On those
+  nights, fewer than 2 out of every 100 spaces were empty.
+- **Across all six winters (2020–21 to 2025–26):** At least one person or couple
+  was still left without a place on **257 of 268 nights** at or below −5 °C.
+  People turned away at the door are not counted.
+
+A research paper is being prepared. We welcome corrections, new public data, and
+explanations from the City and its service partners.
+
+[Want to know exactly how we got these numbers? Email Miriam.](mailto:miriam@BonQuery.ca)
 :::
 
 ::: {.bq-cta}
-[View the Cold-Weather Evidence →](projects/cold-response.qmd){.btn .btn-danger .btn-lg
+[See the Cold-Weather Findings →](projects/cold-response.qmd){.btn .btn-danger .btn-lg
 role="button"}
 
-[About the Data: How to Read These Numbers →](projects/about-the-data.qmd){.btn
+[See Where the Numbers Come From →](projects/about-the-data.qmd){.btn
 .btn-outline-danger .btn-lg role="button"}
 :::
 
 ::: {.key-finding-box}
 
 ```{=html}
-<div class="key-finding-box-header">COLD-WEATHER ACCOUNTABILITY</div>
+<div class="key-finding-box-header">WHAT HAPPENED ON COLD NIGHTS</div>
 ```
 
-### Singles and couples left unplaced on freezing nights — six winters of evidence
+### People still without a shelter place at 4 a.m. on cold nights
 
 ```{ojs}
 //| echo: false
@@ -268,11 +274,11 @@ viewof selectedWinters = {
   root.style.cssText = "font-family:var(--sans-serif,sans-serif);font-size:13.5px;";
 
   const labelEl = document.createElement("div");
-  labelEl.textContent = "Seasons shown";
+  labelEl.textContent = "Winters shown";
   labelEl.style.cssText = "font-weight:600;margin-bottom:3px;";
 
   const hint = document.createElement("div");
-  hint.textContent = "Click a season to show or hide it";
+  hint.textContent = "Choose which winters to show";
   hint.style.cssText =
     "font-size:11.5px;font-weight:400;color:var(--bq-fg-faint);margin-bottom:6px;";
 
@@ -316,13 +322,10 @@ scSeasons = selectedWinters
 ```
 
 :::{.callout-note collapse="false"}
-**Reading the chart.** The chart shows data from up to six cold seasons
-(November 15 to April 15), colour-coded by winter year. The vertical lines
-across the background act as a temperature rug — each line marks one night's
-recorded overnight minimum temperature, coloured to match its season. Where
-these lines cluster together, data is plentiful; where they thin out (below
-about −15 °C), individual nights carry more weight. Use the checkboxes above
-to show or hide individual seasons.
+**How to read this chart.** Each dot shows the average for nights near that
+temperature. Bigger dots mean more nights. Each coloured mark along the bottom
+is one night. The colours separate the six winters. Use the boxes above to show
+or hide a winter.
 :::
 
 ```{ojs}
@@ -341,18 +344,18 @@ to show or hide individual seasons.
     color: {
       type:   "ordinal",
       legend: true,
-      label:  "Winter season",
+      label:  "Winter",
       domain: [...seasonColorMap.keys()],
       range:  [...seasonColorMap.values()]
     },
     r: { range: [2, 8] },
     x: {
-      label: "Overnight minimum temperature (°C)",
+      label: "Lowest temperature that night (°C)",
       labelAnchor: "center",
       reverse: true
     },
     y: {
-      label: "Mean singles & couples unplaced (observed)",
+      label: "People or couples still without a place at 4 a.m. (average)",
       labelAnchor: "top",
       grid: true
     },
@@ -380,35 +383,33 @@ to show or hide individual seasons.
         y: "mean_unplaced",
         title: d =>
           `${d.winter_season}\n` +
-          `${d.min_temp_bin} °C bin  ·  ${d.n} nights\n` +
-          `Observed mean: ${d.mean_unplaced.toFixed(1)} singles/couples unplaced`
+          `About ${d.min_temp_bin} °C  ·  ${d.n} nights\n` +
+          `Average still without a place: ${d.mean_unplaced.toFixed(1)}`
       }))
     ]
   })
 }
 ```
 
-*Figure 1: Observed mean number of singles and couples unplaced at 4 a.m. by
-overnight minimum temperature and cold season, binned in 2 °C intervals. A
-couple is counted once in the City's data, so each unit represents one or two
-people and the number of people affected is at least this high. Bins are
-labelled by their midpoint (e.g., the −3 °C dot covers −4 °C up to but not
-including −2 °C). Dot size scales with the number of nights in that bin.*
+*Figure 1: Each dot shows the average number of single people and couples still
+without a shelter place at 4 a.m. on nights near that temperature. Temperatures
+are grouped in 2 °C steps. The City counts a couple as one call, so the number
+of people affected is at least as high as the chart shows. Bigger dots cover
+more nights.*
 
-[See the full analysis: Left in the Cold →](projects/cold-response.qmd){.btn .btn-danger .btn-lg role="button"}
+[See All Cold-Weather Findings →](projects/cold-response.qmd){.btn .btn-danger .btn-lg role="button"}
 
 :::
 
-## Dashboards We Rebuild and Verify
+## The City dashboards we rebuild and check
 
-BonQuery independently reproduces Toronto's public shelter dashboards from the
-City's open data. The replications update when new source data lands, preserve
-historical views the City's pages do not always show, and make differences
-between funded, available, and occupied capacity easier to see.
+BonQuery rebuilds Toronto's public shelter dashboards from the City's public
+data files. Our pages update when the City posts new data. They also keep older dates
+and show the difference between spaces that are funded, open, and used.
 
 ---
 
-::: {.callout-note .bq-green collapse="true" title="Daily Occupancy & Capacity"}
+::: {.callout-note .bq-green collapse="true" title="Beds and Spaces Today"}
 
 ```{ojs}
 //| echo: false
@@ -427,9 +428,13 @@ latestDate = allDates[0]
 //   reconciled City vs BonQuery comparisons after the capacity analysis lands.
 ```
 
-BonQuery's version of this table adds two features the City's page doesn't have. The **date selector** below lets you browse any date from January 2021 to the present; the City's [Daily Shelter & Overnight Service Usage page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"} shows only its most recently published date. The **Offline** column (calculated as `funded − actual`) flags beds, rooms, or spaces temporarily out of service — see the [data validation page](projects/data-validation.html){target="_blank"} for what these are and why they matter.
+This table adds two things to the City's page. First, you can choose any date
+from January 2021 to today. The [City's page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
+shows only its newest date. Second, the **Funded but unavailable** column shows
+beds, rooms, or spaces that had funding but were not open to use. [See why the
+numbers differ](projects/data-validation.html){target="_blank"}.
 
-## Daily Occupancy & Capacity for ${fmtDate(selectedDate)}
+## Toronto shelter use on ${fmtDate(selectedDate)}
 
 ```{ojs}
 //| echo: false
@@ -577,7 +582,7 @@ viewof selectedDate = Inputs.select(allDates, {
 
 ```{ojs}
 //| echo: false
-html`<p class="bq-ckan-note">Latest available from City of Toronto Open Data: <strong>${fmtDate(latestDate)}</strong>.</p>`
+html`<p class="bq-ckan-note">Newest City data: <strong>${fmtDate(latestDate)}</strong>.</p>`
 ```
 
 ```{ojs}
@@ -628,14 +633,14 @@ function sectionHeader(label, col1, col2, col3, col4) {
     <td class="bq-num">${col2}</td>
     <td class="bq-num">${col3}</td>
     <td class="bq-num">${col4}</td>
-    <td class="bq-num">Occupancy Rate</td>
+    <td class="bq-num">Percent full</td>
   </tr>`
 }
 
 function summaryHeader() {
   return `<tr class="bq-th">
-    <td>Occupancy Summary</td>
-    <td class="bq-num">Individuals</td>
+    <td>People using shelters</td>
+    <td class="bq-num">People</td>
     <td colspan="5"></td>
   </tr>`
 }
@@ -685,67 +690,69 @@ dailyTable = {
       ${bridgingRow}
       ${summaryKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
-      ${sectionHeader("Shelter Programs, Room-Based", "Occupied Rooms", "Unoccupied Rooms", "Actual Room Capacity", "Offline Rooms")}
+      ${sectionHeader("Shelter programs with rooms", "Rooms used", "Rooms empty", "Rooms open to use", "Funded but unavailable")}
       ${roomKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
-      ${sectionHeader("Shelter Programs, Bed-Based", "Occupied Beds", "Unoccupied Beds", "Actual Bed Capacity", "Offline Beds")}
+      ${sectionHeader("Shelter programs with beds", "Beds used", "Beds empty", "Beds open to use", "Funded but unavailable")}
       ${bedKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
-      ${sectionHeader("Allied Services", "Occupied Spaces", "Unoccupied Spaces", "Actual Space Capacity", "Offline Spaces")}
+      ${sectionHeader("Other shelter services", "Spaces used", "Spaces empty", "Spaces open to use", "Funded but unavailable")}
       ${alliedKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
       <tr class="bq-th">
-        <td>Temporary Programs, Bed/Space-Based</td>
-        <td class="bq-num">Individuals</td>
-        <td class="bq-num">Occupied Beds/Spaces</td>
-        <td class="bq-num">Unoccupied</td>
-        <td class="bq-num">Actual Capacity</td>
-        <td class="bq-num">Offline Beds/Spaces</td>
-        <td class="bq-num">Occupancy Rate</td>
+        <td>Temporary programs with beds or spaces</td>
+        <td class="bq-num">People</td>
+        <td class="bq-num">Used</td>
+        <td class="bq-num">Empty</td>
+        <td class="bq-num">Open to use</td>
+        <td class="bq-num">Funded but unavailable</td>
+        <td class="bq-num">Percent full</td>
       </tr>
       ${s("temp_resp") ? tableRow(s("temp_resp")) : ""}
 
-      ${sectionHeader("Temporary Programs, Room/Unit-Based", "Occupied Rooms", "Unoccupied Rooms", "Actual Room Capacity", "Offline Rooms")}
+      ${sectionHeader("Temporary programs with rooms", "Rooms used", "Rooms empty", "Rooms open to use", "Funded but unavailable")}
       ${s("hotels") ? tableRow(s("hotels")) : ""}
 
-      ${sectionHeader("Temporary Isolation/Recovery Programs", "Occupied Rooms", "Unoccupied Rooms", "Actual Room Capacity", "Offline Rooms")}
+      ${sectionHeader("Temporary health and recovery programs", "Rooms used", "Rooms empty", "Rooms open to use", "Funded but unavailable")}
       ${s("iso") ? tableRow(s("iso")) : ""}
     </table>
     <p class="bq-footnote">
-      † Total People Accommodated = All Shelter Programs + Bridging &amp; Triage Programs.
-      Bridging &amp; Triage figures are not published to the City of Toronto open data (CKAN)
-      export. BonQuery scrapes them daily from the City's shelter census page when the City
-      posts the table; data is available from ${btStart} onward.
-      On days when the City has not yet published (weekends, holidays, or publication delays),
-      the Bridging &amp; Triage row will show "Not available for this date" and the Total
-      will reflect All Shelter Programs only.
+      † Total people = All Shelter Programs + Bridging &amp; Triage Programs.
+      The City leaves Bridging &amp; Triage out of its open data file. BonQuery copies
+      that number from the City's daily webpage when it appears. We have saved it
+      since ${btStart}. If the City has not posted it, the row says "Not available
+      for this date" and the total does not include it.
     </p>
     </div>`
 }
 ```
 
-This table reproduces the City of Toronto's Daily Shelter & Overnight Service Usage report using the City's open data. The **All Shelter Programs** subtotal and all breakdown rows are derived from the CKAN open data export. **Bridging & Triage Programs** are tracked in the City's operational system but not published to open data; BonQuery scrapes this figure daily from the City's shelter census page and displays it where available. The **Total People Accommodated** figure equals All Shelter Programs + Bridging & Triage when both are available. Some capacity and unoccupied-bed figures may differ slightly from the City's live dashboard due to offline-bed reporting differences between the CKAN export and the City's operational system. A full side-by-side comparison is available on the [data validation page](projects/data-validation.html){target="_blank"}.
+We rebuild this table from the City's public data file. The City leaves **Bridging
+& Triage Programs** out of that file, so we add the number from the City's
+daily webpage when it is available. The total includes that number when we have
+it. The City's webpage often does not match its open data. [See what
+differs](projects/data-validation.html){target="_blank"}.
 
 Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data — [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Aggregated by [BonQuery](https://bonquery.ca).
 
-BonQuery's aggregated data is available for download from 2021 to present: [JSON](https://bonquery.ca/data/daily_occupancy.json) · [CSV](https://bonquery.ca/data/daily_occupancy.csv)
+Download BonQuery's daily data from 2021 to today: [JSON](https://bonquery.ca/data/daily_occupancy.json) · [CSV](https://bonquery.ca/data/daily_occupancy.csv)
 
 :::
 
 ---
 
 ::: {.callout-note .bq-purple collapse="true"}
-## Shelter System Requests for Referrals
+## Calls asking for shelter
 
-Monthly average daily calls to Toronto's 24/7 shelter referral line — calls referred
-to a shelter space, unmatched individual callers, and total calls handled — with
-interactive date controls. Replicates and extends the City's
+These charts show the average number of calls each day to Toronto's 24-hour
+shelter line. See how many calls were answered, how many callers got a shelter
+referral, and how many did not. Choose the dates you want to see. We rebuild the City's
 [Shelter System Requests for Referrals](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/)
-page. Data sourced from two separate CKAN resources (call wrap-up codes and service
-queue); see the page for important caveats on combining the two series.
+page from two open data files. [See what the numbers can and cannot tell
+us](projects/central-intake.html).
 
 ::: {.mobile-dashboard-links}
-- [Shelter System Requests for Referrals →](projects/central-intake.html)
+- [See calls asking for shelter →](projects/central-intake.html)
 :::
 
 ::: {.desktop-dashboard-tabs}
@@ -762,13 +769,12 @@ queue); see the page for important caveats on combining the two series.
 
 :::
 
-Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data — [Central Intake Calls](https://open.toronto.ca/dataset/central-intake-calls/). Analysis and charts by BonQuery.
+Contains information licensed under the [Open Government Licence - Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data, [Central Intake Calls](https://open.toronto.ca/dataset/central-intake-calls/). Charts by BonQuery.
 :::
 
 <!-- END SYNC -->
 
 ---
 
-*BonQuery is an independent data audit of Toronto's shelter system, built on
-public records and reproducible methods. Data and methodology inquiries:
-[info@BonQuery.ca](mailto:info@BonQuery.ca).*
+*BonQuery checks Toronto's public shelter data. Want to know exactly how we got
+the numbers? Email [Miriam](mailto:miriam@BonQuery.ca).*

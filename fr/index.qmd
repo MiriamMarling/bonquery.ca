@@ -51,11 +51,14 @@ homeLatestLabel = {
 ```
 
 ::: {.bq-home-lede}
-BonQuery reconstruit indépendamment les tableaux de bord publics des refuges de
-Toronto à partir des données sources. Les résidents, les journalistes, les
-chercheurs et les personnes qui défendent les droits peuvent ainsi voir combien
-de places sont disponibles, comment la demande évolue et où les décisions
-publiques laissent des personnes sans refuge.
+BonQuery reconstruit les tableaux de bord publics des refuges de Toronto à
+partir des fichiers publics de la Ville. Nous montrons combien de places sont
+disponibles, comment la demande évolue et quand des personnes qui ont besoin
+d'un endroit sûr restent sans refuge.
+
+Ces fichiers ne montrent pas toutes les personnes qui ont besoin d'un endroit
+sûr ni toutes les formes d'itinérance. [Voir qui est compté, qui manque et
+pourquoi BonQuery emploie plusieurs termes →](projects/about-the-data.qmd#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent)
 :::
 
 ```{=html}

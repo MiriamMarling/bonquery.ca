@@ -1,6 +1,6 @@
 ---
 title: "À propos"
-description: "À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique."
+description: "À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique."
 author: "Miriam Marling"
 about:
   template: trestles
@@ -20,12 +20,12 @@ about:
       href: mailto:info@BonQuery.ca
 open-graph:
   title: "À propos | BonQuery"
-  description: "À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique."
+  description: "À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique."
   site_name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "À propos | BonQuery"
-  description: "À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique."
+  description: "À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique."
 ---
 
 Chercheuse en données basée à Toronto, j'ai complété une maîtrise en
@@ -41,6 +41,9 @@ enjeux humanitaires au Canada se trouve sur des portails gouvernementaux
 en libre accès, mais que la plupart des citoyens n'y accèdent jamais. Le
 premier projet se concentre sur le réseau de refuges de Toronto, mis à rude
 épreuve. D'autres suivront.
+
+[Voir qui est compté dans les données sur les refuges de Toronto, qui manque et
+comment BonQuery emploie des termes comme sans-abri et sans logement →](projects/about-the-data.qmd#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent)
 
 ## Méthodes ouvertes et code public
 

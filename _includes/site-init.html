@@ -257,7 +257,7 @@
     enPath = (path === "/fr" || path === "/fr/")
       ? "/"
       : path.replace(frPfx, "/");
-    frPath = path.endsWith("/") ? path : path + "/";
+    frPath = (path === "/fr") ? "/fr/" : path;
   } else {
     enPath = path;
     frPath = frPfx + path.replace(/^\//, "");

@@ -2,7 +2,7 @@
 <div class="bq-dashboard-grid">
 
 <a class="bq-dashboard-card bq-card-daily" href="/projects/daily-occupancy.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW FULL ARE SHELTERS TODAY?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW FULL ARE SHELTERS TODAY?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST DATA</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3>Beds and Spaces Today</h3></div>
   <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
   <p>See how many shelter beds and spaces were used, empty, or unavailable. Browse every day since January 2021.</p>
@@ -10,7 +10,7 @@
 </a>
 
 <a class="bq-dashboard-card bq-card-monthly" href="/projects/monthly-snapshot.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW MANY PEOPLE NEED SHELTER?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW MANY PEOPLE NEED SHELTER?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST DATA</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-people-fill" aria-hidden="true"></i></span><h3>Monthly Snapshot</h3></div>
   <div class="bq-card-preview" id="bq-preview-monthly"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
   <p>See how many people were counted as homeless, entered or left the shelter system, and moved into housing. Choose any month from 2018 onward.</p>
@@ -18,7 +18,7 @@
 </a>
 
 <a class="bq-dashboard-card bq-card-history" href="/projects/historical-trends.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW DID WE GET HERE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW DID WE GET HERE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST DATA</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span><h3>Historical Trends</h3></div>
   <div class="bq-card-preview" id="bq-preview-history"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
   <p>See how homelessness and shelter use have changed since January 2021.</p>
@@ -26,7 +26,7 @@
 </a>
 
 <a class="bq-dashboard-card bq-card-ytd" href="/projects/ytd-comparison.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">IS THE SYSTEM IMPROVING?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LIVE PREVIEW</span></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">IS THE SYSTEM IMPROVING?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST DATA</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span><h3>This Year So Far</h3></div>
   <div class="bq-card-preview" id="bq-preview-ytd"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
   <p>Compare how many people were newly counted as homeless or moved into housing this year and in earlier years.</p>

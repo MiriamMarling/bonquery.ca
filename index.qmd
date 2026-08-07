@@ -1,19 +1,19 @@
 ---
 title: "Toronto Shelter Data Updated Daily"
 subtitle: "We rebuild Toronto's shelter dashboards, check the numbers, and publish what we find"
-description: "BonQuery rebuilds Toronto shelter dashboards from open data, updates them every day, and shows where the City's public numbers do not match."
+description: "Daily Toronto shelter data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness."
 author: "Miriam Marling"
 date-modified: 2026-08-07
 open-graph:
   title: "Toronto Shelter Data Updated Daily | BonQuery"
-  description: "Toronto shelter dashboards rebuilt from open data, with daily updates and clear checks of the City's public numbers."
+  description: "Daily Toronto shelter data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness."
   site_name: "BonQuery"
   image: images/bonquery-social-card.png
   image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
 twitter-card:
   card-style: summary_large_image
   title: "Toronto Shelter Data Updated Daily | BonQuery"
-  description: "Toronto shelter dashboards rebuilt from open data, with daily updates and clear checks of the City's public numbers."
+  description: "Daily Toronto shelter data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness."
   image: images/bonquery-social-card.png
   image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
 format:
@@ -27,8 +27,28 @@ format:
           "name": "BonQuery",
           "alternateName": "BonQuery Toronto Shelter Data",
           "url": "https://bonquery.ca/",
-          "description": "We rebuild Toronto shelter dashboards from open data, update them every day, and check whether the City's public numbers match.",
+          "description": "Daily Toronto shelter data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness.",
           "inLanguage": ["en-CA", "fr-CA"],
+          "about": [
+            {
+              "@type": "Thing",
+              "name": "Toronto shelter system"
+            },
+            {
+              "@type": "Thing",
+              "name": "People experiencing homelessness",
+              "alternateName": ["People who are unhoused", "People without housing"]
+            },
+            {
+              "@type": "Thing",
+              "name": "Housing insecurity",
+              "alternateName": ["At risk of homelessness", "Precarious housing"]
+            },
+            {
+              "@type": "Thing",
+              "name": "Cold-weather shelter access in Toronto"
+            }
+          ],
           "author": {
             "@type": "Person",
             "name": "Miriam Marling"
@@ -82,14 +102,28 @@ homeAuditLastLabel = homeAuditDateLabel(audit_history.coverage.last_audit_date)
 ::: {.bq-home-lede}
 BonQuery rebuilds Toronto's public shelter dashboards using the City's public
 data files. We show how many spaces are available, how demand is changing, and when
-people are still left without shelter.
+people who need somewhere safe to stay are still left without shelter.
+
+Here, **people** means people who need somewhere safe and warm to stay. **Not
+everyone who needs shelter is homeless.** Some people cannot safely return to
+where they live. This can include adults, children, and families fleeing
+violence. Some are **housing
+insecure**, **unhoused**, or **experiencing homelessness**. These situations can
+overlap, but they are not the same. The City's files count only the shelters and
+overnight programs listed in those files. They do not count everyone who needs
+safety.
+
+Whatever words people use, the questions are the same: Is there a safe place
+tonight? What is changing? Are the public numbers right?
+
+[Why we use more than one word →](about.qmd#language-homeless-unhoused-and-people-experiencing-homelessness)
 :::
 
 ```{ojs}
 //| echo: false
 html`<div class="bq-home-status" role="status">
   <span class="bq-status-dot" aria-hidden="true"></span>
-  <span><strong>Updated every day.</strong> Latest City shelter data available here: ${homeLatestLabel}.</span>
+  <span><strong>Updated every day.</strong> Latest City of Toronto shelter data available here: ${homeLatestLabel}.</span>
 </div>`
 ```
 
@@ -205,6 +239,20 @@ role="button"}
 
 [See Where the Numbers Come From →](projects/about-the-data.qmd){.btn
 .btn-outline-danger .btn-lg role="button"}
+:::
+
+::: {.bq-alert .bq-green}
+### Help us protect people from the cold
+
+Why someone needs a safe, warm place does not matter. Everyone deserves warmth,
+safety, and a second chance without preventable physical harm.
+
+BonQuery can track what happens, publish the evidence, and push for better
+protection. We cannot provide direct cold-weather help yet. We have no sponsors,
+supplies, outreach team, or volunteers for that work. We want to build that
+response with people who care.
+
+[Sponsor, partner, or volunteer to help build it →](mailto:miriam@BonQuery.ca?subject=Help%20build%20a%20cold-weather%20response)
 :::
 
 ::: {.key-finding-box}

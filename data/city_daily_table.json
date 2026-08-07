@@ -2,7 +2,7 @@
   "note": "Full City of Toronto shelter census table scraped daily from toronto.ca/shelter-census. Each entry is an array of rows keyed by BonQuery sector key, matching the schema of city_reference_2026-05-14.json (key, label, section, col_type, city_ind, city_occ, city_unocc, city_cap, city_rate). Available from 2026-07-28 onward. Days where the City did not publish a table (weekends, holidays) will be absent unless the City retroactively posts catch-up tables on a subsequent day.",
   "first_captured": "2026-07-28",
   "last_scraped": [
-    "2026-08-05"
+    "2026-08-06"
   ],
   "entries": {
     "2026-07-28": [
@@ -1863,6 +1863,316 @@
         "city_unocc": 7,
         "city_cap": 1467,
         "city_rate": 99.5
+      }
+    ],
+    "2026-08-06": [
+      {
+        "key": "all_shelter",
+        "label": "All Shelter Programs, Total",
+        "section": "summary",
+        "col_type": "summary",
+        "city_ind": 7689,
+        "city_occ": null,
+        "city_unocc": null,
+        "city_cap": null,
+        "city_rate": null
+      },
+      {
+        "key": "room_based",
+        "label": "Shelter Programs, Room-Based, Total",
+        "section": "summary",
+        "col_type": "summary",
+        "city_ind": 2014,
+        "city_occ": null,
+        "city_unocc": null,
+        "city_cap": null,
+        "city_rate": null
+      },
+      {
+        "key": "singles_sector",
+        "label": "Singles Sector Programs, Total",
+        "section": "summary",
+        "col_type": "summary",
+        "city_ind": 5675,
+        "city_occ": null,
+        "city_unocc": null,
+        "city_cap": null,
+        "city_rate": null
+      },
+      {
+        "key": "singles_shelter_total",
+        "label": "Shelter Programs, Singles, Total",
+        "section": "summary",
+        "col_type": "summary",
+        "city_ind": 3269,
+        "city_occ": null,
+        "city_unocc": null,
+        "city_cap": null,
+        "city_rate": null
+      },
+      {
+        "key": "allied_total",
+        "label": "Allied Services, Total",
+        "section": "allied",
+        "col_type": "bed",
+        "city_ind": 356,
+        "city_occ": null,
+        "city_unocc": null,
+        "city_cap": null,
+        "city_rate": null
+      },
+      {
+        "key": "temp_summ",
+        "label": "Temporary Programs, Total",
+        "section": "temp_summary",
+        "col_type": "summary",
+        "city_ind": 2050,
+        "city_occ": null,
+        "city_unocc": null,
+        "city_cap": null,
+        "city_rate": null
+      },
+      {
+        "key": "iso",
+        "label": "Temporary Isolation/Recovery Programs",
+        "section": "iso_recovery",
+        "col_type": "room",
+        "city_ind": 0,
+        "city_occ": null,
+        "city_unocc": null,
+        "city_cap": null,
+        "city_rate": null
+      },
+      {
+        "key": "fam_total",
+        "label": "Family Sector, Total",
+        "section": "room_based",
+        "col_type": "room",
+        "city_ind": 1556,
+        "city_occ": 497,
+        "city_unocc": 10,
+        "city_cap": 507,
+        "city_rate": 98.0
+      },
+      {
+        "key": "fam_emerg",
+        "label": "Families, Emergency Shelter Programs",
+        "section": "room_based",
+        "col_type": "room",
+        "city_ind": 677,
+        "city_occ": 227,
+        "city_unocc": 6,
+        "city_cap": 233,
+        "city_rate": 97.4
+      },
+      {
+        "key": "fam_trans_r",
+        "label": "Families, Transitional Shelter Programs",
+        "section": "room_based",
+        "col_type": "room",
+        "city_ind": 338,
+        "city_occ": 119,
+        "city_unocc": 2,
+        "city_cap": 121,
+        "city_rate": 98.3
+      },
+      {
+        "key": "fam_hotel",
+        "label": "Families, Motel/Hotel Programs",
+        "section": "room_based",
+        "col_type": "room",
+        "city_ind": 541,
+        "city_occ": 151,
+        "city_unocc": 2,
+        "city_cap": 153,
+        "city_rate": 98.7
+      },
+      {
+        "key": "sng_hotel",
+        "label": "Single Sector Motel/Hotel, Total",
+        "section": "room_based",
+        "col_type": "room",
+        "city_ind": 458,
+        "city_occ": 216,
+        "city_unocc": 0,
+        "city_cap": 216,
+        "city_rate": 100.0
+      },
+      {
+        "key": "singles_total",
+        "label": "Singles Sectors, Total",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 3269,
+        "city_occ": 3269,
+        "city_unocc": 215,
+        "city_cap": 3484,
+        "city_rate": 93.8
+      },
+      {
+        "key": "emerg_total",
+        "label": "Emergency Shelter Programs, Total",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 2515,
+        "city_occ": 2515,
+        "city_unocc": 137,
+        "city_cap": 2652,
+        "city_rate": 94.8
+      },
+      {
+        "key": "mix_emerg",
+        "label": "Mixed Adult, Emergency",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 535,
+        "city_occ": 535,
+        "city_unocc": 33,
+        "city_cap": 568,
+        "city_rate": 94.2
+      },
+      {
+        "key": "men_emerg",
+        "label": "Men, Emergency",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 1060,
+        "city_occ": 1060,
+        "city_unocc": 75,
+        "city_cap": 1135,
+        "city_rate": 93.4
+      },
+      {
+        "key": "wom_emerg",
+        "label": "Women, Emergency",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 481,
+        "city_occ": 481,
+        "city_unocc": 13,
+        "city_cap": 494,
+        "city_rate": 97.4
+      },
+      {
+        "key": "yth_emerg",
+        "label": "Youth, Emergency",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 439,
+        "city_occ": 439,
+        "city_unocc": 16,
+        "city_cap": 455,
+        "city_rate": 96.5
+      },
+      {
+        "key": "trans_total",
+        "label": "Transitional Shelter Programs, Total",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 754,
+        "city_occ": 754,
+        "city_unocc": 78,
+        "city_cap": 832,
+        "city_rate": 90.6
+      },
+      {
+        "key": "mix_trans",
+        "label": "Mixed Adult, Transitional",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 202,
+        "city_occ": 202,
+        "city_unocc": 17,
+        "city_cap": 219,
+        "city_rate": 92.2
+      },
+      {
+        "key": "fam_trans_b",
+        "label": "Families, Transitional",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 6,
+        "city_occ": 6,
+        "city_unocc": 15,
+        "city_cap": 21,
+        "city_rate": 28.6
+      },
+      {
+        "key": "men_trans",
+        "label": "Men, Transitional",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 158,
+        "city_occ": 158,
+        "city_unocc": 24,
+        "city_cap": 182,
+        "city_rate": 86.8
+      },
+      {
+        "key": "wom_trans",
+        "label": "Women, Transitional",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 122,
+        "city_occ": 122,
+        "city_unocc": 2,
+        "city_cap": 124,
+        "city_rate": 98.4
+      },
+      {
+        "key": "yth_trans",
+        "label": "Youth, Transitional",
+        "section": "bed_based",
+        "col_type": "bed",
+        "city_ind": 266,
+        "city_occ": 266,
+        "city_unocc": 20,
+        "city_cap": 286,
+        "city_rate": 93.0
+      },
+      {
+        "key": "respites",
+        "label": "24-Hour Respites",
+        "section": "allied",
+        "col_type": "bed",
+        "city_ind": 295,
+        "city_occ": 295,
+        "city_unocc": 4,
+        "city_cap": 299,
+        "city_rate": 98.7
+      },
+      {
+        "key": "dropin",
+        "label": "24-Hour Women's Drop-ins",
+        "section": "allied",
+        "col_type": "bed",
+        "city_ind": 61,
+        "city_occ": 61,
+        "city_unocc": 7,
+        "city_cap": 68,
+        "city_rate": 89.7
+      },
+      {
+        "key": "temp_resp",
+        "label": "24-Hour Temporary Response Sites",
+        "section": "temp_bed",
+        "col_type": "bed",
+        "city_ind": 49,
+        "city_occ": 49,
+        "city_unocc": 1,
+        "city_cap": 50,
+        "city_rate": 98.0
+      },
+      {
+        "key": "hotels",
+        "label": "Hotels",
+        "section": "temp_room",
+        "col_type": "room",
+        "city_ind": 2001,
+        "city_occ": 1501,
+        "city_unocc": 5,
+        "city_cap": 1506,
+        "city_rate": 99.7
       }
     ]
   }

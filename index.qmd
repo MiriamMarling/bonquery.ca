@@ -104,14 +104,17 @@ BonQuery rebuilds Toronto's public shelter dashboards using the City's public
 data files. We show how many spaces are available, how demand is changing, and when
 people who need somewhere safe to stay are still left without shelter.
 
-Here, **people** means people who need somewhere safe and warm to stay. **Not
-everyone who needs shelter is homeless.** Some people cannot safely return to
-where they live. This can include adults, children, and families fleeing
-violence. Some are **housing
-insecure**, **unhoused**, or **experiencing homelessness**. These situations can
-overlap, but they are not the same. The City's files count only the shelters and
-overnight programs listed in those files. They do not count everyone who needs
-safety.
+**Not everyone who needs shelter is homeless.** Adults, children, and families
+fleeing violence may still have an address but no safe home to return to. Other
+people are **housing insecure**, **unhoused**, or **experiencing homelessness**.
+These situations can overlap, but they are not the same.
+
+Being **unhoused** is not one experience either. It can mean sleeping outside,
+using a shelter, or moving between temporary places without one safe home to
+count on.
+
+The City's files count only the shelters and overnight programs listed in those
+files. They do not count everyone who needs safety.
 
 Whatever words people use, the questions are the same: Is there a safe place
 tonight? What is changing? Are the public numbers right?
@@ -119,11 +122,19 @@ tonight? What is changing? Are the public numbers right?
 [Why we use more than one word →](about.qmd#language-homeless-unhoused-and-people-experiencing-homelessness)
 :::
 
+```{=html}
+<nav class="bq-purpose-grid" aria-label="Choose what you need">
+  <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>I need help now</strong><small>Toronto shelter, violence, outreach, and emergency contacts</small></span></a>
+  <a href="#start-with-your-question"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span><strong>I want to understand</strong><small>Start with the latest shelter numbers and trends</small></span></a>
+  <a href="#help-improve-response"><i class="bi bi-megaphone" aria-hidden="true"></i><span><strong>I want to help or correct something</strong><small>Review the work, share evidence, partner, or volunteer</small></span></a>
+</nav>
+```
+
 ```{ojs}
 //| echo: false
 html`<div class="bq-home-status" role="status">
   <span class="bq-status-dot" aria-hidden="true"></span>
-  <span><strong>Updated every day.</strong> Latest City of Toronto shelter data available here: ${homeLatestLabel}.</span>
+  <span><strong>Updated every day.</strong> Latest published City of Toronto shelter data shown here: ${homeLatestLabel}. <strong>Not live bed availability.</strong></span>
 </div>`
 ```
 
@@ -139,23 +150,7 @@ html`<div class="bq-audit-alert" role="alert">
 </div>`
 ```
 
-```{=html}
-<div class="bq-help-strip" role="complementary" aria-label="Immediate Toronto shelter and outreach contacts">
-  <div class="bq-help-copy">
-    <strong>Need shelter or outreach help in Toronto?</strong>
-    <span>These contacts connect people to Toronto services. BonQuery is an independent data project, not a service provider.</span>
-  </div>
-  <div class="bq-help-actions">
-    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Toronto Central Intake: 416-338-4766</a>
-    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Toronto Central Intake, toll-free: 1-877-338-3398</a>
-    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto street outreach: 311</a>
-    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto 311 from outside city limits: 416-392-2489</a>
-    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> TTY relay: 711</a>
-    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Emergency: 911 (Canada)</a>
-    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
-  </div>
-</div>
-```
+{{< include _includes/toronto-help-contacts.qmd >}}
 
 ## Start with your question
 
@@ -189,6 +184,22 @@ We check whether people are still left without a place during dangerous cold.
 [See what happened in cold weather](projects/cold-response.qmd)
 
 [See where the numbers come from](projects/about-the-data.qmd)
+:::
+
+::: {.bq-status-note}
+### What the City files do not show
+
+The files do not count every person who needs safety. People may be missing if
+they are:
+
+- fleeing violence and using a women's shelter that is not in these files;
+- staying temporarily with friends or family;
+- sleeping outside without using a program in the files; or
+- living somewhere unsafe or unstable and trying to get help before losing it.
+
+Some people in these situations are counted when they use a listed program.
+Others are not. This site will never treat a City shelter count as everyone who
+needs help. [See exactly what is counted →](projects/about-the-data.qmd)
 :::
 
 ## Winter Accountability Monitor
@@ -241,18 +252,37 @@ role="button"}
 .btn-outline-danger .btn-lg role="button"}
 :::
 
-::: {.bq-alert .bq-green}
+::: {#help-improve-response .bq-alert .bq-green}
 ### Help us protect people from the cold
 
 Why someone needs a safe, warm place does not matter. Everyone deserves warmth,
 safety, and a second chance without preventable physical harm.
+
+**Protection from cold is not a reward for perfect behaviour.** A person's
+mental health, history, or circumstances do not make cold injury acceptable.
+Keeping someone warm does not cancel accountability for harm.
 
 BonQuery can track what happens, publish the evidence, and push for better
 protection. We cannot provide direct cold-weather help yet. We have no sponsors,
 supplies, outreach team, or volunteers for that work. We want to build that
 response with people who care.
 
-[Sponsor, partner, or volunteer to help build it →](mailto:miriam@BonQuery.ca?subject=Help%20build%20a%20cold-weather%20response)
+**Before monitoring begins on November 15, we will:**
+
+- ask people with lived experience and frontline workers to review the words,
+  safety contacts, and reporting plan;
+- seek funding to pay lived-experience reviewers rather than asking people to
+  share trauma or work for free; and
+- publish the important changes that reviewers ask us to make.
+
+**A reporting line is planned, but it is not open.** We will not record or
+transcribe reports until we have a clear consent message, secure storage, human
+review, a deletion policy, and people able to respond. Until then, use the
+verified services under [I need help now](#help-now).
+
+[Review this work or propose a correction →](mailto:miriam@BonQuery.ca?subject=Review%20or%20correction%20for%20BonQuery)
+
+[Sponsor, partner, or volunteer to help build the response →](mailto:miriam@BonQuery.ca?subject=Help%20build%20a%20cold-weather%20response)
 :::
 
 ::: {.key-finding-box}

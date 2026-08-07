@@ -1,16 +1,16 @@
 ---
 title: "Calls Asking for Shelter"
 subtitle: "What happened when people called Toronto Central Intake"
-description: "See how many calls Toronto Central Intake handled, how many received a shelter referral, and how many people or couples still had no place at 4 a.m."
+description: "See what happened when people called Toronto Central Intake because they needed somewhere safe to stay, including referrals and people still without a place at 4 a.m."
 author: "Miriam Marling"
 open-graph:
   title: "Calls Asking for Shelter | BonQuery"
-  description: "What happened when people called Toronto Central Intake for shelter."
+  description: "What happened when people called Toronto Central Intake because they needed somewhere safe to stay."
   site_name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "Calls Asking for Shelter | BonQuery"
-  description: "What happened when people called Toronto Central Intake for shelter."
+  description: "What happened when people called Toronto Central Intake because they needed somewhere safe to stay."
 format:
   html:
     page-layout: full
@@ -36,6 +36,8 @@ format:
 Central Intake is Toronto's 24-hour shelter phone line. People call when they
 need a place to stay. Staff may give a caller a shelter location. Street
 outreach workers can also help people get a space.
+
+{{< include ../_includes/toronto-help-contacts.qmd >}}
 
 We rebuild three charts from the [City's page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/){target="_blank"}.
 We leave out the City's fourth chart because its public data file is missing

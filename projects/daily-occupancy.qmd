@@ -1,7 +1,7 @@
 ---
 title: "Beds and Spaces Today"
 subtitle: "How many Toronto shelter spaces are used, empty, or unavailable"
-description: "Toronto shelter beds and spaces, updated every day from the City's public data. Choose any date from January 2021 to today."
+description: "Latest published City of Toronto shelter beds and spaces for people who need somewhere safe to stay. This is not live bed availability."
 ---
 
 ```{ojs}
@@ -29,6 +29,15 @@ from January 2021 to today. The [City's page](https://www.toronto.ca/city-govern
 shows only its newest date. Second, the **Funded but unavailable** column shows
 beds, rooms, or spaces that had funding but were not open to use. [See why the
 numbers differ](data-validation.html){target="_blank"}.
+
+::: {.bq-status-note}
+**This is the latest published record, not live bed availability.** A space
+shown as empty in the file may already be used, unavailable, or not suitable for
+the person calling. Use the verified contacts below when someone needs a place
+now.
+:::
+
+{{< include ../_includes/toronto-help-contacts.qmd >}}
 
 ## Toronto shelter use on ${fmtDate(selectedDate)}
 

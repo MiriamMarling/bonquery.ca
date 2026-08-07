@@ -34,6 +34,10 @@
 # `git add` silently no-ops on the gitignored paths.)
 !/data/last_audit_signature.txt
 !/data/last_scrape_health.txt
+# Evidence captured when a City page format change prevents parsing. The HTML
+# is the recoverable source; the PNG is a human-verifiable rendering of it.
+!/data/city_page_parser_failure.html
+!/data/city_page_parser_failure.png
 
 # Claude Code — local session data and project memory
 .claude/

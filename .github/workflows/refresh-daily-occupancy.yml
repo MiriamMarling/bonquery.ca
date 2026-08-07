@@ -157,6 +157,19 @@ jobs:
           "
         continue-on-error: true
 
+      # Install a browser only when the parser has already failed. The saved
+      # HTML remains useful even if this optional rendering step cannot run.
+      - name: Install failure-snapshot browser
+        if: steps.scrape_health.outputs.scrape_broken == 'true'
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Render parser-failure screenshot
+        if: steps.scrape_health.outputs.scrape_broken == 'true'
+        run: python scripts/render_city_failure_snapshot.py
+        continue-on-error: true
+
       - name: Email notification — City table present but scrape failed
         if: steps.scrape_health.outputs.scrape_broken == 'true' && steps.scrape_health.outputs.health_changed == 'true'
         uses: dawidd6/action-send-mail@v3
@@ -199,7 +212,9 @@ jobs:
             echo "bt_changed=true" >> "$GITHUB_OUTPUT"
           fi
           if git diff --quiet HEAD -- data/city_bridging_triage.json \
-              data/city_daily_table.json data/last_scrape_health.txt 2>/dev/null; then
+              data/city_daily_table.json data/last_scrape_health.txt \
+              data/city_page_parser_failure.html \
+              data/city_page_parser_failure.png 2>/dev/null; then
             echo "city_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "city_changed=true" >> "$GITHUB_OUTPUT"
@@ -212,6 +227,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/city_bridging_triage.json data/city_daily_table.json
           git add data/last_scrape_health.txt 2>/dev/null || true
+          git add data/city_page_parser_failure.html \
+                  data/city_page_parser_failure.png 2>/dev/null || true
           git diff --staged --quiet || git commit -m "data: City shelter census archive updated [skip ci]"
           git pull --rebase origin main
           git push origin main

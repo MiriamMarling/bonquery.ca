@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 import sys
@@ -15,6 +16,7 @@ OUTPUT_FILE       = DATA_DIR / "city_validation.json"
 BRIDGING_FILE     = DATA_DIR / "city_bridging_triage.json"
 CITY_TABLE_FILE   = DATA_DIR / "city_daily_table.json"
 HEALTH_FILE       = DATA_DIR / "scrape_health.json"
+FAILURE_SOURCE_FILE = DATA_DIR / "city_page_parser_failure.html"
 
 # Maps exact City table label text → BonQuery key.
 # Only rows where the City label is stable and maps cleanly to a BonQuery key.
@@ -165,7 +167,8 @@ def parse_date_str(month_str, day_str):
     return f"{year}-{month:02d}-{int(day_str):02d}"
 
 
-def write_scrape_health(fetch_ok, soup, bt_entries, table_entries, city_date):
+def write_scrape_health(fetch_ok, soup, bt_entries, table_entries, city_date,
+                        page_html=None):
     """Write data/scrape_health.json — the scrape's self-diagnosis.
 
     Distinguishes "the City published nothing" from "the City published a
@@ -201,6 +204,12 @@ def write_scrape_health(fetch_ok, soup, bt_entries, table_entries, city_date):
         "parser_ok": parser_ok,
         "scrape_broken": fetch_ok and table_detected and not parser_ok,
     }
+    if health["scrape_broken"] and page_html is not None:
+        FAILURE_SOURCE_FILE.write_text(page_html, encoding="utf-8")
+        health["failure_source_file"] = FAILURE_SOURCE_FILE.name
+        health["failure_source_sha256"] = hashlib.sha256(
+            page_html.encode("utf-8")
+        ).hexdigest()
     HEALTH_FILE.write_text(json.dumps(health, indent=2))
     print(f"scrape_health.json: parser_ok={parser_ok}, "
           f"table_detected={table_detected}, "
@@ -512,7 +521,8 @@ def main():
     city_date = extract_city_date(soup)
 
     # ── Scrape self-diagnosis — always written, whatever happens below ───────
-    write_scrape_health(True, soup, bt_entries, table_entries, city_date)
+    write_scrape_health(True, soup, bt_entries, table_entries, city_date,
+                        resp.text)
 
     if not city_date:
         write_result(

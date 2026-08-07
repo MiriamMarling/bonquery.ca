@@ -1,6 +1,7 @@
 ---
-title: "Daily Occupancy & Capacity"
-description: "Daily shelter occupancy and capacity for Toronto's shelter system, updated every day from the City of Toronto's open data."
+title: "Beds and Spaces Today"
+subtitle: "How many Toronto shelter spaces are used, empty, or unavailable"
+description: "Toronto shelter beds and spaces, updated every day from the City's public data. Choose any date from January 2021 to today."
 ---
 
 ```{ojs}
@@ -23,9 +24,13 @@ allDates = [...new Set(daily_occ.map(r => r.date))].sort().reverse()
 latestDate = allDates[0]
 ```
 
-BonQuery's version of this table adds two features the City's page doesn't have. The **date selector** below lets you browse any date from January 2021 to the present; the City's [Daily Shelter & Overnight Service Usage page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"} shows only its most recently published date. The **Offline** column (calculated as `funded − actual`) flags beds, rooms, or spaces temporarily out of service — see the [data validation page](data-validation.html){target="_blank"} for what these are and why they matter.
+This table adds two things to the City's page. First, you can choose any date
+from January 2021 to today. The [City's page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
+shows only its newest date. Second, the **Funded but unavailable** column shows
+beds, rooms, or spaces that had funding but were not open to use. [See why the
+numbers differ](data-validation.html){target="_blank"}.
 
-## Daily Occupancy & Capacity for ${fmtDate(selectedDate)}
+## Toronto shelter use on ${fmtDate(selectedDate)}
 
 ```{ojs}
 //| echo: false
@@ -133,7 +138,7 @@ viewof selectedDate = Inputs.select(allDates, {
 
 ```{ojs}
 //| echo: false
-html`<p class="bq-ckan-note">Latest available from City of Toronto Open Data: <strong>${fmtDate(latestDate)}</strong>.</p>`
+html`<p class="bq-ckan-note">Newest City data: <strong>${fmtDate(latestDate)}</strong>.</p>`
 ```
 
 ```{ojs}
@@ -179,19 +184,19 @@ function tableRow(r, col1Label) {
 function sectionHeader(label, col1, col2, col3, col4) {
   return `<tr class="bq-th">
     <td>${label}</td>
-    <td class="bq-num">Individuals</td>
+    <td class="bq-num">People</td>
     <td class="bq-num">${col1}</td>
     <td class="bq-num">${col2}</td>
     <td class="bq-num">${col3}</td>
     <td class="bq-num">${col4}</td>
-    <td class="bq-num">Occupancy Rate</td>
+    <td class="bq-num">Percent full</td>
   </tr>`
 }
 
 function summaryHeader() {
   return `<tr class="bq-th">
-    <td>Occupancy Summary</td>
-    <td class="bq-num">Individuals</td>
+    <td>People using shelters</td>
+    <td class="bq-num">People</td>
     <td colspan="5"></td>
   </tr>`
 }
@@ -241,56 +246,49 @@ dailyTable = {
       ${bridgingRow}
       ${summaryKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
-      ${sectionHeader("Shelter Programs, Room-Based", "Occupied Rooms", "Unoccupied Rooms", "Actual Room Capacity", "Offline Rooms")}
+      ${sectionHeader("Shelter programs with rooms", "Rooms used", "Rooms empty", "Rooms open to use", "Funded but unavailable")}
       ${roomKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
-      ${sectionHeader("Shelter Programs, Bed-Based", "Occupied Beds", "Unoccupied Beds", "Actual Bed Capacity", "Offline Beds")}
+      ${sectionHeader("Shelter programs with beds", "Beds used", "Beds empty", "Beds open to use", "Funded but unavailable")}
       ${bedKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
-      ${sectionHeader("Allied Services", "Occupied Spaces", "Unoccupied Spaces", "Actual Space Capacity", "Offline Spaces")}
+      ${sectionHeader("Other shelter services", "Spaces used", "Spaces empty", "Spaces open to use", "Funded but unavailable")}
       ${alliedKeys.map(k => s(k) ? tableRow(s(k)) : "").join("")}
 
       <tr class="bq-th">
-        <td>Temporary Programs, Bed/Space-Based</td>
-        <td class="bq-num">Individuals</td>
-        <td class="bq-num">Occupied Beds/Spaces</td>
-        <td class="bq-num">Unoccupied</td>
-        <td class="bq-num">Actual Capacity</td>
-        <td class="bq-num">Offline Beds/Spaces</td>
-        <td class="bq-num">Occupancy Rate</td>
+        <td>Temporary programs with beds or spaces</td>
+        <td class="bq-num">People</td>
+        <td class="bq-num">Used</td>
+        <td class="bq-num">Empty</td>
+        <td class="bq-num">Open to use</td>
+        <td class="bq-num">Funded but unavailable</td>
+        <td class="bq-num">Percent full</td>
       </tr>
       ${s("temp_resp") ? tableRow(s("temp_resp")) : ""}
 
-      ${sectionHeader("Temporary Programs, Room/Unit-Based", "Occupied Rooms", "Unoccupied Rooms", "Actual Room Capacity", "Offline Rooms")}
+      ${sectionHeader("Temporary programs with rooms", "Rooms used", "Rooms empty", "Rooms open to use", "Funded but unavailable")}
       ${s("hotels") ? tableRow(s("hotels")) : ""}
 
-      ${sectionHeader("Temporary Isolation/Recovery Programs", "Occupied Rooms", "Unoccupied Rooms", "Actual Room Capacity", "Offline Rooms")}
+      ${sectionHeader("Temporary health and recovery programs", "Rooms used", "Rooms empty", "Rooms open to use", "Funded but unavailable")}
       ${s("iso") ? tableRow(s("iso")) : ""}
     </table>
     <p class="bq-footnote">
-      † Total People Accommodated = All Shelter Programs + Bridging &amp; Triage Programs.
-      Bridging &amp; Triage figures are not published to the City of Toronto open data (CKAN)
-      export. BonQuery scrapes them daily from the City's shelter census page when the City
-      posts the table; data is available from ${btStart} onward.
-      On days when the City has not yet published (weekends, holidays, or publication delays),
-      the Bridging &amp; Triage row will show "Not available for this date" and the Total
-      will reflect All Shelter Programs only.
+      † Total people = All Shelter Programs + Bridging &amp; Triage Programs.
+      The City leaves Bridging &amp; Triage out of its public data file. BonQuery copies
+      that number from the City's daily webpage when it appears. We have saved it
+      since ${btStart}. If the City has not posted it, the row says "Not available
+      for this date" and the total does not include it.
     </p>
     </div>`
 }
 ```
 
-This table reproduces the City of Toronto's Daily Shelter & Overnight Service Usage report
-using the City's open data. The **All Shelter Programs** subtotal and all breakdown rows are
-derived from the CKAN open data export. **Bridging & Triage Programs** are tracked in the
-City's operational system but not published to open data; BonQuery scrapes this figure daily
-from the City's shelter census page and displays it where available. The **Total People
-Accommodated** figure equals All Shelter Programs + Bridging & Triage when both are available.
-Some capacity and unoccupied-bed figures may differ slightly from the City's live dashboard
-due to offline-bed reporting differences between the CKAN export and the City's operational
-system. A full side-by-side comparison is available on the
-[data validation page](data-validation.html){target="_blank"}.
+We rebuild this table from the City's public data file. The City leaves
+**Bridging & Triage Programs** out of that file, so we add the number from the
+City's daily webpage when it is available. The total includes that number when
+we have it. The City's webpage often does not match its public data. [See what
+differs](data-validation.html){target="_blank"}.
 
-Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data — [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Aggregated by [BonQuery](https://bonquery.ca).
+Contains information licensed under the [Open Government Licence - Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data, [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Rebuilt by [BonQuery](https://bonquery.ca).
 
-BonQuery's aggregated data is available for download from 2021 to present: [JSON](https://bonquery.ca/data/daily_occupancy.json) · [CSV](https://bonquery.ca/data/daily_occupancy.csv)
+Download BonQuery's daily data from 2021 to today: [JSON](https://bonquery.ca/data/daily_occupancy.json) · [CSV](https://bonquery.ca/data/daily_occupancy.csv)

@@ -164,9 +164,13 @@ We check whether people are still left without a place during dangerous cold.
 daily throughout the
 [City's winter services period](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
 
-**Why this matters:** Cold can damage the body, cause someone to lose a finger
+**Why this matters:** Cold does not have to take a finger or toe to cause
+serious harm. It can cause pain or numbness, damage skin, tissue and nerves, and
+make cold hurt more in the future. These problems can last for months or never
+go away. More severe cold can make tissue die, cause someone to lose a finger
 or toe, or kill. This work asks whether Toronto has a safe place available when
-and where someone needs it.
+and where someone needs it. Sources: [CDC](https://www.cdc.gov/niosh/bulletin/2012/cold-stress.html){target="_blank"}
+and [Mayo Clinic](https://www.mayoclinic.org/diseases-conditions/frostbite/symptoms-causes/syc-20372656){target="_blank"}.
 
 - **More spaces in 2023–24 to 2025–26:** On nights from 0 to −5 °C, at
   least one space that a person could go to directly was open on nine nights in

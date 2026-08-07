@@ -84,7 +84,7 @@ html`<div class="bq-home-status" role="status">
 ```
 
 ```{=html}
-<aside class="bq-help-strip" aria-label="Immediate shelter and outreach contacts">
+<div class="bq-help-strip" role="complementary" aria-label="Immediate shelter and outreach contacts">
   <div class="bq-help-copy">
     <strong>Need shelter or outreach now?</strong>
     <span>BonQuery is an independent data project, not a service provider.</span>
@@ -98,7 +98,7 @@ html`<div class="bq-home-status" role="status">
     <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Immediate danger: 911</a>
     <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Warming-centre status</a>
   </div>
-</aside>
+</div>
 ```
 
 ## Start with your question

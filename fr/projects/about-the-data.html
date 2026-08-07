@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miriam Marling">
-<meta name="description" content="Méthodologie de l’audit des données du réseau de refuges de Toronto — sources, vérifications d’intégrité et limites structurelles à connaître avant de tirer des conclusions.">
+<meta name="description" content="Comment lire les données sur les refuges de Toronto : qui est compté, qui manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans logement et personnes en situation d’itinérance.">
 
 <title>À propos des données – BonQuery</title>
 <style>
@@ -82,13 +82,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="À propos des données — Réseau de refuges de Toronto">
-<meta property="og:description" content="Méthodologie de l’audit des données du réseau de refuges de Toronto — sources, vérifications d’intégrité et limites structurelles.">
+<meta property="og:title" content="À propos des données | Réseau de refuges de Toronto">
+<meta property="og:description" content="Comment lire les données sur les refuges de Toronto : qui est compté, qui manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans logement et personnes en situation d’itinérance.">
 <meta property="og:image" content="https://bonquery.ca/fr/projects/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
 <meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
-<meta name="twitter:title" content="À propos des données — Réseau de refuges de Toronto">
-<meta name="twitter:description" content="Méthodologie de l’audit des données du réseau de refuges de Toronto — sources, vérifications d’intégrité et limites structurelles.">
+<meta name="twitter:title" content="À propos des données | Réseau de refuges de Toronto">
+<meta name="twitter:description" content="Comment lire les données sur les refuges de Toronto : qui est compté, qui manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans logement et personnes en situation d’itinérance.">
 <meta name="twitter:image" content="https://bonquery.ca/fr/projects/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
@@ -384,6 +384,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#un-instantané-mensuel-avec-un-recul-de-trois-mois" id="toc-un-instantané-mensuel-avec-un-recul-de-trois-mois" class="nav-link" data-scroll-target="#un-instantané-mensuel-avec-un-recul-de-trois-mois">Un instantané mensuel avec un recul de trois mois</a></li>
   <li><a href="#trois-chiffres-différents-pour-l-itinérance" id="toc-trois-chiffres-différents-pour-l-itinérance" class="nav-link" data-scroll-target="#trois-chiffres-différents-pour-l-itinérance">Trois chiffres différents pour l’« itinérance »</a></li>
   <li><a href="#ce-que-le-chiffre-principal-omet-le-sous-dénombrement-de-18" id="toc-ce-que-le-chiffre-principal-omet-le-sous-dénombrement-de-18" class="nav-link" data-scroll-target="#ce-que-le-chiffre-principal-omet-le-sous-dénombrement-de-18">Ce que le chiffre principal omet : le sous-dénombrement de 18 %</a></li>
+  <li><a href="#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent" id="toc-qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent" class="nav-link" data-scroll-target="#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent">Qui manque dans les données et pourquoi les mots comptent</a>
+  <ul class="collapse">
+  <li><a href="#comment-bonquery-emploie-ces-mots" id="toc-comment-bonquery-emploie-ces-mots" class="nav-link" data-scroll-target="#comment-bonquery-emploie-ces-mots">Comment BonQuery emploie ces mots</a></li>
+  </ul></li>
   <li><a href="#comment-les-groupes-de-population-se-rapportent-entre-eux" id="toc-comment-les-groupes-de-population-se-rapportent-entre-eux" class="nav-link" data-scroll-target="#comment-les-groupes-de-population-se-rapportent-entre-eux">Comment les groupes de population se rapportent entre eux</a>
   <ul class="collapse">
   <li><a href="#nouvellement-repérés-a-une-signification-différente-pour-le-groupe-chroniques" id="toc-nouvellement-repérés-a-une-signification-différente-pour-le-groupe-chroniques" class="nav-link" data-scroll-target="#nouvellement-repérés-a-une-signification-différente-pour-le-groupe-chroniques">« Nouvellement repérés » a une signification différente pour le groupe Chroniques</a></li>
@@ -406,7 +410,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    <p>Méthodologie de l’audit des données du réseau de refuges de Toronto — sources, vérifications d’intégrité et limites structurelles à connaître avant de tirer des conclusions.</p>
+    <p>Comment lire les données sur les refuges de Toronto : qui est compté, qui manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans logement et personnes en situation d’itinérance.</p>
   </div>
 </div>
 
@@ -463,6 +467,19 @@ ul.task-list li input[type="checkbox"] {
 <p>Chacun des dénombrements ci-dessus décrit des personnes ayant utilisé un service d’hébergement de nuit financé par la Ville. Les personnes qui dorment à l’extérieur, qui utilisent un service non financé par la Ville, ou qui séjournent temporairement chez des proches, ne figurent pas dans ces données.</p>
 <p>La Ville <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/" target="_blank">estime</a> qu’environ 18 % des personnes en situation d’itinérance absolue à Toronto n’apparaissent pas dans ces chiffres, une estimation tirée de son Évaluation des besoins de la rue, un dénombrement périodique distinct de l’itinérance non abritée.</p>
 <p>En pratique : lorsque le nombre de personnes en situation d’itinérance active augmente ou diminue, ce changement décrit le réseau de refuges en particulier. La question de savoir si l’itinérance totale évolue au même rythme dépend de la partie de la population que ces données ne voient pas — une question à laquelle ce jeu de données ne peut répondre à lui seul.</p>
+</section>
+<section id="qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent" class="level2">
+<h2 class="anchored" data-anchor-id="qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent">Qui manque dans les données et pourquoi les mots comptent</h2>
+<p><strong>L’estimation de 18 % ci-dessus concerne les personnes en situation d’itinérance absolue. Elle ne mesure pas toutes les personnes qui ont besoin d’un endroit sûr.</strong> Des adultes, des enfants et des familles qui fuient la violence peuvent encore avoir une adresse, mais aucun domicile sûr où retourner. Elles peuvent utiliser un programme absent de ces fichiers. Elles peuvent aussi ne recevoir l’aide d’aucun programme qui y figure.</p>
+<p>Une personne peut avoir un <strong>logement précaire</strong>, être <strong>sans logement</strong> ou être <strong>en situation d’itinérance</strong>. Ces situations peuvent se chevaucher, mais elles ne sont pas identiques. BonQuery emploie <strong>logement précaire</strong> pour parler plus largement d’un logement non sécuritaire, instable, trop cher ou sur le point d’être perdu.</p>
+<p>Être <strong>sans logement</strong> ne décrit pas une seule expérience. Cela peut vouloir dire dormir dehors, utiliser un refuge ou passer d’un lieu temporaire à un autre sans avoir un domicile sûr sur lequel compter. Une ligne dans un fichier de données ne peut pas nous dire quels mots une personne emploie pour parler de sa propre situation.</p>
+<section id="comment-bonquery-emploie-ces-mots" class="level3">
+<h3 class="anchored" data-anchor-id="comment-bonquery-emploie-ces-mots">Comment BonQuery emploie ces mots</h3>
+<p>Les personnes emploient <strong>sans-abri</strong>, <strong>sans logement</strong> et <strong>personnes en situation d’itinérance</strong>. Certaines personnes et certains militants préfèrent <strong>sans logement</strong>, parce que cette expression nomme l’absence de logement plutôt qu’une identité fixe. D’autres emploient <strong>sans-abri</strong> pour parler d’elles-mêmes ou dans la recherche, les services et la défense des droits. Aucun terme ne parle au nom de tout le monde.</p>
+<p>BonQuery dit habituellement <strong>personnes en situation d’itinérance</strong> ou <strong>personnes sans logement</strong>. Nous employons <strong>sans-abri</strong> lorsqu’il fait partie d’un nom officiel, d’une citation, d’un titre de recherche ou d’un terme de recherche courant. Nous n’appelons pas les gens « les sans-abri ». Nous continuerons d’écouter les personnes ayant une expérience vécue et modifierons nos mots au besoin.</p>
+<p>La définition officielle canadienne inclut les personnes qui séjournent dans un refuge d’urgence en raison de violence familiale, mais une personne peut décrire sa propre situation autrement. Cette approche s’appuie sur la <a href="https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/" target="_blank">définition canadienne de l’itinérance</a>, les <a href="https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/" target="_blank">recommandations sur le langage centré sur la personne</a> et la recherche sur <a href="https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf" target="_blank">la place centrale du logement dans le sens du mot itinérance</a>.</p>
+<p>Ces données montrent seulement les personnes qui utilisent les programmes inclus dans les fichiers. Quels que soient les mots employés, les questions pratiques restent les mêmes : Y a-t-il un endroit sûr ce soir? Qu’est-ce qui change? Les chiffres publics sont-ils exacts?</p>
+</section>
 </section>
 <section id="comment-les-groupes-de-population-se-rapportent-entre-eux" class="level2">
 <h2 class="anchored" data-anchor-id="comment-les-groupes-de-population-se-rapportent-entre-eux">Comment les groupes de population se rapportent entre eux</h2>
@@ -576,7 +593,8 @@ ul.task-list li input[type="checkbox"] {
   var locale = isFR ? "fr-CA" : "en-CA";
   var copy = isFR ? {
     unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
-    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    offlineBedsBefore: "lits financés du secteur des personnes seules ",
+    offlineBedsEmphasis: "indisponibles",
     acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
@@ -586,7 +604,8 @@ ul.task-list li input[type="checkbox"] {
     trend: "Tendance de l'itinérance active jusqu'à "
   } : {
     unavailable: "Preview unavailable. Open the dashboard.",
-    offlineBeds: "funded shelter beds for single adults were unavailable",
+    offlineBedsBefore: "funded shelter beds for single adults were ",
+    offlineBedsEmphasis: "unavailable",
     acrossPrograms: " people staying in shelter programs",
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
@@ -646,9 +665,15 @@ ul.task-list li input[type="checkbox"] {
         .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
       var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
       var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      var offlineLabel = make("span");
+      offlineLabel.append(
+        document.createTextNode(copy.offlineBedsBefore),
+        make("strong", "bq-preview-word", copy.offlineBedsEmphasis),
+        document.createTextNode(" · " + dateLabel)
+      );
       daily.append(
         make("strong", "", Number(offline).toLocaleString(locale)),
-        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        offlineLabel,
         make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
       );
       dailyMount.replaceChildren(daily);

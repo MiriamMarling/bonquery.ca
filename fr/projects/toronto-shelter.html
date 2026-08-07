@@ -483,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="bq-card-eyebrow"><span class="bq-card-kicker">QUELLE EST LA DERNIÈRE CAPACITÉ QUOTIDIENNE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> APERÇU EN DIRECT</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3 class="anchored">Occupation et capacité quotidiennes</h3></div>
   <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
-  <p>Consultez le dernier tableau de la Ville reconstruit à partir des données ouvertes, parcourez chaque date depuis janvier 2021 et repérez la capacité financée qui était indisponible.</p>
+  <p>Consultez le dernier tableau de la Ville reconstruit à partir des données ouvertes, parcourez chaque date depuis janvier 2021 et repérez les places financées qui étaient <strong>indisponibles</strong>.</p>
   <span class="bq-card-link">Voir le dernier tableau quotidien <span aria-hidden="true">→</span></span>
 </a>
 
@@ -998,7 +998,8 @@ eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNv
   var locale = isFR ? "fr-CA" : "en-CA";
   var copy = isFR ? {
     unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
-    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    offlineBedsBefore: "lits financés du secteur des personnes seules ",
+    offlineBedsEmphasis: "indisponibles",
     acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
@@ -1008,7 +1009,8 @@ eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNv
     trend: "Tendance de l'itinérance active jusqu'à "
   } : {
     unavailable: "Preview unavailable. Open the dashboard.",
-    offlineBeds: "funded shelter beds for single adults were unavailable",
+    offlineBedsBefore: "funded shelter beds for single adults were ",
+    offlineBedsEmphasis: "unavailable",
     acrossPrograms: " people staying in shelter programs",
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
@@ -1068,9 +1070,15 @@ eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNv
         .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
       var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
       var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      var offlineLabel = make("span");
+      offlineLabel.append(
+        document.createTextNode(copy.offlineBedsBefore),
+        make("strong", "bq-preview-word", copy.offlineBedsEmphasis),
+        document.createTextNode(" · " + dateLabel)
+      );
       daily.append(
         make("strong", "", Number(offline).toLocaleString(locale)),
-        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        offlineLabel,
         make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
       );
       dailyMount.replaceChildren(daily);

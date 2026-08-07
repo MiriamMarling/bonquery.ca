@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miriam Marling">
-<meta name="description" content="Audit methodology for Toronto’s shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions.">
+<meta name="description" content="How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.">
 
 <title>About the Data – BonQuery</title>
 <style>
@@ -83,12 +83,12 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="About the Data — Toronto Shelter System">
-<meta property="og:description" content="Audit methodology for Toronto’s shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions.">
+<meta property="og:description" content="How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.">
 <meta property="og:image" content="https://bonquery.ca/projects/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
 <meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
 <meta name="twitter:title" content="About the Data — Toronto Shelter System">
-<meta name="twitter:description" content="Audit methodology for Toronto’s shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions.">
+<meta name="twitter:description" content="How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.">
 <meta name="twitter:image" content="https://bonquery.ca/projects/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
@@ -345,6 +345,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#a-monthly-snapshot-with-a-three-month-lookback" id="toc-a-monthly-snapshot-with-a-three-month-lookback" class="nav-link" data-scroll-target="#a-monthly-snapshot-with-a-three-month-lookback">A monthly snapshot with a three-month lookback</a></li>
   <li><a href="#three-different-homelessness-numbers" id="toc-three-different-homelessness-numbers" class="nav-link" data-scroll-target="#three-different-homelessness-numbers">Three different “homelessness” numbers</a></li>
   <li><a href="#what-the-headline-number-leaves-out-the-18-undercount" id="toc-what-the-headline-number-leaves-out-the-18-undercount" class="nav-link" data-scroll-target="#what-the-headline-number-leaves-out-the-18-undercount">What the headline number leaves out: the 18% undercount</a></li>
+  <li><a href="#who-the-data-misses-and-why-words-matter" id="toc-who-the-data-misses-and-why-words-matter" class="nav-link" data-scroll-target="#who-the-data-misses-and-why-words-matter">Who the data misses, and why words matter</a>
+  <ul class="collapse">
+  <li><a href="#how-bonquery-uses-these-words" id="toc-how-bonquery-uses-these-words" class="nav-link" data-scroll-target="#how-bonquery-uses-these-words">How BonQuery uses these words</a></li>
+  </ul></li>
   <li><a href="#how-the-population-groups-relate" id="toc-how-the-population-groups-relate" class="nav-link" data-scroll-target="#how-the-population-groups-relate">How the population groups relate</a>
   <ul class="collapse">
   <li><a href="#newly-identified-means-something-different-for-the-chronic-group" id="toc-newly-identified-means-something-different-for-the-chronic-group" class="nav-link" data-scroll-target="#newly-identified-means-something-different-for-the-chronic-group">“Newly Identified” means something different for the Chronic group</a></li>
@@ -367,7 +371,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div>
   <div class="description">
-    Audit methodology for Toronto’s shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions.
+    How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.
   </div>
 </div>
 
@@ -424,6 +428,19 @@ ul.task-list li input[type="checkbox"] {
 <p>Every count above describes people who used a City-funded overnight service. People sleeping outside, using a service the City does not fund, or staying temporarily with friends or family are not in this data.</p>
 <p>The City <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/" target="_blank">estimates</a> that roughly 18% of people experiencing absolute homelessness in Toronto are not reflected in these numbers, an estimate drawn from its Street Needs Assessment, a separate periodic count of unsheltered homelessness.</p>
 <p>In practice: when the actively homeless count rises or falls, the change describes the shelter system specifically. Whether total homelessness is moving at the same rate depends on the part of the population this data does not see, which this dataset cannot answer on its own.</p>
+</section>
+<section id="who-the-data-misses-and-why-words-matter" class="level2">
+<h2 class="anchored" data-anchor-id="who-the-data-misses-and-why-words-matter">Who the data misses, and why words matter</h2>
+<p><strong>The 18% estimate above concerns people experiencing absolute homelessness. It does not measure everyone who needs a safe place.</strong> Adults, children, and families fleeing violence may still have an address but no safe home to return to. They may use a program that is not listed in these files, or they may not reach a listed service at all.</p>
+<p>People may be <strong>housing insecure</strong>, <strong>unhoused</strong>, or <strong>experiencing homelessness</strong>. These situations can overlap, but they are not the same. BonQuery uses <strong>housing insecure</strong> for the wider group of people whose housing is unsafe, unstable, unaffordable, or about to be lost.</p>
+<p>Being <strong>unhoused</strong> is not one experience either. It can mean sleeping outside, using a shelter, or moving between temporary places without one safe home to count on. A row in a data file cannot tell us which word a person uses for their own situation.</p>
+<section id="how-bonquery-uses-these-words" class="level3">
+<h3 class="anchored" data-anchor-id="how-bonquery-uses-these-words">How BonQuery uses these words</h3>
+<p>People use <strong>homeless</strong>, <strong>unhoused</strong>, and <strong>people experiencing homelessness</strong>. Some people and activists prefer <strong>unhoused</strong> because it names the lack of housing, not a fixed identity. Others use <strong>homeless</strong> for themselves and for established research, services, and advocacy. No single term speaks for everyone.</p>
+<p>BonQuery usually says <strong>people experiencing homelessness</strong> or <strong>people without housing</strong>. We use <strong>homeless</strong> when it is part of an official name, a direct quote, a research title, or a common search term. We do not call people “the homeless.” We will keep listening to people with lived experience and change our wording when needed.</p>
+<p>Canada’s formal definition includes people staying in emergency shelters because of family violence, but a person may describe their own situation differently. This approach is informed by the <a href="https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/" target="_blank">Canadian definition of homelessness</a>, <a href="https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/" target="_blank">person-first language guidance</a>, and research on <a href="https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf" target="_blank">why housing is central to the meaning of homelessness</a>.</p>
+<p>The data can show only the people and programs captured in its files. Whatever words people use, the practical questions are the same: Is there a safe place tonight? What is changing? Are the public numbers right?</p>
+</section>
 </section>
 <section id="how-the-population-groups-relate" class="level2">
 <h2 class="anchored" data-anchor-id="how-the-population-groups-relate">How the population groups relate</h2>
@@ -537,7 +554,8 @@ ul.task-list li input[type="checkbox"] {
   var locale = isFR ? "fr-CA" : "en-CA";
   var copy = isFR ? {
     unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
-    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    offlineBedsBefore: "lits financés du secteur des personnes seules ",
+    offlineBedsEmphasis: "indisponibles",
     acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
@@ -547,7 +565,8 @@ ul.task-list li input[type="checkbox"] {
     trend: "Tendance de l'itinérance active jusqu'à "
   } : {
     unavailable: "Preview unavailable. Open the dashboard.",
-    offlineBeds: "funded shelter beds for single adults were unavailable",
+    offlineBedsBefore: "funded shelter beds for single adults were ",
+    offlineBedsEmphasis: "unavailable",
     acrossPrograms: " people staying in shelter programs",
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
@@ -607,9 +626,15 @@ ul.task-list li input[type="checkbox"] {
         .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
       var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
       var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      var offlineLabel = make("span");
+      offlineLabel.append(
+        document.createTextNode(copy.offlineBedsBefore),
+        make("strong", "bq-preview-word", copy.offlineBedsEmphasis),
+        document.createTextNode(" · " + dateLabel)
+      );
       daily.append(
         make("strong", "", Number(offline).toLocaleString(locale)),
-        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        offlineLabel,
         make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
       );
       dailyMount.replaceChildren(daily);

@@ -767,7 +767,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   var locale = isFR ? "fr-CA" : "en-CA";
   var copy = isFR ? {
     unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
-    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    offlineBedsBefore: "lits financés du secteur des personnes seules ",
+    offlineBedsEmphasis: "indisponibles",
     acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
@@ -777,7 +778,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     trend: "Tendance de l'itinérance active jusqu'à "
   } : {
     unavailable: "Preview unavailable. Open the dashboard.",
-    offlineBeds: "funded shelter beds for single adults were unavailable",
+    offlineBedsBefore: "funded shelter beds for single adults were ",
+    offlineBedsEmphasis: "unavailable",
     acrossPrograms: " people staying in shelter programs",
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
@@ -837,9 +839,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
       var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
       var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      var offlineLabel = make("span");
+      offlineLabel.append(
+        document.createTextNode(copy.offlineBedsBefore),
+        make("strong", "bq-preview-word", copy.offlineBedsEmphasis),
+        document.createTextNode(" · " + dateLabel)
+      );
       daily.append(
         make("strong", "", Number(offline).toLocaleString(locale)),
-        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        offlineLabel,
         make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
       );
       dailyMount.replaceChildren(daily);

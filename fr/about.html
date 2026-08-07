@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Miriam Marling">
-<meta name="description" content="À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique.">
+<meta name="description" content="À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique.">
 
 <title>À propos – BonQuery</title>
 <style>
@@ -82,12 +82,12 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="À propos | BonQuery">
-<meta property="og:description" content="À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique.">
+<meta property="og:description" content="À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique.">
 <meta property="og:image" content="https://bonquery.ca/fr/images/bonquery-social-card.png">
 <meta property="og:site_name" content="BonQuery">
 <meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
 <meta name="twitter:title" content="À propos | BonQuery">
-<meta name="twitter:description" content="À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique.">
+<meta name="twitter:description" content="À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique.">
 <meta name="twitter:image" content="https://bonquery.ca/fr/images/bonquery-social-card.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
@@ -394,7 +394,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div>
   <div class="description">
-    À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique.
+    À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique.
   </div>
 </div>
 <div class="quarto-title-meta">
@@ -427,6 +427,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Chercheuse en données basée à Toronto, j’ai complété une maîtrise en neurosciences cognitives, deux publications évaluées par les pairs, et un poste dans la fonction publique à Statistique Canada.</p>
 <p>R est mon langage d’analyse de prédilection. J’utilise également Oracle SQL, APEX et Python pour développer les projets de BonQuery de bout en bout : base de données, tableau de bord, analyse et rédaction.</p>
 <p>J’ai fondé BonQuery parce qu’une grande partie des données publiques sur les enjeux humanitaires au Canada se trouve sur des portails gouvernementaux en libre accès, mais que la plupart des citoyens n’y accèdent jamais. Le premier projet se concentre sur le réseau de refuges de Toronto, mis à rude épreuve. D’autres suivront.</p>
+<p><a href="../fr/projects/about-the-data.html#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent">Voir qui est compté dans les données sur les refuges de Toronto, qui manque et comment BonQuery emploie des termes comme sans-abri et sans logement →</a></p>
 <section id="méthodes-ouvertes-et-code-public" class="level2">
 <h2 data-anchor-id="méthodes-ouvertes-et-code-public">Méthodes ouvertes et code public</h2>
 <p>Le <a href="https://github.com/MiriamMarling/bonquery.ca" target="_blank">dépôt de BonQuery.ca</a> est public. Il contient les pages Quarto, les styles, les processus de publication et les données agrégées utilisées par le site. Les pipelines de données brutes et les analyses de recherche principales demeurent dans un dépôt privé distinct pendant la préparation du manuscrit.</p>
@@ -525,7 +526,8 @@ ul.task-list li input[type="checkbox"] {
   var locale = isFR ? "fr-CA" : "en-CA";
   var copy = isFR ? {
     unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
-    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    offlineBedsBefore: "lits financés du secteur des personnes seules ",
+    offlineBedsEmphasis: "indisponibles",
     acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
@@ -535,7 +537,8 @@ ul.task-list li input[type="checkbox"] {
     trend: "Tendance de l'itinérance active jusqu'à "
   } : {
     unavailable: "Preview unavailable. Open the dashboard.",
-    offlineBeds: "funded shelter beds for single adults were unavailable",
+    offlineBedsBefore: "funded shelter beds for single adults were ",
+    offlineBedsEmphasis: "unavailable",
     acrossPrograms: " people staying in shelter programs",
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
@@ -595,9 +598,15 @@ ul.task-list li input[type="checkbox"] {
         .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
       var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
       var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      var offlineLabel = make("span");
+      offlineLabel.append(
+        document.createTextNode(copy.offlineBedsBefore),
+        make("strong", "bq-preview-word", copy.offlineBedsEmphasis),
+        document.createTextNode(" · " + dateLabel)
+      );
       daily.append(
         make("strong", "", Number(offline).toLocaleString(locale)),
-        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        offlineLabel,
         make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
       );
       dailyMount.replaceChildren(daily);

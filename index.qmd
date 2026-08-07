@@ -83,6 +83,24 @@ html`<div class="bq-home-status" role="status">
 </div>`
 ```
 
+```{=html}
+<aside class="bq-help-strip" aria-label="Immediate shelter and outreach contacts">
+  <div class="bq-help-copy">
+    <strong>Need shelter or outreach now?</strong>
+    <span>BonQuery is an independent data project, not a service provider.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Central Intake: 416-338-4766</a>
+    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Toll-free: 1-877-338-3398</a>
+    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Street outreach: 311</a>
+    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Outside Toronto: 416-392-2489</a>
+    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> TTY: 711</a>
+    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Immediate danger: 911</a>
+    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Warming-centre status</a>
+  </div>
+</aside>
+```
+
 ## Start with your question
 
 {{< include _includes/dashboard-cards.qmd >}}
@@ -122,14 +140,24 @@ can cause severe harm.
 ## Winter Accountability Monitor
 
 ::: {.bq-alert .bq-alert-hero}
-**WINTER ACCOUNTABILITY MONITOR: 2026–2027.** The City of Toronto
-[activates its cold-weather response](https://www.toronto.ca/community-people/housing-shelter/homeless-help/warming-centres/){target="_blank"}
-when temperatures reach −5 °C. Its own data shows what
-follows: across six winters, at least one person or couple was still unplaced at
-the 4 a.m. closeout on 257 of 268 nights at or below −5 °C (95.9%). A couple
-counts once in these figures, so the number of people left outside is higher
-still. Our standard is simple: no one left unplaced. Daily monitoring resumes
-when the 2026–2027 cold season opens in November.
+For 2026–2027,
+[the City's winter services period runs from November 15 to April 15](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
+BonQuery's daily monitoring will run for that full period, beginning November
+15. The City's published temperature thresholds do not fully describe its
+operations. Our analysis shows that warming centres increasingly functioned as
+standing seasonal services and often operated above −5 °C; surge sites also
+opened above the stated −15 °C line. Access on milder 0 to −5 °C nights improved:
+a free walk-in bed rose from roughly two nights in five to nine nights in ten,
+while nights with every walk-in bed full fell from about one in three to one in
+fourteen. This is measurable progress. It does not establish adequate capacity
+on colder nights. In the current policy period, the
+temperature-activated layer was still at least 98% full on 64 of 137 nights at
+or below −5 °C. Across all six completed seasons, at least one person or couple
+was unplaced at the 4 a.m. closeout on 257 of 268 such nights (95.9%). Door
+turnaways are not recorded, and a couple counts only once. A manuscript in
+preparation examines both the progress and the remaining capacity gaps. We
+welcome additional public data, corrections, and operational context from the
+City and its service partners.
 :::
 
 ::: {.bq-cta}

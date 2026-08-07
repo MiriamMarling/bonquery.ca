@@ -89,23 +89,7 @@ html`<div class="bq-audit-alert" role="alert">
 </div>`
 ```
 
-```{=html}
-<div class="bq-help-strip" role="complementary" aria-label="Contacts immédiats à Toronto pour un refuge ou une intervention de rue">
-  <div class="bq-help-copy">
-    <strong>Besoin d'un refuge ou d'une intervention de rue à Toronto?</strong>
-    <span>Ces contacts donnent accès aux services de Toronto. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
-  </div>
-  <div class="bq-help-actions">
-    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Admission centrale de Toronto : 416-338-4766</a>
-    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Admission centrale de Toronto, sans frais : 1-877-338-3398</a>
-    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Intervention de rue à Toronto : 311</a>
-    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto 311 depuis l'extérieur de la ville : 416-392-2489</a>
-    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> Relais ATS : 711</a>
-    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Urgence : 911 (Canada)</a>
-    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
-  </div>
-</div>
-```
+{{< include ../_includes/toronto-help-contacts-fr.qmd >}}
 
 ## Commencez par votre question
 

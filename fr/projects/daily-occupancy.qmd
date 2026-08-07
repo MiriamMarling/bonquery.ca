@@ -34,6 +34,8 @@ ou espaces temporairement indisponibles — voir la
 [page de validation des données](data-validation.html){target="_blank"}
 pour une explication de ce que cela représente et pourquoi cela compte.
 
+{{< include ../../_includes/toronto-help-contacts-fr.qmd >}}
+
 ## Occupation et capacité quotidiennes — ${fmtDate(selectedDate)}
 
 ```{ojs}

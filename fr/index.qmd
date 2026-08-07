@@ -58,6 +58,14 @@ de places sont disponibles, comment la demande évolue et où les décisions
 publiques laissent des personnes sans refuge.
 :::
 
+```{=html}
+<nav class="bq-purpose-grid" aria-label="Choisissez ce dont vous avez besoin">
+  <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>J'ai besoin d'aide maintenant</strong><small>Refuges, violence, équipes de rue et urgences à Toronto</small></span></a>
+  <a href="#commencez-par-votre-question"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span><strong>Je veux comprendre</strong><small>Commencez par les derniers chiffres et tendances des refuges</small></span></a>
+  <a href="mailto:miriam@BonQuery.ca?subject=Aider%20BonQuery%20ou%20proposer%20une%20correction"><i class="bi bi-megaphone" aria-hidden="true"></i><span><strong>Je veux aider ou proposer une correction</strong><small>Examiner le travail, partager des preuves, devenir partenaire ou bénévole</small></span></a>
+</nav>
+```
+
 ```{ojs}
 //| echo: false
 html`<div class="bq-home-status" role="status">

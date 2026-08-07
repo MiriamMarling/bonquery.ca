@@ -1,20 +1,54 @@
 ---
-title: "Daily Occupancy & Capacity Data Validation"
-subtitle: "A transparency check comparing BonQuery's Toronto shelter occupancy figures against the City of Toronto's live dashboard, with a full account of known data differences."
+title: "Do the City's Shelter Numbers Match?"
+subtitle: "We compare the City's shelter webpage with its public data file"
+description: "BonQuery checks whether Toronto's shelter webpage matches the City's public data file and shows the differences in simple terms."
 author: "Miriam Marling"
 open-graph:
-  title: "Validating BonQuery's Data Against the City of Toronto"
-  description: "A transparency check comparing BonQuery's Toronto shelter occupancy figures against the City of Toronto's live dashboard, with a full account of known data differences."
-  site_name: "BonQuery — Data for the Greater Good"
+  title: "Do the City's Shelter Numbers Match? | BonQuery"
+  description: "We compare Toronto's shelter webpage with the City's public data file and show what differs."
+  site_name: "BonQuery"
 twitter-card:
   card-style: summary
-  title: "Validating BonQuery's Data Against the City of Toronto"
-  description: "A transparency check comparing BonQuery's Toronto shelter occupancy figures against the City of Toronto's live dashboard, with a full account of known data differences."
+  title: "Do the City's Shelter Numbers Match? | BonQuery"
+  description: "We compare Toronto's shelter webpage with the City's public data file and show what differs."
 ---
 
-This page is a transparency check. It places BonQuery's open-data figures for daily shelter occupancy directly beside the City of Toronto's published live-dashboard figures for the same date, and gives a precise account of every difference. BonQuery's table is built entirely from the City's own open data (CKAN export); the City's live dashboard includes **some** figures that cannot be reproduced from their own CKAN export. Most figures match exactly. Where they don't, the reason is documented below.
+The City publishes daily shelter numbers in two places: a webpage and a public
+data file. Those numbers should match. We check them against each other.
 
-**Comparison reference date: May 14, 2026.** The City side of this table is a one-time snapshot captured from the live dashboard on May 14, which is no longer visible on the City's site.
+```{ojs}
+//| echo: false
+audit_history = FileAttachment("../data/city_audit_history.json").json()
+
+auditDateLabel = isoDate => {
+  const [year, month, day] = isoDate.split("-").map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString("en-CA", {
+    month: "long", day: "numeric", year: "numeric"
+  })
+}
+
+auditFirstLabel = auditDateLabel(audit_history.coverage.first_audit_date)
+auditLastLabel = auditDateLabel(audit_history.coverage.last_audit_date)
+latestAudit = audit_history.records.slice().sort((a, b) => a.date.localeCompare(b.date))[audit_history.records.length - 1]
+latestEmergencyGap = latestAudit.mismatches.find(d => d.key === "emerg_total" && d.column === "unoccupied")
+```
+
+```{ojs}
+//| echo: false
+html`<div class="bq-audit-alert" role="alert">
+  <p><strong>What we found:</strong> We checked
+  <strong>${audit_history.coverage.successfully_parsed_dates} dates</strong>
+  from ${auditFirstLabel} to ${auditLastLabel}. The City's webpage and public
+  data file differed on
+  <strong>${audit_history.coverage.dates_with_mismatches} of those ${audit_history.coverage.successfully_parsed_dates} dates</strong>.
+  On ${auditDateLabel(latestAudit.date)}, the webpage showed
+  <strong>${latestEmergencyGap.delta} more empty emergency beds</strong> than
+  the public data file.</p>
+</div>`
+```
+
+The large table below keeps one detailed example from **May 14, 2026**. The
+City's webpage no longer shows that date.
 
 ---
 
@@ -22,14 +56,14 @@ This page is a transparency check. It places BonQuery's open-data figures for da
 
 | Mark | Meaning |
 |---|---|
-| ✓ | **Matches** — BonQuery's open-data figure equals the City's published figure |
-| * | **Known difference** — figures differ by a documented, explained amount (see notes below) |
+| ✓ | **Same number** in BonQuery's copy and the City webpage |
+| * | **Different number** with an explanation below |
 
-Rows labelled *Not published to open data* are absent from the CKAN export entirely and receive no mark.
+If a row says *Not in the public data file*, the City left it out of the file.
 
 ---
 
-## Side-by-side comparison — May 14, 2026
+## The two sets of numbers on May 14, 2026
 
 ```{ojs}
 //| echo: false
@@ -57,7 +91,7 @@ function mark(bqVal, cityVal, isCapOrRate, key) {
   const match = Math.abs(+bqVal - +cityVal) < 0.11
   if (match) return `<span style="color:var(--bq-success);font-weight:bold">✓</span>`
   if (isCapOrRate && KNOWN_CAP_KEYS.has(key))
-    return `<span style="color:var(--bq-caution);font-weight:bold" title="Known difference — see notes">*</span>`
+    return `<span style="color:var(--bq-caution);font-weight:bold" title="Different number. See the explanation below.">*</span>`
   return ""
 }
 
@@ -104,34 +138,34 @@ function compRow(key, bqRow, cityRow, opts = {}) {
 function secHead(label, col1) {
   return `<tr style="background:var(--bq-th-bg);color:var(--bq-th-fg);font-weight:600;font-size:0.82em">
     <td style="padding:6px 10px" rowspan="2">${label}</td>
-    <td style="padding:6px 8px;text-align:center" colspan="2">Individuals</td>
+    <td style="padding:6px 8px;text-align:center" colspan="2">People</td>
     <td style="padding:6px 8px;text-align:center" colspan="2">${col1[0]}</td>
     <td style="padding:6px 8px;text-align:center" colspan="2">${col1[1]}</td>
     <td style="padding:6px 8px;text-align:center" colspan="2">${col1[2]}</td>
-    <td style="padding:6px 8px;text-align:center" colspan="2">Occupancy Rate</td>
+    <td style="padding:6px 8px;text-align:center" colspan="2">Percent full</td>
   </tr>
   <tr style="background:var(--bq-th-sub-bg);color:var(--bq-th-sub-fg);font-size:0.78em">
-    <td style="padding:3px 8px;text-align:center">BQ</td>
+    <td style="padding:3px 8px;text-align:center">BonQuery</td>
     <td style="padding:3px 8px;text-align:center">City</td>
-    <td style="padding:3px 8px;text-align:center">BQ</td>
+    <td style="padding:3px 8px;text-align:center">BonQuery</td>
     <td style="padding:3px 8px;text-align:center">City</td>
-    <td style="padding:3px 8px;text-align:center">BQ</td>
+    <td style="padding:3px 8px;text-align:center">BonQuery</td>
     <td style="padding:3px 8px;text-align:center">City</td>
-    <td style="padding:3px 8px;text-align:center">BQ</td>
+    <td style="padding:3px 8px;text-align:center">BonQuery</td>
     <td style="padding:3px 8px;text-align:center">City</td>
-    <td style="padding:3px 8px;text-align:center">BQ</td>
+    <td style="padding:3px 8px;text-align:center">BonQuery</td>
     <td style="padding:3px 8px;text-align:center">City</td>
   </tr>`
 }
 
 function summarySecHead() {
   return `<tr style="background:var(--bq-th-bg);color:var(--bq-th-fg);font-weight:600;font-size:0.82em">
-    <td style="padding:6px 10px" rowspan="2">Occupancy Summary</td>
-    <td style="padding:6px 8px;text-align:center" colspan="2">Individuals</td>
+    <td style="padding:6px 10px" rowspan="2">People using shelters</td>
+    <td style="padding:6px 8px;text-align:center" colspan="2">People</td>
     <td colspan="8"></td>
   </tr>
   <tr style="background:var(--bq-th-sub-bg);color:var(--bq-th-sub-fg);font-size:0.78em">
-    <td style="padding:3px 8px;text-align:center">BQ</td>
+    <td style="padding:3px 8px;text-align:center">BonQuery</td>
     <td style="padding:3px 8px;text-align:center">City</td>
     <td colspan="8"></td>
   </tr>`
@@ -139,7 +173,7 @@ function summarySecHead() {
 
 bridgingRow = `<tr style="background:var(--bq-bg-alt);color:var(--bq-fg-faint)">
   <td style="padding:5px 10px 5px 20px;font-style:italic">Bridging &amp; Triage Programs</td>
-  <td style="padding:5px 8px;text-align:right;font-size:0.85em" colspan="2">Not published to open data (29 people)</td>
+  <td style="padding:5px 8px;text-align:right;font-size:0.85em" colspan="2">Not in the public data file (29 people)</td>
   <td colspan="8"></td>
 </tr>`
 
@@ -161,14 +195,14 @@ compTable = {
     ${compRow("temp_summ",       bq("temp_summ"),      {city_ind:1901},      {indent:2, summaryOnly:true})}
     ${compRow("iso_summ",        bq("iso_summ"),       cr("iso"),            {indent:1, summaryOnly:true})}
 
-    ${secHead("Shelter Programs, Room-Based", ["Occupied Rooms","Unoccupied Rooms","Actual Room Capacity"])}
+    ${secHead("Shelter programs with rooms", ["Rooms used","Rooms empty","Rooms open to use"])}
     ${compRow("fam_total",   bq("fam_total"),   cr("fam_total"),   {isTot:true})}
     ${compRow("fam_emerg",   bq("fam_emerg"),   cr("fam_emerg"),   {indent:1})}
     ${compRow("fam_trans_r", bq("fam_trans_r"), cr("fam_trans_r"), {indent:1})}
     ${compRow("fam_hotel",   bq("fam_hotel"),   cr("fam_hotel"),   {indent:1})}
     ${compRow("sng_hotel",   bq("sng_hotel"),   cr("sng_hotel"),   {isTot:true})}
 
-    ${secHead("Shelter Programs, Bed-Based", ["Occupied Beds","Unoccupied Beds","Actual Bed Capacity"])}
+    ${secHead("Shelter programs with beds", ["Beds used","Beds empty","Beds open to use"])}
     ${compRow("singles_total", bq("singles_total"), cr("singles_total"), {isTot:true})}
     ${compRow("emerg_total",   bq("emerg_total"),   cr("emerg_total"),   {indent:1, isTot:true})}
     ${compRow("mix_emerg",     bq("mix_emerg"),     cr("mix_emerg"),     {indent:2})}
@@ -182,18 +216,18 @@ compTable = {
     ${compRow("wom_trans",     bq("wom_trans"),     cr("wom_trans"),     {indent:2})}
     ${compRow("yth_trans",     bq("yth_trans"),     cr("yth_trans"),     {indent:2})}
 
-    ${secHead("Allied Services", ["Occupied Spaces","Unoccupied Spaces","Actual Space Capacity"])}
+    ${secHead("Other shelter services", ["Spaces used","Spaces empty","Spaces open to use"])}
     ${compRow("allied_total", bq("allied_total"), cr("allied_total"), {isTot:true})}
     ${compRow("respites",     bq("respites"),     cr("respites"),     {indent:1})}
     ${compRow("dropin",       bq("dropin"),       cr("dropin"),       {indent:1})}
 
-    ${secHead("Temporary Programs (Bed/Space)", ["Occ. Beds/Spaces","Unocc. Beds/Spaces","Actual Capacity"])}
+    ${secHead("Temporary programs with beds or spaces", ["Used","Empty","Open to use"])}
     ${compRow("temp_resp", bq("temp_resp"), cr("temp_resp"))}
 
-    ${secHead("Temporary Programs (Room/Unit)", ["Occupied Rooms","Unoccupied Rooms","Actual Room Capacity"])}
+    ${secHead("Temporary programs with rooms", ["Rooms used","Rooms empty","Rooms open to use"])}
     ${compRow("hotels", bq("hotels"), cr("hotels"))}
 
-    ${secHead("Temporary Isolation/Recovery", ["Occupied Rooms","Unoccupied Rooms","Actual Room Capacity"])}
+    ${secHead("Temporary health and recovery programs", ["Rooms used","Rooms empty","Rooms open to use"])}
     ${compRow("iso", bq("iso"), cr("iso"))}
 
   </table>
@@ -205,21 +239,32 @@ compTable = {
 
 ## Why do some numbers differ?
 
-The section immediately under the header **Shelter Programs, Bed-Based** contains a few flagged values (indicated with an asterisk mark, `*`). The `*` mark appears in the **Unoccupied Beds**, **Actual Bed Capacity**, and **Occupancy Rate** columns for emergency bed programs and the **Singles Sectors, Total** row. These are not errors in BonQuery's data pipeline or its reconstruction of the City's tables. The City does not publicly document the exact derivation of its dashboard figures, which is why BonQuery's aggregation of CKAN cannot reproduce them exactly. BonQuery is contacting the City for clarification and will publish an update once a response is received.
+The short answer is that the City does not explain how it makes every number on
+its webpage. BonQuery copies the City's public data file. In the emergency-bed
+rows, that file and the City's webpage show different numbers. We have asked
+the City to explain why.
 
-The **funded** figure in parentheses next to the BQ Actual Bed Capacity is the number of beds the City has contracted a shelter operator to operate; the City does not display this figure in its dashboard. It is shown here to help calculate how many beds are currently offline, defined by `funded − actual = offline`.
+The grey **funded** number is how many beds the City paid an operator to run.
+The City webpage does not show this number.
 
-The figures in the BQ column come from the City's own published CKAN data, aggregated by BonQuery. Where BQ shows a funded figure in grey parentheses, that too comes from the CKAN export. The comparison on this page exists to confirm that BonQuery's aggregation reproduces the City's data correctly — and to document where the two City data products (the CKAN export and the live Daily Occupancy & Capacity dashboard) differ from each other.
+Every BonQuery number in this table comes from the City's public data file. We
+show the two City sources together so people can see where they disagree.
 
-### What are offline beds?
+### What does “funded but unavailable” mean?
 
-An **offline bed** is a real, funded shelter bed that has been temporarily taken out of service — the same way a hotel might take a room off the market for repairs. Reasons include maintenance, pest control, staffing shortages, and medical isolation. The shelter operator records the offline status; the City compiles the figures in its open-data export.
+A **funded but unavailable bed** is a bed the City paid for that was not open to
+use that day. The City's data lists reasons such as repairs, pest control, too
+few staff, or medical isolation.
 
-The City does not report the offline count as a standalone number in either data product. BonQuery discovered it by placing the two figures side by side: `funded − actual = offline`. This **Offline** count takes on particular weight during extreme weather events, when every funded bed matters.
+The City does not show this count on its webpage. BonQuery calculates it like
+this: **funded beds minus beds open to use**. This matters most in dangerous
+weather, when every bed matters.
 
-### Reconstructing the gap, program by program
+### Where the bed numbers differ
 
-The breakdown below isolates the emergency bed programs row by row, showing three capacity figures alongside three computed differences. The **Actual Bed Capacity City − BQ Gap** column shows how far the City's dashboard figure sits from BonQuery's Actual Bed Capacity — the discrepancy this page sets out to explain. The **Offline Beds (Actual BQ − Funded)** column shows BonQuery's Actual Bed Capacity minus the funded capacity: a negative number is the count of contracted beds temporarily out of service (for maintenance, repair, isolation, staffing shortages, or pest control). The **Offline Beds (Actual City − Funded)** column shows the City's dashboard figure minus the funded capacity; a positive value in the Mixed Adult row signals the anomaly discussed in the note below.
+This table focuses on emergency beds. A minus number means some funded beds were
+not open. A plus number means the City webpage showed more beds than the public
+data file.
 
 ```{ojs}
 //| echo: false
@@ -256,12 +301,12 @@ breakdownTable = {
       </tr>
       <tr>
         <th style="${TH1L}">Program</th>
-        <th style="${TH1}">Actual Bed Capacity<br><span style="font-weight:400;font-size:0.88em">BonQuery</span></th>
-        <th style="${TH1}">Actual Bed Capacity<br><span style="font-weight:400;font-size:0.88em">City dashboard</span></th>
-        <th style="${TH1}">Funded Capacity<br><span style="font-weight:400;font-size:0.88em">CKAN data</span></th>
-        <th style="${TH2};border-left:3px solid var(--bq-chart-blue)">Actual Bed Capacity<br><span style="font-weight:400;font-size:0.88em">City − BQ Gap</span></th>
-        <th style="${TH2}">Offline Beds<br><span style="font-weight:400;font-size:0.88em">Actual BQ − Funded</span></th>
-        <th style="${TH2}">Offline Beds<br><span style="font-weight:400;font-size:0.88em">Actual City − Funded</span></th>
+        <th style="${TH1}">Beds open<br><span style="font-weight:400;font-size:0.88em">BonQuery from public file</span></th>
+        <th style="${TH1}">Beds open<br><span style="font-weight:400;font-size:0.88em">City webpage</span></th>
+        <th style="${TH1}">Beds funded<br><span style="font-weight:400;font-size:0.88em">Public file</span></th>
+        <th style="${TH2};border-left:3px solid var(--bq-chart-blue)">Difference<br><span style="font-weight:400;font-size:0.88em">Webpage minus public file</span></th>
+        <th style="${TH2}">Not open<br><span style="font-weight:400;font-size:0.88em">BonQuery open minus funded</span></th>
+        <th style="${TH2}">Not open<br><span style="font-weight:400;font-size:0.88em">City open minus funded</span></th>
       </tr>
     </thead>
     <tbody>
@@ -300,30 +345,39 @@ mixEmergAnomaly = {
   // Build a short, factual call-out describing whichever shape the anomaly takes.
   let sentence
   if (city > funded) {
-    sentence = `The Mixed Adult Emergency row is notable: the City's dashboard shows **${n(city)}** beds, which is **${n(city - funded)}** above the funded capacity of **${n(funded)}**. This rules out a simple "the City reports funded capacity" explanation and suggests the live dashboard draws on an operational capacity definition that is not publicly documented.`
+    sentence = `The Mixed Adult Emergency row does not make sense from the public numbers. The City's webpage shows **${n(city)}** beds. Its public file says only **${n(funded)}** beds were funded. The webpage therefore shows **${n(city - funded)} more beds than the funded number**. The City has not explained why.`
   } else if (city < actual) {
-    sentence = `The Mixed Adult Emergency row is notable: the City's dashboard shows **${n(city)}** beds, which is **${n(actual - city)}** *below* BonQuery's Actual Bed Capacity of **${n(actual)}** (and **${n(funded - city)}** below the funded capacity of **${n(funded)}**). The City's figure does not align with either CKAN definition, and the exact derivation of the live dashboard's "Actual Bed Capacity" is not publicly documented.`
+    sentence = `The Mixed Adult Emergency row does not make sense from the public numbers. The City's webpage shows **${n(city)}** beds. That is **${n(actual - city)} fewer** than its public file shows as open and **${n(funded - city)} fewer** than it shows as funded. The City has not explained why.`
   } else {
-    sentence = `The Mixed Adult Emergency row sits between the BonQuery Actual Bed Capacity (**${n(actual)}**) and the funded capacity (**${n(funded)}**) — the City reports **${n(city)}**. The exact derivation of the live dashboard's "Actual Bed Capacity" is not publicly documented.`
+    sentence = `The Mixed Adult Emergency row does not match either number in the public file. The City's webpage shows **${n(city)}** beds. Its public file shows **${n(actual)}** open and **${n(funded)}** funded. The City has not explained why.`
   }
   return md`${sentence}`
 }
 ```
 
-### Bridging & Triage programs (not published to open data)
+### A program missing from the public data file
 
-The City's live dashboard shows 29 people in Bridging & Triage programs on May 14, 2026. This program type does not appear in the CKAN open-data export at all — the programs are tracked in the City's internal operational system but not published to the open data portal. BonQuery cannot reproduce this figure from open data, and the row is labelled accordingly in the main table. BonQuery will contact the City to see whether it is willing to add this program type to its CKAN dataset, either going forward or retroactively. This is the most significant omission between the City's table and the CKAN dataset.
+On May 14, the City webpage showed 29 people in **Bridging & Triage
+Programs**. The public data file did not include this program at all. That means
+the file alone cannot give the same total as the webpage. BonQuery has asked the
+City to add this program to its public file.
 
-### Daily audit for retroactive CKAN updates
+### Does the City change old data?
 
-BonQuery runs a per-program audit on every CKAN pull: a diffing algorithm compares today's raw rows against the most recent prior raw snapshot on a record-by-record basis, with each record uniquely identified by `(PROGRAM_ID, OCCUPANCY_DATE)`. If any program's values change for an already-published date, an email notification fires. As of the latest pull, **no retroactive revisions** have been detected for any historical date in the comparison above — the values for May 14 and every preceding day have remained stable since BonQuery's earliest archived snapshot (2026-05-17). If CKAN ever does revise a previously-published row, the audit will surface it.
+We save a copy of the City's file each time we update. A computer then checks
+whether the City changed any earlier row. If it did, BonQuery sends an email.
+The May 14 numbers have not changed since we first saved them on May 17, 2026.
 
-### The takeaway
+### What this means
 
-BonQuery's table is built entirely from the City's published open data. The [CKAN export](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/), BonQuery's aggregation of the raw data to reproduce the City's tables, and this comparison page together form a complete audit trail. The City's daily dashboard draws on internal system state not fully present in the open-data export.
+The City publishes shelter numbers on a webpage and in a public data file. They
+often do not match. BonQuery shows the differences and saves the evidence so
+the checks can be repeated.
+
+[Want the exact calculations? Email Miriam.](mailto:miriam@BonQuery.ca)
 
 ---
 
-Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data — [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Aggregated by [BonQuery](https://bonquery.ca).
+Contains information licensed under the [Open Government Licence - Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data, [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Rebuilt by [BonQuery](https://bonquery.ca).
 
-BonQuery's aggregated data is available for download from 2021 to present: [JSON](https://bonquery.ca/data/daily_occupancy.json) · [CSV](https://bonquery.ca/data/daily_occupancy.csv)
+Download BonQuery's daily data from 2021 to today: [JSON](https://bonquery.ca/data/daily_occupancy.json) · [CSV](https://bonquery.ca/data/daily_occupancy.csv)

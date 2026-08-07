@@ -30,6 +30,13 @@ on:
 permissions:
   contents: write          # Needed to push to gh-pages
 
+# Both publishing workflows write generated sentinels to main. Queue, rather than
+# cancel, overlapping runs so every scheduled City check completes without a
+# concurrent git pull --rebase conflict.
+concurrency:
+  group: bonquery-data-publish
+  cancel-in-progress: false
+
 jobs:
   # Lightweight guard job — runs on every trigger, including scheduled fallbacks
   # that fire after the day's data has already been pulled and published.

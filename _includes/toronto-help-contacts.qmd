@@ -5,15 +5,29 @@
     <span>These contacts serve Toronto unless another area is named. BonQuery is an independent data project, not a service provider.</span>
   </div>
   <div class="bq-help-actions">
-    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Toronto Central Intake: 416-338-4766</a>
-    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Toronto Central Intake, toll-free: 1-877-338-3398</a>
-    <a href="tel:+18668630511"><i class="bi bi-heart-fill" aria-hidden="true"></i> Assaulted Women's Helpline, free and confidential, Ontario 24/7: 1-866-863-0511</a>
-    <a href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i> Abuse or social-support referrals in Toronto: 211</a>
-    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto street outreach: 311</a>
-    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto 311 from outside city limits: 416-392-2489</a>
-    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> City services TTY relay: 711</a>
-    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Immediate danger: 911 (Canada)</a>
-    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Assaulted Women's Helpline</strong><small>Free and confidential, anywhere in Ontario, 24/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Young people: Kids Help Phone</strong><small>Ages 5 to 29, confidential, 24/7. Call, or text CONNECT to 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Thinking about suicide, or worried about someone?</strong><small>Call or text 988 anywhere in Canada, 24/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto emergency shelter line</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto shelter line, toll-free</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto mental-health crisis support</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto street outreach</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 from outside city limits</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>City services TTY relay</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Immediate danger in Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
   </div>
 </div>
 ```

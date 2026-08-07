@@ -66,6 +66,7 @@ format:
     theme:
       light: cosmo
       dark: darkly
+    respect-user-color-scheme: true
     css: styles.css
     toc: true
     toc-location: right

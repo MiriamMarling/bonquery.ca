@@ -22,6 +22,7 @@ twitter-card:
 //| echo: false
 daily_occ    = FileAttachment("data/daily_occupancy.json").json()
 bt_data      = FileAttachment("data/city_bridging_triage.json").json()
+audit_history = FileAttachment("data/city_audit_history.json").json()
 seasonRug    = FileAttachment("data/season_rug.csv").csv().then(rows =>
   rows.map(d => ({ min_temp: +d.min_temp, winter_season: d.winter_season }))
 )
@@ -41,6 +42,16 @@ homeLatestLabel = {
     year: "numeric", month: "long", day: "numeric"
   })
 }
+
+homeAuditDateLabel = isoDate => {
+  const [year, month, day] = isoDate.split("-").map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString("fr-CA", {
+    month: "long", day: "numeric"
+  })
+}
+
+homeAuditFirstLabel = homeAuditDateLabel(audit_history.coverage.first_audit_date)
+homeAuditLastLabel = homeAuditDateLabel(audit_history.coverage.last_audit_date)
 ```
 
 ```{=html}
@@ -65,20 +76,35 @@ html`<div class="bq-home-status" role="status">
 </div>`
 ```
 
+```{ojs}
+//| echo: false
+html`<div class="bq-audit-alert" role="alert">
+  <p><strong>Constat de l'audit quotidien :</strong> Des divergences ont été
+  relevées pour <strong>${audit_history.coverage.dates_with_mismatches} des ${audit_history.coverage.successfully_parsed_dates} dates d'audit analysées avec succès</strong>
+  entre le ${homeAuditFirstLabel} et le ${homeAuditLastLabel}. Le 5 août, le
+  tableau de bord de la Ville indiquait <strong>82 places d'urgence inoccupées
+  de plus</strong> que les lignes correspondantes des données ouvertes. Le
+  public ne peut pas reproduire un produit de données de la Ville à partir de
+  l'autre. Les dates que l'analyseur n'a pas pu saisir ne sont pas comptées
+  comme des correspondances. <a href="projects/data-validation.html">Voir
+  l'audit et les méthodes →</a></p>
+</div>`
+```
+
 ```{=html}
-<div class="bq-help-strip" role="complementary" aria-label="Contacts immédiats pour un refuge ou une intervention de rue">
+<div class="bq-help-strip" role="complementary" aria-label="Contacts immédiats à Toronto pour un refuge ou une intervention de rue">
   <div class="bq-help-copy">
-    <strong>Besoin d'un refuge ou d'une intervention de rue maintenant?</strong>
-    <span>BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+    <strong>Besoin d'un refuge ou d'une intervention de rue à Toronto?</strong>
+    <span>Ces contacts donnent accès aux services de Toronto. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
   </div>
   <div class="bq-help-actions">
-    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Admission centrale : 416-338-4766</a>
-    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Sans frais : 1-877-338-3398</a>
-    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Intervention de rue : 311</a>
-    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Hors de Toronto : 416-392-2489</a>
-    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> ATS : 711</a>
-    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Danger immédiat : 911</a>
-    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement</a>
+    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Admission centrale de Toronto : 416-338-4766</a>
+    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Admission centrale de Toronto, sans frais : 1-877-338-3398</a>
+    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Intervention de rue à Toronto : 311</a>
+    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Toronto 311 depuis l'extérieur de la ville : 416-392-2489</a>
+    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> Relais ATS : 711</a>
+    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Urgence : 911 (Canada)</a>
+    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
   </div>
 </div>
 ```
@@ -124,28 +150,22 @@ l'exposition peut causer des préjudices graves.
 ## Moniteur de responsabilité hivernale
 
 ::: {.bq-alert .bq-alert-hero}
-Pour 2026–2027,
-[la période des services hivernaux de la Ville s'étend du 15 novembre au 15 avril](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
-La surveillance quotidienne de BonQuery couvrira toute cette période à compter
-du 15 novembre. Les seuils de température publiés par la Ville ne décrivent pas
-entièrement ses opérations. Notre analyse montre que les centres de réchauffement
-ont de plus en plus fonctionné comme des services saisonniers continus et ont
-souvent été ouverts au-dessus de −5 °C; les sites de capacité de pointe ont aussi
-ouvert au-dessus du seuil annoncé de −15 °C. L'accès lors des nuits plus douces,
-de 0 à −5 °C, s'est amélioré : une place libre sans recommandation est passée
-d'environ deux nuits sur cinq à neuf nuits sur dix, tandis que les nuits où
-toutes ces places étaient occupées sont passées d'environ une sur trois à une
-sur quatorze. Il s'agit d'un progrès mesurable. Cela ne démontre pas que la
-capacité est adéquate lors des nuits plus froides. Pendant la période actuelle,
-la couche activée par la température demeurait occupée à au
-moins 98 % lors de 64 des 137 nuits à −5 °C ou moins. Sur les six saisons
-terminées, au moins une personne seule ou un couple demeurait sans place à la
-clôture de 4 h lors de 257 des 268 nuits de ce type (95,9 %). Les refus à la
-porte ne sont pas consignés et un couple ne compte qu'une fois. Un manuscrit en
-préparation examine à la fois les progrès et les lacunes de capacité qui
-subsistent. Nous invitons la Ville et ses partenaires de services à nous
-transmettre des données publiques supplémentaires, des corrections et du
-contexte opérationnel.
+**Surveillance : du 15 novembre 2026 au 15 avril 2027.** Nous mettrons cette
+page à jour chaque jour pendant toute la
+[période des services hivernaux de la Ville](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
+
+- **Mieux récemment :** Lors des nuits plus douces, de 0 à −5 °C, une place
+  libre sans recommandation est passée d'environ deux nuits sur cinq à neuf
+  nuits sur dix.
+- **Toujours sous pression :** Pendant la période actuelle, la couche activée
+  était occupée à au moins 98 % lors de 64 des 137 nuits à −5 °C ou moins.
+- **Bilan de six saisons :** Au moins une personne seule ou un couple demeurait
+  sans place lors de 257 des 268 nuits à −5 °C ou moins. Les refus à la porte ne
+  sont pas comptés.
+
+Un manuscrit est en préparation. Nous invitons la Ville et ses partenaires à
+nous transmettre des corrections, de nouvelles données publiques et du contexte
+opérationnel.
 :::
 
 ::: {.bq-cta}

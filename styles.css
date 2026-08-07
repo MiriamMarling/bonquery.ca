@@ -39,6 +39,15 @@
   --bq-chart-grid:      #ccc;
   --bq-chart-blue:      #0066cc;
 
+  /* Immediate-help actions. Each route has a unique, contrast-safe accent. */
+  --bq-help-blue:       #1769aa;
+  --bq-help-teal:       #00796b;
+  --bq-help-green:      #2e7d32;
+  --bq-help-purple:     #6a1b9a;
+  --bq-help-orange:     #b45309;
+  --bq-help-red:        #c62828;
+  --bq-help-pink:       #ad1457;
+
   /* Crisis hero */
   --bq-hero-bg:         #1a1a2e;
   --bq-hero-fg:         #fff;
@@ -276,13 +285,13 @@ body:has(.bq-home-lede) #title-block-header .description {
     background 140ms ease;
 }
 
-.bq-help-actions a:nth-child(1),
-.bq-help-actions a:nth-child(2) { --bq-help-accent: var(--bq-chart-blue); }
-.bq-help-actions a:nth-child(3),
-.bq-help-actions a:nth-child(4) { --bq-help-accent: var(--bq-success); }
-.bq-help-actions a:nth-child(5) { --bq-help-accent: var(--bq-caution); }
-.bq-help-actions a:nth-child(6) { --bq-help-accent: var(--bq-danger); }
-.bq-help-actions a:nth-child(7) { --bq-help-accent: var(--bq-primary); }
+.bq-help-actions a:nth-child(1) { --bq-help-accent: var(--bq-help-blue); }
+.bq-help-actions a:nth-child(2) { --bq-help-accent: var(--bq-help-teal); }
+.bq-help-actions a:nth-child(3) { --bq-help-accent: var(--bq-help-green); }
+.bq-help-actions a:nth-child(4) { --bq-help-accent: var(--bq-help-purple); }
+.bq-help-actions a:nth-child(5) { --bq-help-accent: var(--bq-help-orange); }
+.bq-help-actions a:nth-child(6) { --bq-help-accent: var(--bq-help-red); }
+.bq-help-actions a:nth-child(7) { --bq-help-accent: var(--bq-help-pink); }
 
 .bq-help-actions a .bi {
   display: inline-grid;
@@ -590,6 +599,21 @@ body:has(.bq-home-lede) #title-block-header .description {
   font-weight: 650;
   text-underline-offset: 0.2em;
 }
+
+.bq-audit-alert {
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--bq-danger) 45%, var(--bq-border));
+  border-left: 4px solid var(--bq-danger);
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--bq-danger) 8%, var(--bq-bg));
+  color: var(--bq-fg);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.bq-audit-alert p { margin: 0; }
+.bq-audit-alert a { font-weight: 700; }
 
 .bq-status-note {
   margin: 1rem 0 1.75rem;
@@ -948,11 +972,20 @@ body.quarto-dark .quarto-color-scheme-toggle .bi:hover {
 
 /* Advocacy hero — mission statement text */
 .bq-alert-hero {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: 1.04rem;
+  font-weight: 450;
+  line-height: 1.48;
   margin: 1.5rem 0;
 }
+
+.bq-alert-hero > p:first-child { margin-bottom: 0.75rem; }
+
+.bq-alert-hero ul {
+  margin: 0.65rem 0;
+  padding-left: 1.25rem;
+}
+
+.bq-alert-hero li { margin: 0.38rem 0; }
 
 /* Call-to-action wrapper */
 .bq-cta {

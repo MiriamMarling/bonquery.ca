@@ -28,6 +28,12 @@ on:
 permissions:
   contents: write                                 # Needed to push to gh-pages
 
+# Share the publisher lock with the daily workflow. Both workflows commit data
+# sentinels to main, and scheduled checks must queue instead of colliding.
+concurrency:
+  group: bonquery-data-publish
+  cancel-in-progress: false
+
 jobs:
   refresh-and-publish:
     runs-on: ubuntu-latest

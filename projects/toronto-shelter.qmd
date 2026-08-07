@@ -29,6 +29,10 @@ below.
 
 ---
 
+{{< include ../_includes/monthly-dashboard-flow.qmd >}}
+
+---
+
 ::: {.callout-note .bq-green collapse="true" title="Daily Occupancy & Capacity"}
 
 ```{ojs}

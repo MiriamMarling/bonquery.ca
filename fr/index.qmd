@@ -66,7 +66,7 @@ html`<div class="bq-home-status" role="status">
 ```
 
 ```{=html}
-<aside class="bq-help-strip" aria-label="Contacts immédiats pour un refuge ou une intervention de rue">
+<div class="bq-help-strip" role="complementary" aria-label="Contacts immédiats pour un refuge ou une intervention de rue">
   <div class="bq-help-copy">
     <strong>Besoin d'un refuge ou d'une intervention de rue maintenant?</strong>
     <span>BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
@@ -80,7 +80,7 @@ html`<div class="bq-home-status" role="status">
     <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Danger immédiat : 911</a>
     <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement</a>
   </div>
-</aside>
+</div>
 ```
 
 ## Commencez par votre question

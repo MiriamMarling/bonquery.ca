@@ -9,6 +9,7 @@ description: >
   des données ouvertes, par date.
 author: "Miriam Marling"
 date: 2026-06-04
+draft: true
 open-graph:
   title: "Suivi des divergences — Audit du réseau de refuges de Toronto"
   description: >
@@ -36,7 +37,7 @@ la Ville et l'audit des données brutes, par date.*
 
 | Date | Dénombrement officiel de la Ville | Dénombrement de l'audit (données brutes) | Écart | Notes |
 |---|--:|--:|--:|---|
-| — | — | — | — | Premières entrées à venir. |
+| Pas encore vérifié |  |  |  | Premières entrées à venir. |
 
 *Note.* Les dénombrements sont des chiffres de nuit au relevé de fermeture
 de l'Admission centrale à 4 h. L'écart correspond au dénombrement de l'audit

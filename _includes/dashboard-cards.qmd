@@ -1,0 +1,37 @@
+```{=html}
+<div class="bq-dashboard-grid">
+
+<a class="bq-dashboard-card bq-dashboard-card-daily" href="/projects/daily-occupancy.html">
+  <span class="bq-card-kicker">WHAT IS THE LATEST DAILY CAPACITY?</span>
+  <h3>Daily Occupancy &amp; Capacity</h3>
+  <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>See the latest City table rebuilt from open data, browse every date since January 2021, and identify funded capacity that was unavailable.</p>
+  <span class="bq-card-link">See the latest daily table <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card" href="/projects/monthly-snapshot.html">
+  <span class="bq-card-kicker">HOW MANY PEOPLE NEED SHELTER?</span>
+  <h3>Monthly Snapshot</h3>
+  <div class="bq-card-preview" id="bq-preview-monthly"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>See the latest actively homeless count, entries, housing exits, and population breakdowns. Choose any month from 2018 onward.</p>
+  <span class="bq-card-link">Open the snapshot <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card" href="/projects/historical-trends.html">
+  <span class="bq-card-kicker">HOW DID WE GET HERE?</span>
+  <h3>Historical Trends</h3>
+  <div class="bq-card-preview" id="bq-preview-history"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>Explore multi-year changes in active homelessness, chronic homelessness, housing exits, and who the system is serving.</p>
+  <span class="bq-card-link">Explore the trends <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card" href="/projects/ytd-comparison.html">
+  <span class="bq-card-kicker">IS THE SYSTEM IMPROVING?</span>
+  <h3>Year-to-Date Comparison</h3>
+  <div class="bq-card-preview" id="bq-preview-ytd"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>Compare this year's cumulative entries and housing exits with the same point in previous years.</p>
+  <span class="bq-card-link">Compare years <span aria-hidden="true">→</span></span>
+</a>
+
+</div>
+```

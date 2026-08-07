@@ -1,29 +1,56 @@
 ---
 title: "About"
-# description: "About Miriam Marling and BonQuery — open data research on humanitarian issues, starting with Toronto's shelter system.1"
+description: "About BonQuery, an independent Toronto shelter data and public accountability project."
 author: "Miriam Marling"
+about:
+  template: trestles
+  image: images/miriam-headshot.jpg
+  image-alt: "Portrait of the founder of BonQuery"
+  image-width: 14em
+  image-shape: round
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/MiriamMarling/bonquery.ca
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/mmarling
+    - icon: envelope
+      text: Email
+      href: mailto:info@BonQuery.ca
 open-graph:
-  title: "About — BonQuery"
-  description: "About Miriam Marling and BonQuery — open data research on humanitarian issues, starting with Toronto's shelter system."
-  site_name: "BonQuery — Data for the Greater Good"
+  title: "About | BonQuery"
+  description: "About BonQuery, an independent Toronto shelter data and public accountability project."
+  site_name: "BonQuery"
 twitter-card:
   card-style: summary
-  title: "About — BonQuery"
-  description: "About Miriam Marling and BonQuery — open data research on humanitarian issues, starting with Toronto's shelter system."
+  title: "About | BonQuery"
+  description: "About BonQuery, an independent Toronto shelter data and public accountability project."
 ---
-
-![](images/miriam-headshot.jpg){fig-align="center" width="250" .rounded}
 
 I'm a Toronto-based data researcher with a
 Master's in cognitive neuroscience, two peer-reviewed publications,
 and a public-service role at Statistics Canada.
 
-R is my native analytical language. I’m also using Oracle SQL, APEX, and Python to build BonQuery’s projects end-to-end — database, dashboard, analysis, and writing.
+R is my native analytical language. I’m also using Oracle SQL, APEX, and Python
+to build BonQuery's projects end to end: database, dashboard, analysis, and
+writing.
 
 I started BonQuery because so much of the publicly available data
 on humanitarian issues in Canada sits on government open-data pages
 where most people will never see it. The first project focuses on
 Toronto's taxed shelter system. More to follow.
+
+## Open methods and public code
+
+The [BonQuery.ca repository](https://github.com/MiriamMarling/bonquery.ca){target="_blank"}
+is public. It contains the Quarto pages, styles, publishing workflows, and
+aggregated data used by the website. The raw-data pipelines and primary research
+analysis remain in a separate private repository while manuscript work is
+underway.
+
+If you find a problem in the website or its published data, you can
+[open an issue on GitHub](https://github.com/MiriamMarling/bonquery.ca/issues){target="_blank"}.
 
 ## Get in touch
 
@@ -32,4 +59,3 @@ want to collaborate:
 
 - Get in touch with Miriam Marling at [miriam@BonQuery.ca](mailto:miriam@BonQuery.ca)
 - General inquiries: [info@BonQuery.ca](mailto:info@BonQuery.ca)
-- [LinkedIn](https://www.linkedin.com/in/mmarling)

@@ -1,33 +1,27 @@
 ---
-title: "BonQuery"
-subtitle: "Réseau de refuges de Toronto : un audit de données indépendant."
-description: >
-  BonQuery transforme les données ouvertes humanitaires en analyses claires
-  et utiles — à commencer par la capacité, la demande et les flux du réseau
-  de refuges de Toronto. Conçu pour les journalistes, les chercheurs, les
-  défenseurs, les décideurs politiques et toute personne qui suit la situation
-  de près.
+title: "Données sur les refuges de Toronto mises à jour quotidiennement"
+subtitle: "Réplication indépendante des tableaux de bord, validation des données sources et reddition de comptes"
+description: "BonQuery reconstruit indépendamment les tableaux de bord des refuges de Toronto à partir des données ouvertes, met à jour quotidiennement l'occupation et la capacité et publie des données probantes sur la réponse au froid."
 author: "Miriam Marling"
+date-modified: 2026-08-07
 open-graph:
-  title: "BonQuery — Des données au service du bien commun"
-  description: >
-    BonQuery transforme les données ouvertes humanitaires en analyses claires
-    et utiles — à commencer par la capacité, la demande et les flux du réseau
-    de refuges de Toronto.
-  site_name: "BonQuery — Data for the Greater Good"
+  title: "Données sur les refuges de Toronto mises à jour quotidiennement | BonQuery"
+  description: "Réplication indépendante des tableaux de bord des refuges de Toronto, mises à jour quotidiennes de l'occupation et de la capacité, validation des données sources et reddition de comptes."
+  site_name: "BonQuery"
+  image: ../images/bonquery-social-card.png
+  image-alt: "BonQuery : données sur les refuges de Toronto mises à jour quotidiennement"
 twitter-card:
-  card-style: summary
-  title: "BonQuery — Des données au service du bien commun"
-  description: >
-    BonQuery transforme les données ouvertes humanitaires en analyses claires
-    et utiles — capacité, demande et flux du réseau de refuges de Toronto.
+  card-style: summary_large_image
+  title: "Données sur les refuges de Toronto mises à jour quotidiennement | BonQuery"
+  description: "Tableaux de bord des refuges de Toronto reconstruits à partir des données ouvertes, avec mises à jour quotidiennes et reddition de comptes sur la réponse au froid."
+  image: ../images/bonquery-social-card.png
+  image-alt: "BonQuery : données sur les refuges de Toronto mises à jour quotidiennement"
 ---
 
 ```{ojs}
 //| echo: false
 daily_occ    = FileAttachment("data/daily_occupancy.json").json()
 bt_data      = FileAttachment("data/city_bridging_triage.json").json()
-shelter_flow = FileAttachment("data/shelter_flow.json").json()
 seasonRug    = FileAttachment("data/season_rug.csv").csv().then(rows =>
   rows.map(d => ({ min_temp: +d.min_temp, winter_season: d.winter_season }))
 )
@@ -39,6 +33,14 @@ binnedSC     = FileAttachment("data/cold_response_binned_by_winter_sc.csv").csv(
     n:             +d.n
   }))
 )
+
+homeLatestDate = [...new Set(daily_occ.map(r => r.date))].sort().reverse()[0]
+homeLatestLabel = {
+  const [year, month, day] = homeLatestDate.split("-").map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString("fr-CA", {
+    year: "numeric", month: "long", day: "numeric"
+  })
+}
 ```
 
 ```{=html}
@@ -46,6 +48,60 @@ binnedSC     = FileAttachment("data/cold_response_binned_by_winter_sc.csv").csv(
 .quarto-container, .container-fluid, .container { max-width: none !important; }
 </style>
 ```
+
+::: {.bq-home-lede}
+BonQuery reconstruit indépendamment les tableaux de bord publics des refuges de
+Toronto à partir des données sources. Les résidents, les journalistes, les
+chercheurs et les personnes qui défendent les droits peuvent ainsi voir combien
+de places sont disponibles, comment la demande évolue et où les décisions
+publiques laissent des personnes sans refuge.
+:::
+
+```{ojs}
+//| echo: false
+html`<div class="bq-home-status" role="status">
+  <span class="bq-status-dot" aria-hidden="true"></span>
+  <span><strong>Mis à jour chaque jour.</strong> Dernières données de la Ville sur les refuges disponibles ici : ${homeLatestLabel}.</span>
+</div>`
+```
+
+## Commencez par votre question
+
+{{< include ../_includes/dashboard-cards-fr.qmd >}}
+
+::: {.bq-work-rhythm}
+::: {.bq-work-rhythm-item}
+**Chaque jour**
+
+Nous reconstruisons les chiffres d'occupation et de capacité à partir des
+données ouvertes de Toronto et signalons les places financées qui sont hors
+service.
+:::
+
+::: {.bq-work-rhythm-item}
+**Chaque mois**
+
+Nous mettons à jour les tendances des flux du réseau et de l'Admission centrale
+lorsque la Ville publie de nouvelles données.
+:::
+
+::: {.bq-work-rhythm-item}
+**Chaque hiver**
+
+Nous vérifions si la réponse au froid laisse des personnes sans place lorsque
+l'exposition peut causer des préjudices graves.
+:::
+:::
+
+::: {.bq-quick-links}
+[Voir l'occupation et la capacité quotidiennes](projects/daily-occupancy.qmd)
+
+[Examiner la demande à l'Admission centrale](projects/central-intake.qmd)
+
+[Lire les données probantes sur le froid](projects/cold-response.qmd)
+
+[Consulter les méthodes et les données sources](projects/about-the-data.qmd)
+:::
 
 ## Moniteur de responsabilité hivernale
 
@@ -281,99 +337,12 @@ de nuits).*
 
 :::
 
-## Les données que nous suivons
+## Tableaux de bord que nous reconstruisons et vérifions
 
-<!-- SYNC FR: kept in sync with fr/projects/toronto-shelter.qmd -->
-
-::: {.callout-note collapse="true"}
-## Flux mensuel du réseau de refuges
-
-### Les tableaux de bord
-
-::: {.mobile-dashboard-links}
-Ouvrez chaque tableau de bord directement dans votre navigateur — ils sont
-conçus pour une utilisation interactive et fonctionnent mieux en plein écran
-sur téléphone.
-
-- [Portrait mensuel →](projects/monthly-snapshot.html)
-- [Comparaison année en cours →](projects/ytd-comparison.html)
-- [Tendances historiques →](projects/historical-trends.html)
-:::
-
-::: {.desktop-dashboard-tabs}
-
-Les trois onglets ci-dessous présentent différentes vues des données, avec
-des filtres interactifs sur chaque graphique.
-
-::: {.panel-tabset}
-
-#### Portrait mensuel
-
-Vue instantanée du réseau de refuges pour tout mois à partir de janvier
-2018. Utilisez le filtre de date en haut pour changer de mois.
-
-[Ouvrir dans un nouvel onglet →](projects/monthly-snapshot.html){target="_blank"}
-
-<iframe
-  src="projects/monthly-snapshot.html"
-  width="100%"
-  height="2800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Comparaison année en cours
-
-Compare les chiffres cumulatifs de l'année en cours avec la même période
-l'année précédente. Utile pour déterminer si le système est en voie de
-dépasser, d'égaler ou d'être en deçà de l'année dernière.
-
-[Ouvrir dans un nouvel onglet →](projects/ytd-comparison.html){target="_blank"}
-
-<iframe
-  src="projects/ytd-comparison.html"
-  width="100%"
-  height="900"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Tendances historiques
-
-Séries chronologiques pluriannuelles pour les principaux indicateurs, avec
-filtres par groupe de population, année et mois. Utile pour repérer des
-tendances à long terme ou des patterns saisonniers.
-
-[Ouvrir dans un nouvel onglet →](projects/historical-trends.html){target="_blank"}
-
-<iframe
-  src="projects/historical-trends.html"
-  width="100%"
-  height="3800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-:::
-
-:::
-
-```{=html}
-<style>
-.mobile-dashboard-links { display: none !important; }
-.desktop-dashboard-tabs { display: block; }
-@media (max-width: 768px) {
-  .desktop-dashboard-tabs iframe {
-    width: 100vw !important;
-    margin-left: calc(50% - 50vw) !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-}
-</style>
-```
-
-:::
+BonQuery reproduit indépendamment les tableaux de bord de la Ville à partir des
+données ouvertes, les met à jour lorsque les données sources sont publiées,
+conserve les vues historiques et rend visibles les différences entre les places
+financées, disponibles et occupées.
 
 ---
 

@@ -1,19 +1,14 @@
 ---
-title: "Le réseau de refuges de Toronto"
-subtitle: >
-  Données d'occupation quotidienne et de flux mensuel de la Ville de Toronto —
-  ouvertes, interactives, validées
-description: >
-  Données sur le réseau de refuges de Toronto — occupation et capacité
-  quotidiennes, flux mensuel du système, validées par rapport aux données
-  ouvertes de la Ville de Toronto. Tableaux interactifs avec sélecteurs de date.
+title: "Dans le réseau de refuges de Toronto"
+subtitle: "Occupation quotidienne et flux mensuels de la Ville de Toronto, ouverts, interactifs et validés"
+description: "Données sur le réseau de refuges de Toronto : occupation et capacité quotidiennes, flux mensuels et validation par rapport aux données ouvertes de la Ville."
 author: "Miriam Marling"
 open-graph:
   title: "Le réseau de refuges de Toronto"
   description: >
     Données sur le réseau de refuges de Toronto — occupation et capacité
     quotidiennes, flux mensuel, validées par les données ouvertes de la Ville.
-  site_name: "BonQuery — Data for the Greater Good"
+  site_name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "Le réseau de refuges de Toronto"
@@ -28,100 +23,13 @@ daily_occ = FileAttachment("../data/daily_occupancy.json").json()
 bt_data   = FileAttachment("../data/city_bridging_triage.json").json()
 ```
 
-Cette page regroupe les jeux de données du réseau de refuges de Toronto
-tirés du portail des données ouvertes de la Ville de Toronto. Chaque
-section couvre un jeu de données — utilisez les titres pour accéder à
-la section souhaitée.
+Cette page réunit les vues interactives de BonQuery sur les données des refuges
+de Toronto. Choisissez la question à laquelle vous voulez répondre ou poursuivez
+vers les tableaux quotidiens détaillés ci-dessous.
 
-::: {.callout-note collapse="true"}
-## Flux mensuel du réseau de refuges
+## Choisissez un tableau de bord
 
-### Les tableaux de bord
-
-::: {.mobile-dashboard-links}
-Ouvrez chaque tableau de bord directement dans votre navigateur — ils sont
-conçus pour une utilisation interactive et fonctionnent mieux en plein écran
-sur téléphone.
-
-- [Portrait mensuel →](monthly-snapshot.html)
-- [Comparaison année en cours →](ytd-comparison.html)
-- [Tendances historiques →](historical-trends.html)
-:::
-
-::: {.desktop-dashboard-tabs}
-
-Les trois onglets ci-dessous présentent différentes vues des données, avec
-des filtres interactifs sur chaque graphique.
-
-::: {.panel-tabset}
-
-#### Portrait mensuel
-
-Vue instantanée du réseau de refuges pour tout mois à partir de janvier
-2018. Utilisez le filtre de date en haut pour changer de mois.
-
-[Ouvrir dans un nouvel onglet →](monthly-snapshot.html){target="_blank"}
-
-<iframe
-  src="monthly-snapshot.html"
-  width="100%"
-  height="2800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Comparaison année en cours
-
-Compare les chiffres cumulatifs de l'année en cours avec la même période
-l'année précédente. Utile pour déterminer si le système est en voie de
-dépasser, d'égaler ou d'être en deçà de l'année dernière.
-
-[Ouvrir dans un nouvel onglet →](ytd-comparison.html){target="_blank"}
-
-<iframe
-  src="ytd-comparison.html"
-  width="100%"
-  height="900"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Tendances historiques
-
-Séries chronologiques pluriannuelles pour les principaux indicateurs, avec
-filtres par groupe de population, année et mois. Utile pour repérer des
-tendances à long terme ou des patterns saisonniers.
-
-[Ouvrir dans un nouvel onglet →](historical-trends.html){target="_blank"}
-
-<iframe
-  src="historical-trends.html"
-  width="100%"
-  height="3800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-:::
-
-:::
-
-```{=html}
-<style>
-.mobile-dashboard-links { display: none !important; }
-.desktop-dashboard-tabs { display: block; }
-@media (max-width: 768px) {
-  .desktop-dashboard-tabs iframe {
-    width: 100vw !important;
-    margin-left: calc(50% - 50vw) !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-}
-</style>
-```
-
-:::
+{{< include ../../_includes/dashboard-cards-fr.qmd >}}
 
 ---
 

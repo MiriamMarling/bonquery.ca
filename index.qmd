@@ -1,23 +1,46 @@
 ---
-title: "BonQuery"
-subtitle: "Toronto Shelter System: An Independent Data Audit."
-description: "BonQuery turns humanitarian open data into clear, useful analyses — starting with Toronto's shelter system capacity, demand, and flow. Built for journalists, researchers, advocates, policymakers, and anyone paying attention."
+title: "Toronto Shelter Data Updated Daily"
+subtitle: "Independent dashboard replication, source-data validation, and public accountability"
+description: "BonQuery independently rebuilds Toronto shelter dashboards from open data, updates occupancy and capacity data every day, and publishes cold-weather accountability evidence."
 author: "Miriam Marling"
+date-modified: 2026-08-07
 open-graph:
-  title: "BonQuery — Data for the Greater Good"
-  description: "BonQuery turns humanitarian open data into clear, useful analyses — starting with Toronto's shelter system capacity, demand, and flow."
-  site_name: "BonQuery — Data for the Greater Good"
+  title: "Toronto Shelter Data Updated Daily | BonQuery"
+  description: "Independent Toronto shelter dashboard replication, daily occupancy and capacity updates, source-data validation, and cold-weather accountability evidence."
+  site_name: "BonQuery"
+  image: images/bonquery-social-card.png
+  image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
 twitter-card:
-  card-style: summary
-  title: "BonQuery — Data for the Greater Good"
-  description: "BonQuery turns humanitarian open data into clear, useful analyses — starting with Toronto's shelter system capacity, demand, and flow."
+  card-style: summary_large_image
+  title: "Toronto Shelter Data Updated Daily | BonQuery"
+  description: "Toronto shelter dashboards rebuilt from open data, with daily capacity updates and cold-weather accountability evidence."
+  image: images/bonquery-social-card.png
+  image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
+format:
+  html:
+    include-in-header:
+      text: |
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "BonQuery",
+          "alternateName": "BonQuery Toronto Shelter Data",
+          "url": "https://bonquery.ca/",
+          "description": "Independent public-interest analysis of Toronto shelter capacity, demand, and system flow, updated from City of Toronto open data.",
+          "inLanguage": ["en-CA", "fr-CA"],
+          "author": {
+            "@type": "Person",
+            "name": "Miriam Marling"
+          }
+        }
+        </script>
 ---
 
 ```{ojs}
 //| echo: false
 daily_occ    = FileAttachment("data/daily_occupancy.json").json()
 bt_data      = FileAttachment("data/city_bridging_triage.json").json()
-shelter_flow = FileAttachment("data/shelter_flow.json").json()
 seasonRug    = FileAttachment("data/season_rug.csv").csv().then(rows =>
   rows.map(d => ({ min_temp: +d.min_temp, winter_season: d.winter_season }))
 )
@@ -29,6 +52,14 @@ binnedSC     = FileAttachment("data/cold_response_binned_by_winter_sc.csv").csv(
     n:             +d.n
   }))
 )
+
+homeLatestDate = [...new Set(daily_occ.map(r => r.date))].sort().reverse()[0]
+homeLatestLabel = {
+  const [year, month, day] = homeLatestDate.split("-").map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString("en-CA", {
+    year: "numeric", month: "long", day: "numeric"
+  })
+}
 ```
 
 ```{=html}
@@ -36,6 +67,57 @@ binnedSC     = FileAttachment("data/cold_response_binned_by_winter_sc.csv").csv(
 .quarto-container, .container-fluid, .container { max-width: none !important; }
 </style>
 ```
+
+::: {.bq-home-lede}
+BonQuery independently rebuilds Toronto's public shelter dashboards from source
+data so residents, journalists, researchers, and advocates can see how many
+spaces are available, how demand is changing, and where public decisions leave
+people without shelter.
+:::
+
+```{ojs}
+//| echo: false
+html`<div class="bq-home-status" role="status">
+  <span class="bq-status-dot" aria-hidden="true"></span>
+  <span><strong>Updated every day.</strong> Latest City shelter data available here: ${homeLatestLabel}.</span>
+</div>`
+```
+
+## Start with your question
+
+{{< include _includes/dashboard-cards.qmd >}}
+
+::: {.bq-work-rhythm}
+::: {.bq-work-rhythm-item}
+**Every day**
+
+We rebuild occupancy and capacity figures from Toronto Open Data and flag funded
+spaces that are offline.
+:::
+
+::: {.bq-work-rhythm-item}
+**Every month**
+
+We update system-flow and Central Intake trends when the City releases new data.
+:::
+
+::: {.bq-work-rhythm-item}
+**Every winter**
+
+We test whether the cold-weather response leaves people unplaced when exposure
+can cause severe harm.
+:::
+:::
+
+::: {.bq-quick-links}
+[See daily occupancy and capacity](projects/daily-occupancy.qmd)
+
+[Review Central Intake demand](projects/central-intake.qmd)
+
+[Read the cold-weather evidence](projects/cold-response.qmd)
+
+[Check the methods and source data](projects/about-the-data.qmd)
+:::
 
 ## Winter Accountability Monitor
 
@@ -270,99 +352,12 @@ including −2 °C). Dot size scales with the number of nights in that bin.*
 
 :::
 
-## The data we're tracking
+## Dashboards We Rebuild and Verify
 
-<!-- SYNC: both callout boxes below must be kept in sync with projects/toronto-shelter.qmd.
-     Paths here are adjusted for root-level rendering (projects/ prefix added). -->
-
-::: {.callout-note collapse="true"}
-## Monthly Shelter System Flow
-
-### The dashboards
-
-::: {.mobile-dashboard-links}
-Open each dashboard directly in your browser — they're built for
-interactive use and work best full-screen on a phone.
-
-- [Monthly Snapshot →](projects/monthly-snapshot.html)
-- [Year-to-Date Comparison →](projects/ytd-comparison.html)
-- [Historical Trends →](projects/historical-trends.html)
-:::
-
-::: {.desktop-dashboard-tabs}
-
-The three tabs below show different views of the data, with interactive
-filters on every chart.
-
-::: {.panel-tabset}
-
-#### Monthly Snapshot
-
-A point-in-time view of the shelter system for any month from January
-2018 forward. Use the date filter at the top to change months.
-
-[Open in a new tab →](projects/monthly-snapshot.html){target="_blank"}
-
-<iframe
-  src="projects/monthly-snapshot.html"
-  width="100%"
-  height="2800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Year-to-Date Comparison
-
-Compares the current year's cumulative figures against the same period
-the prior year. Useful for seeing whether the system is on track to
-exceed, match, or fall below last year.
-
-[Open in a new tab →](projects/ytd-comparison.html){target="_blank"}
-
-<iframe
-  src="projects/ytd-comparison.html"
-  width="100%"
-  height="900"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Historical Trends
-
-Multi-year time series for the headline metrics, with filters for
-population group, year, and month. Useful for spotting long-term
-patterns or seasonal trends.
-
-[Open in a new tab →](projects/historical-trends.html){target="_blank"}
-
-<iframe
-  src="projects/historical-trends.html"
-  width="100%"
-  height="3800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-:::
-
-:::
-
-```{=html}
-<style>
-.mobile-dashboard-links { display: none !important; }
-.desktop-dashboard-tabs { display: block; }
-@media (max-width: 768px) {
-  .desktop-dashboard-tabs iframe {
-    width: 100vw !important;
-    margin-left: calc(50% - 50vw) !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-}
-</style>
-```
-
-:::
+BonQuery independently reproduces Toronto's public shelter dashboards from the
+City's open data. The replications update when new source data lands, preserve
+historical views the City's pages do not always show, and make differences
+between funded, available, and occupied capacity easier to see.
 
 ---
 

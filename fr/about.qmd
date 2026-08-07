@@ -1,23 +1,32 @@
 ---
 title: "À propos"
+description: "À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique."
 author: "Miriam Marling"
+about:
+  template: trestles
+  image: ../images/miriam-headshot.jpg
+  image-alt: "Portrait de la fondatrice de BonQuery"
+  image-width: 14em
+  image-shape: round
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/MiriamMarling/bonquery.ca
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/mmarling
+    - icon: envelope
+      text: Courriel
+      href: mailto:info@BonQuery.ca
 open-graph:
-  title: "À propos — BonQuery"
-  description: >
-    À propos de Miriam Marling et de BonQuery — recherche sur données ouvertes
-    portant sur des enjeux humanitaires, à commencer par le réseau de refuges
-    de Toronto.
-  site_name: "BonQuery — Data for the Greater Good"
+  title: "À propos | BonQuery"
+  description: "À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique."
+  site_name: "BonQuery"
 twitter-card:
   card-style: summary
-  title: "À propos — BonQuery"
-  description: >
-    À propos de Miriam Marling et de BonQuery — recherche sur données ouvertes
-    portant sur des enjeux humanitaires, à commencer par le réseau de refuges
-    de Toronto.
+  title: "À propos | BonQuery"
+  description: "À propos de BonQuery, un projet indépendant sur les données des refuges de Toronto et la reddition de comptes publique."
 ---
-
-![](../images/miriam-headshot.jpg){fig-align="center" width="250" .rounded}
 
 Chercheuse en données basée à Toronto, j'ai complété une maîtrise en
 neurosciences cognitives, deux publications évaluées par les pairs, et un
@@ -33,10 +42,20 @@ en libre accès, mais que la plupart des citoyens n'y accèdent jamais. Le
 premier projet se concentre sur le réseau de refuges de Toronto, mis à rude
 épreuve. D'autres suivront.
 
+## Méthodes ouvertes et code public
+
+Le [dépôt de BonQuery.ca](https://github.com/MiriamMarling/bonquery.ca){target="_blank"}
+est public. Il contient les pages Quarto, les styles, les processus de
+publication et les données agrégées utilisées par le site. Les pipelines de
+données brutes et les analyses de recherche principales demeurent dans un dépôt
+privé distinct pendant la préparation du manuscrit.
+
+Si vous trouvez un problème dans le site ou dans les données publiées, vous
+pouvez [ouvrir un signalement sur GitHub](https://github.com/MiriamMarling/bonquery.ca/issues){target="_blank"}.
+
 ## Nous joindre
 
 Pour toute question sur les données, le projet ou une collaboration :
 
 - Miriam Marling : [miriam@BonQuery.ca](mailto:miriam@BonQuery.ca)
 - Demandes générales : [info@BonQuery.ca](mailto:info@BonQuery.ca)
-- [LinkedIn](https://www.linkedin.com/in/mmarling)

@@ -8,7 +8,6 @@ project:
     - fr/projects/daily-occupancy.qmd
     - fr/projects/data-validation.qmd
     - fr/projects/data-validation-central-intake.qmd
-    - fr/projects/discrepancy-tracker.qmd
     - fr/projects/historical-trends.qmd
     - fr/projects/monthly-snapshot.qmd
     - fr/projects/toronto-shelter.qmd
@@ -30,33 +29,18 @@ website:
     left:
       - href: fr/index.qmd
         text: Accueil
+      - href: fr/projects/toronto-shelter.qmd
+        text: "Tableaux de bord"
       - href: fr/projects/cold-response.qmd
         text: "Laissés dans le froid"
-      - text: Audits
+      - text: "Données et méthodes"
         menu:
-          - text: "SURVEILLANCE INDÉPENDANTE"
-          - href: fr/projects/discrepancy-tracker.qmd
-            text: "Suivi des divergences"
-          - href: fr/projects/data-validation.qmd
-            text: "Audit de l'occupation d'urgence"
-          - href: fr/projects/data-validation-central-intake.qmd
-            text: "Audit de l'admission centrale"
           - href: fr/projects/about-the-data.qmd
             text: "À propos des données"
-      - text: Tableaux de bord
-        menu:
-          - href: fr/projects/toronto-shelter.qmd
-            text: "Le réseau de refuges de Toronto"
-          - href: fr/projects/monthly-snapshot.qmd
-            text: "Réplication du flux mensuel"
-          - href: fr/projects/ytd-comparison.qmd
-            text: "Concordance année en cours"
-          - href: fr/projects/historical-trends.qmd
-            text: "Tendances historiques"
-          - href: fr/projects/central-intake.qmd
-            text: "Analyse des demandes d'orientation"
-          - href: fr/projects/daily-occupancy.qmd
-            text: "Occupation et capacité quotidiennes"
+          - href: fr/projects/data-validation.qmd
+            text: "Validation des données d'occupation"
+          - href: fr/projects/data-validation-central-intake.qmd
+            text: "Validation de l'admission centrale"
       - href: fr/about.qmd
         text: À propos
     right:
@@ -65,6 +49,6 @@ website:
         id: bq-lang-toggle-nav
   page-footer:
     center: |
-      Un audit de données indépendant pour les résidents de Toronto. / An independent data audit for Toronto residents.
+      Analyse indépendante d'intérêt public du réseau de refuges de Toronto.
       <br>
       <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span>

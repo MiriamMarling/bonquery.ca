@@ -7,6 +7,7 @@ description: "On 95.9% of nights below −5 °C across six Toronto winters, peop
   proof that zero is a budget choice the city makes each summer."
 author: "Miriam Marling"
 date: 2026-06-04
+date-modified: 2026-08-07
 open-graph:
   title: "Left in the Cold — Toronto Shelter System"
   description: "On 95.9% of nights below −5 °C across six Toronto winters,
@@ -342,17 +343,264 @@ jammed against 99% or more as in the worst years. When the everyday system
 isn't already at capacity, a cold snap doesn't have to end with people on the
 street.
 
+## The reserve the City did not plan for
+
+The City announced how many spaces it would activate, but not the operating
+reserve required to admit the next person. Its 2023–24 plan conditionally
+activated 170 warming-centre spaces while reporting approximately 275 people
+unmatched for shelter each night and acknowledging that the plan might not be
+sufficient. This was not a plan that unexpectedly encountered unmet demand. It
+was adopted with unmet demand already documented.
+
+The analysis below asks a deliberately narrow question: among people who were
+already admitted to the warming-centre and surge layer, how many additional
+spaces would have been required to preserve a small operating reserve on nights
+at or below −5 °C? A reserve is not waste. It is the room needed to admit the
+next person without first waiting for someone else to leave.
+
+::: {.bq-warn}
+**This is a lower bound, not an estimate of total need.** Toronto does not count
+everyone turned away from a full walk-in site. The separate Central Intake
+queue is not added here because it uses a different access route. Every number
+below is calculated only from people the active walk-in layer had already
+admitted.
+:::
+
+```{ojs}
+//| echo: false
+//| output: false
+
+reserveRows = FileAttachment("../data/cold_weather_capacity_reserve.csv")
+  .csv()
+  .then(rows => rows.map(d => ({
+    date: new Date(`${d.date}T00:00:00`),
+    winter_season: d.winter_season,
+    min_temp: +d.min_temp,
+    reserve_target_pct: +d.reserve_target_pct,
+    observed_capacity: +d.observed_capacity,
+    observed_occupancy: +d.observed_occupancy,
+    observed_spare: +d.observed_spare,
+    additional_spaces_needed: +d.additional_spaces_needed
+  })))
+
+reserveMedian = values => {
+  const sorted = [...values].sort((a, b) => a - b)
+  const middle = Math.floor(sorted.length / 2)
+  return sorted.length % 2
+    ? sorted[middle]
+    : (sorted[middle - 1] + sorted[middle]) / 2
+}
+
+reserveSummaryRows = [2, 5, 10, 15].map(target => {
+  const rows = reserveRows.filter(d => d.reserve_target_pct === target)
+  const needed = rows.map(d => d.additional_spaces_needed)
+  const short = needed.filter(d => d > 0)
+  return {
+    target,
+    nights: rows.length,
+    shortfallNights: short.length,
+    shortfallPct: 100 * short.length / rows.length,
+    medianAll: reserveMedian(needed),
+    medianWhenShort: reserveMedian(short),
+    maximum: Math.max(...needed),
+    bedNights: needed.reduce((sum, value) => sum + value, 0)
+  }
+})
+```
+
+```{ojs}
+//| echo: false
+viewof reserveTarget = Inputs.radio([2, 5, 10, 15], {
+  label: "Minimum share of active beds kept free",
+  value: 10,
+  format: d => `${d}% reserve`
+})
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+selectedReserveRows = reserveRows.filter(
+  d => d.reserve_target_pct === reserveTarget
+)
+selectedReserveSummary = reserveSummaryRows.find(
+  d => d.target === reserveTarget
+)
+```
+
+```{ojs}
+//| echo: false
+{
+  const s = selectedReserveSummary
+  const cards = [
+    ["Cold nights below target", `${s.shortfallNights}/${s.nights}`],
+    ["Share below target", `${s.shortfallPct.toFixed(1)}%`],
+    ["Median additional spaces", s.medianAll.toFixed(0)],
+    ["Maximum additional spaces", s.maximum.toFixed(0)]
+  ]
+  const grid = document.createElement("div")
+  grid.style.cssText =
+    "display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));" +
+    "gap:0.8rem;margin:1rem 0;"
+  for (const [label, value] of cards) {
+    const card = document.createElement("div")
+    card.style.cssText =
+      "background:var(--bq-kpi-bg);border:1px solid var(--bq-border);" +
+      "border-radius:0.45rem;padding:0.9rem;"
+    const valueEl = document.createElement("div")
+    valueEl.textContent = value
+    valueEl.style.cssText =
+      "color:var(--bq-kpi-value);font-size:1.7rem;font-weight:700;line-height:1.1;"
+    const labelEl = document.createElement("div")
+    labelEl.textContent = label
+    labelEl.style.cssText =
+      "color:var(--bq-kpi-label);font-size:0.86rem;margin-top:0.35rem;"
+    card.append(valueEl, labelEl)
+    grid.append(card)
+  }
+  return grid
+}
+```
+
+```{ojs}
+//| echo: false
+//| label: fig-reserve-shortfall
+//| fig-cap: |
+//|   *Additional walk-in spaces required to preserve the selected operating
+//|   reserve on nights at or below −5 °C, current activation period.* Each dot
+//|   is one night. The calculation uses admitted occupancy only, so it is a
+//|   lower bound on total need.
+
+Plot.plot({
+  width: 720,
+  height: 390,
+  marginLeft: 70,
+  marginRight: 20,
+  marginTop: 20,
+  marginBottom: 55,
+  color: {
+    type: "ordinal",
+    legend: true,
+    label: "Winter season",
+    domain: [...seasonColorMap.keys()],
+    range: [...seasonColorMap.values()]
+  },
+  x: {
+    label: "Overnight minimum temperature (°C)",
+    labelAnchor: "center",
+    reverse: true
+  },
+  y: {
+    label: `Additional spaces for ${reserveTarget}% reserve`,
+    labelAnchor: "top",
+    grid: true
+  },
+  marks: [
+    Plot.ruleY([0], { stroke: refLine }),
+    Plot.ruleX([-5, -10, -15], {
+      stroke: refLine,
+      strokeWidth: 1,
+      strokeDasharray: "4,3"
+    }),
+    Plot.dot(selectedReserveRows, {
+      x: "min_temp",
+      y: "additional_spaces_needed",
+      fill: "winter_season",
+      r: 4,
+      fillOpacity: 0.75
+    }),
+    Plot.tip(selectedReserveRows, Plot.pointer({
+      x: "min_temp",
+      y: "additional_spaces_needed",
+      title: d =>
+        `${d.date.toISOString().slice(0, 10)}  ·  ${d.winter_season}\n` +
+        `${d.min_temp.toFixed(1)} °C\n` +
+        `${d.additional_spaces_needed} additional spaces needed\n` +
+        `${d.observed_occupancy}/${d.observed_capacity} beds occupied`
+    }))
+  ]
+})
+```
+
+**Table 2.** *Minimum additional walk-in capacity required under four operating
+reserve scenarios on nights at or below −5 °C, 2023–24 through 2025–26.*
+
+```{ojs}
+//| echo: false
+{
+  const table = document.createElement("table")
+  table.className = "table table-striped"
+  const head = table.createTHead().insertRow()
+  for (const label of [
+    "Reserve target",
+    "Nights below target",
+    "Median additional spaces",
+    "Maximum additional spaces",
+    "Additional bed-nights"
+  ]) {
+    const th = document.createElement("th")
+    th.scope = "col"
+    th.textContent = label
+    head.append(th)
+  }
+  const body = table.createTBody()
+  for (const s of reserveSummaryRows) {
+    const row = body.insertRow()
+    const values = [
+      `${s.target}%`,
+      `${s.shortfallNights}/${s.nights} (${s.shortfallPct.toFixed(1)}%)`,
+      s.medianAll.toFixed(0),
+      s.maximum.toFixed(0),
+      s.bedNights.toLocaleString("en-CA")
+    ]
+    for (const value of values) {
+      const cell = row.insertCell()
+      cell.textContent = value
+    }
+  }
+  return table
+}
+```
+
+*Note.* “Additional spaces” is the minimum active capacity required to keep the
+selected percentage of beds free after accommodating the people already
+inside. It does not include unrecorded walk-in turnaways or unmatched Central
+Intake callers. The 2% row reproduces the manuscript's locked saturation result:
+64/137 nights (46.7%) were at least 98% full.
+
+At a modest **10% reserve**, the active layer fell short on **121/137 nights
+(88.3%)**. It would have needed a median of **21 additional spaces per cold
+night**, with a maximum of **37**. Those figures are not a generous surplus.
+They are the minimum breathing room calculated from people already admitted.
+
+The City also paid for capacity it did not make available. During 2023–24
+deactivation periods, warming centres stopped admitting new clients while
+funded beds remained vacant. The Auditor General counted **4,331 vacant
+bed-nights over 94 nights**, about **46 beds per night**. The City paid
+third-party operators the maximum **$12.5 million** contribution based on
+full-capacity budgets; operators later reported **$9.7 million** in costs, and
+nearly **$2.9 million** in surplus remained unrecovered as of October 2024. The
+audit also found that the City's cost review lacked supporting records and did
+not properly adjust for how long sites were actually open
+([Auditor General, pp. 22–23 and 35–37](https://www.toronto.ca/legdocs/mmis/2025/au/bgrd/backgroundfile-252902.pdf){target="_blank"}).
+
+Public money paid for capacity. Administrative rules kept that capacity from
+people who needed it. Because local evidence shows that cold injury and death
+occur well above −15 °C, deactivation did not mark the end of danger. It marked
+the point at which the City chose to stop admitting people despite available
+funding, physical beds, and continuing demand.
+
 That is the whole lever. And it is pulled in the summer — now — when the fall
 budget decides how many beds will exist on the first freezing night of November.
 By the time the cold arrives, the decision has already been made.
 
-**Zero is the only acceptable number of people left outside below freezing in a
-city as wealthy as Toronto.** Reaching it next winter does not require a new
-program or a breakthrough. It requires deciding, in this summer's budget, to
-fund enough standing shelter capacity that the system carries the same breathing
-room it had last winter — *before* the first freezing night, not after. The city
-has already shown it can get the number down. The only question left is whether
-it will choose to.
+**The goal should be zero people left without shelter below freezing.** Moving
+toward that goal does not require a new type of program. It requires funding
+enough standing shelter capacity to preserve breathing room before the first
+freezing night, not adding temporary capacity only after demand has exceeded
+what is available. The City has already shown that the overnight queue can fall
+sharply. The question is whether it will preserve that capacity through the
+next winter.
 
 ---
 

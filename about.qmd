@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "About BonQuery's independent Toronto shelter data work and why the site uses homeless, unhoused, and people experiencing homelessness."
+description: "About Miriam Marling and BonQuery's independent Toronto shelter data and public-accountability work."
 author: "Miriam Marling"
 about:
   template: trestles
@@ -20,12 +20,12 @@ about:
       href: mailto:info@BonQuery.ca
 open-graph:
   title: "About | BonQuery"
-  description: "About BonQuery's independent Toronto shelter data work and its use of homeless, unhoused, and people experiencing homelessness."
+  description: "About Miriam Marling and BonQuery's independent Toronto shelter data and public-accountability work."
   site_name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "About | BonQuery"
-  description: "About BonQuery's independent Toronto shelter data work and its use of homeless, unhoused, and people experiencing homelessness."
+  description: "About Miriam Marling and BonQuery's independent Toronto shelter data and public-accountability work."
 ---
 
 I'm a Toronto-based data researcher with a
@@ -41,44 +41,8 @@ on humanitarian issues in Canada sits on government open-data pages
 where most people will never see it. The first project focuses on
 Toronto's taxed shelter system. More to follow.
 
-## Language: homeless, unhoused, and people experiencing homelessness
-
-People use **homeless**, **unhoused**, and **people experiencing homelessness**.
-Some people and activists prefer **unhoused** because it names the lack of
-housing, not a fixed identity. Others use **homeless** for themselves and for
-established research, services, and advocacy. No single term speaks for
-everyone.
-
-BonQuery usually says **people experiencing homelessness** or **people without
-housing**. We use **homeless** when it is part of an official name, a direct
-quote, a research title, or a search term people use to find this work. We do
-not call people “the homeless.” We will keep listening to people with lived
-experience and change our wording when needed.
-
-**Needing shelter does not settle the label.** Someone may still have an address
-but be unable to return safely. Canada's formal definition includes people
-staying in emergency shelters because of family violence under homelessness,
-but a person may describe their own situation differently. [See the Canadian
-definition](https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/){target="_blank"}.
-
-BonQuery uses **housing insecure** for a wider group: people whose housing is
-unsafe, unstable, unaffordable, or about to be lost. That can include someone
-staying temporarily with other people or fleeing violence. A person can be
-housing insecure without appearing in the City shelter data at all.
-
-**Unhoused is not one experience.** People may use the word while sleeping
-outside, staying in emergency shelter, or moving between temporary places
-without a safe home they can count on. People also differ in the words they use
-for themselves. BonQuery will not guess someone's living situation or preferred
-word from a row in a data file.
-
-This approach follows [person-first language guidance](https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/){target="_blank"}
-and research on [why housing is central to the meaning of
-homelessness](https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf){target="_blank"}.
-It also follows the [Canadian definition of
-homelessness](https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/){target="_blank"}
-and recognizes the established name of York University's [Canadian
-Observatory on Homelessness](https://yorkspace.library.yorku.ca/communities/081a5bc9-a172-4b31-a371-60715b0130c7){target="_blank"}.
+[See who Toronto's shelter data counts, who it misses, and how BonQuery uses
+words such as homeless and unhoused →](projects/about-the-data.qmd#who-the-data-misses-and-why-words-matter)
 
 ## Open methods and public code
 

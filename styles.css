@@ -575,6 +575,13 @@ body:has(.bq-home-lede) #title-block-header .description {
   margin-top: 0.35rem;
 }
 
+.bq-preview-kpi span .bq-preview-word {
+  display: inline;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .bq-preview-daily strong { color: var(--bq-danger); }
 .bq-card-monthly .bq-preview-kpi strong { color: var(--bq-card-accent); }
 
@@ -930,6 +937,19 @@ body.quarto-dark .quarto-color-scheme-toggle .bi:hover {
 .bq-embed {
   border: 1px solid var(--bq-border);
   border-radius: 4px;
+}
+
+.mobile-dashboard-links { display: none; }
+.desktop-dashboard-tabs { display: block; }
+
+.bq-purpose-grid-single {
+  grid-template-columns: minmax(0, 28rem);
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .mobile-dashboard-links { display: block; }
+  .desktop-dashboard-tabs { display: none; }
 }
 
 

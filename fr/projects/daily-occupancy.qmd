@@ -9,6 +9,7 @@ description: >
 //| echo: false
 daily_occ = FileAttachment("../data/daily_occupancy.json").json()
 bt_data   = FileAttachment("../data/city_bridging_triage.json").json()
+audit_history = FileAttachment("../data/city_audit_history.json").json()
 ```
 
 ```{ojs}
@@ -22,6 +23,22 @@ function fmtDate(s) {
 
 allDates = [...new Set(daily_occ.map(r => r.date))].sort().reverse()
 latestDate = allDates[0]
+
+auditDateLabel = isoDate => {
+  const [year, month, day] = isoDate.split("-").map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString("fr-CA", {
+    month: "long", day: "numeric"
+  })
+}
+
+auditFirstLabel = auditDateLabel(audit_history.coverage.first_audit_date)
+auditLastLabel = auditDateLabel(audit_history.coverage.last_audit_date)
+latestAudit = audit_history.records.find(
+  record => record.date === audit_history.coverage.last_audit_date
+)
+latestEmergencyEmptyDifference = latestAudit.mismatches.find(
+  mismatch => mismatch.key === "emerg_total" && mismatch.column === "unoccupied"
+)
 ```
 
 La version BonQuery de ce tableau ajoute deux fonctions absentes de la page
@@ -34,7 +51,32 @@ ou espaces temporairement indisponibles — voir la
 [page de validation des données](data-validation.html){target="_blank"}
 pour une explication de ce que cela représente et pourquoi cela compte.
 
-{{< include ../../_includes/toronto-help-contacts-fr.qmd >}}
+::: {.bq-status-note}
+**Il s'agit du dernier relevé publié, et non de la disponibilité des lits en
+temps réel.** Une place indiquée comme libre dans le fichier peut déjà être
+occupée, indisponible ou ne pas convenir à la personne qui appelle. Utilisez
+les coordonnées vérifiées ci-dessous si une personne a besoin d'une place
+maintenant.
+:::
+
+```{ojs}
+//| echo: false
+html`<div class="bq-audit-alert" role="alert">
+  <p><strong>Vérification quotidienne :</strong> Le tableau de bord des refuges
+  de la Ville ne correspondait pas à ses propres fichiers publics lors de
+  <strong>${audit_history.coverage.dates_with_mismatches} des ${audit_history.coverage.successfully_parsed_dates} jours vérifiés</strong>,
+  du ${auditFirstLabel} au ${auditLastLabel}. Le ${auditLastLabel}, le tableau de
+  bord montrait <strong>${Math.abs(latestEmergencyEmptyDifference.delta)} places
+  vides de plus dans les refuges d'urgence</strong> que les données publiques.
+  <a href="data-validation.html">Voir les différences →</a></p>
+</div>`
+```
+
+```{=html}
+<nav class="bq-purpose-grid bq-purpose-grid-single" aria-label="Obtenir de l'aide maintenant">
+  <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>J'ai besoin d'aide maintenant</strong><small>Refuges, violence, équipes de rue et urgences à Toronto</small></span></a>
+</nav>
+```
 
 ## Occupation et capacité quotidiennes — ${fmtDate(selectedDate)}
 
@@ -257,6 +299,8 @@ dailyTable = {
     </div>`
 }
 ```
+
+{{< include ../../_includes/toronto-help-contacts-fr.qmd >}}
 
 Ce tableau reproduit le rapport d'utilisation quotidienne des refuges et services
 d'hébergement de nuit de la Ville de Toronto à partir des données ouvertes de la

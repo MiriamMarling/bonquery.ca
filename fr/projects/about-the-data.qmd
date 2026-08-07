@@ -4,22 +4,24 @@ subtitle: >
   Comment lire les chiffres des refuges de Toronto, et où les données ont leurs
   limites
 description: >
-  Méthodologie de l'audit des données du réseau de refuges de Toronto — sources,
-  vérifications d'intégrité et limites structurelles à connaître avant de tirer
-  des conclusions.
+  Comment lire les données sur les refuges de Toronto : qui est compté, qui
+  manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans
+  logement et personnes en situation d'itinérance.
 author: "Miriam Marling"
 open-graph:
-  title: "À propos des données — Réseau de refuges de Toronto"
+  title: "À propos des données | Réseau de refuges de Toronto"
   description: >
-    Méthodologie de l'audit des données du réseau de refuges de Toronto — sources,
-    vérifications d'intégrité et limites structurelles.
-  site_name: "BonQuery — Data for the Greater Good"
+    Comment lire les données sur les refuges de Toronto : qui est compté, qui
+    manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans
+    logement et personnes en situation d'itinérance.
+  site_name: "BonQuery | Des données au service du bien commun"
 twitter-card:
   card-style: summary
-  title: "À propos des données — Réseau de refuges de Toronto"
+  title: "À propos des données | Réseau de refuges de Toronto"
   description: >
-    Méthodologie de l'audit des données du réseau de refuges de Toronto — sources,
-    vérifications d'intégrité et limites structurelles.
+    Comment lire les données sur les refuges de Toronto : qui est compté, qui
+    manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans
+    logement et personnes en situation d'itinérance.
 ---
 
 ::: {.bq-status-note}
@@ -130,6 +132,56 @@ active augmente ou diminue, ce changement décrit le réseau de refuges en
 particulier. La question de savoir si l'itinérance totale évolue au même
 rythme dépend de la partie de la population que ces données ne voient pas —
 une question à laquelle ce jeu de données ne peut répondre à lui seul.
+
+## Qui manque dans les données et pourquoi les mots comptent {#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent}
+
+**L'estimation de 18 % ci-dessus concerne les personnes en situation
+d'itinérance absolue. Elle ne mesure pas toutes les personnes qui ont besoin
+d'un endroit sûr.** Des adultes, des enfants et des familles qui fuient la
+violence peuvent encore avoir une adresse, mais aucun domicile sûr où retourner.
+Elles peuvent utiliser un programme absent de ces fichiers. Elles peuvent aussi
+ne recevoir l'aide d'aucun programme qui y figure.
+
+Une personne peut avoir un **logement précaire**, être **sans logement** ou être
+**en situation d'itinérance**. Ces situations peuvent se chevaucher, mais elles
+ne sont pas identiques. BonQuery emploie **logement précaire** pour parler plus
+largement d'un logement non sécuritaire, instable, trop cher ou sur le point
+d'être perdu.
+
+Être **sans logement** ne décrit pas une seule expérience. Cela peut vouloir
+dire dormir dehors, utiliser un refuge ou passer d'un lieu temporaire à un autre
+sans avoir un domicile sûr sur lequel compter. Une ligne dans un fichier de
+données ne peut pas nous dire quels mots une personne emploie pour parler de sa
+propre situation.
+
+### Comment BonQuery emploie ces mots
+
+Les personnes emploient **sans-abri**, **sans logement** et **personnes en
+situation d'itinérance**. Certaines personnes et certains militants préfèrent
+**sans logement**, parce que cette expression nomme l'absence de logement plutôt
+qu'une identité fixe. D'autres emploient **sans-abri** pour parler d'elles-mêmes
+ou dans la recherche, les services et la défense des droits. Aucun terme ne
+parle au nom de tout le monde.
+
+BonQuery dit habituellement **personnes en situation d'itinérance** ou
+**personnes sans logement**. Nous employons **sans-abri** lorsqu'il fait partie
+d'un nom officiel, d'une citation, d'un titre de recherche ou d'un terme de
+recherche courant. Nous n'appelons pas les gens « les sans-abri ». Nous
+continuerons d'écouter les personnes ayant une expérience vécue et modifierons
+nos mots au besoin.
+
+La définition officielle canadienne inclut les personnes qui séjournent dans
+un refuge d'urgence en raison de violence familiale, mais une personne peut
+décrire sa propre situation autrement. Cette approche s'appuie sur la
+[définition canadienne de l'itinérance](https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/){target="_blank"},
+les [recommandations sur le langage centré sur la personne](https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/){target="_blank"}
+et la recherche sur [la place centrale du logement dans le sens du mot
+itinérance](https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf){target="_blank"}.
+
+Ces données montrent seulement les personnes qui utilisent les programmes
+inclus dans les fichiers. Quels que soient les mots employés, les questions
+pratiques restent les mêmes : Y a-t-il un endroit sûr ce soir? Qu'est-ce qui
+change? Les chiffres publics sont-ils exacts?
 
 ## Comment les groupes de population se rapportent entre eux
 

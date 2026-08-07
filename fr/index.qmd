@@ -85,9 +85,8 @@ html`<div class="bq-audit-alert" role="alert">
   tableau de bord de la Ville indiquait <strong>82 places d'urgence inoccupées
   de plus</strong> que les lignes correspondantes des données ouvertes. Le
   public ne peut pas reproduire un produit de données de la Ville à partir de
-  l'autre. Les dates que l'analyseur n'a pas pu saisir ne sont pas comptées
-  comme des correspondances. <a href="projects/data-validation.html">Voir
-  l'audit et les méthodes →</a></p>
+  l'autre. <a href="projects/data-validation.html">Voir l'audit et les méthodes
+  →</a></p>
 </div>`
 ```
 

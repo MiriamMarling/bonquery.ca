@@ -6,6 +6,14 @@ BonQuery breathes life into humanitarian-related data by turning numbers that si
 
 We use publicly available data to investigate urgent humanitarian issues, starting with Toronto’s shelter system. The work is open, reproducible, and built for journalists, researchers, advocates, policymakers, and anyone paying attention.
 
+## City-page preservation
+
+When the City's daily-table parser encounters a table it cannot read, BonQuery
+commits the exact HTML response and a screenshot rendered from that same file.
+The HTML is the durable record for repairing and re-running the parser later;
+the screenshot is supporting visual evidence. This prevents a one-day City
+publication from being lost to a page-format change.
+
 **Note:** This repository contains only the front-end website files, aggregated chart data, and rendering configurations for BonQuery.ca. The raw data pipelines, backend processing, and primary analysis scripts are currently kept in a separate, private repository
 
 Website built with the help of [Claude Code](https://claude.com/product/claude-code).
@@ -39,6 +47,15 @@ licence, not only a courtesy.
 BonQuery donne vie aux données humanitaires en transformant les chiffres qui dorment sur les portails gouvernementaux de données ouvertes en analyses claires et utiles pour les personnes qui peuvent agir sur les enjeux qu'elles révèlent.
 
 Nous utilisons des données accessibles au public pour analyser des enjeux humanitaires urgents, en commençant par le réseau de refuges de Toronto. Le travail est ouvert, reproductible et conçu pour les journalistes, les chercheurs, les défenseurs, les décideurs politiques et toute personne qui suit la situation de près.
+
+## Préservation des pages de la Ville
+
+Lorsqu'un tableau quotidien de la Ville ne peut pas être lu par l'analyseur,
+BonQuery conserve la réponse HTML exacte et une capture d'écran générée à
+partir de ce même fichier. Le HTML est l'archive durable qui permet de réparer
+et de relancer l'analyseur; la capture d'écran sert de preuve visuelle. Ainsi,
+un tableau publié pour une seule journée n'est pas perdu à cause d'un changement
+de format de page.
 
 **Note :** Ce dépôt contient uniquement les fichiers du site front-end, les données agrégées utilisées pour les graphiques et les configurations de rendu de BonQuery.ca. Les pipelines de données brutes, le traitement backend et les scripts d'analyse principaux sont actuellement conservés dans un dépôt privé distinct.
 

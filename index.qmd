@@ -61,7 +61,6 @@ format:
 //| echo: false
 daily_occ    = FileAttachment("data/daily_occupancy.json").json()
 bt_data      = FileAttachment("data/city_bridging_triage.json").json()
-audit_history = FileAttachment("data/city_audit_history.json").json()
 seasonRug    = FileAttachment("data/season_rug.csv").csv().then(rows =>
   rows.map(d => ({ min_temp: +d.min_temp, winter_season: d.winter_season }))
 )
@@ -82,15 +81,6 @@ homeLatestLabel = {
   })
 }
 
-homeAuditDateLabel = isoDate => {
-  const [year, month, day] = isoDate.split("-").map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString("en-CA", {
-    month: "long", day: "numeric"
-  })
-}
-
-homeAuditFirstLabel = homeAuditDateLabel(audit_history.coverage.first_audit_date)
-homeAuditLastLabel = homeAuditDateLabel(audit_history.coverage.last_audit_date)
 ```
 
 ```{=html}
@@ -137,20 +127,6 @@ html`<div class="bq-home-status" role="status">
   <span><strong>Updated every day.</strong> Latest published City of Toronto shelter data shown here: ${homeLatestLabel}. <strong>Not live bed availability.</strong></span>
 </div>`
 ```
-
-```{ojs}
-//| echo: false
-html`<div class="bq-audit-alert" role="alert">
-  <p><strong>Daily data check:</strong> The City's shelter dashboard did not
-  match its own public data files on
-  <strong>${audit_history.coverage.dates_with_mismatches} of the ${audit_history.coverage.successfully_parsed_dates} days we checked</strong>,
-  from ${homeAuditFirstLabel} to ${homeAuditLastLabel}. On August 5, the dashboard
-  showed <strong>82 more empty emergency beds</strong> than the public data showed.
-  <a href="projects/data-validation.html">See what differed →</a></p>
-</div>`
-```
-
-{{< include _includes/toronto-help-contacts.qmd >}}
 
 ## Start with your question
 
@@ -498,6 +474,75 @@ more nights.*
 BonQuery rebuilds Toronto's public shelter dashboards from the City's public
 data files. Our pages update when the City posts new data. They also keep older dates
 and show the difference between spaces that are funded, open, and used.
+
+---
+
+::: {.callout-note collapse="true" title="Monthly Shelter System Flow"}
+
+::: {.mobile-dashboard-links}
+Open each dashboard directly in your browser. They work best full-screen on a
+phone.
+
+- [Monthly Snapshot →](projects/monthly-snapshot.html)
+- [Year-to-Date Comparison →](projects/ytd-comparison.html)
+- [Historical Trends →](projects/historical-trends.html)
+:::
+
+::: {.desktop-dashboard-tabs}
+
+The three tabs below show different views of the monthly data. Each dashboard
+has interactive filters.
+
+::: {.panel-tabset}
+
+#### Monthly Snapshot
+
+A point-in-time view of the shelter system for any month from January 2018
+forward.
+
+[Open in a new tab →](projects/monthly-snapshot.html){target="_blank"}
+
+<iframe
+  src="projects/monthly-snapshot.html"
+  width="100%"
+  height="2800"
+  class="bq-embed"
+  loading="lazy">
+</iframe>
+
+#### Year-to-Date Comparison
+
+Compare this year's cumulative figures with the same period in earlier years.
+
+[Open in a new tab →](projects/ytd-comparison.html){target="_blank"}
+
+<iframe
+  src="projects/ytd-comparison.html"
+  width="100%"
+  height="900"
+  class="bq-embed"
+  loading="lazy">
+</iframe>
+
+#### Historical Trends
+
+See multi-year changes in homelessness and shelter use.
+
+[Open in a new tab →](projects/historical-trends.html){target="_blank"}
+
+<iframe
+  src="projects/historical-trends.html"
+  width="100%"
+  height="3800"
+  class="bq-embed"
+  loading="lazy">
+</iframe>
+
+:::
+
+:::
+
+:::
 
 ---
 
@@ -865,6 +910,10 @@ Contains information licensed under the [Open Government Licence - Toronto](http
 :::
 
 <!-- END SYNC -->
+
+---
+
+{{< include _includes/toronto-help-contacts.qmd >}}
 
 ---
 

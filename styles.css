@@ -932,6 +932,19 @@ body.quarto-dark .quarto-color-scheme-toggle .bi:hover {
   border-radius: 4px;
 }
 
+.mobile-dashboard-links { display: none; }
+.desktop-dashboard-tabs { display: block; }
+
+.bq-purpose-grid-single {
+  grid-template-columns: minmax(0, 28rem);
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .mobile-dashboard-links { display: block; }
+  .desktop-dashboard-tabs { display: none; }
+}
+
 
 /* ── Validation table classes ────────────────────────────────────────── */
 

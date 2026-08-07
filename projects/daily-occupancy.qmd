@@ -8,6 +8,7 @@ description: "Latest published City of Toronto shelter beds and spaces for peopl
 //| echo: false
 daily_occ = FileAttachment("../data/daily_occupancy.json").json()
 bt_data   = FileAttachment("../data/city_bridging_triage.json").json()
+audit_history = FileAttachment("../data/city_audit_history.json").json()
 ```
 
 ```{ojs}
@@ -22,6 +23,22 @@ function fmtDate(s) {
 
 allDates = [...new Set(daily_occ.map(r => r.date))].sort().reverse()
 latestDate = allDates[0]
+
+auditDateLabel = isoDate => {
+  const [year, month, day] = isoDate.split("-").map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString("en-CA", {
+    month: "long", day: "numeric"
+  })
+}
+
+auditFirstLabel = auditDateLabel(audit_history.coverage.first_audit_date)
+auditLastLabel = auditDateLabel(audit_history.coverage.last_audit_date)
+latestAudit = audit_history.records.find(
+  record => record.date === audit_history.coverage.last_audit_date
+)
+latestEmergencyEmptyDifference = latestAudit.mismatches.find(
+  mismatch => mismatch.key === "emerg_total" && mismatch.column === "unoccupied"
+)
 ```
 
 This table adds two things to the City's page. First, you can choose any date
@@ -37,7 +54,23 @@ the person calling. Use the verified contacts below when someone needs a place
 now.
 :::
 
-{{< include ../_includes/toronto-help-contacts.qmd >}}
+```{ojs}
+//| echo: false
+html`<div class="bq-audit-alert" role="alert">
+  <p><strong>Daily data check:</strong> The City's shelter dashboard did not
+  match its own public data files on
+  <strong>${audit_history.coverage.dates_with_mismatches} of the ${audit_history.coverage.successfully_parsed_dates} days we checked</strong>,
+  from ${auditFirstLabel} to ${auditLastLabel}. On ${auditLastLabel}, the dashboard
+  showed <strong>${Math.abs(latestEmergencyEmptyDifference.delta)} more empty emergency beds</strong>
+  than the public data showed. <a href="data-validation.html">See what differed →</a></p>
+</div>`
+```
+
+```{=html}
+<nav class="bq-purpose-grid bq-purpose-grid-single" aria-label="Get help now">
+  <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>I need help now</strong><small>Toronto shelter, violence, outreach, and emergency contacts</small></span></a>
+</nav>
+```
 
 ## Toronto shelter use on ${fmtDate(selectedDate)}
 
@@ -291,6 +324,8 @@ dailyTable = {
     </div>`
 }
 ```
+
+{{< include ../_includes/toronto-help-contacts.qmd >}}
 
 We rebuild this table from the City's public data file. The City leaves
 **Bridging & Triage Programs** out of that file, so we add the number from the

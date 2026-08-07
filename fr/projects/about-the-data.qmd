@@ -196,6 +196,29 @@ total, ou toute opération qui suppose que les groupes ne se chevauchent
 pas — la répartition par statut de réfugié est le seul endroit de ces
 données où cela est mathématiquement sûr.
 
+## Corrections, contexte et collaboration
+
+BonQuery est indépendant, mais ce travail vise à être utile tant à la Ville
+qu'au public. Nous distinguons la politique publiée, les opérations observées et
+les résultats mesurés. Le personnel de la Ville, les exploitants de services,
+les chercheurs et les personnes qui défendent les droits sont invités à signaler
+des erreurs, à fournir un contexte manquant ou à nous orienter vers des documents
+publics plus récents. Lorsqu'une nouvelle preuve modifie un constat, nous
+documenterons la correction.
+
+L'objectif pratique est d'améliorer le dossier public et d'appuyer le travail
+que [la vérificatrice générale a déjà recommandé](https://www.toronto.ca/legdocs/mmis/2025/au/bgrd/backgroundfile-252902.pdf){target="_blank"} :
+de meilleures données sur les places temporaires et les refus, des estimations
+plus solides des besoins hivernaux, davantage de places financées disponibles
+pendant une plus grande partie de la saison, une préparation en temps opportun,
+des pratiques cohérentes d'augmentation et de réduction de la capacité et un
+plan de contingence lorsque le réseau de refuges est plein. La direction de la
+Ville a accepté ces recommandations. BonQuery appliquera la même norme aux
+progrès et aux lacunes qui subsistent.
+
+Pour transmettre une correction ou discuter d'une collaboration, écrivez à
+[info@BonQuery.ca](mailto:info@BonQuery.ca).
+
 ## Sources
 
 Les observations structurelles présentées sur cette page ont été vérifiées

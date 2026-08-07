@@ -65,6 +65,24 @@ html`<div class="bq-home-status" role="status">
 </div>`
 ```
 
+```{=html}
+<aside class="bq-help-strip" aria-label="Contacts immédiats pour un refuge ou une intervention de rue">
+  <div class="bq-help-copy">
+    <strong>Besoin d'un refuge ou d'une intervention de rue maintenant?</strong>
+    <span>BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i> Admission centrale : 416-338-4766</a>
+    <a href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i> Sans frais : 1-877-338-3398</a>
+    <a href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i> Intervention de rue : 311</a>
+    <a href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i> Hors de Toronto : 416-392-2489</a>
+    <a href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i> ATS : 711</a>
+    <a href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Danger immédiat : 911</a>
+    <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement</a>
+  </div>
+</aside>
+```
+
 ## Commencez par votre question
 
 {{< include ../_includes/dashboard-cards-fr.qmd >}}
@@ -106,13 +124,28 @@ l'exposition peut causer des préjudices graves.
 ## Moniteur de responsabilité hivernale
 
 ::: {.bq-alert .bq-alert-hero}
-**MONITEUR DE RESPONSABILITÉ HIVERNALE : 2026–2027.** Notre mandat principal
-consiste à vérifier si la Ville de Toronto respecte son obligation humanitaire :
-zéro personne sans place lorsque
-[la température descend à −5 °C ou en dessous](https://www.toronto.ca/community-people/housing-shelter/homeless-help/warming-centres/){target="_blank"}.
-Six hivers de données de l'Admission centrale montrent que la Ville n'a respecté
-cette norme que lors de 4,1 % des nuits admissibles. La surveillance quotidienne
-reprendra à l'ouverture de la saison froide 2026–2027 en novembre.
+Pour 2026–2027,
+[la période des services hivernaux de la Ville s'étend du 15 novembre au 15 avril](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
+La surveillance quotidienne de BonQuery couvrira toute cette période à compter
+du 15 novembre. Les seuils de température publiés par la Ville ne décrivent pas
+entièrement ses opérations. Notre analyse montre que les centres de réchauffement
+ont de plus en plus fonctionné comme des services saisonniers continus et ont
+souvent été ouverts au-dessus de −5 °C; les sites de capacité de pointe ont aussi
+ouvert au-dessus du seuil annoncé de −15 °C. L'accès lors des nuits plus douces,
+de 0 à −5 °C, s'est amélioré : une place libre sans recommandation est passée
+d'environ deux nuits sur cinq à neuf nuits sur dix, tandis que les nuits où
+toutes ces places étaient occupées sont passées d'environ une sur trois à une
+sur quatorze. Il s'agit d'un progrès mesurable. Cela ne démontre pas que la
+capacité est adéquate lors des nuits plus froides. Pendant la période actuelle,
+la couche activée par la température demeurait occupée à au
+moins 98 % lors de 64 des 137 nuits à −5 °C ou moins. Sur les six saisons
+terminées, au moins une personne seule ou un couple demeurait sans place à la
+clôture de 4 h lors de 257 des 268 nuits de ce type (95,9 %). Les refus à la
+porte ne sont pas consignés et un couple ne compte qu'une fois. Un manuscrit en
+préparation examine à la fois les progrès et les lacunes de capacité qui
+subsistent. Nous invitons la Ville et ses partenaires de services à nous
+transmettre des données publiques supplémentaires, des corrections et du
+contexte opérationnel.
 :::
 
 ::: {.bq-cta}

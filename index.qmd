@@ -101,9 +101,9 @@ html`<div class="bq-audit-alert" role="alert">
   <strong>${audit_history.coverage.dates_with_mismatches} of ${audit_history.coverage.successfully_parsed_dates} successfully parsed audit dates</strong>
   from ${homeAuditFirstLabel} through ${homeAuditLastLabel}. On August 5, the
   City's dashboard reported <strong>82 more unoccupied emergency beds</strong>
-  than the corresponding open-data rows. The public cannot reproduce one City
-  data product from the other. <a href="projects/data-validation.html">See the
-  audit and methods →</a></p>
+  than the corresponding open-data rows. The City's public dashboard does not
+  match its own open data. <a href="projects/data-validation.html">See the audit
+  and methods →</a></p>
 </div>`
 ```
 

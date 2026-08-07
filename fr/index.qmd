@@ -84,9 +84,9 @@ html`<div class="bq-audit-alert" role="alert">
   entre le ${homeAuditFirstLabel} et le ${homeAuditLastLabel}. Le 5 août, le
   tableau de bord de la Ville indiquait <strong>82 places d'urgence inoccupées
   de plus</strong> que les lignes correspondantes des données ouvertes. Le
-  public ne peut pas reproduire un produit de données de la Ville à partir de
-  l'autre. <a href="projects/data-validation.html">Voir l'audit et les méthodes
-  →</a></p>
+  tableau de bord public de la Ville ne correspond pas à ses propres données
+  ouvertes. <a href="projects/data-validation.html">Voir l'audit et les
+  méthodes →</a></p>
 </div>`
 ```
 

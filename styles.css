@@ -396,6 +396,10 @@ body:has(.bq-home-lede) #title-block-header .description {
 
 .bq-help-actions a .bi::before { line-height: 1; }
 
+.bq-help-actions a.bq-help-women .bi::before {
+  transform: translateY(2px);
+}
+
 .bq-help-actions a:hover,
 .bq-help-actions a:focus-visible {
   transform: translateY(-1px);

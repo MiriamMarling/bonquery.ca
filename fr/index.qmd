@@ -22,7 +22,6 @@ twitter-card:
 //| echo: false
 daily_occ    = FileAttachment("data/daily_occupancy.json").json()
 bt_data      = FileAttachment("data/city_bridging_triage.json").json()
-audit_history = FileAttachment("data/city_audit_history.json").json()
 seasonRug    = FileAttachment("data/season_rug.csv").csv().then(rows =>
   rows.map(d => ({ min_temp: +d.min_temp, winter_season: d.winter_season }))
 )
@@ -43,15 +42,6 @@ homeLatestLabel = {
   })
 }
 
-homeAuditDateLabel = isoDate => {
-  const [year, month, day] = isoDate.split("-").map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString("fr-CA", {
-    month: "long", day: "numeric"
-  })
-}
-
-homeAuditFirstLabel = homeAuditDateLabel(audit_history.coverage.first_audit_date)
-homeAuditLastLabel = homeAuditDateLabel(audit_history.coverage.last_audit_date)
 ```
 
 ```{=html}
@@ -75,21 +65,6 @@ html`<div class="bq-home-status" role="status">
   <span><strong>Mis à jour chaque jour.</strong> Dernières données de la Ville sur les refuges disponibles ici : ${homeLatestLabel}.</span>
 </div>`
 ```
-
-```{ojs}
-//| echo: false
-html`<div class="bq-audit-alert" role="alert">
-  <p><strong>Vérification quotidienne :</strong> Le tableau de bord des refuges
-  de la Ville ne correspondait pas à son propre fichier public lors de
-  <strong>${audit_history.coverage.dates_with_mismatches} des ${audit_history.coverage.successfully_parsed_dates} jours vérifiés</strong>,
-  du ${homeAuditFirstLabel} au ${homeAuditLastLabel}. Le 5 août, le tableau de
-  bord affichait <strong>82 places d'urgence vides de plus</strong> que le
-  fichier public. <a href="projects/data-validation.html">Voir les différences
-  →</a></p>
-</div>`
-```
-
-{{< include ../_includes/toronto-help-contacts-fr.qmd >}}
 
 ## Commencez par votre question
 
@@ -378,6 +353,76 @@ BonQuery reproduit indépendamment les tableaux de bord de la Ville à partir de
 données ouvertes, les met à jour lorsque les données sources sont publiées,
 conserve les vues historiques et rend visibles les différences entre les places
 financées, disponibles et occupées.
+
+---
+
+::: {.callout-note collapse="true" title="Flux mensuels du réseau de refuges"}
+
+::: {.mobile-dashboard-links}
+Ouvrez chaque tableau de bord directement dans votre navigateur. Ils
+fonctionnent mieux en plein écran sur un téléphone.
+
+- [Portrait mensuel →](projects/monthly-snapshot.html)
+- [Comparaison annuelle cumulative →](projects/ytd-comparison.html)
+- [Tendances historiques →](projects/historical-trends.html)
+:::
+
+::: {.desktop-dashboard-tabs}
+
+Les trois onglets ci-dessous montrent différents aspects des données
+mensuelles. Chaque tableau de bord contient des filtres interactifs.
+
+::: {.panel-tabset}
+
+#### Portrait mensuel
+
+Consultez le réseau de refuges pour le mois de votre choix depuis janvier 2018.
+
+[Ouvrir dans un nouvel onglet →](projects/monthly-snapshot.html){target="_blank"}
+
+<iframe
+  src="projects/monthly-snapshot.html"
+  width="100%"
+  height="2800"
+  class="bq-embed"
+  loading="lazy">
+</iframe>
+
+#### Comparaison annuelle cumulative
+
+Comparez les chiffres cumulatifs de cette année avec la même période des
+années précédentes.
+
+[Ouvrir dans un nouvel onglet →](projects/ytd-comparison.html){target="_blank"}
+
+<iframe
+  src="projects/ytd-comparison.html"
+  width="100%"
+  height="900"
+  class="bq-embed"
+  loading="lazy">
+</iframe>
+
+#### Tendances historiques
+
+Voyez les changements sur plusieurs années dans l'itinérance et l'utilisation
+des refuges.
+
+[Ouvrir dans un nouvel onglet →](projects/historical-trends.html){target="_blank"}
+
+<iframe
+  src="projects/historical-trends.html"
+  width="100%"
+  height="3800"
+  class="bq-embed"
+  loading="lazy">
+</iframe>
+
+:::
+
+:::
+
+:::
 
 ---
 
@@ -705,6 +750,10 @@ mises en garde importantes sur la combinaison des deux séries.
 
 Contient des informations sous licence [Licence du gouvernement ouvert – Toronto](https://open.toronto.ca/open-data-licence/). Source : Données ouvertes de la Ville de Toronto — [Appels à l'Admission centrale](https://open.toronto.ca/dataset/central-intake-calls/). Analyse et graphiques par BonQuery.
 :::
+
+---
+
+{{< include ../_includes/toronto-help-contacts-fr.qmd >}}
 
 ---
 

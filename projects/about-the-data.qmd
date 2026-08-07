@@ -145,7 +145,7 @@ differently. This approach is informed by the [Canadian definition of
 homelessness](https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/){target="_blank"},
 [person-first language guidance](https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/){target="_blank"},
 and research on [why housing is central to the meaning of
-homelessness](https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf){target="_blank"}.
+homelessness](https://homelesshub.ca/book/finding-home-policy-options-for-addressing-homelessness-in-canada/0-introduction/homelessness-whats-in-a-word/){target="_blank"}.
 
 The data can show only the people and programs captured in its files. Whatever
 words people use, the practical questions are the same: Is there a safe place

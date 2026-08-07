@@ -176,7 +176,7 @@ décrire sa propre situation autrement. Cette approche s'appuie sur la
 [définition canadienne de l'itinérance](https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/){target="_blank"},
 les [recommandations sur le langage centré sur la personne](https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/){target="_blank"}
 et la recherche sur [la place centrale du logement dans le sens du mot
-itinérance](https://www.homelesshub.ca/sites/default/files/attachments/Intro_Hulchanski_et_al_-_Homelessness_Word.pdf){target="_blank"}.
+itinérance](https://homelesshub.ca/book/finding-home-policy-options-for-addressing-homelessness-in-canada/0-introduction/homelessness-whats-in-a-word/){target="_blank"}.
 
 Ces données montrent seulement les personnes qui utilisent les programmes
 inclus dans les fichiers. Quels que soient les mots employés, les questions

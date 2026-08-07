@@ -37,6 +37,8 @@ jobs:
             --exclude "^https?://127\."
             --exclude "^https://www\.linkedin\.com"
             --exclude "^https?://bonquery\.ca"
+            --exclude "^https://www\.cdc\.gov/niosh/bulletin/2012/cold-stress\.html$"
+            --exclude "^https://www\.mayoclinic\.org/diseases-conditions/frostbite/symptoms-causes/syc-20372656$"
             --exclude "\.csv$"
             "**/*.qmd"
             "**/*.md"

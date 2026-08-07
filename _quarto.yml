@@ -10,13 +10,14 @@ project:
     - projects/daily-occupancy.qmd
     - projects/data-validation.qmd
     - projects/data-validation-central-intake.qmd
-    - projects/discrepancy-tracker.qmd
     - projects/historical-trends.qmd
     - projects/monthly-snapshot.qmd
     - projects/toronto-shelter.qmd
     - projects/ytd-comparison.qmd
   resources:
+    - data/daily_occupancy.json                   # live daily-card preview
     - data/daily_occupancy.csv                    # not FileAttachment-referenced
+    - data/shelter_flow.json                      # homepage dashboard previews
     - data/season_rug.csv                         # cold-response: temperature rug
     - data/cold_response_binned_by_winter_sc.csv  # cold-response: observed means
 
@@ -24,37 +25,27 @@ website:
   title: "BonQuery"
   description: "BonQuery uses publicly available data to investigate urgent humanitarian issues, starting with Toronto's shelter system capacity, demand, and flow analysis."
   site-url: https://bonquery.ca
+  image: images/bonquery-social-card.png
+  image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
+  open-graph: true
+  twitter-card:
+    card-style: summary_large_image
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - href: projects/toronto-shelter.qmd
+        text: Dashboards
       - href: projects/cold-response.qmd
         text: "Left in the Cold"
-      - text: Audits
+      - text: "Data & Methods"
         menu:
-          - text: "INDEPENDENT OVERSIGHT"
-          - href: projects/discrepancy-tracker.qmd
-            text: "Discrepancy Tracker"
-          - href: projects/data-validation.qmd
-            text: "Emergency Occupancy Audit"
-          - href: projects/data-validation-central-intake.qmd
-            text: "Central Intake Audit"
           - href: projects/about-the-data.qmd
             text: "About the Data"
-      - text: Shelter Dashboards
-        menu:
-          - href: projects/toronto-shelter.qmd
-            text: "Inside Toronto's Shelter System"
-          - href: projects/monthly-snapshot.qmd
-            text: "Monthly System Flow Replication"
-          - href: projects/ytd-comparison.qmd
-            text: "Year-to-Date Capacity Match"
-          - href: projects/historical-trends.qmd
-            text: "Historical Trend Lines"
-          - href: projects/central-intake.qmd
-            text: "Referral Requests Analysis"
-          - href: projects/daily-occupancy.qmd
-            text: "Daily Occupancy & Capacity"
+          - href: projects/data-validation.qmd
+            text: "Occupancy Data Validation"
+          - href: projects/data-validation-central-intake.qmd
+            text: "Central Intake Validation"
       - href: about.qmd
         text: About
     right:
@@ -63,9 +54,11 @@ website:
         id: bq-lang-toggle-nav
   page-footer:
     center: |
-      An independent data audit for Toronto residents. / Un audit de données indépendant pour les résidents de Toronto.
+      Independent public-interest analysis of Toronto's shelter system.
       <br>
       <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span>
+  bread-crumbs: true
+  back-to-top-navigation: true
 
 format:
   html:
@@ -76,4 +69,5 @@ format:
     css: styles.css
     toc: true
     toc-location: right
+    canonical-url: true
     include-after-body: _includes/site-init.html

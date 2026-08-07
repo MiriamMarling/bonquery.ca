@@ -176,6 +176,307 @@ body.quarto-dark {
    The author: YAML field is kept intact for SEO and OpenGraph metadata. */
 .quarto-title-meta { display: none !important; }
 
+/* Home page orientation and dashboard routes */
+body:has(.bq-home-lede) #title-block-header .title {
+  max-width: 18ch;
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  margin-bottom: 1rem;
+}
+
+body:has(.bq-home-lede) #title-block-header .subtitle {
+  max-width: 54rem;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  color: var(--bq-fg-secondary);
+}
+
+body:has(.bq-home-lede) #title-block-header .description {
+  display: none;
+}
+
+.bq-home-lede {
+  max-width: 58rem;
+  margin: 0.5rem 0 1.25rem;
+  font-size: clamp(1.12rem, 2vw, 1.35rem);
+  line-height: 1.65;
+  color: var(--bq-fg-secondary);
+}
+
+.bq-home-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 2.3rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--bq-border);
+  border-radius: 999px;
+  background: var(--bq-bg-alt);
+  color: var(--bq-fg);
+  font-size: 0.94rem;
+}
+
+.bq-status-dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--bq-success);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--bq-success) 45%, transparent);
+  animation: bq-status-pulse 2.4s ease-out infinite;
+}
+
+@keyframes bq-status-pulse {
+  70%, 100% {
+    box-shadow: 0 0 0 0.55rem transparent;
+  }
+}
+
+.bq-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.bq-dashboard-card {
+  display: flex;
+  min-height: 17rem;
+  flex-direction: column;
+  padding: 1.4rem;
+  color: var(--bq-fg) !important;
+  text-decoration: none !important;
+  background: var(--bq-bg-alt);
+  border: 1px solid var(--bq-border);
+  border-top: 4px solid var(--bq-primary);
+  border-radius: 0.7rem;
+  transition: transform 160ms ease, border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.bq-dashboard-card:hover,
+.bq-dashboard-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--bq-primary);
+  box-shadow: 0 0.8rem 2rem color-mix(in srgb, var(--bq-fg) 10%, transparent);
+}
+
+.bq-dashboard-card:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--bq-primary) 45%, transparent);
+  outline-offset: 3px;
+}
+
+.bq-dashboard-card h3 {
+  margin: 0.45rem 0 0.8rem;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.bq-dashboard-card p {
+  margin-bottom: 1.2rem;
+  color: var(--bq-fg-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.bq-card-preview {
+  display: flex;
+  min-height: 5.4rem;
+  align-items: center;
+  margin: 0.15rem 0 1rem;
+  padding: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--bq-border);
+  border-radius: 0.45rem;
+  background: var(--bq-bg);
+  color: var(--bq-fg-muted);
+  font-size: 0.78rem;
+}
+
+.bq-preview-skeleton {
+  width: 100%;
+  height: 3.6rem;
+  border-radius: 0.35rem;
+  background: linear-gradient(
+    90deg,
+    var(--bq-bg-alt) 25%,
+    var(--bq-bg-accent) 50%,
+    var(--bq-bg-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: bq-preview-loading 1.2s ease-in-out infinite;
+}
+
+@keyframes bq-preview-loading {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.bq-preview-kpi strong {
+  display: block;
+  color: var(--bq-fg);
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.bq-preview-kpi span {
+  display: block;
+  margin-top: 0.35rem;
+}
+
+.bq-preview-daily strong { color: var(--bq-danger); }
+
+.bq-preview-daily small {
+  display: block;
+  margin-top: 0.45rem;
+  color: var(--bq-fg-muted);
+}
+
+.bq-dashboard-card-daily { border-top-color: var(--bq-danger); }
+
+.bq-dashboard-card-daily .bq-card-kicker,
+.bq-dashboard-card-daily .bq-card-link { color: var(--bq-danger); }
+
+.bq-dashboard-card-daily:hover,
+.bq-dashboard-card-daily:focus-visible { border-color: var(--bq-danger); }
+
+.bq-preview-bars { width: 100%; }
+
+.bq-preview-bars > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  color: var(--bq-fg-secondary);
+}
+
+.bq-preview-bars > div strong { color: var(--bq-fg); }
+
+.bq-preview-bars > i {
+  display: block;
+  height: 0.35rem;
+  margin: 0.18rem 0 0.45rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--bq-bg-accent);
+}
+
+.bq-preview-bars > i > b {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--bq-primary);
+}
+
+.bq-preview-bars > i > .bq-preview-bar-good {
+  background: var(--bq-success);
+}
+
+.bq-preview-bars small { color: var(--bq-fg-muted); }
+
+.bq-card-preview figure,
+.bq-card-preview svg {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background: transparent;
+}
+
+.bq-preview-history-wrap { width: 100%; }
+
+.bq-preview-spark {
+  display: flex;
+  height: 3.7rem;
+  align-items: end;
+  gap: 2px;
+  padding-top: 0.2rem;
+  border-bottom: 1px solid var(--bq-border);
+}
+
+.bq-preview-spark span {
+  flex: 1 1 0;
+  min-width: 1px;
+  border-radius: 2px 2px 0 0;
+  background: color-mix(in srgb, var(--bq-primary) 45%, transparent);
+}
+
+.bq-preview-spark .is-latest { background: var(--bq-primary); }
+
+.bq-preview-history-wrap small {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--bq-fg-muted);
+}
+
+.bq-card-kicker {
+  color: var(--bq-primary);
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.bq-card-link {
+  margin-top: auto;
+  color: var(--bq-primary);
+  font-weight: 750;
+}
+
+.bq-work-rhythm {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin: 0 0 1.25rem;
+  padding: 1.2rem 0;
+  border-top: 1px solid var(--bq-border);
+  border-bottom: 1px solid var(--bq-border);
+}
+
+.bq-work-rhythm-item p {
+  margin: 0.35rem 0 0;
+  color: var(--bq-fg-secondary);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.bq-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  margin-bottom: 3rem;
+}
+
+.bq-quick-links p { margin: 0; }
+
+.bq-quick-links a {
+  font-weight: 650;
+  text-underline-offset: 0.2em;
+}
+
+.bq-status-note {
+  margin: 1rem 0 1.75rem;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid var(--bq-primary);
+  border-radius: 0 0.4rem 0.4rem 0;
+  background: var(--bq-bg-alt);
+  color: var(--bq-fg);
+}
+
+.bq-status-note p:last-child { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .bq-dashboard-grid,
+  .bq-work-rhythm {
+    grid-template-columns: 1fr;
+  }
+
+  .bq-dashboard-card { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bq-status-dot { animation: none; }
+  .bq-dashboard-card { transition: none; }
+  .bq-preview-skeleton { animation: none; }
+}
+
 /* Style the "Audit Evidence ↓" / "Tables ↓" section headers in the Evidence
    dropdown. Bootstrap renders bare Quarto menu text entries as .dropdown-header
    elements. */
@@ -201,12 +502,12 @@ body.quarto-dark {
 .navbar-nav a.nav-link[href$="cold-response.html"] {
   font-weight: 700;
   color: var(--bq-primary) !important;
-  border-bottom: 2px solid var(--bq-primary);
-  padding-bottom: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bq-primary) 10%, transparent);
 }
 .navbar-nav a.nav-link[href$="cold-response.html"]:hover {
   color: var(--bq-danger) !important;
-  border-bottom-color: var(--bq-danger);
+  background: color-mix(in srgb, var(--bq-primary) 18%, transparent);
 }
 
 
@@ -249,40 +550,6 @@ body.quarto-dark .bq-alert {
   border-radius: 4px;
   padding: 0.6rem 1rem;
 }
-
-/* Bilingual alert toggle (EN | FR) — both language strings render into the page;
-   a data-lang attribute on the container drives which one is visible. */
-.bq-bilingual { position: relative; }
-.bq-lang-toggle {
-  position: absolute;
-  top: 0.55rem;
-  right: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  line-height: 1;
-}
-.bq-lang-btn {
-  background: none;
-  border: none;
-  padding: 0 0.1rem;
-  font-family: inherit;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--bq-danger);
-  cursor: pointer;
-  opacity: 0.5;
-}
-.bq-lang-btn:hover { opacity: 0.85; }
-.bq-lang-btn.active { opacity: 1; text-decoration: underline; }
-.bq-lang-sep { font-size: 0.78rem; opacity: 0.4; }
-/* Default shows English; French is hidden until toggled. */
-.bq-bilingual .bq-lang-fr { display: none; }
-.bq-bilingual[data-lang="fr"] .bq-lang-fr { display: block; }
-.bq-bilingual[data-lang="fr"] .bq-lang-en { display: none; }
-/* Reserve space so the toggle never overlaps the first line of text. */
-.bq-bilingual .bq-lang { padding-top: 1.5rem; }
-
 
 /* ── Occupancy table classes ─────────────────────────────────────────── */
 

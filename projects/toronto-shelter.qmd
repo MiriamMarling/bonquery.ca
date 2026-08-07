@@ -19,96 +19,13 @@ daily_occ = FileAttachment("../data/daily_occupancy.json").json()
 bt_data   = FileAttachment("../data/city_bridging_triage.json").json()
 ```
 
-This page is a hub for Toronto shelter system datasets sourced from the City of Toronto's open data portal. Each section covers one dataset — use the headings to jump to what you need.
+This page brings together BonQuery's interactive views of Toronto shelter data.
+Choose the question you want to answer, or continue to the detailed daily tables
+below.
 
-::: {.callout-note collapse="true"}
-## Monthly Shelter System Flow
+## Choose a dashboard
 
-### The dashboards
-
-::: {.mobile-dashboard-links}
-Open each dashboard directly in your browser — they're built for
-interactive use and work best full-screen on a phone.
-
-- [Monthly Snapshot →](monthly-snapshot.html)
-- [Year-to-Date Comparison →](ytd-comparison.html)
-- [Historical Trends →](historical-trends.html)
-:::
-
-::: {.desktop-dashboard-tabs}
-
-The three tabs below show different views of the data, with interactive
-filters on every chart.
-
-::: {.panel-tabset}
-
-#### Monthly Snapshot
-
-A point-in-time view of the shelter system for any month from January
-2018 forward. Use the date filter at the top to change months.
-
-[Open in a new tab →](monthly-snapshot.html){target="_blank"}
-
-<iframe
-  src="monthly-snapshot.html"
-  width="100%"
-  height="2800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Year-to-Date Comparison
-
-Compares the current year's cumulative figures against the same period
-the prior year. Useful for seeing whether the system is on track to
-exceed, match, or fall below last year.
-
-[Open in a new tab →](ytd-comparison.html){target="_blank"}
-
-<iframe
-  src="ytd-comparison.html"
-  width="100%"
-  height="900"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-#### Historical Trends
-
-Multi-year time series for the headline metrics, with filters for
-population group, year, and month. Useful for spotting long-term
-patterns or seasonal trends.
-
-[Open in a new tab →](historical-trends.html){target="_blank"}
-
-<iframe
-  src="historical-trends.html"
-  width="100%"
-  height="3800"
-  class="bq-embed"
-  loading="lazy">
-</iframe>
-
-:::
-
-:::
-
-```{=html}
-<style>
-.mobile-dashboard-links { display: none !important; }
-.desktop-dashboard-tabs { display: block; }
-@media (max-width: 768px) {
-  .desktop-dashboard-tabs iframe {
-    width: 100vw !important;
-    margin-left: calc(50% - 50vw) !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-}
-</style>
-```
-
-:::
+{{< include ../_includes/dashboard-cards.qmd >}}
 
 ---
 

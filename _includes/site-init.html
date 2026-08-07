@@ -55,11 +55,14 @@
 (function () {
   var tog = document.querySelector(".quarto-color-scheme-toggle");
   if (!tog) return;
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
   var label = document.createElement("span");
   label.className = "bq-theme-label";
   var update = function () {
     var isDark = document.body.classList.contains("quarto-dark");
-    label.textContent = isDark ? "Light" : "Dark";
+    label.textContent = isFR
+      ? (isDark ? "Clair" : "Sombre")
+      : (isDark ? "Light" : "Dark");
   };
   tog.appendChild(label);
   update();
@@ -68,23 +71,178 @@
   );
 })();
 
-// ── Bilingual alert toggle (EN | FR) ─────────────────────────────────────
-// Sets data-lang on each .bq-bilingual block; CSS controls visibility.
-var pageLang = (location.pathname.startsWith("/fr/") || location.pathname === "/fr")
-  ? "fr" : "en";
-document.querySelectorAll(".bq-bilingual").forEach(function (block) {
-  var btns = block.querySelectorAll(".bq-lang-btn");
-  function setLang(lang) {
-    block.setAttribute("data-lang", lang);
-    btns.forEach(function (b) {
-      b.classList.toggle("active", b.dataset.set === lang);
-    });
+// Live dashboard-card previews. This runs only on pages that contain the
+// shared dashboard cards and uses the same generated file as the dashboards.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var locale = isFR ? "fr-CA" : "en-CA";
+  var copy = isFR ? {
+    unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
+    offlineBeds: "lits financés du secteur des personnes seules indisponibles",
+    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    activelyHomeless: "personnes en situation d'itinérance active",
+    newlyIdentified: "Nouvellement identifiées",
+    movedToHousing: "Ont obtenu un logement",
+    januaryTo: "De janvier à ",
+    latest: "Plus récent : ",
+    trend: "Tendance de l'itinérance active jusqu'à "
+  } : {
+    unavailable: "Preview unavailable. Open the dashboard.",
+    offlineBeds: "funded singles-sector beds unavailable",
+    acrossPrograms: " people recorded across all shelter programs",
+    activelyHomeless: "actively homeless",
+    newlyIdentified: "Newly identified",
+    movedToHousing: "Moved to housing",
+    januaryTo: "January to ",
+    latest: "Latest: ",
+    trend: "Actively homeless trend through "
+  };
+  var dailyMount = document.getElementById("bq-preview-daily");
+  var monthlyMount = document.getElementById("bq-preview-monthly");
+  var ytdMount = document.getElementById("bq-preview-ytd");
+  var historyMount = document.getElementById("bq-preview-history");
+  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
   }
-  btns.forEach(function (b) {
-    b.addEventListener("click", function () { setLang(b.dataset.set); });
-  });
-  setLang(block.getAttribute("data-lang") || pageLang);
-});
+
+  function metricRow(label, value) {
+    var row = make("div");
+    row.append(make("span", "", label), make("strong", "", value));
+    return row;
+  }
+
+  function meter(value, maximum, good) {
+    var track = make("i");
+    var bar = make("b", good ? "bq-preview-bar-good" : "");
+    bar.style.width = ((value / maximum) * 100) + "%";
+    track.append(bar);
+    return track;
+  }
+
+  function showUnavailable(mount) {
+    if (!mount) return;
+    mount.replaceChildren(make("span", "", copy.unavailable));
+  }
+
+  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Daily preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      if (!dailyMount || !data.length) return;
+      var latestDate = data.reduce(function (latest, row) {
+        return row.date > latest ? row.date : latest;
+      }, "");
+      var rows = data.filter(function (row) { return row.date === latestDate; });
+      var singles = rows.find(function (row) { return row.key === "singles_total"; });
+      var system = rows.find(function (row) { return row.key === "all_shelter"; });
+      if (!singles || !system) throw new Error("Daily preview rows unavailable");
+      var dateParts = latestDate.split("-").map(Number);
+      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
+        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
+      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      daily.append(
+        make("strong", "", Number(offline).toLocaleString(locale)),
+        make("span", "", copy.offlineBeds + " · " + dateLabel),
+        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+      );
+      dailyMount.replaceChildren(daily);
+    })
+    .catch(function () { showUnavailable(dailyMount); });
+
+  fetch("/data/shelter_flow.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Dashboard preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var rows = data
+        .filter(function (row) { return row.population_group === "All Population"; })
+        .slice()
+        .sort(function (a, b) { return a.flow_date.localeCompare(b.flow_date); });
+      if (!rows.length) throw new Error("Dashboard preview data empty");
+
+      var latest = rows[rows.length - 1];
+      var dateParts = latest.flow_date.split("-").map(Number);
+      var latestYear = dateParts[0];
+      var latestMonth = dateParts[1];
+      var latestLabel = new Date(latestYear, latestMonth - 1, 1)
+        .toLocaleDateString(locale, {month: "long", year: "numeric"});
+      var fmt = function (value) {
+        return Number(value).toLocaleString(locale);
+      };
+
+      if (monthlyMount) {
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", fmt(latest.actively_homeless)),
+          make("span", "", copy.activelyHomeless + " · " + latestLabel)
+        );
+        monthlyMount.replaceChildren(kpi);
+      }
+
+      var ytdRows = rows.filter(function (row) {
+        var parts = row.flow_date.split("-").map(Number);
+        return parts[0] === latestYear && parts[1] <= latestMonth;
+      });
+      var ytdNew = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.newly_identified || 0);
+      }, 0);
+      var ytdHoused = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.moved_to_housing || 0);
+      }, 0);
+      var ytdMax = Math.max(ytdNew, ytdHoused, 1);
+
+      if (ytdMount) {
+        var bars = make("div", "bq-preview-bars");
+        bars.append(
+          metricRow(copy.newlyIdentified, fmt(ytdNew)),
+          meter(ytdNew, ytdMax, false),
+          metricRow(copy.movedToHousing, fmt(ytdHoused)),
+          meter(ytdHoused, ytdMax, true),
+          make("small", "", copy.januaryTo + latestLabel)
+        );
+        ytdMount.replaceChildren(bars);
+      }
+
+      if (historyMount) {
+        var trend = rows.slice(-48).map(function (row) {
+          return +row.actively_homeless;
+        });
+        var minimum = Math.min.apply(null, trend);
+        var maximum = Math.max.apply(null, trend);
+        var spread = Math.max(maximum - minimum, 1);
+        var wrap = make("div", "bq-preview-history-wrap");
+        var spark = make("div", "bq-preview-spark");
+        spark.setAttribute("role", "img");
+        spark.setAttribute(
+          "aria-label",
+          copy.trend + latestLabel +
+            (isFR ? "; valeur la plus récente " : "; latest value ") +
+            fmt(latest.actively_homeless)
+        );
+        trend.forEach(function (value, index) {
+          var bar = make("span", index === trend.length - 1 ? "is-latest" : "");
+          bar.style.height = (20 + ((value - minimum) / spread) * 80) + "%";
+          spark.append(bar);
+        });
+        wrap.append(spark, make("small", "", copy.latest + fmt(latest.actively_homeless)));
+        historyMount.replaceChildren(wrap);
+      }
+    })
+    .catch(function () {
+      showUnavailable(monthlyMount);
+      showUnavailable(ytdMount);
+      showUnavailable(historyMount);
+    });
+})();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
 // Computes the exact mirror URL from the current pathname and updates the

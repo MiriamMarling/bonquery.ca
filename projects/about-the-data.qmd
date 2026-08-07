@@ -13,24 +13,12 @@ twitter-card:
   description: "Audit methodology for Toronto's shelter system data — sources, integrity checks, and structural limits worth knowing before drawing conclusions."
 ---
 
-::::: {.bq-alert .bq-alert-hero .bq-bilingual}
-::: {.bq-lang .bq-lang-en}
-**ACTIVE AUDIT: 2026–2027 WINTER SEASON.** We are tracking the gap between the
-City's reported capacity and the raw data. Discrepancies are being logged in our
-[Discrepancy Tracker](discrepancy-tracker.qmd). We are demanding zero unplaced
-people on nights reaching −5 °C. Daily monitoring will start when the
-2026–2027 cold season opens in November.
+::: {.bq-status-note}
+**WINTER MONITORING RETURNS IN NOVEMBER 2026.** BonQuery will track the gap
+between the City's reported capacity and its published source data throughout
+the 2026–2027 cold season. The standard is zero people left unplaced on nights
+reaching −5 °C.
 :::
-
-::: {.bq-lang .bq-lang-fr}
-**AUDIT ACTIF : SAISON HIVERNALE 2026–2027.** Nous suivons l'écart entre la
-capacité déclarée par la Ville et les données brutes. Les écarts sont consignés
-dans notre [Suivi des divergences](discrepancy-tracker.qmd). Nous exigeons zéro
-personne sans place lorsque la température atteint −5 °C. Le suivi quotidien
-débutera à l'ouverture de la saison froide 2026–2027 en novembre.
-:::
-
-:::::
 
 The figures across BonQuery's dashboards come from open data the City of
 Toronto publishes about its shelter system. This page explains what that data

@@ -1,0 +1,37 @@
+```{=html}
+<div class="bq-dashboard-grid">
+
+<a class="bq-dashboard-card bq-dashboard-card-daily" href="/fr/projects/daily-occupancy.html">
+  <span class="bq-card-kicker">QUELLE EST LA DERNIÈRE CAPACITÉ QUOTIDIENNE?</span>
+  <h3>Occupation et capacité quotidiennes</h3>
+  <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
+  <p>Consultez le dernier tableau de la Ville reconstruit à partir des données ouvertes, parcourez chaque date depuis janvier 2021 et repérez la capacité financée qui était indisponible.</p>
+  <span class="bq-card-link">Voir le dernier tableau quotidien <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card" href="/fr/projects/monthly-snapshot.html">
+  <span class="bq-card-kicker">COMBIEN DE PERSONNES ONT BESOIN D'UN REFUGE?</span>
+  <h3>Portrait mensuel</h3>
+  <div class="bq-card-preview" id="bq-preview-monthly"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
+  <p>Consultez le nombre actuel de personnes en situation d'itinérance active, les entrées, les sorties vers un logement et les groupes desservis. Choisissez tout mois depuis 2018.</p>
+  <span class="bq-card-link">Ouvrir le portrait <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card" href="/fr/projects/historical-trends.html">
+  <span class="bq-card-kicker">COMMENT EN SOMMES-NOUS ARRIVÉS LÀ?</span>
+  <h3>Tendances historiques</h3>
+  <div class="bq-card-preview" id="bq-preview-history"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
+  <p>Explorez l'évolution pluriannuelle de l'itinérance active et chronique, des sorties vers un logement et des groupes desservis.</p>
+  <span class="bq-card-link">Explorer les tendances <span aria-hidden="true">→</span></span>
+</a>
+
+<a class="bq-dashboard-card" href="/fr/projects/ytd-comparison.html">
+  <span class="bq-card-kicker">LE RÉSEAU S'AMÉLIORE-T-IL?</span>
+  <h3>Comparaison depuis le début de l'année</h3>
+  <div class="bq-card-preview" id="bq-preview-ytd"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
+  <p>Comparez les entrées cumulatives et les sorties vers un logement cette année avec la même période des années précédentes.</p>
+  <span class="bq-card-link">Comparer les années <span aria-hidden="true">→</span></span>
+</a>
+
+</div>
+```

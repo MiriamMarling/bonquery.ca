@@ -102,9 +102,8 @@ html`<div class="bq-audit-alert" role="alert">
   from ${homeAuditFirstLabel} through ${homeAuditLastLabel}. On August 5, the
   City's dashboard reported <strong>82 more unoccupied emergency beds</strong>
   than the corresponding open-data rows. The public cannot reproduce one City
-  data product from the other. Dates the parser could not capture are not
-  counted as passes. <a href="projects/data-validation.html">See the audit and
-  methods →</a></p>
+  data product from the other. <a href="projects/data-validation.html">See the
+  audit and methods →</a></p>
 </div>`
 ```
 

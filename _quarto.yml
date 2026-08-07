@@ -23,7 +23,7 @@ project:
 
 website:
   title: "BonQuery"
-  description: "BonQuery uses publicly available data to investigate urgent humanitarian issues, starting with Toronto's shelter system capacity, demand, and flow analysis."
+  description: "BonQuery rebuilds Toronto shelter dashboards and checks public data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness."
   site-url: https://bonquery.ca
   image: images/bonquery-social-card.png
   image-alt: "BonQuery: Toronto Shelter Data Updated Daily"

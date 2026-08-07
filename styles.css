@@ -212,6 +212,13 @@ body:has(.bq-home-lede) #title-block-header .description {
   color: var(--bq-fg-secondary);
 }
 
+.bq-home-lede p:not(:first-child) {
+  max-width: 54rem;
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 .bq-home-status {
   display: inline-flex;
   align-items: center;

@@ -1,24 +1,18 @@
 ---
-title: "Left in the Cold"
-subtitle: "Toronto Shelter System — people unplaced at 4 a.m. on freezing
-  nights, and how we get to zero"
-description: "On 95.9% of nights below −5 °C across six Toronto winters, people
-  were left unplaced at 4 a.m. The overnight shelter queue tripled, then fell —
-  proof that zero is a budget choice the city makes each summer."
+title: "Left in the Cold: Toronto Shelter Access"
+subtitle: "People still without shelter at 4 a.m. on cold nights, and what changed across six winters"
+description: "Toronto cold-weather shelter data for people who need a safe, warm place, including people who are housing insecure, unhoused, or experiencing homelessness."
 author: "Miriam Marling"
 date: 2026-06-04
 date-modified: 2026-08-07
 open-graph:
-  title: "Left in the Cold — Toronto Shelter System"
-  description: "On 95.9% of nights below −5 °C across six Toronto winters,
-    people were left unplaced at 4 a.m. Zero is a budget choice the city makes
-    each summer."
+  title: "Left in the Cold: Toronto Shelter Access"
+  description: "Across six Toronto winters, at least one person or couple remained without a place at 4 a.m. on 257 of 268 nights at or below −5 °C."
   site_name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
-  title: "Left in the Cold — Toronto Shelter System"
-  description: "On 95.9% of nights below −5 °C across six Toronto winters,
-    people were left unplaced at 4 a.m. Zero is a budget choice."
+  title: "Left in the Cold: Toronto Shelter Access"
+  description: "Across six Toronto winters, at least one person or couple remained without a place at 4 a.m. on 257 of 268 nights at or below −5 °C."
 format:
   html:
     include-in-header:
@@ -27,7 +21,7 @@ format:
         [{
           "@context": "https://schema.org",
           "@type": "Article",
-          "headline": "Left in the Cold — Toronto Shelter System",
+          "headline": "Left in the Cold: Toronto Shelter Access",
           "author": {
             "@type": "Person",
             "name": "Miriam Marling",
@@ -39,7 +33,7 @@ format:
             "url": "https://bonquery.ca"
           },
           "datePublished": "2026-06-04",
-          "description": "Analysis of unplaced people in Toronto's shelter system on freezing nights across six cold seasons (2020-21 through 2025-26).",
+          "description": "Toronto cold-weather shelter access for people who need a safe, warm place, including people who are housing insecure, unhoused, or experiencing homelessness.",
           "about": {
             "@type": "Dataset",
             "name": "Toronto Central Intake — Overnight Unplaced People",
@@ -56,30 +50,30 @@ format:
             }
           },
           "url": "https://bonquery.ca/projects/cold-response.html",
-          "keywords": ["Toronto shelter system", "homelessness", "cold response",
-                       "winter services", "Central Intake", "unplaced people",
-                       "shelter capacity", "warming centres"]
+          "keywords": ["Toronto shelter system", "Toronto homelessness",
+                       "unhoused people in Toronto", "people experiencing homelessness",
+                       "cold-weather shelter access", "winter services",
+                       "Central Intake", "shelter capacity", "warming centres"]
         }]
         </script>
 ---
 
-## People are being left in the cold — and we can count them
+## People still without shelter at 4 a.m.
 
-Toronto's shelter system keeps a number every night: how many people asked
-for a safe place to sleep and were still without one at 4 a.m., when Central
-Intake closes its overnight count. On warm nights, that number is a logistics
-problem. On freezing nights, it is people outside in weather the city itself has
-declared dangerous.
+Toronto's Central Intake counts how many people or couples who asked through
+its system had not been connected to a shelter space by 4 a.m. We call this
+**still without a place at 4 a.m.** It does not count everyone outside or people
+turned away at a shelter door.
 
 ::: {.bq-alert}
-The City of Toronto's own policy recognizes temperatures at −5 °C as cold enough
-to trigger emergency action — a threshold that is effectively a matter of life
-and death. Yet our data reveals a stark, repeated failure: on **95.9%** of nights
-hitting this limit over the last six winters, people were still left unplaced
-at 4 a.m. This is not a weather event; it is a choice to expose residents to
-**severe harm**. We know this is fixable: last winter proved that when the system
-has room to breathe, we can reach zero. This winter, it is a choice to do it
-again.
+Across six winters, at least one person or couple was **still without a place at
+4 a.m. on 257 of 268 nights** at or below −5 °C. **People turned away at a door
+are not counted.**
+
+Access improved in 2023–24 to 2025–26. Even so, cold-weather spaces were almost
+completely full on **64 of 137 nights** at or below −5 °C. These numbers show
+both the improvement and the space still missing. They do not show every person
+outside or explain why each operating decision was made.
 :::
 
 The chart below shows every one of those nights.

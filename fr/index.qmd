@@ -79,14 +79,13 @@ html`<div class="bq-home-status" role="status">
 ```{ojs}
 //| echo: false
 html`<div class="bq-audit-alert" role="alert">
-  <p><strong>Constat de l'audit quotidien :</strong> Des divergences ont été
-  relevées pour <strong>${audit_history.coverage.dates_with_mismatches} des ${audit_history.coverage.successfully_parsed_dates} dates d'audit analysées avec succès</strong>
-  entre le ${homeAuditFirstLabel} et le ${homeAuditLastLabel}. Le 5 août, le
-  tableau de bord de la Ville indiquait <strong>82 places d'urgence inoccupées
-  de plus</strong> que les lignes correspondantes des données ouvertes. Le
-  tableau de bord public de la Ville ne correspond pas à ses propres données
-  ouvertes. <a href="projects/data-validation.html">Voir l'audit et les
-  méthodes →</a></p>
+  <p><strong>Vérification quotidienne :</strong> Le tableau de bord des refuges
+  de la Ville ne correspondait pas à son propre fichier public lors de
+  <strong>${audit_history.coverage.dates_with_mismatches} des ${audit_history.coverage.successfully_parsed_dates} jours vérifiés</strong>,
+  du ${homeAuditFirstLabel} au ${homeAuditLastLabel}. Le 5 août, le tableau de
+  bord affichait <strong>82 places d'urgence vides de plus</strong> que le
+  fichier public. <a href="projects/data-validation.html">Voir les différences
+  →</a></p>
 </div>`
 ```
 

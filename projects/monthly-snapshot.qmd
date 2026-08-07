@@ -1,16 +1,16 @@
 ---
 title: "Monthly Snapshot"
-subtitle: "Toronto Shelter System — current month at a glance"
-description: "Interactive monthly snapshot of Toronto's shelter system — actively homeless counts, flow metrics, and population group breakdowns for any month from January 2018 onward."
+subtitle: "What Toronto's shelter numbers show this month"
+description: "Choose a month and see how many people used Toronto's shelter system, entered or left the count, or moved into housing."
 author: "Miriam Marling"
 open-graph:
-  title: "Monthly Snapshot — Toronto Shelter System"
-  description: "Interactive monthly snapshot of Toronto's shelter system — actively homeless counts, flow metrics, and population group breakdowns for any month from January 2018 onward."
-  site_name: "BonQuery — Data for the Greater Good"
+  title: "Monthly Toronto Shelter Numbers | BonQuery"
+  description: "See what Toronto's shelter numbers show for any month from 2018 onward."
+  site_name: "BonQuery"
 twitter-card:
   card-style: summary
-  title: "Monthly Snapshot — Toronto Shelter System"
-  description: "Interactive monthly snapshot of Toronto's shelter system — actively homeless counts, flow metrics, and population group breakdowns for any month from January 2018 onward."
+  title: "Monthly Toronto Shelter Numbers | BonQuery"
+  description: "See what Toronto's shelter numbers show for any month from 2018 onward."
 format:
   html:
     page-layout: full
@@ -64,17 +64,13 @@ reportingMonthOptions = data
   })
 ```
 
-Toronto publishes monthly data on its taxed shelter system, and the
-City's own dashboards do a good job presenting the headline numbers.
-This section goes a step further: interactive filters on every chart, a
-clear note on what the data captures and what it leaves out, and
-findings that usually stay buried in technical documentation.
+Toronto publishes new shelter numbers each month. Choose a month to see how
+many people were counted, how many entered or left the count, and how many
+moved into housing.
 
-The data covers every month from January 2018 to the most recent
-published month, sourced directly from the [City of Toronto's Shelter
-System Flow dataset](https://open.toronto.ca/dataset/toronto-shelter-system-flow/){target="_blank"}.
-New data loads automatically each month, usually around the 15th,
-after the City publishes the prior month's figures.
+The page covers January 2018 to the newest month in the [City's public
+data](https://open.toronto.ca/dataset/toronto-shelter-system-flow/){target="_blank"}.
+It updates after the City posts new numbers, usually around the 15th.
 
 ```{ojs}
 //| echo: false
@@ -108,7 +104,7 @@ reportingMonth = +reportingDate.value.slice(5, 7)
 //| echo: false
 html`<div class="kpi-hero">
   <div class="kpi-box">
-    <div class="kpi-label">People actively homeless in the last 3 months</div>
+    <div class="kpi-label">People counted as homeless in Toronto's shelter system</div>
     <div class="kpi-value">${activelyHomeless.toLocaleString()}</div>
   </div>
 </div>`
@@ -118,17 +114,17 @@ html`<div class="kpi-hero">
 //| echo: false
 html`<div class="kpi-row">
   <div class="kpi-card" style="background:var(--bq-kpi-inflow-bg);">
-    <div class="kpi-label">Shelter System Inflow</div>
+    <div class="kpi-label">People added to the count this month</div>
     <div class="kpi-value" style="color:var(--bq-kpi-inflow);">+${inflowTotal.toLocaleString()}</div>
   </div>
   <div class="kpi-card" style="background:${netChange > 0 ? 'var(--bq-kpi-net-pos-bg)' : netChange < 0 ? 'var(--bq-kpi-net-neg-bg)' : 'var(--bq-kpi-net-zero-bg)'};">
-    <div class="kpi-label">Change (Inflow − Outflow)</div>
+    <div class="kpi-label">Added minus removed</div>
     <div class="kpi-value" style="color:${netChange > 0 ? 'var(--bq-kpi-net-pos)' : netChange < 0 ? 'var(--bq-kpi-net-neg)' : 'var(--bq-kpi-net-zero)'};">
       ${netChange >= 0 ? '+' : ''}${netChange.toLocaleString()}
     </div>
   </div>
   <div class="kpi-card" style="background:var(--bq-kpi-outflow-bg);">
-    <div class="kpi-label">Shelter System Outflow</div>
+    <div class="kpi-label">People removed from the count this month</div>
     <div class="kpi-value" style="color:var(--bq-kpi-outflow);">−${outflowTotal.toLocaleString()}</div>
   </div>
 </div>`
@@ -136,9 +132,10 @@ html`<div class="kpi-row">
 
 ---
 
-### Chronic Homelessness
+### How many have been homeless for a long time?
 
-*Note: Oracle APEX renders this as a donut chart. Observable Plot does not support pie/donut natively — shown here as a percentage bar with the same data and colors.*
+The City calls someone “chronically homeless” after at least 180 nights in a
+shelter in one year, or 546 nights over three years.
 
 ```{ojs}
 //| echo: false
@@ -150,7 +147,7 @@ _chartStroke = _cs.getPropertyValue("--bq-chart-stroke").trim() || "#333"
 
 chronicData   = [
   {label: "Chronic",     pct: chronicPct,       fill: "#5856D6"},
-  {label: "Non-Chronic", pct: 1 - chronicPct,   fill: _nonChronicFill}
+  {label: "Not Chronic", pct: 1 - chronicPct,   fill: _nonChronicFill}
 ]
 
 Plot.plot({
@@ -160,7 +157,7 @@ Plot.plot({
   marginRight: 10,
   x: {domain: [0, 1], axis: null},
   y: {axis: null},
-  color: {domain: ["Chronic","Non-Chronic"], range: ["#5856D6", _nonChronicFill], legend: true},
+  color: {domain: ["Chronic","Not Chronic"], range: ["#5856D6", _nonChronicFill], legend: true},
   marks: [
     Plot.barX(chronicData, Plot.stackX({x: "pct", y: () => "", fill: "label", inset: 0})),
     Plot.text(chronicData, Plot.stackX({
@@ -179,7 +176,7 @@ Plot.plot({
 
 ---
 
-### Cumulative YTD comparison: Newly Identified
+### Newly counted as homeless: total so far this year
 
 ```{ojs}
 //| echo: false
@@ -223,7 +220,7 @@ Plot.plot({
   height: 60 + ytdNI.length * 22,
   marginLeft: 100,
   marginRight: 80,
-  x: {label: "Cumulative newly identified (YTD)", grid: true, tickFormat: fmtN},
+  x: {label: "Total so far this year", grid: true, tickFormat: fmtN},
   y: {label: null, domain: ytdNIDomain},
   color: {
     domain: [String(reportingYear - 1), String(reportingYear)],
@@ -245,7 +242,7 @@ Plot.plot({
 
 ---
 
-### Cumulative YTD comparison: Moved to Permanent Housing
+### Moved into housing: total so far this year
 
 ```{ojs}
 //| echo: false
@@ -258,7 +255,7 @@ Plot.plot({
   height: 60 + ytdMH.length * 22,
   marginLeft: 100,
   marginRight: 80,
-  x: {label: "Cumulative moved to permanent housing (YTD)", grid: true, tickFormat: fmtN},
+  x: {label: "Total so far this year", grid: true, tickFormat: fmtN},
   y: {label: null, domain: ytdMH.map(d => d.barLabel)},
   color: {
     domain: [String(reportingYear - 1), String(reportingYear)],
@@ -280,14 +277,14 @@ Plot.plot({
 
 ---
 
-### Inflow breakdown
+### Who was added to the count this month?
 
 ```{ojs}
 //| echo: false
 inflowBreakdown = snapshot ? [
-  {label: "Newly Identified",              value: snapshot.newly_identified,      fill: "#E63946"},
-  {label: "Returned from Permanent Housing", value: snapshot.returned_from_housing, fill: "#FFD600"},
-  {label: "Returned to Shelter",           value: snapshot.returned_to_shelter,   fill: "#FB8C00"}
+  {label: "Newly counted as homeless",     value: snapshot.newly_identified,      fill: "#E63946"},
+  {label: "Returned after permanent housing", value: snapshot.returned_from_housing, fill: "#FFD600"},
+  {label: "Returned after 3 months away",  value: snapshot.returned_to_shelter,   fill: "#FB8C00"}
 ].sort((a, b) => b.value - a.value) : []
 
 inflowMax = d3.max(inflowBreakdown, d => d.value) || 1
@@ -328,13 +325,13 @@ inflowMax = d3.max(inflowBreakdown, d => d.value) || 1
 
 ---
 
-### Outflow breakdown
+### Who was removed from the count this month?
 
 ```{ojs}
 //| echo: false
 outflowBreakdown = snapshot ? [
-  {label: "Moved to Permanent Housing", value: snapshot.moved_to_housing, fill: "#66CC66"},
-  {label: "Became Inactive",            value: snapshot.became_inactive,  fill: "#512DA8"}
+  {label: "Moved into permanent housing", value: snapshot.moved_to_housing, fill: "#66CC66"},
+  {label: "Not seen in shelter for 3 months", value: snapshot.became_inactive, fill: "#512DA8"}
 ].sort((a, b) => b.value - a.value) : []
 
 outflowMax = d3.max(outflowBreakdown, d => d.value) || 1
@@ -375,7 +372,7 @@ outflowMax = d3.max(outflowBreakdown, d => d.value) || 1
 
 ---
 
-### Age of people actively homeless in the last 3 months
+### Age of people counted as homeless in the last 3 months
 
 ```{ojs}
 //| echo: false
@@ -422,7 +419,7 @@ Plot.plot({
 
 ---
 
-### Gender of people actively homeless in the last 3 months
+### Gender of people counted as homeless in the last 3 months
 
 ```{ojs}
 //| echo: false
@@ -477,68 +474,54 @@ genderSnapMax = d3.max(genderSnapshotData, d => d.pct) || 1
 
 ---
 
-*This dashboard is also available as an [Oracle APEX dashboard](https://g88e375ebfb8a61-bonquery.adb.ca-toronto-1.oraclecloudapps.com/ords/r/shelter/toronto-shelter-analytics/monthly-snapshot){target="_blank"} built on the same database — useful if you want to see how the same data renders in Oracle's native low-code platform, or if you're curious about the SQL and APEX configuration behind it.*
+*You can also [open this dashboard in Oracle APEX](https://g88e375ebfb8a61-bonquery.adb.ca-toronto-1.oraclecloudapps.com/ords/r/shelter/toronto-shelter-analytics/monthly-snapshot){target="_blank"}. It uses the same data.*
 
-### How to read this data
+### Who is not counted?
 
-These numbers reflect the shelter *system*, not all homelessness. The
-data captures people who used a City-funded overnight service at
-least once in the past three months. It doesn't include people
-sleeping outside, in shelters that aren't City-funded, or staying
-temporarily with friends or family. The City [estimates](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/){target="_blank"}
-that roughly 18% of people experiencing absolute homelessness in
-Toronto aren't reflected in these numbers. Trends here reflect
-changes in the shelter system specifically — not in total homelessness
-in the city.
+These numbers do not count everyone without housing. They count people who used
+a City-funded overnight service at least once in the past three months. They
+miss people sleeping outside, using a shelter the City does not fund, or staying
+with friends or family. The City [estimates](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/){target="_blank"}
+that about 18% of people experiencing homelessness are missing from this count.
 
-### Key terms
+### What the City's labels mean
 
-The dashboards use a few terms that have specific meanings worth
-knowing before you read the charts.
+We use simpler labels in the charts. These are the City's official terms.
 
-**Actively homeless.** A person who has used City-funded shelter
-services at least once in the past three months and hasn't been
-recorded as moving to permanent housing. This is the headline number
-on every dashboard. Because it looks back three months, the count
-includes people who may not be in shelter on any given night.
+**Actively homeless:** counted as homeless in the shelter system. This means the
+person used a City-funded overnight service in the past three months and was not
+recorded as moving to permanent housing. The person may not be in a shelter on
+the day shown.
 
-**Chronic homelessness.** The federal definition: someone who has
-spent at least 180 nights in shelter over the past year, or at least
-546 nights over the past three years. A person can meet this
-definition while still actively in the shelter system — they don't
-need to have left and returned.
+**Chronic homelessness:** homeless for a long time. This means at least 180
+nights in shelter during one year, or 546 nights during three years.
 
-**Inflow categories** (people entering the shelter system this month):
+**Added to the count this month:**
 
-- **Newly Identified.** People entering the shelter system for the
-  first time. One exception for the "Chronic" group: in that row,
-  this column counts people who became chronically homeless during
-  the reporting month, regardless of how long they'd already been
-  using the shelter system.
-- **Returned from Permanent Housing.** People who previously moved
-  to permanent housing and have come back to the shelter system.
-- **Returned to Shelter.** People who were in the system, didn't
-  use it for at least three months, and have now returned.
+- **Newly counted as homeless:** first entered the shelter count.
+- **Returned after permanent housing:** came back after moving into housing.
+- **Returned after three months away:** used shelter again after not using it
+  for at least three months.
 
-**Outflow categories** (people leaving the shelter system this month):
+**Removed from the count this month:**
 
-- **Moved to Permanent Housing.** People who left the shelter system
-  for permanent housing.
-- **Became Inactive.** People who haven't used shelter services in
-  the past three months, including the reporting month.
+- **Moved into permanent housing:** recorded as leaving for housing.
+- **Not seen in shelter for three months:** removed because the person did not
+  use a City-funded shelter during that time. This does not mean the person
+  found housing.
 
 Definitions are based on the [City of Toronto's Shelter System Flow
 Data page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/){target="_blank"}.
 
-[Read all data findings →](about-the-data.html){target="_blank"}
+[See where the numbers come from →](about-the-data.html){target="_blank"}
 
 ### Data source
 
-All data comes from the City of Toronto's [Shelter System Flow
-dataset](https://open.toronto.ca/dataset/toronto-shelter-system-flow/){target="_blank"},
-published monthly on the City's open data portal.
+All numbers come from the City of Toronto's [Shelter System Flow public
+data](https://open.toronto.ca/dataset/toronto-shelter-system-flow/){target="_blank"}.
+The City updates it monthly.
 
-Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/){target="_blank"}.
+Contains information licensed under the [Open Government Licence - Toronto](https://open.toronto.ca/open-data-licence/){target="_blank"}.
 
 ---
 
@@ -551,10 +534,10 @@ shelter_flow    = data
 ::: {.key-finding-box}
 
 ```{=html}
-<div class="key-finding-box-header">KEY DATA FINDING</div>
+<div class="key-finding-box-header">WHAT THE DATA SHOWS</div>
 ```
 
-### The most affected group — and the one we hear least about
+### Men are the largest group in Toronto's shelter count
 
 ```{ojs}
 //| echo: false
@@ -637,7 +620,7 @@ _recordEndYear   = _latestFlow.flow_date.slice(0, 4)
 html`<div class="crisis-hero">
   <div class="hero-number">${_ratio}×</div>
   <div class="hero-text">
-    <div class="hero-label">more <strong>men</strong> than women are actively homeless in Toronto's shelter system</div>
+    <div class="hero-label">more <strong>men</strong> than women were counted as homeless in Toronto's shelter system</div>
     <div class="hero-sub"><strong>${_menCount.toLocaleString()} men</strong> · ${_womenCount.toLocaleString()} women · ${_transCount.toLocaleString()} transgender, non-binary, or two-spirit · ${_flowMonth}</div>
   </div>
 </div>`
@@ -653,10 +636,10 @@ _genderStats = [
 
 Plot.plot({
   width, height: 300, marginBottom: 36, marginLeft: 70, marginRight: 20,
-  title: `Mean monthly actively homeless count by gender — ${_yearRange} (${_n1} months)`,
-  caption: "Error bars show 95% confidence intervals of the monthly mean. Source: City of Toronto Shelter System Flow dataset (open.toronto.ca).",
+  title: `Average monthly shelter count by gender, ${_yearRange}`,
+  caption: "The thin lines show the likely range around each average. Source: City of Toronto Shelter System Flow data.",
   x: {label: null, domain: _genderStats.map(d => d.label)},
-  y: {label: "Mean individuals actively homeless / month", grid: true,
+  y: {label: "Average people counted each month", grid: true,
       tickFormat: d => d.toLocaleString(),
       domain: [0, Math.max(..._genderStats.map(d => d.ci_hi)) * 1.12]},
   marks: [
@@ -690,6 +673,8 @@ Plot.plot({
   ]
 })
 ```
+
+::: {.callout-note collapse="true" title="Show the statistical details"}
 
 ```{ojs}
 //| echo: false
@@ -750,20 +735,22 @@ Plot.plot({
       monthly count of men exceeds women is indistinguishable from 1.
     </p>
     <div class="plain-eng">
-      <div class="pe-label">Plain English</div>
-      A posterior probability indistinguishable from 1 means the estimated probability is
-      close to 100% that men's true monthly count exceeds women's. The 95% HDI also indicates
-      the gap is consistently large — men's running about ${fmt1(rr.men_vs_women.median)}&times;
-      women's, or roughly ${fmtN(pd.men_vs_women.median)} more people per month.
-      <strong>Men are the largest and most consistently over-represented group in the city's shelter system.</strong>
+      <div class="pe-label">What it means</div>
+      The model estimates a nearly 100% chance that the monthly count of men is
+      higher than the count of women. The estimated count of men is about
+      ${fmt1(rr.men_vs_women.median)}&times; the count of women, or about
+      ${fmtN(pd.men_vs_women.median)} more people each month.
+      <strong>Men are the largest group in the City's shelter count.</strong>
     </div>
   </div>`
 }
 ```
 
+:::
+
 ```{ojs}
 //| echo: false
-md`Men have accounted for at least **${_menShareMinPct}%** of Toronto's actively homeless population every single month on record (${_recordStartYear} to ${_recordEndYear}). That figure is the **lowest single-month share of men observed across the entire data record**; in most months the share is higher. The average monthly gap between men and everyone else (women plus transgender, non-binary, and two-spirit individuals combined) is roughly **${_gapAvgStr} people**, and it has barely moved as the total has risen and fallen. The pattern is not new, not subtle, and not hidden in the data. Yet it rarely makes headlines, and few of the city's public conversations about homelessness lead with it.`
+md`Men were at least **${_menShareMinPct}%** of the people counted as homeless in Toronto's shelter system in every month from ${_recordStartYear} to ${_recordEndYear}. In most months, their share was higher. On average, the count of men was about **${_gapAvgStr} people higher** than all other gender groups combined. That gap changed little over time.`
 ```
 
 :::

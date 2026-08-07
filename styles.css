@@ -643,7 +643,7 @@ body:has(.bq-home-lede) #title-block-header .description {
 
 .bq-quick-links p { margin: 0; }
 
-.bq-quick-links + .bq-status-note { margin-top: 0; }
+.bq-quick-links + .bq-status-note { margin-top: -3px; }
 
 body:has(.bq-home-lede) .bq-quick-links { margin-bottom: 0; }
 

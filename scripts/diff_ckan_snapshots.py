@@ -26,7 +26,7 @@ import argparse
 import gzip
 import json
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -213,9 +213,11 @@ def main():
         d["changed"].sort(key=lambda r: r["PROGRAM_ID"])
 
     # Per-date program counts (helps spot dates that grew or shrunk)
-    for date in sorted(set(k[1] for k in old_keys) | set(k[1] for k in new_keys)):
-        n_old = sum(1 for k in old_keys if k[1] == date)
-        n_new = sum(1 for k in new_keys if k[1] == date)
+    old_counts_by_date = Counter(date for _, date in old_keys)
+    new_counts_by_date = Counter(date for _, date in new_keys)
+    for date in sorted(old_counts_by_date.keys() | new_counts_by_date.keys()):
+        n_old = old_counts_by_date[date]
+        n_new = new_counts_by_date[date]
         if n_old != n_new or date in by_date:
             by_date[date]["n_programs_old"] = n_old
             by_date[date]["n_programs_new"] = n_new
@@ -235,8 +237,8 @@ def main():
         "summary": {
             "rows_total_old":   len(old_idx),
             "rows_total_new":   len(new_idx),
-            "dates_in_old":     len({k[1] for k in old_keys}),
-            "dates_in_new":     len({k[1] for k in new_keys}),
+            "dates_in_old":     len(old_counts_by_date),
+            "dates_in_new":     len(new_counts_by_date),
             "rows_added":       len(added_keys),
             "rows_removed":     len(removed_keys),
             "rows_changed":     len(changed),

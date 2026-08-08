@@ -39,7 +39,7 @@ writing.
 I started BonQuery because so much of the publicly available data
 on humanitarian issues in Canada sits on government open-data pages
 where most people will never see it. The first project focuses on
-Toronto's taxed shelter system. More to follow.
+Toronto's publicly funded shelter system. More to follow.
 
 [See who Toronto's shelter data counts, who it misses, and how BonQuery uses
 words such as homeless and unhoused →](projects/about-the-data.qmd#who-the-data-misses-and-why-words-matter)

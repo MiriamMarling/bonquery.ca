@@ -577,9 +577,15 @@ body:has(.bq-home-lede) #title-block-header .description {
 
 .bq-preview-kpi span .bq-preview-word {
   display: inline;
-  color: inherit;
+  color: var(--bq-fg);
   font-size: inherit;
+  font-weight: 900;
   line-height: inherit;
+}
+
+.bq-card-daily p strong {
+  color: var(--bq-fg);
+  font-weight: 900;
 }
 
 .bq-preview-daily strong { color: var(--bq-danger); }

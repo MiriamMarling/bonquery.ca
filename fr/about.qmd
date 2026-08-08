@@ -39,8 +39,8 @@ base de données, tableau de bord, analyse et rédaction.
 J'ai fondé BonQuery parce qu'une grande partie des données publiques sur les
 enjeux humanitaires au Canada se trouve sur des portails gouvernementaux
 en libre accès, mais que la plupart des citoyens n'y accèdent jamais. Le
-premier projet se concentre sur le réseau de refuges de Toronto, mis à rude
-épreuve. D'autres suivront.
+premier projet se concentre sur le réseau de refuges de Toronto, financé par
+des fonds publics. D'autres suivront.
 
 [Voir qui est compté dans les données sur les refuges de Toronto, qui manque et
 comment BonQuery emploie des termes comme sans-abri et sans logement →](projects/about-the-data.qmd#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent)

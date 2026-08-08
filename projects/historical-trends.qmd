@@ -143,7 +143,7 @@ fmtN = d => d.toLocaleString()
 fmtPct = d => (d * 100).toFixed(0) + "%"
 ```
 
-Toronto publishes monthly data on its taxed shelter system, and the
+Toronto publishes monthly data on its publicly funded shelter system, and the
 City's own dashboards do a good job presenting the headline numbers.
 This section goes a step further: interactive filters on every chart, a
 clear note on what the data captures and what it leaves out, and
@@ -439,7 +439,8 @@ need to have left and returned.
 - **Moved to Permanent Housing.** People who left the shelter system
   for permanent housing.
 - **Became Inactive.** People who haven't used shelter services in
-  the past three months, including the reporting month.
+  the past three months, including the reporting month. This does not mean the
+  person found housing.
 
 Definitions are based on the [City of Toronto's Shelter System Flow
 Data page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/){target="_blank"}.

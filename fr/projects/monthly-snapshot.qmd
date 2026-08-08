@@ -535,7 +535,8 @@ et revenue.
 - **Accès au logement permanent.** Personnes ayant quitté le réseau de refuges
   pour un logement permanent.
 - **Devenus inactifs.** Personnes n'ayant pas utilisé les services d'hébergement
-  au cours des trois derniers mois, y compris le mois de référence.
+  au cours des trois derniers mois, y compris le mois de référence. Cela ne
+  signifie pas que la personne a trouvé un logement.
 
 Définitions basées sur la [page Données sur les flux du réseau de refuges de la
 Ville de Toronto](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/){target="_blank"}.

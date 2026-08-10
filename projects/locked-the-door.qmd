@@ -1,0 +1,166 @@
+---
+title: "Toronto locked the door."
+subtitle: "The City shut its warming centres to new arrivals while people outside were told there was no bed. Its own Auditor General said so."
+description: "Toronto held 4,331 bed-nights empty by instruction while 174 people a night were told there was no bed. The people turned away at the door are not counted at all."
+author: "Miriam Marling"
+date: 2026-08-09
+open-graph:
+  title: "Toronto locked the door."
+  description: "Beds sat empty by instruction while people were told there was nothing. The City does not count the ones it turns away."
+  site_name: "BonQuery — Data for the Greater Good"
+twitter-card:
+  card-style: summary
+  title: "Toronto locked the door."
+  description: "Beds sat empty by instruction while people were told there was nothing. The City does not count the ones it turns away."
+---
+
+Toronto decides whether you get a bed by reading a thermometer. Below −5 °C it
+opens extra space. Above it, it takes that space away.
+
+There is no temperature at which a person outside is fine. Hypothermia does not
+need freezing air. People with Raynaud's lose circulation in their hands well
+above 20 °C, and cold injury makes it worse for the rest of their lives. A line
+at −5 °C is not where harm starts. It is where the City decided to start paying
+attention.
+
+Everyone needs a place to be, every night of the year. What follows is drawn from
+the City's own Auditor General and from six winters of its published records.
+
+## The beds were made and the door was shut
+
+When the thermometer rises, a warming centre "deactivates." Staff stop letting
+anyone new in at 9 a.m. They spend the rest of the day moving the people already
+inside back into the regular system. The building is open. The beds are made. No
+one else is allowed in.
+
+> "Since Warming Centres do not admit new clients while deactivating, beds were
+> left vacant as the remaining clients were discharged."
+
+That practice left **4,331 bed-nights** unused. Counting the other ways capacity
+was withheld that winter, the auditor's own table reaches **12,742** bed-nights
+that a change in practice could have freed. That is one winter, in a city where
+people were outside every night of it.
+
+## That same winter, 174 people a night were told there was nothing
+
+The auditor, on the 2023/24 season:
+
+> "There were 174 people, on average, who called Central Intake daily but were
+> unable to be matched to a bed."
+
+We checked that against the City's published Central Intake records for the same
+winter and got 173.98 a night, across the 153 nights from 15 November to 15
+April. Over the 94 nights the City was emptying those beds, that is about
+**16,400** times someone asked for a bed and was told no.
+
+## The ones turned away at the door are not counted at all
+
+If you walk up to a warming centre and are told there is no room, that is
+recorded nowhere.
+
+> "TSSS does not track the number of people who walk into a Warming Centre or
+> Winter Respite Site but are turned away when beds are not available.
+> Consequently, the total demand for beds for TSSS' winter programs is not
+> known."
+
+The auditor asked staff whether it happens. They said it happens daily.
+
+> "Staff at several of these programs advised that they turned some people away,
+> with staff at three Winter Respite programs and one Warming Centre indicating
+> that their program turned people away on a daily basis during the winter."
+
+Every figure the City publishes about how many people need shelter is therefore
+smaller than the reality, and the City states this itself: total demand "is not
+known." A couple who phone together are recorded as a single call rather than two
+people, which reduces it further.
+
+## Most of the city is barely searched
+
+The City counts people outside on a single day. It only searches places where
+somebody is already known to be sleeping. Anywhere nobody is known about is left
+out.
+
+Downtown, 81% of the areas were searched. In Etobicoke–York, 38%. Each area a
+team covered out there was nearly five times the ground of one downtown. In
+Etobicoke–York they found one person outside an encampment across 181 square
+kilometres.
+
+The City searches hardest where it already has services, then uses what it finds
+there to decide where services should go.
+
+Scarborough and Etobicoke–York are **58% of Toronto's land**. On a cold night
+they have **4.95 free low-barrier beds between them**. Downtown, on 18% of the
+land, has **39**. Etobicoke–York did not have one warming or surge site open on
+any of the 260 coldest nights in six years.
+
+## The auditor looked at one winter. We looked at six.
+
+The audit covers 2023/24. We went through every night of six winters of the
+City's published records, 2020 through 2026, to find out whether that winter was
+unusual. It was not.
+
+**There is no room on the cold nights.** On nights at or below −5 °C, the walk-in
+system was effectively full on **46.7%** of them. On milder nights, 20.2%. The
+extra space the City opens for the cold is already out of beds by the time the
+cold arrives.
+
+**When the City closes a surge site, more people are left with nowhere.** We
+compared each closure against other nights at the same temperature. After a
+closure the queue of people with no bed rose by about **25 people**, and about
+**11 fewer** people were placed. No beds opened anywhere else to take them. The
+City did not move the capacity. It removed it.
+
+**One quarter of the city has never had a warming centre.** Etobicoke–York went
+without a single warming or surge site open on all 260 of the coldest nights in
+six years.
+
+None of this is one bad winter. It is how the system is built.
+
+## They were told to fix it. Then they did it again.
+
+In February 2025 the Auditor General made fifteen recommendations. The City
+accepted every one. Council adopted them in March.
+
+The next winter the City pulled its surge beds **nine times**, more than in any
+season before. **Eight of those nine** were on nights at or below −5 °C. One was
+at −15.7 °C. **323 beds** taken out of service on nights cold enough to kill
+someone.
+
+Turnaways are still not counted.
+
+On the public record, the City has not changed the practice it agreed to change.
+
+## They were paid to keep those beds open
+
+The City paid operators the maximum **$12.5 million** for that winter, budgeted
+on every bed being in use all season.
+
+> "TSSS had budgeted for Warming Centres to be open and operating at full
+> capacity for the entire 2023/24 season."
+
+Operators reported $9.7 million in costs. Nearly **$2.9 million** had still not
+been recovered a year later.
+
+The money was there to keep the doors open. The doors were shut anyway.
+
+## What has to stop
+
+Shelter should not close because the weather changed. Capacity should not be
+withdrawn on nights people are outside. And demand should not be measured in a
+way that cannot see the person turned away at the door.
+
+What is needed is a place for every person, every night, with no thermometer
+involved. Not a lower trigger. No trigger.
+
+This took six winters of the City's own records to establish. Those records are
+public, every figure on this page can be checked against them, and the City could
+have checked them at any point in the last six years.
+
+---
+
+*Sources: Auditor General of Toronto, "Audit of Toronto Shelter and Support
+Services – Warming Centres and Winter Respite Sites," February 2025, pages 2–4
+and Table 1. City of Toronto 2023/24 and 2024/25 Winter Services Plans. 2024
+Street Needs Assessment, Appendix A. Daily Shelter and Overnight Service
+Occupancy and Capacity, 2020–2026. Every figure is reproducible from published
+sources.*

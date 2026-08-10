@@ -38,6 +38,8 @@ website:
         text: Dashboards
       - href: projects/cold-response.qmd
         text: "Left in the Cold"
+      - href: projects/locked-the-door.qmd
+        text: "Locked the Door"
       - text: "Data & Methods"
         menu:
           - href: projects/about-the-data.qmd

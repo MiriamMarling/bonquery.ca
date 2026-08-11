@@ -9,6 +9,7 @@ description: "Latest published City of Toronto shelter beds and spaces for peopl
 daily_occ = FileAttachment("../data/daily_occupancy.json").json()
 bt_data   = FileAttachment("../data/city_bridging_triage.json").json()
 audit_history = FileAttachment("../data/city_audit_history.json").json()
+city_table = FileAttachment("../data/city_daily_table.json").json()
 ```
 
 ```{ojs}
@@ -21,7 +22,24 @@ function fmtDate(s) {
   })
 }
 
-allDates = [...new Set(daily_occ.map(r => r.date))].sort().reverse()
+CITY_CENSUS_URL = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
+
+// ── Two sources, one table ────────────────────────────────────────────────
+// The open data file is authoritative and carries funded capacity, so it is
+// always preferred. The City's daily webpage is the fallback, and is used only for
+// dates where no open data has been published yet.
+//
+// Precedence is decided here, at render time, rather than by rewriting stored
+// rows. When the City finally publishes the missing dates, those dates drop
+// out of contingencyDates on the next build and the table returns to open
+// data on its own — there is no catch-up step to remember to run.
+openDates = [...new Set(daily_occ.map(r => r.date))].sort().reverse()
+latestOpenDate = openDates[0]
+
+cityDates = Object.keys(city_table.entries ?? {}).sort().reverse()
+contingencyDates = cityDates.filter(d => d > latestOpenDate)
+
+allDates = [...new Set([...openDates, ...contingencyDates])].sort().reverse()
 latestDate = allDates[0]
 
 auditDateLabel = isoDate => {
@@ -80,7 +98,10 @@ html`<div class="bq-audit-alert" role="alert">
 // These checks confirm BonQuery's aggregation pipeline is internally correct.
 // They do not compare against the City's live dashboard.
 
-latestRows = daily_occ.filter(r => r.date === latestDate)
+// Anchored to latestOpenDate, not latestDate. These checks validate BonQuery's
+// aggregation of the open data file; on a contingency day there are no open
+// data rows to check and every assertion would fail for the wrong reason.
+latestRows = daily_occ.filter(r => r.date === latestOpenDate)
 
 function getVal(rows, key) {
   const row = rows.find(r => r.key === key)
@@ -149,14 +170,12 @@ allPass = validationChecks.every(c => c.pass)
 
 // ── Validation banner ─────────────────────────────────────────────────────
 validationBanner = {
-  const CITY_CENSUS_URL = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
-
   if (!allPass) {
     const failedChecks = validationChecks.filter(c => !c.pass)
     return html`<div style="
       background:var(--bq-warn-bg);border:1px solid var(--bq-warn-border);border-radius:4px;
       padding:8px 14px;font-size:0.88em;color:var(--bq-warn-fg);margin-bottom:12px">
-      <strong>⚠ Validation issue detected for ${fmtDate(latestDate)}</strong>
+      <strong>⚠ Validation issue detected for ${fmtDate(latestOpenDate)}</strong>
       <details style="margin-top:6px">
         <summary style="cursor:pointer">Show details</summary>
         <ul style="margin:6px 0 0;padding-left:20px">
@@ -180,13 +199,79 @@ viewof selectedDate = Inputs.select(allDates, {
 
 ```{ojs}
 //| echo: false
-html`<p class="bq-ckan-note">Newest City data: <strong>${fmtDate(latestDate)}</strong>.</p>`
+// Tells the reader which of the two sources produced the date they are
+// looking at, and what that costs them.
+sourceNote = {
+  if (selectedSource !== "city") {
+    return html`<p class="bq-ckan-note">
+      Newest open data: <strong>${fmtDate(latestOpenDate)}</strong>.
+    </p>`
+  }
+  return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
+    <p style="margin:0">
+      <strong>Contingency table until the open data lands.</strong>
+      The City's open data stops at ${fmtDate(latestOpenDate)}, so this date
+      comes from its <a href="${CITY_CENSUS_URL}" target="_blank">daily
+      webpage</a>. People and beds used match the open data. Empty, open to
+      use, and percent full run high, because the webpage counts offline beds
+      as open. Funded but unavailable stays blank until the open data lands.
+    </p>
+  </div>`
+}
 ```
 
 ```{ojs}
 //| echo: false
 // ── Table rendering ───────────────────────────────────────────────────────
-dayRows = daily_occ.filter(r => r.date === selectedDate)
+// Presentation metadata — label wording, indentation, which rows are totals —
+// always comes from the open data rows, so a contingency day renders
+// identically to every other day instead of exposing the City's raw labels.
+rowTemplate = new Map(
+  daily_occ.filter(r => r.date === latestOpenDate).map(r => [r.key, r])
+)
+
+// The City's webpage reuses one row where the open data has two: a summary
+// entry and a detail entry. The scrape keeps only the first occurrence, so a
+// single scraped row has to serve both positions.
+cityKeyAliases = ({
+  singles_shelter_total: ["singles_shelter_total", "singles_shelter"],
+  allied_total:          ["allied_total", "allied_summ"],
+  iso:                   ["iso", "iso_summ"]
+})
+
+function cityRowsFor(date) {
+  const rows = (city_table.entries ?? {})[date]
+  if (!rows) return []
+  return rows.flatMap(row => {
+    const keys = cityKeyAliases[row.key] ?? [row.key]
+    return keys.map(key => {
+      const t = rowTemplate.get(key)
+      return {
+        date,
+        key,
+        label:       t ? t.label : row.label,
+        indent:      t ? t.indent : 0,
+        is_total:    t ? t.is_total : false,
+        col_type:    t ? t.col_type : row.col_type,
+        ind:         row.city_ind,
+        occ:         row.city_occ,
+        unocc:       row.city_unocc,
+        cap:         row.city_cap,
+        rate:        row.city_rate,
+        cap_funding: null,     // the City's webpage does not publish it
+        source:      "city"
+      }
+    })
+  })
+}
+
+dayRows = {
+  const open = daily_occ.filter(r => r.date === selectedDate)
+  if (open.length) return open.map(r => ({...r, source: "open"}))
+  return cityRowsFor(selectedDate)
+}
+
+selectedSource = dayRows.length > 0 ? dayRows[0].source : "open"
 
 function n(v) { return v !== null && v !== undefined ? v.toLocaleString() : "—" }
 function pct(v) { return v !== null && v !== undefined ? v.toFixed(1) + "%" : "—" }

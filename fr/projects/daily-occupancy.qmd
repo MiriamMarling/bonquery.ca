@@ -201,10 +201,7 @@ sourceNote = {
       <strong>Tableau de recours en attendant les données ouvertes.</strong>
       Les données ouvertes de la Ville s'arrêtent au ${fmtDate(latestOpenDate)};
       cette date provient donc de sa <a href="${CITY_CENSUS_URL}"
-      target="_blank">page Web quotidienne</a>. Les personnes et les lits
-      occupés correspondent aux données ouvertes. Les places libres, les places
-      ouvertes et le taux d'occupation sont surestimés, car la page Web compte
-      comme ouverts des lits hors service. La colonne « Financé mais
+      target="_blank">page Web quotidienne</a>. La colonne « Financé mais
       indisponible » reste vide jusqu'à la publication des données ouvertes.
     </p>
   </div>`

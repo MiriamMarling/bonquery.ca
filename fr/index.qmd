@@ -22,6 +22,7 @@ twitter-card:
 //| echo: false
 daily_occ    = FileAttachment("data/daily_occupancy.json").json()
 bt_data      = FileAttachment("data/city_bridging_triage.json").json()
+city_table   = FileAttachment("data/city_daily_table.json").json()
 seasonRug    = FileAttachment("data/season_rug.csv").csv().then(rows =>
   rows.map(d => ({ min_temp: +d.min_temp, winter_season: d.winter_season }))
 )
@@ -382,7 +383,21 @@ function fmtDate(s) {
   })
 }
 
-allDates = [...new Set(daily_occ.map(r => r.date))].sort().reverse()
+CITY_CENSUS_URL_TABLE = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
+
+// ── Deux sources, un seul tableau ─────────────────────────────────────────
+// Les données ouvertes font autorité et contiennent la capacité financée;
+// elles ont donc toujours priorité. La page Web quotidienne de la Ville sert
+// uniquement de recours pour les dates que les données ouvertes n'ont pas
+// encore atteintes. La priorité est établie au moment du rendu : le tableau
+// revient de lui-même aux données ouvertes dès leur publication.
+openDates = [...new Set(daily_occ.map(r => r.date))].sort().reverse()
+latestOpenDate = openDates[0]
+
+cityDates = Object.keys(city_table.entries ?? {}).sort().reverse()
+contingencyDates = cityDates.filter(d => d > latestOpenDate)
+
+allDates = [...new Set([...openDates, ...contingencyDates])].sort().reverse()
 latestDate = allDates[0]
 ```
 
@@ -400,7 +415,9 @@ pour une explication de ce que cela représente et pourquoi cela compte.
 
 ```{ojs}
 //| echo: false
-latestRows = daily_occ.filter(r => r.date === latestDate)
+// Rattaché à latestOpenDate : ces vérifications valident l'agrégation des
+// données ouvertes, et un jour de recours n'en contient aucune.
+latestRows = daily_occ.filter(r => r.date === latestOpenDate)
 
 function getVal(rows, key) {
   const row = rows.find(r => r.key === key)
@@ -469,7 +486,7 @@ validationBanner = {
     return html`<div style="
       background:var(--bq-warn-bg);border:1px solid var(--bq-warn-border);border-radius:4px;
       padding:8px 14px;font-size:0.88em;color:var(--bq-warn-fg);margin-bottom:12px">
-      <strong>⚠ Problème de validation détecté pour ${fmtDate(latestDate)}</strong>
+      <strong>⚠ Problème de validation détecté pour ${fmtDate(latestOpenDate)}</strong>
       <details style="margin-top:6px">
         <summary style="cursor:pointer">Afficher les détails</summary>
         <ul style="margin:6px 0 0;padding-left:20px">
@@ -492,12 +509,74 @@ viewof selectedDate = Inputs.select(allDates, {
 
 ```{ojs}
 //| echo: false
-html`<p class="bq-ckan-note">Dernière date disponible sur les données ouvertes de la Ville de Toronto : <strong>${fmtDate(latestDate)}</strong>.</p>`
+sourceNote = {
+  if (selectedSource !== "city") {
+    return html`<p class="bq-ckan-note">
+      Dernière date disponible sur les données ouvertes de la Ville de
+      Toronto : <strong>${fmtDate(latestOpenDate)}</strong>.
+    </p>`
+  }
+  return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
+    <p style="margin:0">
+      <strong>Tableau de recours en attendant les données ouvertes.</strong>
+      Les données ouvertes de la Ville s'arrêtent au ${fmtDate(latestOpenDate)};
+      cette date provient donc de sa <a href="${CITY_CENSUS_URL_TABLE}"
+      target="_blank">page Web quotidienne</a>. La colonne « Financé mais
+      indisponible » reste vide jusqu'à la publication des données ouvertes.
+    </p>
+  </div>`
+}
 ```
 
 ```{ojs}
 //| echo: false
-dayRows = daily_occ.filter(r => r.date === selectedDate)
+// Les libellés, l'indentation et les lignes de total proviennent toujours des
+// données ouvertes, afin qu'un jour de recours s'affiche comme les autres.
+rowTemplate = new Map(
+  daily_occ.filter(r => r.date === latestOpenDate).map(r => [r.key, r])
+)
+
+// La page Web de la Ville réutilise une seule ligne là où les données ouvertes
+// en comptent deux; le moissonnage ne garde que la première occurrence.
+cityKeyAliases = ({
+  singles_shelter_total: ["singles_shelter_total", "singles_shelter"],
+  allied_total:          ["allied_total", "allied_summ"],
+  iso:                   ["iso", "iso_summ"]
+})
+
+function cityRowsFor(date) {
+  const rows = (city_table.entries ?? {})[date]
+  if (!rows) return []
+  return rows.flatMap(row => {
+    const keys = cityKeyAliases[row.key] ?? [row.key]
+    return keys.map(key => {
+      const t = rowTemplate.get(key)
+      return {
+        date,
+        key,
+        label:       t ? t.label : row.label,
+        indent:      t ? t.indent : 0,
+        is_total:    t ? t.is_total : false,
+        col_type:    t ? t.col_type : row.col_type,
+        ind:         row.city_ind,
+        occ:         row.city_occ,
+        unocc:       row.city_unocc,
+        cap:         row.city_cap,
+        rate:        row.city_rate,
+        cap_funding: null,     // la page Web de la Ville ne la publie pas
+        source:      "city"
+      }
+    })
+  })
+}
+
+dayRows = {
+  const open = daily_occ.filter(r => r.date === selectedDate)
+  if (open.length) return open.map(r => ({...r, source: "open"}))
+  return cityRowsFor(selectedDate)
+}
+
+selectedSource = dayRows.length > 0 ? dayRows[0].source : "open"
 
 function n(v) { return v !== null && v !== undefined ? v.toLocaleString("fr-CA") : "—" }
 function pct(v) { return v !== null && v !== undefined ? v.toFixed(1) + " %" : "—" }

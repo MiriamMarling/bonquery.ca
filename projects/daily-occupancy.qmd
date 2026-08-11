@@ -212,9 +212,8 @@ sourceNote = {
       <strong>Contingency table until the open data lands.</strong>
       The City's open data stops at ${fmtDate(latestOpenDate)}, so this date
       comes from its <a href="${CITY_CENSUS_URL}" target="_blank">daily
-      webpage</a>. People and beds used match the open data. Empty, open to
-      use, and percent full run high, because the webpage counts offline beds
-      as open. Funded but unavailable stays blank until the open data lands.
+      webpage</a>. Funded but unavailable stays blank until the open data
+      lands.
     </p>
   </div>`
 }

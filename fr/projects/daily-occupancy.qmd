@@ -226,9 +226,43 @@ cityKeyAliases = ({
   iso:                   ["iso", "iso_summ"]
 })
 
+// The City sometimes prints a section total with only an individuals count and
+// leaves the rest of the row blank, as it did for Allied Services on Aug 6.
+// Where every component row is present, rebuild the missing columns from them.
+// The identity holds exactly on every date the City published both, so this
+// reproduces the City's own arithmetic rather than inventing a figure.
+//
+// Done here and not in the scrape on purpose: audit_city_scrape.py reads
+// city_daily_table.json as evidence of what the City actually published, and
+// a derived value written into that archive would show up in the daily audit
+// as though the City had published it.
+cityTotalComponents = ({ allied_total: ["respites", "dropin"] })
+
+function cityDerivedTotals(rows) {
+  const byKey = new Map(rows.map(r => [r.key, r]))
+  const out = new Map()
+  for (const [total, parts] of Object.entries(cityTotalComponents)) {
+    const t = byKey.get(total)
+    if (!t || t.city_occ !== null) continue          // already published in full
+    const ps = parts.map(k => byKey.get(k))
+    if (ps.some(p => !p || p.city_occ === null || p.city_unocc === null
+                       || p.city_cap === null)) continue
+    const sum = f => ps.reduce((a, p) => a + p[f], 0)
+    const occ = sum("city_occ"), cap = sum("city_cap")
+    out.set(total, {
+      city_occ:   occ,
+      city_unocc: sum("city_unocc"),
+      city_cap:   cap,
+      city_rate:  cap > 0 ? Math.round(1000 * occ / cap) / 10 : null
+    })
+  }
+  return out
+}
+
 function cityRowsFor(date) {
   const rows = (city_table.entries ?? {})[date]
   if (!rows) return []
+  const patch = cityDerivedTotals(rows)
   return rows.flatMap(row => {
     const keys = cityKeyAliases[row.key] ?? [row.key]
     return keys.map(key => {
@@ -241,10 +275,10 @@ function cityRowsFor(date) {
         is_total:    t ? t.is_total : false,
         col_type:    t ? t.col_type : row.col_type,
         ind:         row.city_ind,
-        occ:         row.city_occ,
-        unocc:       row.city_unocc,
-        cap:         row.city_cap,
-        rate:        row.city_rate,
+        occ:         (patch.get(row.key) ?? row).city_occ,
+        unocc:       (patch.get(row.key) ?? row).city_unocc,
+        cap:         (patch.get(row.key) ?? row).city_cap,
+        rate:        (patch.get(row.key) ?? row).city_rate,
         cap_funding: null,     // la page Web de la Ville ne la publie pas
         source:      "city"
       }

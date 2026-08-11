@@ -23,6 +23,14 @@ on:
     - cron: '23 12 * * *'  # 12:23 UTC (8:23 AM EDT / 7:23 AM EST) — fallback if first run misses
     - cron: '37 14 * * *'  # 14:37 UTC (10:37 AM EDT / 9:37 AM EST) — late-publish fallback
     - cron: '43 16 * * *'  # 16:43 UTC (12:43 PM EDT / 11:43 AM EST) — very-late-publish fallback
+    # Evening fires exist for the City's webpage, not for CKAN. On 2026-08-10
+    # the City posted catch-up tables for Aug 7, 8, and 9 after the 16:43 run,
+    # so all three were missed until they were captured by hand. The webpage is
+    # transient — it shows only the newest tables — so a missed evening publish
+    # is unrecoverable once the City rotates them off.
+    - cron: '39 19 * * *'  # 19:39 UTC (3:39 PM EDT / 2:39 PM EST) — City webpage afternoon check
+    - cron: '9 22 * * *'   # 22:09 UTC (6:09 PM EDT / 5:09 PM EST) — City webpage evening check
+    - cron: '31 1 * * *'   # 01:31 UTC (9:31 PM EDT / 8:31 PM EST) — City webpage last call
   workflow_dispatch:       # Allow manual triggering from the Actions tab
   push:
     branches: [main]       # Every push to main rebuilds and republishes
@@ -113,7 +121,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install City scrape dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install -r requirements.txt
 
       - name: Capture City of Toronto shelter census page
         run: python scripts/validate_city_page.py

@@ -108,6 +108,7 @@ jobs:
     needs: guard
     outputs:
       bt_changed: ${{ steps.city_capture.outputs.bt_changed }}
+      data_changed: ${{ steps.city_capture.outputs.data_changed }}
 
     steps:
       - name: Checkout repository
@@ -226,6 +227,18 @@ jobs:
           else
             echo "bt_changed=true" >> "$GITHUB_OUTPUT"
           fi
+          # Publishing is gated on this, not on bt_changed. A City table that
+          # carried no Bridging & Triage row would leave bt_changed false while
+          # still adding a date to city_daily_table.json, and the new
+          # contingency date would sit in main unpublished — precisely the
+          # situation the contingency table exists for.
+          if git diff --quiet HEAD -- data/city_bridging_triage.json \
+              data/city_daily_table.json 2>/dev/null; then
+            echo "data_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "data_changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
           if git diff --quiet HEAD -- data/city_bridging_triage.json \
               data/city_daily_table.json data/last_scrape_health.txt \
               data/city_page_parser_failure.html \
@@ -254,7 +267,7 @@ jobs:
     # Skip on scheduled triggers when the CKAN dataset hasn't advanced since the
     # last successful run, unless the City capture found a new B&T entry. Always
     # run on push (site rebuild) and workflow_dispatch (manual override).
-    if: needs.guard.outputs.should_run == 'true' || needs.city_scrape.outputs.bt_changed == 'true' || github.event_name != 'schedule'
+    if: needs.guard.outputs.should_run == 'true' || needs.city_scrape.outputs.data_changed == 'true' || github.event_name != 'schedule'
 
     steps:
       - name: Checkout repository
@@ -594,6 +607,16 @@ jobs:
             echo "BT_CHANGED=false" >> "$GITHUB_ENV"
           fi
 
+      # Publishing gate. True whenever the City capture changed the archive,
+      # including a table date that carried no Bridging & Triage row — that
+      # case would leave BT_CHANGED false and strand a new contingency date in
+      # main, unpublished, which is exactly when the site most needs rebuilding.
+      # BT_CHANGED stays narrowly about B&T so its notification keeps meaning.
+      - name: Flag City archive changes for publishing
+        run: |
+          echo "CITY_DATA_CHANGED=${{ needs.city_scrape.outputs.data_changed }}" \
+            >> "$GITHUB_ENV"
+
       # Write the audit signature sentinel to disk. Committed in all three commit
       # steps below so the audit email only fires when the mismatch table changes.
       # Written unconditionally so the sentinel advances even when the audit is
@@ -663,11 +686,11 @@ jobs:
           )
 
       - name: Set up Quarto
-        if: env.NEW_DATA == 'true' || env.BT_CHANGED == 'true' || github.event_name != 'schedule'
+        if: env.NEW_DATA == 'true' || env.CITY_DATA_CHANGED == 'true' || github.event_name != 'schedule'
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render EN site
-        if: env.NEW_DATA == 'true' || env.BT_CHANGED == 'true' || github.event_name != 'schedule'
+        if: env.NEW_DATA == 'true' || env.CITY_DATA_CHANGED == 'true' || github.event_name != 'schedule'
         run: quarto render
 
       # Scoped to fr/ so this profile pass only touches FR-pathed output —
@@ -675,11 +698,11 @@ jobs:
       # lists and re-renders every EN page too, overwriting it with the FR
       # profile's lang and navbar.
       - name: Render FR site
-        if: env.NEW_DATA == 'true' || env.BT_CHANGED == 'true' || github.event_name != 'schedule'
+        if: env.NEW_DATA == 'true' || env.CITY_DATA_CHANGED == 'true' || github.event_name != 'schedule'
         run: quarto render fr --profile fr
 
       - name: Publish to GitHub Pages
-        if: env.NEW_DATA == 'true' || env.BT_CHANGED == 'true' || github.event_name != 'schedule'
+        if: env.NEW_DATA == 'true' || env.CITY_DATA_CHANGED == 'true' || github.event_name != 'schedule'
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
@@ -708,7 +731,7 @@ jobs:
             Open the run log to see which step failed.
 
       - name: Email notification — new data published
-        if: success() && (env.NEW_DATA == 'true' || env.BT_CHANGED == 'true')
+        if: success() && (env.NEW_DATA == 'true' || env.CITY_DATA_CHANGED == 'true')
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.mail.me.com

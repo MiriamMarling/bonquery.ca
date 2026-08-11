@@ -2,7 +2,7 @@ import hashlib
 import json
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -63,7 +63,16 @@ MONTH_NAMES = {
     "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "Jun": 6,
     "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11,
     "Dec": 12,
+    # "Sept" is the City's own house style in some months and is not the
+    # three-letter abbreviation, so it needs its own entry.
+    "Sept": 9,
 }
+
+# Lookup is done on a normalised key (lowercased, trailing period stripped) so
+# a single spelling change on the City's side cannot cost us a day of data.
+# The City has already changed this heading format once without notice: it
+# moved from "August 6" to "Aug 7" mid-scrape in August 2026.
+MONTH_LOOKUP = {name.lower(): num for name, num in MONTH_NAMES.items()}
 
 # section / col_type metadata for every key in LABEL_TO_KEY.
 # Derived from data/city_reference_2026-05-14.json; used by
@@ -110,9 +119,22 @@ HEADERS = {
 #   post-redesign:   "Daily Shelter & Overnight Service Usage for July 28"
 #     (heading now lives on an accordion toggle <div>; the walk-based section
 #      detection below is tag-agnostic, so only the text pattern matters)
+#   from 2026-08-07:  "Daily Shelter & Overnight Service Usage for Aug 7"
+#
+# Deliberately permissive about the parts the City has shown it will change
+# without notice, while still requiring the distinctive heading wording:
+#   - "&", "&amp;", or the spelled-out "and"
+#   - full or abbreviated month, with or without a trailing period
+#   - any capitalisation
+#   - an optional trailing year ("August 7, 2026"), which is preferred over
+#     inferring the year when the City supplies it
+_AMP = r"(?:&(?:amp;)?|and)"
 DATE_PAT = re.compile(
-    r"Daily (?:Occupancy\s*&\s*Capacity|Shelter\s*&\s*Overnight Service Usage)"
-    r" for\s+(\w+)\s+(\d+)"
+    r"Daily\s+(?:Occupancy\s*" + _AMP + r"\s*Capacity"
+    r"|Shelter\s*" + _AMP + r"\s*Overnight\s+Service\s+Usage)"
+    r"\s+for\s+([A-Za-z]+)\.?\s+(\d{1,2})"
+    r"(?:\s*,?\s*(\d{4}))?",
+    re.IGNORECASE,
 )
 
 
@@ -158,13 +180,40 @@ def parse_rate(text):
         return None
 
 
-def parse_date_str(month_str, day_str):
-    """Convert 'May', '26' → '2026-05-26'. Returns None if unrecognised."""
-    month = MONTH_NAMES.get(month_str)
+def parse_date_str(month_str, day_str, year_str=None):
+    """Convert 'May', '26' → '2026-05-26'. Returns None if unrecognised.
+
+    Accepts 'May', 'may', 'Sept', 'Sept.' and friends. When the City supplies
+    a year in the heading it is used verbatim; otherwise the year is inferred.
+
+    Inference is not simply "the current year". A catch-up table for Dec 31
+    read on Jan 2 would then be stamped a year in the future and sort to the
+    end of the archive forever. Any date landing more than a few days ahead of
+    today is therefore treated as belonging to the previous year.
+    """
+    if not month_str:
+        return None
+    month = MONTH_LOOKUP.get(month_str.strip().rstrip(".").lower())
     if not month:
         return None
-    year = datetime.now(timezone.utc).year
-    return f"{year}-{month:02d}-{int(day_str):02d}"
+
+    day = int(day_str)
+    today = datetime.now(timezone.utc).date()
+
+    if year_str:
+        year = int(year_str)
+    else:
+        year = today.year
+        try:
+            if date(year, month, day) > today + timedelta(days=3):
+                year -= 1
+        except ValueError:
+            return None      # e.g. Feb 30 — not a real date
+
+    try:
+        return date(year, month, day).isoformat()
+    except ValueError:
+        return None
 
 
 def write_scrape_health(fetch_ok, soup, bt_entries, table_entries, city_date,
@@ -221,7 +270,7 @@ def extract_city_date(soup):
     for tag in soup.find_all(True):
         m = DATE_PAT.search(tag.get_text(strip=True))
         if m:
-            return parse_date_str(m.group(1), m.group(2))
+            return parse_date_str(m.group(1), m.group(2), m.group(3))
     return None
 
 
@@ -287,7 +336,7 @@ def extract_bridging_triage(soup):
         # Check if this tag opens a new date section
         m = DATE_PAT.search(text)
         if m and tag.name not in ("table", "tbody", "tr", "td", "th"):
-            new_date = parse_date_str(m.group(1), m.group(2))
+            new_date = parse_date_str(m.group(1), m.group(2), m.group(3))
             if new_date and new_date != current_date:
                 flush()
                 current_date = new_date
@@ -387,7 +436,7 @@ def extract_city_table_full(soup):
 
         m = DATE_PAT.search(text)
         if m and tag.name not in ("table", "tbody", "tr", "td", "th"):
-            new_date = parse_date_str(m.group(1), m.group(2))
+            new_date = parse_date_str(m.group(1), m.group(2), m.group(3))
             if new_date and new_date != current_date:
                 flush()
                 current_date = new_date

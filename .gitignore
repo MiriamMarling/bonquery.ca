@@ -54,6 +54,11 @@ DailyOccupancy_gh_sync.md
 # The R script itself runs locally; no CI invokes it.
 scripts/bayesian_gender_brms.R
 
+# Local Python environment for running the City scrape by hand when the
+# scheduled run misses a late City publish. Recreate with:
+#   python3 -m venv venv && ./venv/bin/pip install -r requirements.txt
+/venv/
+
 # Python bytecode
 __pycache__/
 *.pyc

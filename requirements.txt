@@ -1,0 +1,8 @@
+# Dependencies for the City of Toronto shelter-census scrape
+# (scripts/validate_city_page.py, scripts/audit_city_scrape.py).
+#
+# Single source of truth for both CI and the local venv, so the two cannot
+# drift. Recreate the local environment with:
+#   python3 -m venv venv && ./venv/bin/pip install -r requirements.txt
+requests>=2.32
+beautifulsoup4>=4.12

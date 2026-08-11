@@ -425,7 +425,24 @@ def extract_city_table_full(soup):
     results = {}
     current_date = None
     current_rows = []
-    seen_keys: set = set()
+    # key → index into current_rows. A dict rather than a set because the City
+    # prints several labels twice per date: once in the summary block with only
+    # an individuals count, and again in its own section with the full columns.
+    # Keeping the first occurrence would silently discard occupied, unoccupied,
+    # capacity and rate for those rows (e.g. "Allied Services, Total").
+    seen_keys: dict = {}
+
+    VALUE_FIELDS = ("city_ind", "city_occ", "city_unocc", "city_cap",
+                    "city_rate")
+
+    def richness(row):
+        """How many of the numeric columns this row actually carries.
+
+        Also protects against the City's repeated header rows, whose label cell
+        matches a real label but whose value cells are words ("Occupied Rooms"),
+        so every numeric field parses to None and the score is 0.
+        """
+        return sum(1 for f in VALUE_FIELDS if row[f] is not None)
 
     def flush():
         if current_date and current_rows:
@@ -441,7 +458,7 @@ def extract_city_table_full(soup):
                 flush()
                 current_date = new_date
                 current_rows = []
-                seen_keys = set()
+                seen_keys = {}
             continue
 
         if tag.name != "td":
@@ -452,8 +469,6 @@ def extract_city_table_full(soup):
             continue
 
         key = LABEL_TO_KEY[label]
-        if key in seen_keys:
-            continue  # deduplicate within a date section
 
         row = tag.find_parent("tr")
         if not row:
@@ -464,7 +479,7 @@ def extract_city_table_full(soup):
             return cells[idx].get_text(strip=True) if len(cells) > idx else ""
 
         meta = KEY_META.get(key, {"section": "unknown", "col_type": "unknown"})
-        current_rows.append({
+        new_row = {
             "key":        key,
             "label":      label,
             "section":    meta["section"],
@@ -474,8 +489,16 @@ def extract_city_table_full(soup):
             "city_unocc": parse_number(cell_text(3)),
             "city_cap":   parse_number(cell_text(4)),
             "city_rate":  parse_rate(cell_text(5)),
-        })
-        seen_keys.add(key)
+        }
+
+        if key not in seen_keys:
+            seen_keys[key] = len(current_rows)
+            current_rows.append(new_row)
+        elif richness(new_row) > richness(current_rows[seen_keys[key]]):
+            # Upgrade in place: a later, fuller occurrence replaces the values
+            # but keeps the row's original position, so the archive's row order
+            # stays stable across scrapes.
+            current_rows[seen_keys[key]] = new_row
 
     flush()
     return results

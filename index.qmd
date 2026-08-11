@@ -74,7 +74,10 @@ binnedSC     = FileAttachment("data/cold_response_binned_by_winter_sc.csv").csv(
   }))
 )
 
-homeLatestDate = [...new Set(daily_occ.map(r => r.date))].sort().reverse()[0]
+// The newest date the table below can actually show, which on a contingency
+// day is a City-webpage date rather than an open-data one. The card says
+// "shown here", so it tracks what is displayed, not just what CKAN has.
+homeLatestDate = latestDate
 homeLatestLabel = {
   const [year, month, day] = homeLatestDate.split("-").map(Number)
   return new Date(year, month - 1, day).toLocaleDateString("en-CA", {

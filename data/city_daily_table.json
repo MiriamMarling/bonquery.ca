@@ -2228,10 +2228,10 @@
         "section": "allied",
         "col_type": "bed",
         "city_ind": 355,
-        "city_occ": null,
-        "city_unocc": null,
-        "city_cap": null,
-        "city_rate": null
+        "city_occ": 355,
+        "city_unocc": 12,
+        "city_cap": 367,
+        "city_rate": 96.7
       },
       {
         "key": "temp_summ",
@@ -2246,14 +2246,14 @@
       },
       {
         "key": "iso",
-        "label": "Temporary Isolation/Recovery Programs",
+        "label": "Temporary Isolation/Recovery Programs Combined Total",
         "section": "iso_recovery",
         "col_type": "room",
         "city_ind": 0,
-        "city_occ": null,
-        "city_unocc": null,
-        "city_cap": null,
-        "city_rate": null
+        "city_occ": 0,
+        "city_unocc": 0,
+        "city_cap": 0,
+        "city_rate": 0.0
       },
       {
         "key": "fam_total",
@@ -2538,10 +2538,10 @@
         "section": "allied",
         "col_type": "bed",
         "city_ind": 353,
-        "city_occ": null,
-        "city_unocc": null,
-        "city_cap": null,
-        "city_rate": null
+        "city_occ": 353,
+        "city_unocc": 13,
+        "city_cap": 366,
+        "city_rate": 96.4
       },
       {
         "key": "temp_summ",
@@ -2556,14 +2556,14 @@
       },
       {
         "key": "iso",
-        "label": "Temporary Isolation/Recovery Programs",
+        "label": "Temporary Isolation/Recovery Programs Combined Total",
         "section": "iso_recovery",
         "col_type": "room",
         "city_ind": 0,
-        "city_occ": null,
-        "city_unocc": null,
-        "city_cap": null,
-        "city_rate": null
+        "city_occ": 0,
+        "city_unocc": 0,
+        "city_cap": 0,
+        "city_rate": 0.0
       },
       {
         "key": "fam_total",
@@ -2848,10 +2848,10 @@
         "section": "allied",
         "col_type": "bed",
         "city_ind": 357,
-        "city_occ": null,
-        "city_unocc": null,
-        "city_cap": null,
-        "city_rate": null
+        "city_occ": 357,
+        "city_unocc": 10,
+        "city_cap": 367,
+        "city_rate": 97.3
       },
       {
         "key": "temp_summ",
@@ -2866,14 +2866,14 @@
       },
       {
         "key": "iso",
-        "label": "Temporary Isolation/Recovery Programs",
+        "label": "Temporary Isolation/Recovery Programs Combined Total",
         "section": "iso_recovery",
         "col_type": "room",
         "city_ind": 0,
-        "city_occ": null,
-        "city_unocc": null,
-        "city_cap": null,
-        "city_rate": null
+        "city_occ": 0,
+        "city_unocc": 0,
+        "city_cap": 0,
+        "city_rate": 0.0
       },
       {
         "key": "fam_total",

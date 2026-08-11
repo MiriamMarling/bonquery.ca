@@ -35,7 +35,10 @@ binnedSC     = FileAttachment("data/cold_response_binned_by_winter_sc.csv").csv(
   }))
 )
 
-homeLatestDate = [...new Set(daily_occ.map(r => r.date))].sort().reverse()[0]
+// La date la plus récente que le tableau ci-dessous peut afficher, qui un jour
+// de recours provient de la page Web de la Ville plutôt que des données
+// ouvertes. La carte dit « disponibles ici » : elle suit donc l'affichage.
+homeLatestDate = latestDate
 homeLatestLabel = {
   const [year, month, day] = homeLatestDate.split("-").map(Number)
   return new Date(year, month - 1, day).toLocaleDateString("fr-CA", {

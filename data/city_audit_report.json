@@ -1,8 +1,17 @@
 {
-  "generated_at": "2026-08-12T15:35:02.464913Z",
+  "generated_at": "2026-08-12T23:02:19.540803Z",
   "dates": [
     {
       "date": "2026-08-10",
+      "status": "pending",
+      "passed": null,
+      "pending": true,
+      "sectors_compared": 0,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    {
+      "date": "2026-08-11",
       "status": "pending",
       "passed": null,
       "pending": true,
@@ -13,8 +22,8 @@
   ],
   "total_mismatches": 0,
   "any_pending": true,
-  "city_date": "2026-08-10",
-  "audit_date": "2026-08-10",
+  "city_date": "2026-08-11",
+  "audit_date": "2026-08-11",
   "our_date": "2026-08-05",
   "mismatch_count": 0,
   "passed": false,

@@ -25,6 +25,14 @@
   <span class="bq-card-link">Explore the trends <span aria-hidden="true">→</span></span>
 </a>
 
+<a class="bq-dashboard-card bq-card-caller" href="/projects/central-intake.html">
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW MANY CALLS WERE HANDLED?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST PUBLISHED</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-telephone" aria-hidden="true"></i></span><h3>Calls Asking for Shelter</h3></div>
+  <div class="bq-card-preview" id="bq-preview-caller"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
+  <p>See average daily calls handled, shelter referrals, and individual or couple callers still without a place at 4 a.m.</p>
+  <span class="bq-card-link">See the call data <span aria-hidden="true">→</span></span>
+</a>
+
 <a class="bq-dashboard-card bq-card-ytd" href="/projects/ytd-comparison.html">
   <div class="bq-card-eyebrow"><span class="bq-card-kicker">IS THE SYSTEM IMPROVING?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST PUBLISHED</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span><h3>This Year So Far</h3></div>

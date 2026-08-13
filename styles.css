@@ -31,6 +31,7 @@
   --bq-danger:          #cc0000;
   --bq-success:         #1a7a4a;
   --bq-caution:         #b06000;
+  --bq-caller:          #7c3fbf;
 
   /* Chart palette — these stay consistent across themes for brand identity,
      but strokes/axes adapt */
@@ -109,6 +110,7 @@ body.quarto-dark {
   --bq-danger:          #ff6b6b;
   --bq-success:         #51cf66;
   --bq-caution:         #ffa94d;
+  --bq-caller:          #c084fc;
 
   /* Chart palette */
   --bq-chart-stroke:    #dee2e6;
@@ -454,6 +456,12 @@ html[lang^="fr"] .bq-help-fr { display: grid; }
   margin: 1rem 0 2rem;
 }
 
+@media (min-width: 901px) {
+  .bq-dashboard-grid > .bq-dashboard-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
 .bq-dashboard-card {
   --bq-card-accent: var(--bq-primary);
   position: relative;
@@ -488,6 +496,7 @@ html[lang^="fr"] .bq-help-fr { display: grid; }
 .bq-card-daily { --bq-card-accent: var(--bq-danger); }
 .bq-card-monthly { --bq-card-accent: var(--bq-chart-blue); }
 .bq-card-history { --bq-card-accent: var(--bq-caution); }
+.bq-card-caller { --bq-card-accent: var(--bq-caller); }
 .bq-card-ytd { --bq-card-accent: var(--bq-success); }
 
 .bq-dashboard-card:hover,
@@ -622,7 +631,8 @@ html[lang^="fr"] .bq-help-fr { display: grid; }
 }
 
 .bq-preview-daily strong { color: var(--bq-danger); }
-.bq-card-monthly .bq-preview-kpi strong { color: var(--bq-card-accent); }
+.bq-card-monthly .bq-preview-kpi strong,
+.bq-card-caller .bq-preview-kpi strong { color: var(--bq-card-accent); }
 
 .bq-preview-daily small {
   display: block;
@@ -858,8 +868,10 @@ div.callout-note.bq-green > .callout-header { background-color: rgba(40, 160, 98
 div.callout-note.bq-orange.callout { border-left-color: #d97706 !important; }
 div.callout-note.bq-orange > .callout-header { background-color: rgba(217, 119, 6, 0.13) !important; }
 
-div.callout-note.bq-purple.callout { border-left-color: #7c3fbf !important; }
-div.callout-note.bq-purple > .callout-header { background-color: rgba(124, 63, 191, 0.13) !important; }
+div.callout-note.bq-purple.callout { border-left-color: var(--bq-caller) !important; }
+div.callout-note.bq-purple > .callout-header {
+  background-color: color-mix(in srgb, var(--bq-caller) 13%, transparent) !important;
+}
 
 
 /* ── Advocacy alert block ─────────────────────────────────────────────── */

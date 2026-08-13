@@ -14,10 +14,8 @@ twitter-card:
 ---
 
 ::: {.bq-status-note}
-**WINTER MONITORING RETURNS IN NOVEMBER 2026.** BonQuery will track the gap
-between the City's reported capacity and its published source data throughout
-the 2026–2027 cold season. The standard is zero people left unplaced on nights
-reaching −5 °C.
+**COLD-WEATHER ARTICLE IN PREPARATION.** BonQuery is preparing an article with
+its findings, sources, methods and limitations.
 :::
 
 The figures across BonQuery's dashboards come from open data the City of
@@ -26,7 +24,7 @@ is, where it comes from, and the few places where careful reading changes the
 conclusion you should draw. These are notes about the data itself, not findings
 about Toronto's shelter system; the findings are on the audit and dashboard
 pages. How these numbers are checked against the City's own published figures is
-documented separately on the [Emergency Occupancy Audit](data-validation.qmd){target="_blank"}
+documented separately on the [Daily Shelter Data Sources](data-validation.qmd){target="_blank"}
 and [Central Intake Audit](data-validation-central-intake.qmd){target="_blank"} pages.
 
 ## Where the data comes from
@@ -206,13 +204,13 @@ bar chart, a share-of-total calculation, or anything that assumes groups do not
 overlap, the refugee split is the one place in this data where that is
 mathematically safe.
 
-## Corrections, context, and collaboration
+## Context and collaboration
 
 BonQuery is independent, but the work is intended to be useful to the City as
 well as to the public. We distinguish published policy, observed operations, and
 measured outcomes. City staff, service operators, researchers, and advocates are
-invited to identify errors, provide missing context, or point us to newer public
-records. When evidence changes a finding, we will document the correction.
+invited to share source context or point us to newer public records. When
+evidence changes a finding, we will document the change.
 
 The practical goal is to help improve the public record and support the work the
 [Auditor General has already recommended](https://www.toronto.ca/legdocs/mmis/2025/au/bgrd/backgroundfile-252902.pdf){target="_blank"}:
@@ -222,7 +220,7 @@ ramp-up and ramp-down practices, and a contingency plan when the shelter system
 is full. City management agreed with those recommendations. BonQuery will apply
 the same standard to progress and remaining gaps.
 
-To share a correction or discuss collaboration, contact
+To discuss a source question or collaboration, contact
 [info@BonQuery.ca](mailto:info@BonQuery.ca).
 
 ## Sources

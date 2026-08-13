@@ -1,5 +1,5 @@
 ---
-title: "Beds and Spaces Today"
+title: "Daily Shelter Use and Capacity"
 subtitle: "How many Toronto shelter spaces are used, empty, or unavailable"
 description: "Latest published City of Toronto shelter beds and spaces for people who need somewhere safe to stay. This is not live bed availability."
 ---
@@ -8,7 +8,6 @@ description: "Latest published City of Toronto shelter beds and spaces for peopl
 //| echo: false
 daily_occ = FileAttachment("../data/daily_occupancy.json").json()
 bt_data   = FileAttachment("../data/city_bridging_triage.json").json()
-audit_history = FileAttachment("../data/city_audit_history.json").json()
 city_table = FileAttachment("../data/city_daily_table.json").json()
 ```
 
@@ -25,9 +24,9 @@ function fmtDate(s) {
 CITY_CENSUS_URL = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
 
 // ── Two sources, one table ────────────────────────────────────────────────
-// The open data file is authoritative and carries funded capacity, so it is
-// always preferred. The City's daily webpage is the fallback, and is used only for
-// dates where no open data has been published yet.
+// The open data file carries the detailed and funded-capacity fields, so it is
+// the primary source once available. The City's daily webpage is the fallback
+// for dates where no open data has been published yet.
 //
 // Precedence is decided here, at render time, rather than by rewriting stored
 // rows. When the City finally publishes the missing dates, those dates drop
@@ -42,46 +41,33 @@ contingencyDates = cityDates.filter(d => d > latestOpenDate)
 allDates = [...new Set([...openDates, ...contingencyDates])].sort().reverse()
 latestDate = allDates[0]
 
-auditDateLabel = isoDate => {
-  const [year, month, day] = isoDate.split("-").map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString("en-CA", {
-    month: "long", day: "numeric"
-  })
-}
-
-auditFirstLabel = auditDateLabel(audit_history.coverage.first_audit_date)
-auditLastLabel = auditDateLabel(audit_history.coverage.last_audit_date)
-latestAudit = audit_history.records.find(
-  record => record.date === audit_history.coverage.last_audit_date
-)
-latestEmergencyEmptyDifference = latestAudit.mismatches.find(
-  mismatch => mismatch.key === "emerg_total" && mismatch.column === "unoccupied"
-)
 ```
 
-This table adds two things to the City's page. First, you can choose any date
-from January 2021 to today. The [City's page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
-shows only its newest date. Second, the **Funded but unavailable** column shows
-beds, rooms, or spaces that had funding but were not open to use. [See why the
-numbers differ](data-validation.html){target="_blank"}.
+This table combines two City sources. You can choose any date from January 2021
+to today; the [City's daily webpage](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
+shows only its newest date. When the detailed open-data file is delayed,
+BonQuery uses newer webpage rows as a clearly labelled temporary fallback. The
+**Funded but unavailable** column stays blank for those dates until the detailed
+file arrives.
 
 ::: {.bq-status-note}
-**This is the latest published record, not live bed availability.** A space
-shown as empty in the file may already be used, unavailable, or not suitable for
-the person calling. Use the verified contacts below when someone needs a place
-now.
+**Do not use either City table as live bed availability.** Both are 4 a.m.
+snapshots, not a list of what is available now. A space shown as unoccupied may
+already be used, unavailable, or unsuitable for the person calling. Use the
+verified contacts below when someone needs a place now.
 :::
 
 ```{ojs}
 //| echo: false
-html`<div class="bq-audit-alert" role="alert">
-  <p><strong>Daily data check:</strong> The City's shelter dashboard did not
-  match its own public data files on
-  <strong>${audit_history.coverage.dates_with_mismatches} of the ${audit_history.coverage.successfully_parsed_dates} days we checked</strong>,
-  from ${auditFirstLabel} to ${auditLastLabel}. On ${auditLastLabel}, the dashboard
-  showed <strong>${Math.abs(latestEmergencyEmptyDifference.delta)} more empty emergency beds</strong>
-  than the public data showed. <a href="data-validation.html">See what differed →</a></p>
-</div>`
+latestDate > latestOpenDate
+  ? html`<div class="bq-source-note" role="status">
+      <p><strong>The two City sources are on different publication dates.</strong>
+      The detailed Open Data shelter file currently reaches
+      <strong>${fmtDate(latestOpenDate)}</strong>; the City's daily webpage
+      reaches <strong>${fmtDate(latestDate)}</strong>. BonQuery uses the newer
+      webpage as a temporary fallback where possible and labels the source.</p>
+    </div>`
+  : html``
 ```
 
 ```{=html}
@@ -96,7 +82,7 @@ html`<div class="bq-audit-alert" role="alert">
 //| echo: false
 // ── Pipeline validation (CKAN-to-CKAN) — runs on most recent date ─────────
 // These checks confirm BonQuery's aggregation pipeline is internally correct.
-// They do not compare against the City's live dashboard.
+// They do not compare against the City's daily webpage.
 
 // Anchored to latestOpenDate, not latestDate. These checks validate BonQuery's
 // aggregation of the open data file; on a contingency day there are no open
@@ -209,11 +195,11 @@ sourceNote = {
   }
   return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
     <p style="margin:0">
-      <strong>Contingency table until the open data lands.</strong>
-      The City's open data stops at ${fmtDate(latestOpenDate)}, so this date
+      <strong>Temporary webpage fallback.</strong>
+      The detailed Open Data file currently reaches ${fmtDate(latestOpenDate)}, so this date
       comes from its <a href="${CITY_CENSUS_URL}" target="_blank">daily
-      webpage</a>. Funded but unavailable stays blank until the open data
-      lands.
+      webpage</a>. Funded but unavailable stays blank until the detailed file
+      is published.
     </p>
   </div>`
 }
@@ -434,7 +420,7 @@ dailyTable = {
     </table>
     <p class="bq-footnote">
       † Total people = All Shelter Programs + Bridging &amp; Triage Programs.
-      The City leaves Bridging &amp; Triage out of its public data file. BonQuery copies
+      The detailed open-data file does not include Bridging &amp; Triage. BonQuery copies
       that number from the City's daily webpage when it appears. We have saved it
       since ${btStart}. If the City has not posted it, the row says "Not available
       for this date" and the total does not include it.
@@ -445,11 +431,12 @@ dailyTable = {
 
 {{< include ../_includes/toronto-help-contacts.qmd >}}
 
-We rebuild this table from the City's public data file. The City leaves
-**Bridging & Triage Programs** out of that file, so we add the number from the
+We rebuild this table from the City's public data file. The detailed file does
+not include **Bridging & Triage Programs**, so we add the number from the
 City's daily webpage when it is available. The total includes that number when
-we have it. The City's webpage often does not match its public data. [See what
-differs](data-validation.html){target="_blank"}.
+we have it. The webpage and open-data file can be published on different
+schedules. [See how BonQuery combines and labels the two
+sources](data-validation.html){target="_blank"}.
 
 Contains information licensed under the [Open Government Licence - Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data, [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Rebuilt by [BonQuery](https://bonquery.ca).
 

@@ -1,51 +1,29 @@
 ---
-title: "Do the City's Shelter Numbers Match?"
-subtitle: "We compare the City's shelter webpage with its public data file"
-description: "BonQuery checks whether Toronto's shelter webpage matches the City's public data file and shows the differences in simple terms."
+title: "Comparing the City's Two Daily Shelter Sources"
+subtitle: "A source-timing review in progress"
+description: "How BonQuery compares and combines Toronto's daily shelter webpage and detailed open-data file while their timing and definitions are clarified."
 author: "Miriam Marling"
 open-graph:
-  title: "Do the City's Shelter Numbers Match? | BonQuery"
-  description: "We compare Toronto's shelter webpage with the City's public data file and show what differs."
+  title: "Comparing Toronto's Daily Shelter Data Sources | BonQuery"
+  description: "How BonQuery compares and combines Toronto's daily shelter webpage and detailed open-data file."
   site_name: "BonQuery"
 twitter-card:
   card-style: summary
-  title: "Do the City's Shelter Numbers Match? | BonQuery"
-  description: "We compare Toronto's shelter webpage with the City's public data file and show what differs."
+  title: "Comparing Toronto's Daily Shelter Data Sources | BonQuery"
+  description: "How BonQuery compares and combines Toronto's daily shelter webpage and detailed open-data file."
 ---
 
-The City publishes daily shelter numbers in two places: a webpage and a public
-data file. Those numbers should match. We check them against each other.
+The City publishes a 4 a.m. shelter snapshot in two places: a daily webpage and
+a detailed open-data file. BonQuery compares the sources so we can reproduce the
+published data and continue showing recent totals if one source is delayed.
 
-```{ojs}
-//| echo: false
-audit_history = FileAttachment("../data/city_audit_history.json").json()
-
-auditDateLabel = isoDate => {
-  const [year, month, day] = isoDate.split("-").map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString("en-CA", {
-    month: "long", day: "numeric", year: "numeric"
-  })
-}
-
-auditFirstLabel = auditDateLabel(audit_history.coverage.first_audit_date)
-auditLastLabel = auditDateLabel(audit_history.coverage.last_audit_date)
-latestAudit = audit_history.records.slice().sort((a, b) => a.date.localeCompare(b.date))[audit_history.records.length - 1]
-latestEmergencyGap = latestAudit.mismatches.find(d => d.key === "emerg_total" && d.column === "unoccupied")
-```
-
-```{ojs}
-//| echo: false
-html`<div class="bq-audit-alert" role="alert">
-  <p><strong>What we found:</strong> We checked
-  <strong>${audit_history.coverage.successfully_parsed_dates} dates</strong>
-  from ${auditFirstLabel} to ${auditLastLabel}. The City's webpage and public
-  data file differed on
-  <strong>${audit_history.coverage.dates_with_mismatches} of those ${audit_history.coverage.successfully_parsed_dates} dates</strong>.
-  On ${auditDateLabel(latestAudit.date)}, the webpage showed
-  <strong>${latestEmergencyGap.delta} more empty emergency beds</strong> than
-  the public data file.</p>
-</div>`
-```
+::: {.bq-source-note}
+**Interpretation is under review.** The two sources can show different values
+for the same date. BonQuery does not yet know whether this reflects different
+extraction times, later revisions, or different operational definitions. We
+are preserving the exact comparisons and will ask the City privately before
+publishing a conclusion about which source should be treated as correct.
+:::
 
 The large table below keeps one detailed example from **May 14, 2026**. The
 City's webpage no longer shows that date.
@@ -59,7 +37,8 @@ City's webpage no longer shows that date.
 | ✓ | **Same number** in BonQuery's copy and the City webpage |
 | * | **Different number** with an explanation below |
 
-If a row says *Not in the public data file*, the City left it out of the file.
+If a row says *Not in the public data file*, that program is not included in
+the detailed file.
 
 ---
 
@@ -237,18 +216,18 @@ compTable = {
 
 ---
 
-## Why do some numbers differ?
+## What might explain the differences?
 
-The short answer is that the City does not explain how it makes every number on
-its webpage. BonQuery copies the City's public data file. In the emergency-bed
-rows, that file and the City's webpage show different numbers. We have asked
-the City to explain why.
+The reason has not yet been confirmed. The webpage may use a newer extract from
+the City's operational system than the open-data file, or the two outputs may
+apply different update times or definitions. BonQuery will ask the City to
+clarify this before drawing conclusions.
 
 The grey **funded** number is how many beds the City paid an operator to run.
 The City webpage does not show this number.
 
 Every BonQuery number in this table comes from the City's public data file. We
-show the two City sources together so people can see where they disagree.
+show the two City sources together so people can see where their values differ.
 
 ### What does “funded but unavailable” mean?
 
@@ -342,14 +321,14 @@ mixEmergAnomaly = {
   const city   = mc.city_cap
   const actual = m.cap
   const funded = m.cap_funding
-  // Build a short, factual call-out describing whichever shape the anomaly takes.
+  // Describe the observed relationship without assigning a cause.
   let sentence
   if (city > funded) {
-    sentence = `The Mixed Adult Emergency row does not make sense from the public numbers. The City's webpage shows **${n(city)}** beds. Its public file says only **${n(funded)}** beds were funded. The webpage therefore shows **${n(city - funded)} more beds than the funded number**. The City has not explained why.`
+    sentence = `The Mixed Adult Emergency row needs clarification. The City's webpage shows **${n(city)}** beds, which is **${n(city - funded)} above** the funded capacity of **${n(funded)}** in the open-data file. This could reflect different extraction times or an operational definition that is not included in the file's metadata.`
   } else if (city < actual) {
-    sentence = `The Mixed Adult Emergency row does not make sense from the public numbers. The City's webpage shows **${n(city)}** beds. That is **${n(actual - city)} fewer** than its public file shows as open and **${n(funded - city)} fewer** than it shows as funded. The City has not explained why.`
+    sentence = `The Mixed Adult Emergency row needs clarification. The City's webpage shows **${n(city)}** beds. That is **${n(actual - city)} fewer** than the open capacity and **${n(funded - city)} fewer** than the funded capacity in the open-data file. The source timing or definition has not yet been confirmed.`
   } else {
-    sentence = `The Mixed Adult Emergency row does not match either number in the public file. The City's webpage shows **${n(city)}** beds. Its public file shows **${n(actual)}** open and **${n(funded)}** funded. The City has not explained why.`
+    sentence = `The Mixed Adult Emergency row needs clarification. The City's webpage shows **${n(city)}** beds, while the open-data file shows **${n(actual)}** open and **${n(funded)}** funded. The source timing or definition has not yet been confirmed.`
   }
   return md`${sentence}`
 }
@@ -359,8 +338,8 @@ mixEmergAnomaly = {
 
 On May 14, the City webpage showed 29 people in **Bridging & Triage
 Programs**. The public data file did not include this program at all. That means
-the file alone cannot give the same total as the webpage. BonQuery has asked the
-City to add this program to its public file.
+the file alone cannot give the same total as the webpage. BonQuery will ask the
+City how this program should be represented in the detailed file.
 
 ### Does the City change old data?
 
@@ -368,11 +347,12 @@ We save a copy of the City's file each time we update. A computer then checks
 whether the City changed any earlier row. If it did, BonQuery sends an email.
 The May 14 numbers have not changed since we first saved them on May 17, 2026.
 
-### What this means
+### What this means now
 
-The City publishes shelter numbers on a webpage and in a public data file. They
-often do not match. BonQuery shows the differences and saves the evidence so
-the checks can be repeated.
+The webpage and open-data file can differ. BonQuery saves the source records so
+the checks can be repeated, but will not identify either output as wrong until
+the City clarifies their timing and definitions. Neither source is live bed
+availability.
 
 [Want the exact calculations? Email Miriam.](mailto:miriam@BonQuery.ca)
 

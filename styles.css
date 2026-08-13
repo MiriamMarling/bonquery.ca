@@ -247,6 +247,9 @@ body:has(.bq-home-lede) #title-block-header .description {
 .bq-purpose-grid a:nth-child(1) { border-top: 3px solid var(--bq-success); }
 .bq-purpose-grid a:nth-child(2) { border-top: 3px solid var(--bq-chart-blue); }
 .bq-purpose-grid a:nth-child(3) { border-top: 3px solid var(--bq-caution); }
+.bq-purpose-grid a.bq-purpose-proof {
+  border-top-color: var(--bq-caution);
+}
 
 .bq-purpose-grid .bi { font-size: 1.35rem; }
 
@@ -727,6 +730,21 @@ body:has(.bq-home-lede) .bq-quick-links { margin-bottom: 0; }
 .bq-audit-alert p { margin: 0; }
 .bq-audit-alert a { font-weight: 700; }
 
+.bq-source-note {
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--bq-chart-blue) 40%, var(--bq-border));
+  border-left: 4px solid var(--bq-chart-blue);
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--bq-chart-blue) 7%, var(--bq-bg));
+  color: var(--bq-fg);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.bq-source-note p { margin: 0; }
+.bq-source-note a { font-weight: 700; }
+
 .bq-status-note {
   margin: 1rem 0 1.75rem;
   padding: 1rem 1.2rem;
@@ -739,6 +757,10 @@ body:has(.bq-home-lede) .bq-quick-links { margin-bottom: 0; }
 .bq-status-note p:last-child { margin-bottom: 0; }
 
 .bq-status-note > h3:first-child { margin-top: 0; }
+
+.bq-status-note.bq-proof-note {
+  border-left-color: var(--bq-caution);
+}
 
 @media (max-width: 900px) {
   .bq-dashboard-grid,

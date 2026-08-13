@@ -52,8 +52,8 @@ function fmtDate(s) {
 CITY_CENSUS_URL_TABLE = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
 
 // ── Deux sources, un seul tableau ─────────────────────────────────────────
-// Les données ouvertes font autorité et contiennent la capacité financée;
-// elles ont donc toujours priorité. La page Web quotidienne de la Ville sert
+// Les données ouvertes contiennent les champs détaillés et la capacité financée;
+// elles ont donc priorité une fois publiées. La page Web quotidienne de la Ville sert
 // uniquement de recours pour les dates que les données ouvertes n'ont pas
 // encore atteintes. La priorité est établie au moment du rendu : le tableau
 // revient de lui-même aux données ouvertes dès leur publication.
@@ -73,9 +73,8 @@ date depuis janvier 2021 jusqu'à aujourd'hui ; la page
 [Utilisation quotidienne des refuges et services d'hébergement de nuit](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
 de la Ville n'affiche que sa date de publication la plus récente. La colonne
 **Hors service** (calculée comme `financé − réel`) signale les lits, chambres
-ou espaces temporairement indisponibles — voir la
-[page de validation des données](data-validation.html){target="_blank"}
-pour une explication de ce que cela représente et pourquoi cela compte.
+ou espaces temporairement indisponibles. [Voir comment BonQuery combine et
+étiquette les deux sources de la Ville](data-validation.html){target="_blank"}.
 
 ## Occupation et capacité quotidiennes — ${fmtDate(selectedDate)}
 
@@ -176,11 +175,11 @@ sourceNote = {
   }
   return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
     <p style="margin:0">
-      <strong>Tableau de recours en attendant les données ouvertes.</strong>
-      Les données ouvertes de la Ville s'arrêtent au ${fmtDate(latestOpenDate)};
+      <strong>Utilisation temporaire de la page Web.</strong>
+      Le fichier détaillé de données ouvertes va actuellement jusqu'au ${fmtDate(latestOpenDate)};
       cette date provient donc de sa <a href="${CITY_CENSUS_URL_TABLE}"
       target="_blank">page Web quotidienne</a>. La colonne « Financé mais
-      indisponible » reste vide jusqu'à la publication des données ouvertes.
+      indisponible » reste vide jusqu'à la publication du fichier détaillé.
     </p>
   </div>`
 }
@@ -406,11 +405,10 @@ de la Ville mais ne sont pas publiés dans les données ouvertes ; BonQuery coll
 ce chiffre quotidiennement depuis la page du recensement des refuges de la Ville
 et l'affiche lorsqu'il est disponible. Le **Total des personnes hébergées** égale
 Tous les programmes de refuge + Passerelle et triage lorsque les deux sont disponibles.
-Certains chiffres de capacité et de lits inoccupés peuvent différer légèrement du
-tableau de bord en direct de la Ville en raison de différences dans la déclaration
-des lits hors service entre l'exportation CKAN et le système opérationnel de la
-Ville. Une comparaison côte à côte complète est disponible sur la
-[page de validation des données](data-validation.html){target="_blank"}.
+La page Web et le fichier de données ouvertes peuvent être publiés à des moments
+différents et peuvent utiliser des extractions ou des définitions différentes.
+[Voir comment BonQuery combine et étiquette les deux
+sources](data-validation.html){target="_blank"}.
 
 Contient des informations sous licence [Licence du gouvernement ouvert – Toronto](https://open.toronto.ca/open-data-licence/). Source : Données ouvertes de la Ville de Toronto — [Utilisation quotidienne des refuges et services d'hébergement de nuit, occupation et capacité](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Agrégées par [BonQuery](https://bonquery.ca).
 

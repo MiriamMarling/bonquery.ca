@@ -108,20 +108,13 @@ more than one term →](projects/about-the-data.qmd#who-the-data-misses-and-why-
 <nav class="bq-purpose-grid" aria-label="Choose what you need">
   <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>I need help now</strong><small>Toronto shelter, violence, outreach, and emergency contacts</small></span></a>
   <a href="#start-with-your-question"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span><strong>I want to understand</strong><small>Start with the latest shelter numbers and trends</small></span></a>
-  <a class="bq-purpose-proof" href="#help-proofread-french"><i class="bi bi-translate" aria-hidden="true"></i><span><strong>Help proofread the French</strong><small>Canadian Francophones: start with the homepage; partial help is welcome and credited</small></span></a>
+  <button class="bq-purpose-proof" type="button" data-bs-toggle="collapse" data-bs-target="#help-proofread-french" aria-expanded="false" aria-controls="help-proofread-french"><i class="bi bi-translate" aria-hidden="true"></i><span><strong>Help proofread the French</strong><small>Canadian Francophones: start with the homepage; partial help is welcome and credited</small></span><i class="bi bi-chevron-down bq-purpose-chevron" aria-hidden="true"></i></button>
 </nav>
 ```
 
-```{ojs}
-//| echo: false
-html`<div class="bq-home-status" role="status">
-  <span class="bq-status-dot" aria-hidden="true"></span>
-  <span><strong>Updated every day.</strong> Latest published City of Toronto shelter data shown here: ${homeLatestLabel}. <strong>Not live bed availability.</strong></span>
-</div>`
-```
-
-::: {#help-proofread-french .bq-status-note .bq-proof-note}
-### Help the French sound natural
+::: {#help-proofread-french .collapse .bq-proof-collapse}
+::: {.bq-status-note .bq-proof-note}
+### Help the French sound natural {.unlisted}
 
 I used an LLM to translate the English site into French, then proofread it
 myself. My French is intermediate, so I am looking for native French speakers,
@@ -133,6 +126,15 @@ will credit editors and proofreaders for any portion they help with.
 
 [Help proofread the French →](mailto:miriam@BonQuery.ca?subject=French%20proofreading%20for%20BonQuery)
 :::
+:::
+
+```{ojs}
+//| echo: false
+html`<div class="bq-home-status" role="status">
+  <span class="bq-status-dot" aria-hidden="true"></span>
+  <span><strong>Updated every day.</strong> Latest published City of Toronto shelter data shown here: ${homeLatestLabel}. <strong>Not live bed availability.</strong></span>
+</div>`
+```
 
 ## Start with your question
 

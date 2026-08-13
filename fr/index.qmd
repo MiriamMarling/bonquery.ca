@@ -70,20 +70,13 @@ pourquoi BonQuery emploie plusieurs termes →](projects/about-the-data.qmd#qui-
 <nav class="bq-purpose-grid" aria-label="Choisissez ce dont vous avez besoin">
   <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>J'ai besoin d'aide maintenant</strong><small>Refuges, violence, équipes de rue et urgences à Toronto</small></span></a>
   <a href="#commencez-par-votre-question"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span><strong>Je veux comprendre</strong><small>Commencez par les derniers chiffres et tendances des refuges</small></span></a>
-  <a class="bq-purpose-proof" href="#aider-relecture-francais"><i class="bi bi-translate" aria-hidden="true"></i><span><strong>Aider à relire le français</strong><small>Francophones du Canada : commencez par la page d'accueil; toute contribution sera reconnue</small></span></a>
+  <button class="bq-purpose-proof" type="button" data-bs-toggle="collapse" data-bs-target="#aider-relecture-francais" aria-expanded="false" aria-controls="aider-relecture-francais"><i class="bi bi-translate" aria-hidden="true"></i><span><strong>Aider à relire le français</strong><small>Francophones du Canada : commencez par la page d'accueil; toute contribution sera reconnue</small></span><i class="bi bi-chevron-down bq-purpose-chevron" aria-hidden="true"></i></button>
 </nav>
 ```
 
-```{ojs}
-//| echo: false
-html`<div class="bq-home-status" role="status">
-  <span class="bq-status-dot" aria-hidden="true"></span>
-  <span><strong>Mis à jour chaque jour.</strong> Dernières données publiées par la Ville sur les refuges présentées ici : ${homeLatestLabel}. <strong>Il ne s'agit pas de la disponibilité des places en temps réel.</strong></span>
-</div>`
-```
-
-::: {#aider-relecture-francais .bq-status-note .bq-proof-note}
-### Le français vous semble-t-il naturel?
+::: {#aider-relecture-francais .collapse .bq-proof-collapse}
+::: {.bq-status-note .bq-proof-note}
+### Le français vous semble-t-il naturel? {.unlisted}
 
 J'ai utilisé un grand modèle de langage (LLM) pour traduire le site anglais en
 français, puis j'ai relu la traduction moi-même. Mon français est de niveau
@@ -97,6 +90,15 @@ relue.
 
 [Aider à relire le français →](mailto:miriam@BonQuery.ca?subject=Relecture%20du%20français%20de%20BonQuery)
 :::
+:::
+
+```{ojs}
+//| echo: false
+html`<div class="bq-home-status" role="status">
+  <span class="bq-status-dot" aria-hidden="true"></span>
+  <span><strong>Mis à jour chaque jour.</strong> Dernières données publiées par la Ville sur les refuges présentées ici : ${homeLatestLabel}. <strong>Il ne s'agit pas de la disponibilité des places en temps réel.</strong></span>
+</div>`
+```
 
 ## Commencez par votre question
 

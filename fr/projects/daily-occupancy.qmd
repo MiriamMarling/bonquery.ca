@@ -1,15 +1,14 @@
 ---
 title: "Occupation et capacité quotidiennes"
 description: >
-  Occupation et capacité quotidiennes du réseau de refuges de Toronto, mis à
-  jour chaque jour à partir des données ouvertes de la Ville de Toronto.
+  Dernières données publiées par la Ville sur l'utilisation et la capacité des
+  refuges de Toronto. Il ne s'agit pas de la disponibilité en temps réel.
 ---
 
 ```{ojs}
 //| echo: false
 daily_occ = FileAttachment("../data/daily_occupancy.json").json()
 bt_data   = FileAttachment("../data/city_bridging_triage.json").json()
-audit_history = FileAttachment("../data/city_audit_history.json").json()
 city_table = FileAttachment("../data/city_daily_table.json").json()
 ```
 
@@ -25,8 +24,8 @@ function fmtDate(s) {
 CITY_CENSUS_URL = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
 
 // ── Deux sources, un seul tableau ─────────────────────────────────────────
-// Les données ouvertes font autorité et contiennent la capacité financée;
-// elles ont donc toujours priorité. La page Web quotidienne de la Ville sert
+// Les données ouvertes contiennent les champs détaillés et la capacité financée;
+// elles ont donc priorité une fois publiées. La page Web quotidienne de la Ville sert
 // uniquement de recours pour les dates que les données ouvertes n'ont pas
 // encore atteintes.
 //
@@ -43,52 +42,39 @@ contingencyDates = cityDates.filter(d => d > latestOpenDate)
 allDates = [...new Set([...openDates, ...contingencyDates])].sort().reverse()
 latestDate = allDates[0]
 
-auditDateLabel = isoDate => {
-  const [year, month, day] = isoDate.split("-").map(Number)
-  return new Date(year, month - 1, day).toLocaleDateString("fr-CA", {
-    month: "long", day: "numeric"
-  })
-}
-
-auditFirstLabel = auditDateLabel(audit_history.coverage.first_audit_date)
-auditLastLabel = auditDateLabel(audit_history.coverage.last_audit_date)
-latestAudit = audit_history.records.find(
-  record => record.date === audit_history.coverage.last_audit_date
-)
-latestEmergencyEmptyDifference = latestAudit.mismatches.find(
-  mismatch => mismatch.key === "emerg_total" && mismatch.column === "unoccupied"
-)
 ```
 
-La version BonQuery de ce tableau ajoute deux fonctions absentes de la page
-de la Ville. Le **sélecteur de date** ci-dessous permet de consulter toute
-date depuis janvier 2021 jusqu'à aujourd'hui ; la page
+Ce tableau réunit deux sources de la Ville. Le **sélecteur de date** ci-dessous
+permet de consulter toute date depuis janvier 2021 jusqu'à aujourd'hui; la page
 [Utilisation quotidienne des refuges et services d'hébergement de nuit](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
-de la Ville n'affiche que sa date de publication la plus récente. La colonne
-**Hors service** (calculée comme `financé − réel`) signale les lits, chambres
-ou espaces temporairement indisponibles — voir la
-[page de validation des données](data-validation.html){target="_blank"}
-pour une explication de ce que cela représente et pourquoi cela compte.
+de la Ville n'affiche que sa date la plus récente. Lorsque le fichier détaillé
+de données ouvertes est retardé, BonQuery utilise temporairement les lignes
+plus récentes de la page Web et en indique clairement la source. La colonne
+**Hors service** reste vide pour ces dates jusqu'à l'arrivée du fichier
+détaillé.
 
 ::: {.bq-status-note}
-**Il s'agit du dernier relevé publié, et non de la disponibilité des lits en
-temps réel.** Une place indiquée comme libre dans le fichier peut déjà être
-occupée, indisponible ou ne pas convenir à la personne qui appelle. Utilisez
-les coordonnées vérifiées ci-dessous si une personne a besoin d'une place
-maintenant.
+**N'utilisez aucun des deux tableaux de la Ville comme indicateur de la
+disponibilité des lits en temps réel.** Il s'agit d'instantanés pris à 4 h, et
+non d'une liste des places disponibles maintenant. Une place indiquée comme
+libre peut déjà être occupée, indisponible ou ne pas convenir à la personne qui
+appelle. Utilisez les coordonnées vérifiées ci-dessous si une personne a besoin
+d'une place maintenant.
 :::
 
 ```{ojs}
 //| echo: false
-html`<div class="bq-audit-alert" role="alert">
-  <p><strong>Vérification quotidienne :</strong> Le tableau de bord des refuges
-  de la Ville ne correspondait pas à ses propres fichiers publics lors de
-  <strong>${audit_history.coverage.dates_with_mismatches} des ${audit_history.coverage.successfully_parsed_dates} jours vérifiés</strong>,
-  du ${auditFirstLabel} au ${auditLastLabel}. Le ${auditLastLabel}, le tableau de
-  bord montrait <strong>${Math.abs(latestEmergencyEmptyDifference.delta)} places
-  vides de plus dans les refuges d'urgence</strong> que les données publiques.
-  <a href="data-validation.html">Voir les différences →</a></p>
-</div>`
+latestDate > latestOpenDate
+  ? html`<div class="bq-source-note" role="status">
+      <p><strong>Les deux sources de la Ville ont des dates de publication
+      différentes.</strong> Le fichier détaillé de données ouvertes sur les
+      refuges va actuellement jusqu'au
+      <strong>${fmtDate(latestOpenDate)}</strong>; la page Web quotidienne de la
+      Ville va jusqu'au <strong>${fmtDate(latestDate)}</strong>. BonQuery utilise
+      temporairement la page Web plus récente lorsque c'est possible et indique
+      clairement la source.</p>
+    </div>`
+  : html``
 ```
 
 ```{=html}
@@ -198,11 +184,11 @@ sourceNote = {
   }
   return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
     <p style="margin:0">
-      <strong>Tableau de recours en attendant les données ouvertes.</strong>
-      Les données ouvertes de la Ville s'arrêtent au ${fmtDate(latestOpenDate)};
+      <strong>Utilisation temporaire de la page Web.</strong>
+      Le fichier détaillé de données ouvertes va actuellement jusqu'au ${fmtDate(latestOpenDate)};
       cette date provient donc de sa <a href="${CITY_CENSUS_URL}"
       target="_blank">page Web quotidienne</a>. La colonne « Financé mais
-      indisponible » reste vide jusqu'à la publication des données ouvertes.
+      indisponible » reste vide jusqu'à la publication du fichier détaillé.
     </p>
   </div>`
 }
@@ -432,11 +418,9 @@ de la Ville mais ne sont pas publiés dans les données ouvertes ; BonQuery coll
 ce chiffre quotidiennement depuis la page du recensement des refuges de la Ville
 et l'affiche lorsqu'il est disponible. Le **Total des personnes hébergées** égale
 Tous les programmes de refuge + Passerelle et triage lorsque les deux sont disponibles.
-Certains chiffres de capacité et de lits inoccupés peuvent différer légèrement du
-tableau de bord en direct de la Ville en raison de différences dans la déclaration
-des lits hors service entre l'exportation CKAN et le système opérationnel de la
-Ville. Une comparaison côte à côte complète est disponible sur la
-[page de validation des données](data-validation.html){target="_blank"}.
+La page Web et le fichier de données ouvertes peuvent être publiés selon des
+calendriers différents. [Voir comment BonQuery combine et étiquette les deux
+sources](data-validation.html){target="_blank"}.
 
 Contient des informations sous licence [Licence du gouvernement ouvert – Toronto](https://open.toronto.ca/open-data-licence/). Source : Données ouvertes de la Ville de Toronto — [Utilisation quotidienne des refuges et services d'hébergement de nuit, occupation et capacité](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Agrégées par [BonQuery](https://bonquery.ca).
 

@@ -3,7 +3,7 @@ title: "Données sur les refuges de Toronto mises à jour quotidiennement"
 subtitle: "Réplication indépendante des tableaux de bord, validation des données sources et reddition de comptes"
 description: "BonQuery reconstruit indépendamment les tableaux de bord des refuges de Toronto à partir des données ouvertes, met à jour quotidiennement l'occupation et la capacité et publie des données probantes sur la réponse au froid."
 author: "Miriam Marling"
-date-modified: 2026-08-07
+date-modified: 2026-08-12
 open-graph:
   title: "Données sur les refuges de Toronto mises à jour quotidiennement | BonQuery"
   description: "Réplication indépendante des tableaux de bord des refuges de Toronto, mises à jour quotidiennes de l'occupation et de la capacité, validation des données sources et reddition de comptes."
@@ -56,11 +56,12 @@ homeLatestLabel = {
 
 ::: {.bq-home-lede}
 BonQuery reconstruit les tableaux de bord publics des refuges de Toronto à
-partir des fichiers publics de la Ville. Nous montrons combien de places sont
-disponibles, comment la demande évolue et quand des personnes qui ont besoin
-d'un endroit sûr restent sans refuge.
+partir des sources publiques de la Ville. Nous montrons combien de places étaient
+utilisées, inoccupées ou indisponibles dans l'instantané de 4 h, comment la
+demande évolue et quand des personnes qui ont besoin d'un endroit sûr restent
+sans refuge.
 
-Ces fichiers ne montrent pas toutes les personnes qui ont besoin d'un endroit
+Ces sources ne montrent pas toutes les personnes qui ont besoin d'un endroit
 sûr ni toutes les formes d'itinérance. [Voir qui est compté, qui manque et
 pourquoi BonQuery emploie plusieurs termes →](projects/about-the-data.qmd#qui-manque-dans-les-donnees-et-pourquoi-les-mots-comptent)
 :::
@@ -69,7 +70,7 @@ pourquoi BonQuery emploie plusieurs termes →](projects/about-the-data.qmd#qui-
 <nav class="bq-purpose-grid" aria-label="Choisissez ce dont vous avez besoin">
   <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>J'ai besoin d'aide maintenant</strong><small>Refuges, violence, équipes de rue et urgences à Toronto</small></span></a>
   <a href="#commencez-par-votre-question"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span><strong>Je veux comprendre</strong><small>Commencez par les derniers chiffres et tendances des refuges</small></span></a>
-  <a href="mailto:miriam@BonQuery.ca?subject=Aider%20BonQuery%20ou%20proposer%20une%20correction"><i class="bi bi-megaphone" aria-hidden="true"></i><span><strong>Je veux aider ou proposer une correction</strong><small>Examiner le travail, partager des preuves, devenir partenaire ou bénévole</small></span></a>
+  <a class="bq-purpose-proof" href="#aider-relecture-francais"><i class="bi bi-translate" aria-hidden="true"></i><span><strong>Aider à relire le français</strong><small>Francophones du Canada : commencez par la page d'accueil; toute contribution sera reconnue</small></span></a>
 </nav>
 ```
 
@@ -77,9 +78,25 @@ pourquoi BonQuery emploie plusieurs termes →](projects/about-the-data.qmd#qui-
 //| echo: false
 html`<div class="bq-home-status" role="status">
   <span class="bq-status-dot" aria-hidden="true"></span>
-  <span><strong>Mis à jour chaque jour.</strong> Dernières données de la Ville sur les refuges disponibles ici : ${homeLatestLabel}.</span>
+  <span><strong>Mis à jour chaque jour.</strong> Dernières données publiées par la Ville sur les refuges présentées ici : ${homeLatestLabel}. <strong>Il ne s'agit pas de la disponibilité des places en temps réel.</strong></span>
 </div>`
 ```
+
+::: {#aider-relecture-francais .bq-status-note .bq-proof-note}
+### Le français vous semble-t-il naturel?
+
+J'ai utilisé un grand modèle de langage (LLM) pour traduire le site anglais en
+français, puis j'ai relu la traduction moi-même. Mon français est de niveau
+intermédiaire. Je cherche donc des personnes dont le français est la langue
+maternelle, surtout des francophones du Canada, qui pourraient vérifier si le
+texte semble naturel aux francophones d'ici.
+
+**La page d'accueil est ma priorité.** Toute relecture, même partielle, est la
+bienvenue. Je créditerai chaque personne pour la partie qu'elle aura révisée ou
+relue.
+
+[Aider à relire le français →](mailto:miriam@BonQuery.ca?subject=Relecture%20du%20français%20de%20BonQuery)
+:::
 
 ## Commencez par votre question
 
@@ -119,32 +136,36 @@ l'exposition peut causer des préjudices graves.
 [Consulter les méthodes et les données sources](projects/about-the-data.qmd)
 :::
 
-## Moniteur de responsabilité hivernale
+## Constatations sur le froid
 
 ::: {.bq-alert .bq-alert-hero}
-**Surveillance : du 15 novembre 2026 au 15 avril 2027.** Nous mettrons cette
-page à jour chaque jour pendant toute la
-[période des services hivernaux de la Ville](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
+### Un endroit chaud avant que le froid ne cause des blessures
 
-- **Mieux récemment :** Lors des nuits plus douces, de 0 à −5 °C, une place
-  libre sans recommandation est passée d'environ deux nuits sur cinq à neuf
-  nuits sur dix.
-- **Toujours sous pression :** Pendant la période actuelle, la couche activée
-  était occupée à au moins 98 % lors de 64 des 137 nuits à −5 °C ou moins.
-- **Bilan de six saisons :** Au moins une personne seule ou un couple demeurait
-  sans place lors de 257 des 268 nuits à −5 °C ou moins. Les refus à la porte ne
-  sont pas comptés.
+**96 % des nuits à −5 °C ou moins :** De 2020-2021 à 2025-2026, au moins une
+personne seule ou un couple était toujours sans place à 4 h. Les personnes
+refusées à la porte ne sont pas comptées.
 
-Un manuscrit est en préparation. Nous invitons la Ville et ses partenaires à
-nous transmettre des corrections, de nouvelles données publiques et du contexte
-opérationnel.
+**Un meilleur accès, mais des places toujours presque toutes occupées :** De
+2023-2024 à 2025-2026, au moins une place en accès direct était indiquée comme
+ouverte lors de 90 % des nuits de 0 à −5 °C, contre 40 % pendant les trois
+hivers précédents. Les lits et les places par temps froid étaient occupés à au
+moins 98 % lors de 47 % des nuits à −5 °C ou moins.
+
+Les [lésions dues au froid](https://www.cdc.gov/niosh/bulletin/2012/cold-stress.html){target="_blank"}
+peuvent causer des dommages durables avant de mettre la vie en danger.
+**Personne ne devrait subir un préjudice évitable parce qu'il lui était
+impossible d'entrer au chaud.**
+
+Lisez l'article complet pour consulter les sources, les méthodes et les limites.
+BonQuery ne peut pas offrir d'aide directe par temps froid. Pour obtenir des
+services vérifiés, consultez [J'ai besoin d'aide maintenant](#help-now).
 :::
 
 ::: {.bq-cta}
-[Voir l'audit des données et les données probantes →](projects/cold-response.qmd){.btn .btn-danger .btn-lg
+[Lire l'article sur le froid →](projects/cold-response.qmd){.btn .btn-danger .btn-lg
 role="button"}
 
-[Voir la méthodologie de l'audit et les divergences →](projects/about-the-data.qmd){.btn
+[Voir d'où viennent les chiffres →](projects/about-the-data.qmd){.btn
 .btn-outline-danger .btn-lg role="button"}
 :::
 
@@ -389,8 +410,8 @@ function fmtDate(s) {
 CITY_CENSUS_URL_TABLE = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
 
 // ── Deux sources, un seul tableau ─────────────────────────────────────────
-// Les données ouvertes font autorité et contiennent la capacité financée;
-// elles ont donc toujours priorité. La page Web quotidienne de la Ville sert
+// Les données ouvertes contiennent les champs détaillés et la capacité financée;
+// elles ont donc priorité une fois publiées. La page Web quotidienne de la Ville sert
 // uniquement de recours pour les dates que les données ouvertes n'ont pas
 // encore atteintes. La priorité est établie au moment du rendu : le tableau
 // revient de lui-même aux données ouvertes dès leur publication.
@@ -410,9 +431,9 @@ date depuis janvier 2021 jusqu'à aujourd'hui ; la page
 [Utilisation quotidienne des refuges et services d'hébergement de nuit](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
 de la Ville n'affiche que sa date de publication la plus récente. La colonne
 **Hors service** (calculée comme `financé − réel`) signale les lits, chambres
-ou espaces temporairement indisponibles — voir la
-[page de validation des données](projects/data-validation.html){target="_blank"}
-pour une explication de ce que cela représente et pourquoi cela compte.
+ou espaces temporairement indisponibles. [Voir comment BonQuery combine et
+étiquette les deux sources de la
+Ville](projects/data-validation.html){target="_blank"}.
 
 ## Occupation et capacité quotidiennes — ${fmtDate(selectedDate)}
 
@@ -521,11 +542,11 @@ sourceNote = {
   }
   return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
     <p style="margin:0">
-      <strong>Tableau de recours en attendant les données ouvertes.</strong>
-      Les données ouvertes de la Ville s'arrêtent au ${fmtDate(latestOpenDate)};
+      <strong>Utilisation temporaire de la page Web.</strong>
+      Le fichier détaillé de données ouvertes va actuellement jusqu'au ${fmtDate(latestOpenDate)};
       cette date provient donc de sa <a href="${CITY_CENSUS_URL_TABLE}"
       target="_blank">page Web quotidienne</a>. La colonne « Financé mais
-      indisponible » reste vide jusqu'à la publication des données ouvertes.
+      indisponible » reste vide jusqu'à la publication du fichier détaillé.
     </p>
   </div>`
 }
@@ -765,11 +786,9 @@ de la Ville mais ne sont pas publiés dans les données ouvertes ; BonQuery coll
 ce chiffre quotidiennement depuis la page du recensement des refuges de la Ville
 et l'affiche lorsqu'il est disponible. Le **Total des personnes hébergées** égale
 Tous les programmes de refuge + Passerelle et triage lorsque les deux sont
-disponibles. Certains chiffres de capacité et de lits inoccupés peuvent différer
-légèrement du tableau de bord en direct de la Ville en raison de différences dans
-la déclaration des lits hors service entre l'exportation CKAN et le système
-opérationnel de la Ville. Une comparaison côte à côte complète est disponible sur
-la [page de validation des données](projects/data-validation.html){target="_blank"}.
+disponibles. La page Web et le fichier de données ouvertes peuvent être publiés
+selon des calendriers différents. [Voir comment BonQuery combine et étiquette
+les deux sources](projects/data-validation.html){target="_blank"}.
 
 Contient des informations sous licence [Licence du gouvernement ouvert – Toronto](https://open.toronto.ca/open-data-licence/). Source : Données ouvertes de la Ville de Toronto — [Utilisation quotidienne des refuges et services d'hébergement de nuit, occupation et capacité](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Agrégées par [BonQuery](https://bonquery.ca).
 
@@ -818,7 +837,6 @@ Contient des informations sous licence [Licence du gouvernement ouvert – Toron
 
 ---
 
-*BonQuery est un audit de données indépendant du réseau de refuges de Toronto,
-fondé sur des documents publics et des méthodes reproductibles. Demandes de
-données et de méthodologie :
-[info@BonQuery.ca](mailto:info@BonQuery.ca).*
+*BonQuery vérifie les données publiques de Toronto sur les refuges. Vous voulez
+savoir exactement comment nous avons obtenu les chiffres? Écrivez à
+[Miriam](mailto:miriam@BonQuery.ca).*

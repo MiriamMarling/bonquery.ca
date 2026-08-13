@@ -3,7 +3,7 @@ title: "Toronto Shelter Data Updated Daily"
 subtitle: "We rebuild Toronto's shelter dashboards, check the numbers, and publish what we find"
 description: "Daily Toronto shelter data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness."
 author: "Miriam Marling"
-date-modified: 2026-08-07
+date-modified: 2026-08-12
 open-graph:
   title: "Toronto Shelter Data Updated Daily | BonQuery"
   description: "Daily Toronto shelter data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness."
@@ -95,10 +95,11 @@ homeLatestLabel = {
 
 ::: {.bq-home-lede}
 BonQuery rebuilds Toronto's public shelter dashboards using the City's public
-data files. We show how many spaces are available, how demand is changing, and when
-people who need somewhere safe to stay are still left without shelter.
+data sources. We show how many shelter spaces were recorded as used, unoccupied or
+unavailable at 4 a.m., how demand is changing, and when people who need somewhere
+safe to stay are still left without shelter.
 
-These files do not show everyone who needs a safe place or every form of
+These sources do not show everyone who needs a safe place or every form of
 homelessness. [See who the numbers include, who they miss, and why BonQuery uses
 more than one term →](projects/about-the-data.qmd#who-the-data-misses-and-why-words-matter)
 :::
@@ -107,7 +108,7 @@ more than one term →](projects/about-the-data.qmd#who-the-data-misses-and-why-
 <nav class="bq-purpose-grid" aria-label="Choose what you need">
   <a href="#help-now"><i class="bi bi-shield-check" aria-hidden="true"></i><span><strong>I need help now</strong><small>Toronto shelter, violence, outreach, and emergency contacts</small></span></a>
   <a href="#start-with-your-question"><i class="bi bi-bar-chart-line" aria-hidden="true"></i><span><strong>I want to understand</strong><small>Start with the latest shelter numbers and trends</small></span></a>
-  <a href="#help-improve-response"><i class="bi bi-megaphone" aria-hidden="true"></i><span><strong>I want to help or correct something</strong><small>Review the work, share evidence, partner, or volunteer</small></span></a>
+  <a class="bq-purpose-proof" href="#help-proofread-french"><i class="bi bi-translate" aria-hidden="true"></i><span><strong>Help proofread the French</strong><small>Canadian Francophones: start with the homepage; partial help is welcome and credited</small></span></a>
 </nav>
 ```
 
@@ -118,6 +119,20 @@ html`<div class="bq-home-status" role="status">
   <span><strong>Updated every day.</strong> Latest published City of Toronto shelter data shown here: ${homeLatestLabel}. <strong>Not live bed availability.</strong></span>
 </div>`
 ```
+
+::: {#help-proofread-french .bq-status-note .bq-proof-note}
+### Help the French sound natural
+
+I used an LLM to translate the English site into French, then proofread it
+myself. My French is intermediate, so I am looking for native French speakers,
+especially Canadian Francophones, to check that the translations sound natural
+to French readers and speakers in Canada.
+
+**The homepage is my highest priority.** Partial reviews are welcome, and I
+will credit editors and proofreaders for any portion they help with.
+
+[Help proofread the French →](mailto:miriam@BonQuery.ca?subject=French%20proofreading%20for%20BonQuery)
+:::
 
 ## Start with your question
 
@@ -153,87 +168,35 @@ We check whether people are still left without a place during dangerous cold.
 [See where the numbers come from](projects/about-the-data.qmd)
 :::
 
-## Winter Accountability Monitor
+## Cold-Weather Findings
 
 ::: {.bq-alert .bq-alert-hero}
-**Monitoring: November 15, 2026 to April 15, 2027.** We will update this page
-daily throughout the
-[City's winter services period](https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/winter-services-plan-for-people-experiencing-homelessness/){target="_blank"}.
+### A warm place before harm starts
 
-### **257** of 268 cold nights
+**96% of nights at or below −5 °C:** From 2020–21 to 2025–26, at least one
+person or couple was still without a place at 4 a.m. People turned away at the
+door are not counted.
 
-At least one person or couple was **still left without a place at 4 a.m.** on
-these nights at or below −5 °C from 2020–21 to 2025–26. **People turned away at
-the door are not counted.**
+**More access, but still nearly full:** From 2023–24 to 2025–26, at least one
+direct-access space was reported open on 90% of nights from 0 to −5 °C,
+compared with 40% during the previous three winters. Cold-weather beds and
+spaces were at least 98% full on 47% of nights at or below −5 °C.
 
-**No one should suffer cold injury because they could not get indoors. A safe,
-warm place must be available before harm starts, every night.**
+[Cold injury](https://www.cdc.gov/niosh/bulletin/2012/cold-stress.html){target="_blank"}
+can cause lasting harm before it becomes life-threatening. **No one should
+suffer preventable harm because they could not get indoors.**
 
-**Why this matters:** Cold does not have to take a body part to cause serious
-harm. It can injure fingers, toes, ears, noses, cheeks, and other exposed skin.
-It can cause pain or numbness, damage skin, tissue and nerves, and make cold hurt
-more in the future. These problems can **last for months or never go away.** More
-severe cold can make tissue die, cause someone to lose a body part, or kill.
-Warm, dry clothes help, but they do not make long cold exposure safe. Safety
-**cannot depend on someone owning special winter gear or having a home where
-they can warm up.** People need a warm place **before damage starts.** This work asks
-whether Toronto has a safe place available when and where someone needs it.
-Sources: [CDC](https://www.cdc.gov/niosh/bulletin/2012/cold-stress.html){target="_blank"}
-and [Mayo Clinic](https://www.mayoclinic.org/diseases-conditions/frostbite/symptoms-causes/syc-20372656){target="_blank"}.
-
-- **More spaces in 2023–24 to 2025–26:** On nights from 0 to −5 °C, at
-  least one space that a person could go to directly was open on **nine nights in
-  ten**. It was open about **two nights in five** during 2020–21 to
-  2022–23.
-- **Still nearly full (2023–24 to 2025–26):** Cold-weather beds and spaces were
-  almost completely full on **64 of 137 nights** at or below −5 °C. On those
-  nights, **fewer than 2 out of every 100 spaces were empty.**
-
-A research paper is being prepared. We welcome corrections, new public data, and
-explanations from the City and its service partners.
-
-[Want to know exactly how we got these numbers? Email Miriam.](mailto:miriam@BonQuery.ca)
+Read the full article for the sources, methods and limitations. BonQuery cannot
+provide direct cold-weather help. For verified services, use [I need help
+now](#help-now).
 :::
 
 ::: {.bq-cta}
-[See the Cold-Weather Findings →](projects/cold-response.qmd){.btn .btn-danger .btn-lg
+[Read the Cold-Weather Article →](projects/cold-response.qmd){.btn .btn-danger .btn-lg
 role="button"}
 
 [See Where the Numbers Come From →](projects/about-the-data.qmd){.btn
 .btn-outline-danger .btn-lg role="button"}
-:::
-
-::: {#help-improve-response .bq-alert .bq-green}
-### Help us protect people from the cold
-
-Why someone needs a safe, warm place does not matter. Everyone deserves warmth,
-safety, and a second chance without preventable physical harm.
-
-**Protection from cold is not a reward for perfect behaviour.** A person's
-mental health, history, or circumstances do not make cold injury acceptable.
-Keeping someone warm does not cancel accountability for harm.
-
-BonQuery can track what happens, publish the evidence, and push for better
-protection. We cannot provide direct cold-weather help yet. We have no sponsors,
-supplies, outreach team, or volunteers for that work. We want to build that
-response with people who care.
-
-**Before monitoring begins on November 15, we will:**
-
-- ask people with lived experience and frontline workers to review the words,
-  safety contacts, and reporting plan;
-- seek funding to pay lived-experience reviewers rather than asking people to
-  share trauma or work for free; and
-- publish the important changes that reviewers ask us to make.
-
-**A reporting line is planned, but it is not open.** We will not record or
-transcribe reports until we have a clear consent message, secure storage, human
-review, a deletion policy, and people able to respond. Until then, use the
-verified services under [I need help now](#help-now).
-
-[Review this work or propose a correction →](mailto:miriam@BonQuery.ca?subject=Review%20or%20correction%20for%20BonQuery)
-
-[Sponsor, partner, or volunteer to help build the response →](mailto:miriam@BonQuery.ca?subject=Help%20build%20a%20cold-weather%20response)
 :::
 
 ::: {.key-finding-box}
@@ -471,7 +434,8 @@ function fmtDate(s) {
 CITY_CENSUS_URL_TABLE = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
 
 // ── Two sources, one table ────────────────────────────────────────────────
-// Open data is authoritative and carries funded capacity, so it always wins.
+// Open data carries the detailed and funded-capacity fields, so it is primary
+// once available.
 // The City's daily webpage is the fallback, used only for dates the open data
 // has not reached. Precedence is decided here, at render time, so the table
 // returns to open data on its own once the City publishes the missing dates.
@@ -492,7 +456,7 @@ This table adds two things to the City's page. First, you can choose any date
 from January 2021 to today. The [City's page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"}
 shows only its newest date. Second, the **Funded but unavailable** column shows
 beds, rooms, or spaces that had funding but were not open to use. [See why the
-numbers differ](projects/data-validation.html){target="_blank"}.
+two City sources can differ](projects/data-validation.html){target="_blank"}.
 
 ## Toronto shelter use on ${fmtDate(selectedDate)}
 
@@ -652,11 +616,11 @@ sourceNote = {
   }
   return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
     <p style="margin:0">
-      <strong>Contingency table until the open data lands.</strong>
-      The City's open data stops at ${fmtDate(latestOpenDate)}, so this date
+      <strong>Temporary webpage fallback.</strong>
+      The detailed Open Data file currently reaches ${fmtDate(latestOpenDate)}, so this date
       comes from its <a href="${CITY_CENSUS_URL_TABLE}" target="_blank">daily
-      webpage</a>. Funded but unavailable stays blank until the open data
-      lands.
+      webpage</a>. Funded but unavailable stays blank until the detailed file
+      is published.
     </p>
   </div>`
 }
@@ -875,7 +839,7 @@ dailyTable = {
     </table>
     <p class="bq-footnote">
       † Total people = All Shelter Programs + Bridging &amp; Triage Programs.
-      The City leaves Bridging &amp; Triage out of its open data file. BonQuery copies
+      The detailed open-data file does not include Bridging &amp; Triage. BonQuery copies
       that number from the City's daily webpage when it appears. We have saved it
       since ${btStart}. If the City has not posted it, the row says "Not available
       for this date" and the total does not include it.
@@ -884,11 +848,11 @@ dailyTable = {
 }
 ```
 
-We rebuild this table from the City's public data file. The City leaves **Bridging
-& Triage Programs** out of that file, so we add the number from the City's
+We rebuild this table from the City's public data file. The detailed file does
+not include **Bridging & Triage Programs**, so we add the number from the City's
 daily webpage when it is available. The total includes that number when we have
-it. The City's webpage often does not match its open data. [See what
-differs](projects/data-validation.html){target="_blank"}.
+it. The webpage and open-data file can be published on different schedules.
+[See how BonQuery combines and labels the two sources](projects/data-validation.html){target="_blank"}.
 
 Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data — [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Aggregated by [BonQuery](https://bonquery.ca).
 

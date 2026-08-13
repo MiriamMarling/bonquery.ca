@@ -2,15 +2,15 @@
 <div class="bq-dashboard-grid">
 
 <a class="bq-dashboard-card bq-card-daily" href="/fr/projects/daily-occupancy.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">QUELLE EST LA DERNIÈRE CAPACITÉ QUOTIDIENNE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> APERÇU EN DIRECT</span></div>
-  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3>Occupation et capacité quotidiennes</h3></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">COMBIEN DE PERSONNES ONT ÉTÉ HÉBERGÉES?</span><span class="bq-data-badge"><i class="bi bi-clock-history" aria-hidden="true"></i> DERNIER INSTANTANÉ DE LA VILLE</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3>Lits et places</h3></div>
   <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
-  <p>Consultez le dernier tableau de la Ville reconstruit à partir des données ouvertes, parcourez chaque date depuis janvier 2021 et repérez les places financées qui étaient <strong>indisponibles</strong>.</p>
-  <span class="bq-card-link">Voir le dernier tableau quotidien <span aria-hidden="true">→</span></span>
+  <p>Consultez les dernières données de la Ville sur l'utilisation et la capacité des refuges, puis parcourez chaque journée publiée depuis janvier 2021.</p>
+  <span class="bq-card-link">Voir les données quotidiennes <span aria-hidden="true">→</span></span>
 </a>
 
 <a class="bq-dashboard-card bq-card-monthly" href="/fr/projects/monthly-snapshot.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">COMBIEN DE PERSONNES ONT BESOIN D'UN REFUGE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> APERÇU EN DIRECT</span></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">COMBIEN DE PERSONNES ONT BESOIN D'UN REFUGE?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> DERNIÈRES DONNÉES PUBLIÉES</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-people-fill" aria-hidden="true"></i></span><h3>Portrait mensuel</h3></div>
   <div class="bq-card-preview" id="bq-preview-monthly"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
   <p>Consultez le nombre actuel de personnes en situation d'itinérance active, les entrées, les sorties vers un logement et les groupes desservis. Choisissez tout mois depuis 2018.</p>
@@ -18,7 +18,7 @@
 </a>
 
 <a class="bq-dashboard-card bq-card-history" href="/fr/projects/historical-trends.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">COMMENT EN SOMMES-NOUS ARRIVÉS LÀ?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> APERÇU EN DIRECT</span></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">COMMENT EN SOMMES-NOUS ARRIVÉS LÀ?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> DERNIÈRES DONNÉES PUBLIÉES</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-graph-up" aria-hidden="true"></i></span><h3>Tendances historiques</h3></div>
   <div class="bq-card-preview" id="bq-preview-history"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
   <p>Explorez l'évolution pluriannuelle de l'itinérance active et chronique, des sorties vers un logement et des groupes desservis.</p>
@@ -26,7 +26,7 @@
 </a>
 
 <a class="bq-dashboard-card bq-card-ytd" href="/fr/projects/ytd-comparison.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">LE RÉSEAU S'AMÉLIORE-T-IL?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> APERÇU EN DIRECT</span></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">LE RÉSEAU S'AMÉLIORE-T-IL?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> DERNIÈRES DONNÉES PUBLIÉES</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span><h3>Comparaison depuis le début de l'année</h3></div>
   <div class="bq-card-preview" id="bq-preview-ytd"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
   <p>Comparez les entrées cumulatives et les sorties vers un logement cette année avec la même période des années précédentes.</p>

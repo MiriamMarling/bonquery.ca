@@ -2,11 +2,11 @@
 <div class="bq-dashboard-grid">
 
 <a class="bq-dashboard-card bq-card-daily" href="/projects/daily-occupancy.html">
-  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW FULL ARE SHELTERS TODAY?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> LATEST PUBLISHED</span></div>
-  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3>Beds and Spaces Today</h3></div>
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">HOW MANY PEOPLE WERE ACCOMMODATED?</span><span class="bq-data-badge"><i class="bi bi-clock-history" aria-hidden="true"></i> LATEST CITY SNAPSHOT</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span><h3>Beds and Spaces</h3></div>
   <div class="bq-card-preview" id="bq-preview-daily"><span class="bq-preview-skeleton" aria-label="Loading current data"></span></div>
-  <p>See how many shelter beds and spaces were used, empty, or <strong>unavailable</strong>. Browse every day since January 2021.</p>
-  <span class="bq-card-link">See today's numbers <span aria-hidden="true">→</span></span>
+  <p>See the latest City shelter use and capacity, then browse every published day since January 2021.</p>
+  <span class="bq-card-link">See the daily numbers <span aria-hidden="true">→</span></span>
 </a>
 
 <a class="bq-dashboard-card bq-card-monthly" href="/projects/monthly-snapshot.html">

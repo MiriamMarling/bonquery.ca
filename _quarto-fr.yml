@@ -38,7 +38,7 @@ website:
           - href: fr/projects/about-the-data.qmd
             text: "À propos des données"
           - href: fr/projects/data-validation.qmd
-            text: "Validation des données d'occupation"
+            text: "Sources des données quotidiennes"
           - href: fr/projects/data-validation-central-intake.qmd
             text: "Validation de l'admission centrale"
       - href: fr/about.qmd

@@ -1,38 +1,39 @@
 ---
-title: "Validation des données d'occupation quotidienne"
+title: "Comparaison des deux sources quotidiennes sur les refuges"
 subtitle: >
-  Une vérification de transparence comparant les chiffres d'occupation des
-  refuges de BonQuery avec le tableau de bord en direct de la Ville de Toronto,
-  avec un compte rendu complet des différences de données connues.
+  Examen en cours du moment de publication et des définitions
 author: "Miriam Marling"
 open-graph:
   title: "Validation des données de BonQuery par rapport à la Ville de Toronto"
   description: >
-    Vérification de transparence comparant les chiffres d'occupation des refuges
-    de BonQuery avec le tableau de bord en direct de la Ville de Toronto, avec
-    un compte rendu complet des différences connues.
+    Comment BonQuery compare et combine la page Web quotidienne et le fichier
+    détaillé de données ouvertes sur les refuges de Toronto.
   site_name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Validation des données de BonQuery — Ville de Toronto"
   description: >
-    Vérification de transparence : chiffres d'occupation des refuges de
-    BonQuery c. tableau de bord de la Ville, avec les différences documentées.
+    Comparaison de la page Web quotidienne et du fichier détaillé de données
+    ouvertes sur les refuges de Toronto.
 ---
 
-Cette page est une vérification de transparence. Elle place les chiffres de
-données ouvertes de BonQuery pour l'occupation quotidienne des refuges directement
-à côté des chiffres du tableau de bord en direct publié par la Ville de Toronto
-pour la même date, et documente précisément chaque différence. Le tableau de
-BonQuery est entièrement construit à partir des données ouvertes de la Ville
-(exportation CKAN) ; le tableau de bord en direct de la Ville inclut **certains**
-chiffres qui ne peuvent pas être reproduits à partir de leur propre exportation
-CKAN. La plupart des chiffres correspondent exactement. Là où ce n'est pas le
-cas, la raison est documentée ci-dessous.
+La Ville publie un instantané des refuges à 4 h à deux endroits : une page Web
+quotidienne et un fichier détaillé de données ouvertes. BonQuery compare les
+deux sources afin de reproduire les données publiées et de continuer à afficher
+les totaux récents lorsqu'une source est retardée.
 
-**Date de référence de la comparaison : 14 mai 2026.** Le côté Ville de ce tableau
-est un instantané unique capturé depuis le tableau de bord en direct le 14 mai,
-qui n'est plus visible sur le site de la Ville.
+::: {.bq-source-note}
+**L'interprétation est en cours d'examen.** Les deux sources peuvent afficher
+des valeurs différentes pour la même date. BonQuery ne sait pas encore si cela
+reflète des heures d'extraction différentes, des révisions ultérieures ou des
+définitions opérationnelles différentes. Nous conservons les comparaisons
+exactes et communiquerons d'abord avec la Ville en privé avant de publier une
+conclusion sur la source à considérer comme exacte.
+:::
+
+**Date de référence de la comparaison : 14 mai 2026.** Le côté Ville de ce
+tableau est un instantané unique capturé depuis la page Web quotidienne le 14
+mai, qui n'est plus visible sur le site de la Ville.
 
 ---
 
@@ -218,18 +219,13 @@ compTable = {
 
 ---
 
-## Pourquoi certains chiffres diffèrent-ils ?
+## Qu'est-ce qui pourrait expliquer les différences ?
 
-La section immédiatement sous l'en-tête **Programmes de refuge, base lit**
-contient quelques valeurs signalées (indiquées par un astérisque, `*`). La marque
-`*` apparaît dans les colonnes **Lits inoccupés**, **Capacité réelle (lits)** et
-**Taux d'occupation** pour les programmes de lits d'urgence, ainsi que dans la
-ligne **Total des secteurs individus**. Il ne s'agit pas d'erreurs dans le pipeline
-de données de BonQuery ni dans sa reconstitution des tableaux de la Ville. La Ville
-ne documente pas publiquement la dérivation exacte de ses chiffres de tableau de
-bord, ce qui explique pourquoi l'agrégation CKAN de BonQuery ne peut pas les
-reproduire exactement. BonQuery contacte la Ville pour obtenir des éclaircissements
-et publiera une mise à jour dès réception d'une réponse.
+La raison n'est pas encore confirmée. La page Web peut utiliser une extraction
+plus récente du système opérationnel de la Ville que le fichier de données
+ouvertes, ou les deux produits peuvent appliquer des heures de mise à jour ou
+des définitions différentes. BonQuery demandera des précisions à la Ville avant
+de tirer des conclusions.
 
 Le chiffre **financé** entre parenthèses à côté de la Capacité réelle (lits) de
 BQ est le nombre de lits que la Ville a contracté un opérateur de refuge pour
@@ -241,9 +237,9 @@ Les chiffres dans la colonne BQ proviennent des propres données CKAN publiées 
 la Ville, agrégées par BonQuery. Là où BQ affiche un chiffre financé en gris entre
 parenthèses, ce chiffre provient également de l'exportation CKAN. La comparaison
 sur cette page vise à confirmer que l'agrégation de BonQuery reproduit correctement
-les données de la Ville — et à documenter les différences entre les deux produits de
-données de la Ville (l'exportation CKAN et le tableau de bord Occupation et capacité
-quotidiennes en direct).
+les données de la Ville et à documenter les différences entre les deux produits de
+données de la Ville (l'exportation CKAN et la page Web quotidienne sur
+l'occupation et la capacité).
 
 ### Que sont les lits hors service ?
 
@@ -255,7 +251,7 @@ le statut hors service ; la Ville compile les chiffres dans son exportation de
 données ouvertes.
 
 La Ville ne publie pas le nombre de lits hors service comme chiffre autonome dans
-aucun des deux produits de données. BonQuery l'a découvert en plaçant les deux
+aucun des deux produits de données. BonQuery le calcule en plaçant les deux
 chiffres côte à côte : `financé − réel = hors service`. Ce nombre de lits **hors
 service** prend une importance particulière lors d'événements météorologiques
 extrêmes, où chaque lit financé compte.
@@ -272,7 +268,7 @@ capacité financée : un nombre négatif est le nombre de lits contractés tempo
 hors service (pour maintenance, réparation, isolement, pénuries de personnel ou
 lutte antiparasitaire). La colonne **Lits hors service (Réel Ville − Financé)**
 présente le chiffre du tableau de bord de la Ville moins la capacité financée ;
-une valeur positive dans la ligne Adultes mixtes signale l'anomalie discutée dans
+une valeur positive dans la ligne Adultes mixtes signale la valeur examinée dans
 la note ci-dessous.
 
 ```{ojs}
@@ -353,11 +349,11 @@ mixEmergAnomaly = {
   const funded = m.cap_funding
   let sentence
   if (city > funded) {
-    sentence = `La ligne Adultes mixtes — urgence est notable : le tableau de bord de la Ville indique **${n(city)}** lits, ce qui représente **${n(city - funded)}** au-dessus de la capacité financée de **${n(funded)}**. Cela exclut une explication du type « la Ville publie la capacité financée » et suggère que le tableau de bord en direct s'appuie sur une définition de la capacité opérationnelle non documentée publiquement.`
+    sentence = `La ligne Adultes mixtes — urgence doit être clarifiée. La page Web de la Ville indique **${n(city)}** lits, soit **${n(city - funded)}** de plus que la capacité financée de **${n(funded)}** dans le fichier de données ouvertes. Cela peut refléter des heures d'extraction différentes ou une définition opérationnelle absente des métadonnées du fichier.`
   } else if (city < actual) {
-    sentence = `La ligne Adultes mixtes — urgence est notable : le tableau de bord de la Ville indique **${n(city)}** lits, soit **${n(actual - city)}** *en dessous* de la capacité réelle (lits) de BonQuery de **${n(actual)}** (et **${n(funded - city)}** en dessous de la capacité financée de **${n(funded)}**). Le chiffre de la Ville ne correspond à aucune des deux définitions CKAN, et la dérivation exacte de la « Capacité réelle (lits) » dans le tableau de bord en direct n'est pas documentée publiquement.`
+    sentence = `La ligne Adultes mixtes — urgence doit être clarifiée. La page Web de la Ville indique **${n(city)}** lits, soit **${n(actual - city)}** de moins que la capacité ouverte et **${n(funded - city)}** de moins que la capacité financée dans le fichier de données ouvertes. Le moment de l'extraction ou la définition utilisée n'est pas encore confirmé.`
   } else {
-    sentence = `La ligne Adultes mixtes — urgence se situe entre la Capacité réelle (lits) de BonQuery (**${n(actual)}**) et la capacité financée (**${n(funded)}**) — la Ville publie **${n(city)}**. La dérivation exacte de la « Capacité réelle (lits) » dans le tableau de bord en direct n'est pas documentée publiquement.`
+    sentence = `La ligne Adultes mixtes — urgence doit être clarifiée. La page Web de la Ville indique **${n(city)}** lits, tandis que le fichier de données ouvertes en indique **${n(actual)}** ouverts et **${n(funded)}** financés. Le moment de l'extraction ou la définition utilisée n'est pas encore confirmé.`
   }
   return md`${sentence}`
 }
@@ -365,15 +361,14 @@ mixEmergAnomaly = {
 
 ### Programmes Passerelle et triage (non publiés en données ouvertes)
 
-Le tableau de bord en direct de la Ville indique 29 personnes dans les programmes
+La page Web quotidienne de la Ville indique 29 personnes dans les programmes
 Passerelle et triage le 14 mai 2026. Ce type de programme n'apparaît pas du tout
 dans l'exportation CKAN des données ouvertes — les programmes sont suivis dans le
 système opérationnel interne de la Ville mais ne sont pas publiés sur le portail
 des données ouvertes. BonQuery ne peut pas reproduire ce chiffre à partir des données
-ouvertes, et la ligne est étiquetée en conséquence dans le tableau principal. BonQuery
-contactera la Ville pour vérifier si elle est disposée à ajouter ce type de programme
-à son jeu de données CKAN, rétroactivement ou à l'avenir. Il s'agit de la différence
-la plus significative entre le tableau de la Ville et le jeu de données CKAN.
+ouvertes, et la ligne est étiquetée en conséquence dans le tableau principal.
+BonQuery demandera à la Ville comment ce type de programme devrait être
+représenté dans le fichier détaillé.
 
 ### Audit quotidien des mises à jour CKAN rétroactives
 
@@ -388,14 +383,13 @@ précédent sont restées stables depuis le plus ancien instantané archivé de 
 (2026-05-17). Si CKAN venait à réviser une ligne déjà publiée, l'audit le ferait
 remonter.
 
-### Conclusion
+### Ce que cela signifie maintenant
 
-Le tableau de BonQuery est entièrement construit à partir des données ouvertes
-publiées par la Ville. L'[exportation CKAN](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/),
-l'agrégation des données brutes par BonQuery pour reproduire les tableaux de la
-Ville, et cette page de comparaison forment ensemble un traçage complet de l'audit.
-Le tableau de bord quotidien de la Ville s'appuie sur un état interne du système qui
-n'est pas entièrement présent dans l'exportation des données ouvertes.
+La page Web et le fichier de données ouvertes peuvent différer. BonQuery conserve
+les données sources afin que les vérifications puissent être répétées, mais ne
+désignera aucune des deux sources comme erronée avant que la Ville n'ait clarifié
+leur calendrier et leurs définitions. Aucune des deux sources n'indique la
+disponibilité des lits en temps réel.
 
 ---
 

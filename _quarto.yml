@@ -43,7 +43,7 @@ website:
           - href: projects/about-the-data.qmd
             text: "About the Data"
           - href: projects/data-validation.qmd
-            text: "Occupancy Data Validation"
+            text: "Daily Data Sources"
           - href: projects/data-validation-central-intake.qmd
             text: "Central Intake Validation"
       - href: about.qmd

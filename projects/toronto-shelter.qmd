@@ -49,7 +49,8 @@ function fmtDate(s) {
 CITY_CENSUS_URL_TABLE = "https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/"
 
 // ── Two sources, one table ────────────────────────────────────────────────
-// Open data is authoritative and carries funded capacity, so it always wins.
+// Open data carries the detailed and funded-capacity fields, so it is primary
+// once available.
 // The City's daily webpage is the fallback, used only for dates the open data
 // has not reached. Precedence is decided here, at render time, so the table
 // returns to open data on its own once the City publishes the missing dates.
@@ -65,7 +66,7 @@ latestDate = allDates[0]
 // ^ Banner hidden — re-enable after capacity reconciliation is complete
 ```
 
-BonQuery's version of this table adds two features the City's page doesn't have. The **date selector** below lets you browse any date from January 2021 to the present; the City's [Daily Shelter & Overnight Service Usage page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"} shows only its most recently published date. The **Offline** column (calculated as `funded − actual`) flags beds, rooms, or spaces temporarily out of service — see the [data validation page](data-validation.html){target="_blank"} for what these are and why they matter.
+BonQuery's version of this table adds two features the City's page doesn't have. The **date selector** below lets you browse any date from January 2021 to the present; the City's [Daily Shelter & Overnight Service Usage page](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-census/){target="_blank"} shows only its most recently published date. The **Offline** column (calculated as `funded − actual`) flags beds, rooms, or spaces temporarily out of service. [See how BonQuery combines and labels the two City sources](data-validation.html){target="_blank"}.
 
 ## Daily Occupancy & Capacity for ${fmtDate(selectedDate)}
 
@@ -190,10 +191,10 @@ sourceNote = {
   }
   return html`<div class="bq-warn" style="margin:0.5rem 0 1rem;font-size:0.88em">
     <p style="margin:0">
-      <strong>Contingency table until the open data lands.</strong>
-      The City's open data stops at ${fmtDate(latestOpenDate)}, so this date
+      <strong>Temporary webpage fallback.</strong>
+      The detailed Open Data file currently reaches ${fmtDate(latestOpenDate)}, so this date
       comes from its <a href="${CITY_CENSUS_URL_TABLE}" target="_blank">daily
-      webpage</a>. Offline stays blank until the open data lands.
+      webpage</a>. Offline stays blank until the detailed file is published.
     </p>
   </div>`
 }
@@ -423,7 +424,7 @@ dailyTable = {
 }
 ```
 
-This table reproduces the City of Toronto's Daily Shelter & Overnight Service Usage report using the City's open data. The **All Shelter Programs** subtotal and all breakdown rows are derived from the CKAN open data export. **Bridging & Triage Programs** are tracked in the City's operational system but not published to open data; BonQuery scrapes this figure daily from the City's shelter census page and displays it where available. The **Total People Accommodated** figure equals All Shelter Programs + Bridging & Triage when both are available. Some capacity and unoccupied-bed figures may differ slightly from the City's live dashboard due to offline-bed reporting differences between the CKAN export and the City's operational system. A full side-by-side comparison is available on the [data validation page](data-validation.html){target="_blank"}.
+This table reproduces the City of Toronto's Daily Shelter & Overnight Service Usage report using the City's open data. The **All Shelter Programs** subtotal and all breakdown rows are derived from the CKAN open data export. **Bridging & Triage Programs** are tracked in the City's operational system but not published to open data; BonQuery scrapes this figure daily from the City's shelter census page and displays it where available. The **Total People Accommodated** figure equals All Shelter Programs + Bridging & Triage when both are available. The webpage and open-data file can be published at different times and may use different extracts or definitions. [See how BonQuery combines and labels the two sources](data-validation.html){target="_blank"}.
 
 Contains information licensed under the [Open Government Licence – Toronto](https://open.toronto.ca/open-data-licence/). Source: City of Toronto Open Data — [Daily Shelter & Overnight Service Occupancy & Capacity](https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/). Aggregated by [BonQuery](https://bonquery.ca).
 

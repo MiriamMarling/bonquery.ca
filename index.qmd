@@ -899,9 +899,5 @@ Contains information licensed under the [Open Government Licence - Toronto](http
 
 ---
 
-{{< include _includes/toronto-help-contacts.qmd >}}
-
----
-
 *BonQuery checks Toronto's public shelter data. Want to know exactly how we got
 the numbers? Email [Miriam](mailto:miriam@BonQuery.ca).*

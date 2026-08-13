@@ -315,6 +315,18 @@ body:has(.bq-home-lede) #title-block-header .description {
   background: var(--bq-bg-alt);
 }
 
+.bq-global-help {
+  width: min(100% - 2rem, 1320px);
+  margin: 2.5rem auto 0;
+}
+
+.bq-help-fr { display: none; }
+
+html[lang^="fr"] .bq-help-en { display: none; }
+html[lang^="fr"] .bq-help-fr { display: grid; }
+
+.bq-embedded-page .bq-global-help { display: none; }
+
 .bq-help-copy {
   display: grid;
   gap: 0.15rem;
@@ -999,8 +1011,12 @@ body.quarto-dark .quarto-color-scheme-toggle .bi:hover {
 }
 
 @media (max-width: 768px) {
-  .mobile-dashboard-links { display: block; }
-  .desktop-dashboard-tabs { display: none; }
+  .desktop-dashboard-tabs iframe {
+    width: calc(100vw - 4px) !important;
+    margin-left: calc(50% - 50vw) !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
 }
 
 

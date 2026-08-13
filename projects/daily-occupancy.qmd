@@ -429,8 +429,6 @@ dailyTable = {
 }
 ```
 
-{{< include ../_includes/toronto-help-contacts.qmd >}}
-
 We rebuild this table from the City's public data file. The detailed file does
 not include **Bridging & Triage Programs**, so we add the number from the
 City's daily webpage when it is available. The total includes that number when

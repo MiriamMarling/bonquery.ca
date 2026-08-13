@@ -71,4 +71,6 @@ format:
     toc: true
     toc-location: right
     canonical-url: true
-    include-after-body: _includes/site-init.html
+    include-after-body:
+      - _includes/site-init.html
+      - _includes/toronto-help-contacts.qmd

@@ -407,8 +407,6 @@ dailyTable = {
 }
 ```
 
-{{< include ../../_includes/toronto-help-contacts-fr.qmd >}}
-
 Ce tableau reproduit le rapport d'utilisation quotidienne des refuges et services
 d'hébergement de nuit de la Ville de Toronto à partir des données ouvertes de la
 Ville. Le sous-total **Tous les programmes de refuge** et toutes les lignes de

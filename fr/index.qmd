@@ -835,10 +835,6 @@ Contient des informations sous licence [Licence du gouvernement ouvert – Toron
 
 ---
 
-{{< include ../_includes/toronto-help-contacts-fr.qmd >}}
-
----
-
 *BonQuery vérifie les données publiques de Toronto sur les refuges. Vous voulez
 savoir exactement comment nous avons obtenu les chiffres? Écrivez à
 [Miriam](mailto:miriam@BonQuery.ca).*

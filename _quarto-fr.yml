@@ -16,7 +16,6 @@ project:
 format:
   html:
     lang: fr-CA
-    include-after-body: _includes/site-init.html
 
 website:
   title: "BonQuery"

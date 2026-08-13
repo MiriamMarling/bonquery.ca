@@ -1,5 +1,5 @@
-```{=html}
-<div id="help-now" class="bq-help-strip" role="complementary" aria-label="Immediate shelter, violence, outreach, and emergency contacts">
+<div id="help-now" class="bq-global-help">
+<div class="bq-help-strip bq-help-en" role="complementary" aria-label="Immediate shelter, violence, outreach, and emergency contacts">
   <div class="bq-help-copy">
     <strong>Need a safe place or support now?</strong>
     <span>These contacts serve Toronto unless another area is named. BonQuery is an independent data project, not a service provider.</span>
@@ -30,4 +30,35 @@
     <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
   </div>
 </div>
-```
+<div class="bq-help-strip bq-help-fr" role="complementary" aria-label="Contacts immédiats pour un lieu sûr, un refuge, une crise ou une urgence" lang="fr-CA">
+  <div class="bq-help-copy">
+    <strong>Besoin d'un endroit sûr ou de soutien maintenant?</strong>
+    <span>Ces services desservent Toronto, sauf si une autre région est indiquée. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Ligne d'aide aux femmes victimes de violence</strong><small>Gratuite et confidentielle, partout en Ontario, 24 h/24 et 7 j/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Jeunes : Jeunesse, J'écoute</strong><small>De 5 à 29 ans, service confidentiel 24 h/24 et 7 j/7. Appelez ou textez le 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Vous pensez au suicide ou vous vous inquiétez pour quelqu'un?</strong><small>Appelez ou textez le 988 partout au Canada, 24 h/24 et 7 j/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges d'urgence de Toronto</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges de Toronto, sans frais</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Soutien en cas de crise de santé mentale à Toronto</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Intervention de rue à Toronto</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 depuis l'extérieur de la ville</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>Service de relais ATS de la Ville</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Danger immédiat au Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
+  </div>
+</div>
+</div>

@@ -49,8 +49,6 @@ principale — mais non la seule — vers les refuges d'urgence de Toronto. Les
 travailleurs de rue de Streets to Homes font également des orientations directes
 en dehors de l'Admission centrale.
 
-{{< include ../../_includes/toronto-help-contacts-fr.qmd >}}
-
 Cette page reproduit trois des quatre graphiques de la page [Demandes
 d'orientation vers le réseau de refuges](https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/){target="_blank"}
 de la Ville. Le quatrième — taux d'occupation moyen par nuit — est exclu parce

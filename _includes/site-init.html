@@ -1,4 +1,10 @@
 <script>
+// Embedded dashboard pages keep their charts but omit the site-wide help
+// footer. The same pages show the footer when opened directly.
+if (window.self !== window.top) {
+  document.documentElement.classList.add("bq-embedded-page");
+}
+
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
 // Quarto renders the navbar id attribute (it does not).

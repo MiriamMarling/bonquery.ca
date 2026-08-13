@@ -25,6 +25,14 @@
   <span class="bq-card-link">Explorer les tendances <span aria-hidden="true">→</span></span>
 </a>
 
+<a class="bq-dashboard-card bq-card-caller" href="/fr/projects/central-intake.html">
+  <div class="bq-card-eyebrow"><span class="bq-card-kicker">COMBIEN D'APPELS ONT ÉTÉ TRAITÉS?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> DERNIÈRES DONNÉES PUBLIÉES</span></div>
+  <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-telephone" aria-hidden="true"></i></span><h3>Demandes d'orientation en refuge</h3></div>
+  <div class="bq-card-preview" id="bq-preview-caller"><span class="bq-preview-skeleton" aria-label="Chargement des données actuelles"></span></div>
+  <p>Voyez la moyenne quotidienne des appels traités, les orientations vers une place et les personnes seules ou les couples qui ont appelé et étaient encore sans place à 4 h.</p>
+  <span class="bq-card-link">Voir les données sur les appels <span aria-hidden="true">→</span></span>
+</a>
+
 <a class="bq-dashboard-card bq-card-ytd" href="/fr/projects/ytd-comparison.html">
   <div class="bq-card-eyebrow"><span class="bq-card-kicker">LE RÉSEAU S'AMÉLIORE-T-IL?</span><span class="bq-data-badge"><i class="bi bi-broadcast" aria-hidden="true"></i> DERNIÈRES DONNÉES PUBLIÉES</span></div>
   <div class="bq-card-title-row"><span class="bq-card-icon"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></span><h3>Comparaison depuis le début de l'année</h3></div>

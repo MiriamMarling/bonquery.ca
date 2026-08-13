@@ -1008,6 +1008,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script>
+// Embedded dashboard pages keep their charts but omit the site-wide help
+// footer. The same pages show the footer when opened directly.
+if (window.self !== window.top) {
+  document.documentElement.classList.add("bq-embedded-page");
+}
+
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
 // Quarto renders the navbar id attribute (it does not).
@@ -1094,6 +1100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
     movedToHousing: "Ont obtenu un logement",
+    callsHandled: "appels traités par jour en moyenne",
     januaryTo: "De janvier à ",
     latest: "Plus récent : ",
     trend: "Tendance de l'itinérance active jusqu'à "
@@ -1106,15 +1113,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
     movedToHousing: "Moved into housing",
+    callsHandled: "calls handled each day on average",
     januaryTo: "January to ",
     latest: "Latest: ",
     trend: "People counted as homeless through "
   };
   var dailyMount = document.getElementById("bq-preview-daily");
   var monthlyMount = document.getElementById("bq-preview-monthly");
+  var callerMount = document.getElementById("bq-preview-caller");
   var ytdMount = document.getElementById("bq-preview-ytd");
   var historyMount = document.getElementById("bq-preview-history");
-  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+  if (!dailyMount && !monthlyMount && !callerMount && !ytdMount && !historyMount) return;
 
   function make(tag, className, text) {
     var node = document.createElement(tag);
@@ -1285,6 +1294,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       showUnavailable(ytdMount);
       showUnavailable(historyMount);
     });
+
+  if (callerMount) {
+    fetch("/data/central_intake.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("Caller preview data unavailable");
+        return response.json();
+      })
+      .then(function (data) {
+        var latest = (data.monthly || [])
+          .filter(function (row) {
+            return row.handled_mean != null &&
+              Number.isFinite(Number(row.handled_mean));
+          })
+          .slice()
+          .sort(function (a, b) {
+            return (a.year * 100 + a.month) - (b.year * 100 + b.month);
+          })
+          .pop();
+        if (!latest) throw new Error("Caller preview rows unavailable");
+
+        var latestLabel = new Date(latest.year, latest.month - 1, 1)
+          .toLocaleDateString(locale, {month: "long", year: "numeric"});
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", Math.round(latest.handled_mean).toLocaleString(locale)),
+          make("span", "", copy.callsHandled + " · " + latestLabel)
+        );
+        callerMount.replaceChildren(kpi);
+      })
+      .catch(function () { showUnavailable(callerMount); });
+  }
 })();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
@@ -1338,6 +1378,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   addLink("alternate", "x-default", abs(enPath));
 })();
 </script>
+<div id="help-now" class="bq-global-help">
+<div class="bq-help-strip bq-help-en" role="complementary" aria-label="Immediate shelter, violence, outreach, and emergency contacts">
+  <div class="bq-help-copy">
+    <strong>Need a safe place or support now?</strong>
+    <span>These contacts serve Toronto unless another area is named. BonQuery is an independent data project, not a service provider.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Assaulted Women's Helpline</strong><small>Free and confidential, anywhere in Ontario, 24/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Young people: Kids Help Phone</strong><small>Ages 5 to 29, confidential, 24/7. Call, or text CONNECT to 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Thinking about suicide, or worried about someone?</strong><small>Call or text 988 anywhere in Canada, 24/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto emergency shelter line</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto shelter line, toll-free</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto mental-health crisis support</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto street outreach</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 from outside city limits</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>City services TTY relay</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Immediate danger in Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
+  </div>
+</div>
+<div class="bq-help-strip bq-help-fr" role="complementary" aria-label="Contacts immédiats pour un lieu sûr, un refuge, une crise ou une urgence" lang="fr-CA">
+  <div class="bq-help-copy">
+    <strong>Besoin d'un endroit sûr ou de soutien maintenant?</strong>
+    <span>Ces services desservent Toronto, sauf si une autre région est indiquée. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Ligne d'aide aux femmes victimes de violence</strong><small>Gratuite et confidentielle, partout en Ontario, 24 h/24 et 7 j/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Jeunes : Jeunesse, J'écoute</strong><small>De 5 à 29 ans, service confidentiel 24 h/24 et 7 j/7. Appelez ou textez le 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Vous pensez au suicide ou vous vous inquiétez pour quelqu'un?</strong><small>Appelez ou textez le 988 partout au Canada, 24 h/24 et 7 j/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges d'urgence de Toronto</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges de Toronto, sans frais</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Soutien en cas de crise de santé mentale à Toronto</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Intervention de rue à Toronto</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 depuis l'extérieur de la ville</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>Service de relais ATS de la Ville</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Danger immédiat au Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
+  </div>
+</div>
+</div>
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhdGEgPSBGaWxlQXR0YWNobWVudChcIi4uL2RhdGEvc2hlbHRlcl9mbG93Lmpzb25cIikuanNvbigpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJwb3B1bGF0aW9uR3JvdXBzID0gW1xuICBcIkFsbCBQb3B1bGF0aW9uXCIsXG4gIC4uLkFycmF5LmZyb20obmV3IFNldChkYXRhLm1hcChkID0+IGQucG9wdWxhdGlvbl9ncm91cCkpKVxuICAgIC5maWx0ZXIoZyA9PiBnICE9PSBcIkFsbCBQb3B1bGF0aW9uXCIpXG4gICAgLnNvcnQoKVxuXVxuXG5hdmFpbGFibGVZZWFycyA9IFtcbiAgXCJBbGxcIixcbiAgLi4uQXJyYXkuZnJvbShuZXcgU2V0KGRhdGEubWFwKGQgPT4gZC5mbG93X2RhdGUuc2xpY2UoMCwgNCkpKSkuc29ydCgpXG5dXG5cbm1vbnRoT3B0aW9ucyA9IFtcbiAge2xhYmVsOiBcIkFsbFwiLCB2YWx1ZTogXCJBbGxcIn0sXG4gIC4uLkFycmF5LmZyb20oe2xlbmd0aDogMTJ9LCAoXywgaSkgPT4gKHtcbiAgICBsYWJlbDogbmV3IERhdGUoMjAwMCwgaSkudG9Mb2NhbGVTdHJpbmcoXCJkZWZhdWx0XCIsIHttb250aDogXCJsb25nXCJ9KSxcbiAgICB2YWx1ZTogU3RyaW5nKGkgKyAxKVxuICB9KSlcbl1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBzZWxlY3RlZEdyb3VwID0gSW5wdXRzLnNlbGVjdChwb3B1bGF0aW9uR3JvdXBzLCB7XG4gIGxhYmVsOiBcIlBvcHVsYXRpb24gZ3JvdXBcIiwgdmFsdWU6IFwiQWxsIFBvcHVsYXRpb25cIiwgd2lkdGg6IDIyMFxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBzZWxlY3RlZFllYXIgPSBJbnB1dHMuc2VsZWN0KGF2YWlsYWJsZVllYXJzLCB7XG4gIGxhYmVsOiBcIlllYXJcIiwgdmFsdWU6IFwiQWxsXCIsIHdpZHRoOiAxMjBcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2Ygc2VsZWN0ZWRNb250aCA9IElucHV0cy5zZWxlY3QobW9udGhPcHRpb25zLCB7XG4gIGxhYmVsOiBcIk1vbnRoXCIsIGZvcm1hdDogZCA9PiBkLmxhYmVsLCB2YWx1ZTogbW9udGhPcHRpb25zWzBdLCB3aWR0aDogMTYwXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiZmlsdGVyZWQgPSBkYXRhXG4gIC5maWx0ZXIoZCA9PiB7XG4gICAgY29uc3QgZ3JvdXBNYXRjaCA9IGQucG9wdWxhdGlvbl9ncm91cCA9PT0gc2VsZWN0ZWRHcm91cFxuICAgIGNvbnN0IHllYXJNYXRjaCAgPSBzZWxlY3RlZFllYXIgPT09IFwiQWxsXCIgfHwgZC5mbG93X2RhdGUuc2xpY2UoMCwgNCkgPT09IHNlbGVjdGVkWWVhclxuICAgIGNvbnN0IG1vbnRoTWF0Y2ggPSBzZWxlY3RlZE1vbnRoLnZhbHVlID09PSBcIkFsbFwiIHx8XG4gICAgICAgICAgICAgICAgICAgICAgIHBhcnNlSW50KGQuZmxvd19kYXRlLnNsaWNlKDUsIDcpKSA9PT0gcGFyc2VJbnQoc2VsZWN0ZWRNb250aC52YWx1ZSlcbiAgICByZXR1cm4gZ3JvdXBNYXRjaCAmJiB5ZWFyTWF0Y2ggJiYgbW9udGhNYXRjaFxuICB9KVxuICAubWFwKGQgPT4ge1xuICAgIGNvbnN0IFt5LCBtLCBkYXldID0gZC5mbG93X2RhdGUuc3BsaXQoXCItXCIpLm1hcChOdW1iZXIpXG4gICAgcmV0dXJuIHsuLi5kLCBkYXRlOiBuZXcgRGF0ZSh5LCBtIC0gMSwgZGF5KSwgbW9udGg6IGQuZmxvd19kYXRlLnNsaWNlKDAsIDcpfVxuICB9KVxuICAuc29ydCgoYSwgYikgPT4gYS5kYXRlIC0gYi5kYXRlKVxuXG4vLyBTaG9ydCBtb250aCBuYW1lcyB1c2VkIGluIHRpY2sgbGFiZWxzLlxuTU9OID0gW1wiSmFuXCIsXCJGZWJcIixcIk1hclwiLFwiQXByXCIsXCJNYXlcIixcIkp1blwiLFwiSnVsXCIsXCJBdWdcIixcIlNlcFwiLFwiT2N0XCIsXCJOb3ZcIixcIkRlY1wiXVxuXG4vLyBBY3R1YWwgdGltZSBzcGFuIGluIG1vbnRocyBiZXR3ZWVuIGZpcnN0IGFuZCBsYXN0IGZpbHRlcmVkIHJvdy5cbi8vIFRoaXMgZ292ZXJucyB0aWNrIGRlbnNpdHkg4oCUIE5PVCB0aGUgZGF0YSBwb2ludCBjb3VudCwgd2hpY2ggaXMgbWlzbGVhZGluZ1xuLy8gd2hlbiBvbmUgc3BlY2lmaWMgbW9udGggaXMgc2VsZWN0ZWQgYWNyb3NzIG1hbnkgeWVhcnMgKGZldyBwb2ludHMsIGh1Z2Ugc3BhbikuXG5zcGFuTW9udGhzID0gZmlsdGVyZWQubGVuZ3RoIDwgMiA/IDEgOlxuICBNYXRoLnJvdW5kKChmaWx0ZXJlZFtmaWx0ZXJlZC5sZW5ndGgtMV0uZGF0ZSAtIGZpbHRlcmVkWzBdLmRhdGUpXG4gICAgICAgICAgICAgLyAoMzAuNDQgKiAyNCAqIDM2MDAgKiAxMDAwKSlcblxuLy8gVGhyZWUgYXhpcyBkaXNwbGF5IG1vZGVzIGZvciBMSU5FIGNoYXJ0czpcbi8vICAgZGVuc2UgIOKAlCBtYW55IHllYXJzLCBhbGwgbW9udGhzIChmaWx0ZXJlZC5sZW5ndGggPiAyMCwgc3Bhbk1vbnRocyA+IDE4KVxuLy8gICAgICAgICAgICDihpIgeWVhcmx5IHRpY2tzLCB5ZWFyLW9ubHkgbGFiZWwgKFwiMjAxOVwiKVxuLy8gICBzcGFyc2Ug4oCUIHNwZWNpZmljIG1vbnRoIGFjcm9zcyBhbGwgeWVhcnMgKGZpbHRlcmVkLmxlbmd0aCDiiaQgMjAsIHNwYW5Nb250aHMgPiAxOClcbi8vICAgICAgICAgICAg4oaSIHllYXJseSB0aWNrcywgXCJNb24tWVlZWVwiIGxhYmVsIChcIkphbi0yMDE4XCIpXG4vLyAgIHNpbmdsZSDigJQgb25lIHllYXIgc2VsZWN0ZWQgKHNwYW5Nb250aHMg4omkIDE4KVxuLy8gICAgICAgICAgICDihpIgbW9udGhseSB0aWNrcywgXCJNb25cIiB3aXRoIHllYXIgb24gSmFudWFyeSAoXCJKYW4tMjAxOFwiLCBcIkZlYlwiLCDigKYpXG54TGluZURlbnNlICA9IHNwYW5Nb250aHMgPiAxOCAmJiBmaWx0ZXJlZC5sZW5ndGggPiAyMFxueExpbmVTaW5nbGUgPSBzcGFuTW9udGhzIDw9IDE4XG5cbnhMaW5lID0gKHtcbiAgdHlwZTogXCJ0aW1lXCIsXG4gIGxhYmVsOiBudWxsLFxuICB0aWNrczogeExpbmVTaW5nbGUgPyBkMy51dGNNb250aC5ldmVyeSgxKSA6IDgsXG4gIHRpY2tGb3JtYXQ6IGQgPT4ge1xuICAgIGNvbnN0IG0gPSBkLmdldE1vbnRoKCksIHkgPSBkLmdldEZ1bGxZZWFyKClcbiAgICBpZiAoeExpbmVTaW5nbGUpICByZXR1cm4gbSA9PT0gMCA/IGAke01PTlttXX0tJHt5fWAgOiBNT05bbV1cbiAgICBpZiAoeExpbmVEZW5zZSkgICByZXR1cm4gbSA9PT0gMCA/IFN0cmluZyh5KSA6IG0gPT09IDYgPyBgSnVsICR7eX1gIDogXCJcIlxuICAgIC8vIHNwYXJzZTogc3BlY2lmaWMgbW9udGggYWNyb3NzIGFsbCB5ZWFyc1xuICAgIHJldHVybiBtID09PSAwID8gYEphbi0ke3l9YCA6IG0gPT09IDYgPyBgSnVsLSR7eX1gIDogYCR7TU9OW21dfS0ke3l9YFxuICB9XG59KVxuXG4vLyBIZWxwZXI6IGZpcnN0IGFuZCBsYXN0IGRheSBvZiBhIG1vbnRoIGFzIERhdGUgb2JqZWN0cyAobG9jYWwgdGltZSkuXG4vLyBVc2VkIGJ5IHJlY3RZIGJhciBjaGFydHMgdG8gZHJhdyBiYXJzIHNwYW5uaW5nIGV4YWN0bHkgb25lIGNhbGVuZGFyIG1vbnRoLlxubW9udGhTdGFydCA9IGQgPT4gbmV3IERhdGUoZC5kYXRlLmdldEZ1bGxZZWFyKCksIGQuZGF0ZS5nZXRNb250aCgpLCAxKVxubW9udGhFbmQgICA9IGQgPT4gbmV3IERhdGUoZC5kYXRlLmdldEZ1bGxZZWFyKCksIGQuZGF0ZS5nZXRNb250aCgpICsgMSwgMSlcbi8vIE1pZC1tb250aCBkYXRlIHVzZWQgdG8gYW5jaG9yIHBvaW50ZXJYIHRvb2x0aXAgc25hcHBpbmcuXG5tb250aE1pZCAgID0gZCA9PiBuZXcgRGF0ZShkLmRhdGUuZ2V0RnVsbFllYXIoKSwgZC5kYXRlLmdldE1vbnRoKCksIDE1KVxuXG4vLyBTaGFyZWQgeSBmb3JtYXR0ZXIg4oCUIG5vIHNjaWVudGlmaWMgbm90YXRpb24uXG5mbXROID0gZCA9PiBkLnRvTG9jYWxlU3RyaW5nKClcbmZtdFBjdCA9IGQgPT4gKGQgKiAxMDApLnRvRml4ZWQoMCkgKyBcIiVcIlxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgd2lkdGgsIGhlaWdodDogMzgwLCBtYXJnaW5MZWZ0OiA3MCxcbiAgeDogeExpbmUsXG4gIHk6IHtsYWJlbDogXCJQZW9wbGUgYWN0aXZlbHkgaG9tZWxlc3NcIiwgZ3JpZDogdHJ1ZSwgdGlja0Zvcm1hdDogZm10Tn0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWShbMF0pLFxuICAgIFBsb3QubGluZShmaWx0ZXJlZCwge3g6IFwiZGF0ZVwiLCB5OiBcImFjdGl2ZWx5X2hvbWVsZXNzXCIsIHN0cm9rZTogXCIjRkYyRDU1XCIsIHN0cm9rZVdpZHRoOiAyfSksXG4gICAgUGxvdC5kb3QoZmlsdGVyZWQsICB7eDogXCJkYXRlXCIsIHk6IFwiYWN0aXZlbHlfaG9tZWxlc3NcIiwgZmlsbDogICBcIiNGRjJENTVcIiwgcjogMn0pLFxuICAgIFBsb3QudGlwKGZpbHRlcmVkLCBQbG90LnBvaW50ZXJYKHtcbiAgICAgIHg6IFwiZGF0ZVwiLCB5OiBcImFjdGl2ZWx5X2hvbWVsZXNzXCIsXG4gICAgICB0aXRsZTogZCA9PiBgJHtkLm1vbnRofVxcbiR7ZC5hY3RpdmVseV9ob21lbGVzcy50b0xvY2FsZVN0cmluZygpfSBwZW9wbGVgXG4gICAgfSkpXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTgiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJuZXREYXRhID0gZmlsdGVyZWQubWFwKGQgPT4gKHtcbiAgZGF0ZTogZC5kYXRlLCBtb250aDogZC5tb250aCxcbiAgbmV0X2NoYW5nZTogZC5uZXdseV9pZGVudGlmaWVkICsgZC5yZXR1cm5lZF9mcm9tX2hvdXNpbmcgKyBkLnJldHVybmVkX3RvX3NoZWx0ZXJcbiAgICAgICAgICAgICAgLSBkLm1vdmVkX3RvX2hvdXNpbmcgLSBkLmJlY2FtZV9pbmFjdGl2ZVxufSkpXG5cblBsb3QucGxvdCh7XG4gIHdpZHRoLCBoZWlnaHQ6IDM4MCwgbWFyZ2luTGVmdDogNzAsXG4gIHg6IHhMaW5lLFxuICB5OiB7bGFiZWw6IFwiTmV0IGNoYW5nZSAocGVvcGxlKVwiLCBncmlkOiB0cnVlLCB0aWNrRm9ybWF0OiBmbXROfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LnJ1bGVZKFswXSwge3N0cm9rZTogZ2V0Q29tcHV0ZWRTdHlsZShkb2N1bWVudC5ib2R5KS5nZXRQcm9wZXJ0eVZhbHVlKFwiLS1icS1mZy1zZWNvbmRhcnlcIiksIHN0cm9rZVdpZHRoOiAxLjV9KSxcbiAgICBQbG90LmxpbmUobmV0RGF0YSwge3g6IFwiZGF0ZVwiLCB5OiBcIm5ldF9jaGFuZ2VcIiwgc3Ryb2tlOiBcIiM1ODU2RDZcIiwgc3Ryb2tlV2lkdGg6IDJ9KSxcbiAgICBQbG90LmRvdChuZXREYXRhLCAge3g6IFwiZGF0ZVwiLCB5OiBcIm5ldF9jaGFuZ2VcIiwgZmlsbDogICBcIiM1ODU2RDZcIiwgcjogMn0pLFxuICAgIFBsb3QudGlwKG5ldERhdGEsIFBsb3QucG9pbnRlclgoe1xuICAgICAgeDogXCJkYXRlXCIsIHk6IFwibmV0X2NoYW5nZVwiLFxuICAgICAgdGl0bGU6IGQgPT4ge1xuICAgICAgICBjb25zdCBzaWduID0gZC5uZXRfY2hhbmdlID49IDAgPyBcIitcIiA6IFwiXCJcbiAgICAgICAgcmV0dXJuIGAke2QubW9udGh9XFxuJHtzaWdufSR7ZC5uZXRfY2hhbmdlLnRvTG9jYWxlU3RyaW5nKCl9IHBlb3BsZWBcbiAgICAgIH1cbiAgICB9KSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIHJlY3RZIG9uIGEgdGVtcG9yYWwgeCBzY2FsZSDigJQgZWxpbWluYXRlcyB0aGUgYmFuZC1zY2FsZSBcInRvbyBtYW55IHZhbHVlc1wiXG4vLyB3YXJuaW5nIGFuZCBnaXZlcyBwaXhlbC1hY2N1cmF0ZSB0b29sdGlwIHNuYXBwaW5nIGF0IGFsbCBicm93c2VyIHpvb20gbGV2ZWxzLlxudG90YWxSZWN0RGF0YSA9IGZpbHRlcmVkLm1hcChkID0+IHtcbiAgY29uc3QgaW5mbG93ICA9IGQubmV3bHlfaWRlbnRpZmllZCArIGQucmV0dXJuZWRfZnJvbV9ob3VzaW5nICsgZC5yZXR1cm5lZF90b19zaGVsdGVyXG4gIGNvbnN0IG91dGZsb3cgPSBkLm1vdmVkX3RvX2hvdXNpbmcgKyBkLmJlY2FtZV9pbmFjdGl2ZVxuICBjb25zdCBsYmwgICAgID0gYCR7TU9OW3BhcnNlSW50KGQubW9udGguc2xpY2UoNSw3KSktMV19LSR7ZC5tb250aC5zbGljZSgwLDQpfWBcbiAgcmV0dXJuIHtcbiAgICB4MTogbW9udGhTdGFydChkKSwgeDI6IG1vbnRoRW5kKGQpLCB4TWlkOiBtb250aE1pZChkKSxcbiAgICBpbmZsb3csIG91dGZsb3csXG4gICAgdGlwVGl0bGU6IGAke2xibH1cXG5JbmZsb3c6ICArJHtpbmZsb3cudG9Mb2NhbGVTdHJpbmcoKX1cXG5PdXRmbG93OiDiiJIke291dGZsb3cudG9Mb2NhbGVTdHJpbmcoKX1cXG5OZXQ6ICAgICAgJHsoaW5mbG93LW91dGZsb3cpPj0wP1wiK1wiOlwiXCJ9JHsoaW5mbG93LW91dGZsb3cpLnRvTG9jYWxlU3RyaW5nKCl9YFxuICB9XG59KVxuXG5QbG90LnBsb3Qoe1xuICB3aWR0aCwgaGVpZ2h0OiAzODAsIG1hcmdpbkxlZnQ6IDcwLFxuICB4OiB4TGluZSxcbiAgeToge2xhYmVsOiBcIlBlb3BsZVwiLCBncmlkOiB0cnVlLCB0aWNrRm9ybWF0OiBmbXROfSxcbiAgY29sb3I6IHtkb21haW46IFtcIkluZmxvd1wiLFwiT3V0Zmxvd1wiXSwgcmFuZ2U6IFtcIiNFNjM5NDZcIixcIiM2NkNDNjZcIl0sIGxlZ2VuZDogdHJ1ZX0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWShbMF0pLFxuICAgIFBsb3QucmVjdFkodG90YWxSZWN0RGF0YSwge3gxOiBcIngxXCIsIHgyOiBcIngyXCIsIHkxOiAwLCB5MjogXCJpbmZsb3dcIiwgICAgICAgICAgZmlsbDogXCIjRTYzOTQ2XCIsIGluc2V0TGVmdDogMC41LCBpbnNldFJpZ2h0OiAwLjV9KSxcbiAgICBQbG90LnJlY3RZKHRvdGFsUmVjdERhdGEsIHt4MTogXCJ4MVwiLCB4MjogXCJ4MlwiLCB5MTogZCA9PiAtZC5vdXRmbG93LCB5MjogMCwgIGZpbGw6IFwiIzY2Q0M2NlwiLCBpbnNldExlZnQ6IDAuNSwgaW5zZXRSaWdodDogMC41fSksXG4gICAgUGxvdC50aXAodG90YWxSZWN0RGF0YSwgUGxvdC5wb2ludGVyWCh7eDogXCJ4TWlkXCIsIHRpdGxlOiBkID0+IGQudGlwVGl0bGV9KSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTAiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJkZXRhaWxlZEZsb3dUeXBlcyA9IFtcbiAgXCJJbmZsb3cgLSBOZXdseSBJZGVudGlmaWVkXCIsXG4gIFwiSW5mbG93IC0gUmV0dXJuZWQgZnJvbSBQZXJtYW5lbnQgSG91c2luZ1wiLFxuICBcIkluZmxvdyAtIFJldHVybmVkIHRvIFNoZWx0ZXJcIixcbiAgXCJPdXRmbG93IC0gQmVjYW1lIEluYWN0aXZlXCIsXG4gIFwiT3V0ZmxvdyAtIE1vdmVkIHRvIFBlcm1hbmVudCBIb3VzaW5nXCJcbl1cblxuZGV0YWlsZWRDb2xvcnMgPSBbXCIjRTYzOTQ2XCIsXCIjRkZENjAwXCIsXCIjRkI4QzAwXCIsXCIjNTEyREE4XCIsXCIjNjZDQzY2XCJdXG5cbi8vIFByZS1jb21wdXRlIHN0YWNrZWQgeTEveTIgZm9yIGVhY2ggc2VyaWVzIG1hbnVhbGx5IOKAlCBhdm9pZHMgc3RhY2tZIG9uIHJlY3RZXG4vLyAod2hpY2ggZG9lc24ndCBzdXBwb3J0IHgxL3gyIGNoYW5uZWxzKSBhbmQgZWxpbWluYXRlcyB0aGUgYmFuZC1zY2FsZSB3YXJuaW5nLlxuZGV0YWlsUmVjdERhdGEgPSBmaWx0ZXJlZC5mbGF0TWFwKGQgPT4ge1xuICBjb25zdCB4MSA9IG1vbnRoU3RhcnQoZCksIHgyID0gbW9udGhFbmQoZCksIHhNaWQgPSBtb250aE1pZChkKVxuICBjb25zdCBuaSA9IGQubmV3bHlfaWRlbnRpZmllZCwgcmZoID0gZC5yZXR1cm5lZF9mcm9tX2hvdXNpbmcsXG4gICAgICAgIHJ0cyA9IGQucmV0dXJuZWRfdG9fc2hlbHRlciwgYmkgPSBkLmJlY2FtZV9pbmFjdGl2ZSwgbWggPSBkLm1vdmVkX3RvX2hvdXNpbmdcbiAgcmV0dXJuIFtcbiAgICB7eDEsIHgyLCB4TWlkLCB0eXBlOiBcIkluZmxvdyAtIE5ld2x5IElkZW50aWZpZWRcIiwgICAgICAgICAgICAgICAgeTE6IDAsICAgICAgIHkyOiBuaX0sXG4gICAge3gxLCB4MiwgeE1pZCwgdHlwZTogXCJJbmZsb3cgLSBSZXR1cm5lZCBmcm9tIFBlcm1hbmVudCBIb3VzaW5nXCIsICB5MTogbmksICAgICAgeTI6IG5pK3JmaH0sXG4gICAge3gxLCB4MiwgeE1pZCwgdHlwZTogXCJJbmZsb3cgLSBSZXR1cm5lZCB0byBTaGVsdGVyXCIsICAgICAgICAgICAgICB5MTogbmkrcmZoLCAgeTI6IG5pK3JmaCtydHN9LFxuICAgIHt4MSwgeDIsIHhNaWQsIHR5cGU6IFwiT3V0ZmxvdyAtIEJlY2FtZSBJbmFjdGl2ZVwiLCAgICAgICAgICAgICAgICAgeTE6IDAsICAgICAgIHkyOiAtYml9LFxuICAgIHt4MSwgeDIsIHhNaWQsIHR5cGU6IFwiT3V0ZmxvdyAtIE1vdmVkIHRvIFBlcm1hbmVudCBIb3VzaW5nXCIsICAgICAgeTE6IC1iaSwgICAgIHkyOiAtKGJpK21oKX1cbiAgXVxufSlcblxuZGV0YWlsVGlwRGF0YSA9IGZpbHRlcmVkLm1hcChkID0+IHtcbiAgY29uc3QgbGJsID0gYCR7TU9OW3BhcnNlSW50KGQubW9udGguc2xpY2UoNSw3KSktMV19LSR7ZC5tb250aC5zbGljZSgwLDQpfWBcbiAgcmV0dXJuIHtcbiAgICB4TWlkOiBtb250aE1pZChkKSxcbiAgICB0aXBUaXRsZTogW1xuICAgICAgbGJsLFxuICAgICAgYE5ld2x5IElkZW50aWZpZWQ6ICAgICAgICske2QubmV3bHlfaWRlbnRpZmllZC50b0xvY2FsZVN0cmluZygpfWAsXG4gICAgICBgUmV0dXJuZWQgZnJvbSBIb3VzaW5nOiAgKyR7ZC5yZXR1cm5lZF9mcm9tX2hvdXNpbmcudG9Mb2NhbGVTdHJpbmcoKX1gLFxuICAgICAgYFJldHVybmVkIHRvIFNoZWx0ZXI6ICAgICske2QucmV0dXJuZWRfdG9fc2hlbHRlci50b0xvY2FsZVN0cmluZygpfWAsXG4gICAgICBgQmVjYW1lIEluYWN0aXZlOiAgICAgICAg4oiSJHtkLmJlY2FtZV9pbmFjdGl2ZS50b0xvY2FsZVN0cmluZygpfWAsXG4gICAgICBgTW92ZWQgdG8gSG91c2luZzogICAgICAg4oiSJHtkLm1vdmVkX3RvX2hvdXNpbmcudG9Mb2NhbGVTdHJpbmcoKX1gXG4gICAgXS5qb2luKFwiXFxuXCIpXG4gIH1cbn0pXG5cblBsb3QucGxvdCh7XG4gIHdpZHRoLCBoZWlnaHQ6IDQyMCwgbWFyZ2luTGVmdDogNzAsXG4gIHg6IHhMaW5lLFxuICB5OiB7bGFiZWw6IFwiUGVvcGxlXCIsIGdyaWQ6IHRydWUsIHRpY2tGb3JtYXQ6IGZtdE59LFxuICBjb2xvcjoge2RvbWFpbjogZGV0YWlsZWRGbG93VHlwZXMsIHJhbmdlOiBkZXRhaWxlZENvbG9ycywgbGVnZW5kOiB0cnVlfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LnJ1bGVZKFswXSksXG4gICAgUGxvdC5yZWN0WShkZXRhaWxSZWN0RGF0YSwge3gxOiBcIngxXCIsIHgyOiBcIngyXCIsIHkxOiBcInkxXCIsIHkyOiBcInkyXCIsIGZpbGw6IFwidHlwZVwiLCBpbnNldExlZnQ6IDAuNSwgaW5zZXRSaWdodDogMC41fSksXG4gICAgUGxvdC50aXAoZGV0YWlsVGlwRGF0YSwgUGxvdC5wb2ludGVyWCh7eDogXCJ4TWlkXCIsIHRpdGxlOiBkID0+IGQudGlwVGl0bGV9KSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTEiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJhZ2VCYW5kRGVmcyA9IFtcbiAge2tleTogXCJhZ2VfdW5kZXJfMTZcIiwgbGFiZWw6IFwiVW5kZXIgMTZcIn0sXG4gIHtrZXk6IFwiYWdlXzE2XzI0XCIsICAgIGxhYmVsOiBcIjE24oCTMjRcIn0sXG4gIHtrZXk6IFwiYWdlXzI1XzM0XCIsICAgIGxhYmVsOiBcIjI14oCTMzRcIn0sXG4gIHtrZXk6IFwiYWdlXzM1XzQ0XCIsICAgIGxhYmVsOiBcIjM14oCTNDRcIn0sXG4gIHtrZXk6IFwiYWdlXzQ1XzU0XCIsICAgIGxhYmVsOiBcIjQ14oCTNTRcIn0sXG4gIHtrZXk6IFwiYWdlXzU1XzY0XCIsICAgIGxhYmVsOiBcIjU14oCTNjRcIn0sXG4gIHtrZXk6IFwiYWdlXzY1X292ZXJcIiwgIGxhYmVsOiBcIjY1K1wifVxuXVxuXG5hZ2VEYXRhID0gZmlsdGVyZWQuZmxhdE1hcChkID0+IHtcbiAgY29uc3QgdG90YWwgPSBhZ2VCYW5kRGVmcy5yZWR1Y2UoKHMsIGIpID0+IHMgKyAoZFtiLmtleV0gfHwgMCksIDApXG4gIHJldHVybiBhZ2VCYW5kRGVmcy5tYXAoYiA9PiAoe1xuICAgIGRhdGU6IGQuZGF0ZSwgbW9udGg6IGQubW9udGgsIGJhbmQ6IGIubGFiZWwsXG4gICAgcGN0OiB0b3RhbCA+IDAgPyBkW2Iua2V5XSAvIHRvdGFsIDogbnVsbFxuICB9KSlcbn0pXG5cblBsb3QucGxvdCh7XG4gIHdpZHRoLCBoZWlnaHQ6IDQwMCwgbWFyZ2luTGVmdDogNjAsXG4gIHg6IHhMaW5lLFxuICB5OiB7bGFiZWw6IFwiU2hhcmUgb2YgYWdlLWJhbmRlZCB0b3RhbFwiLCBncmlkOiB0cnVlLCB0aWNrRm9ybWF0OiBmbXRQY3R9LFxuICBjb2xvcjoge2xlZ2VuZDogdHJ1ZX0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWShbMF0pLFxuICAgIFBsb3QubGluZShhZ2VEYXRhLCB7eDogXCJkYXRlXCIsIHk6IFwicGN0XCIsIHN0cm9rZTogXCJiYW5kXCIsIHN0cm9rZVdpZHRoOiAxLjh9KSxcbiAgICBQbG90LnRpcChhZ2VEYXRhLCBQbG90LnBvaW50ZXJYKHtcbiAgICAgIHg6IFwiZGF0ZVwiLCB5OiBcInBjdFwiLCBzdHJva2U6IFwiYmFuZFwiLFxuICAgICAgdGl0bGU6IGQgPT4ge1xuICAgICAgICBjb25zdCBsYmwgPSBgJHtNT05bcGFyc2VJbnQoZC5tb250aC5zbGljZSg1LDcpKS0xXX0gJHtkLm1vbnRoLnNsaWNlKDAsNCl9YFxuICAgICAgICByZXR1cm4gYCR7ZC5iYW5kfSDigJQgJHtsYmx9XFxuJHsoZC5wY3QgKiAxMDApLnRvRml4ZWQoMSl9JWBcbiAgICAgIH1cbiAgICB9KSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJnZW5kZXJEZWZzID0gW1xuICB7a2V5OiBcImdlbmRlcl9tYWxlXCIsICAgICAgICAgICAgICAgIGxhYmVsOiBcIk1lblwifSxcbiAge2tleTogXCJnZW5kZXJfZmVtYWxlXCIsICAgICAgICAgICAgICBsYWJlbDogXCJXb21lblwifSxcbiAge2tleTogXCJnZW5kZXJfdHJhbnNfbmJfdHdvX3NwaXJpdFwiLCBsYWJlbDogXCJUcmFuc2dlbmRlciwgTm9uLUJpbmFyeSwgb3IgVHdvLVNwaXJpdFwifVxuXVxuXG5nZW5kZXJEYXRhID0gZmlsdGVyZWQuZmxhdE1hcChkID0+IHtcbiAgY29uc3QgdG90YWwgPSBnZW5kZXJEZWZzLnJlZHVjZSgocywgZykgPT4gcyArIChkW2cua2V5XSB8fCAwKSwgMClcbiAgcmV0dXJuIGdlbmRlckRlZnMubWFwKGcgPT4gKHtcbiAgICBkYXRlOiBkLmRhdGUsIG1vbnRoOiBkLm1vbnRoLCBnZW5kZXI6IGcubGFiZWwsXG4gICAgcGN0OiB0b3RhbCA+IDAgPyBkW2cua2V5XSAvIHRvdGFsIDogbnVsbFxuICB9KSlcbn0pXG5cblBsb3QucGxvdCh7XG4gIHdpZHRoLCBoZWlnaHQ6IDQwMCwgbWFyZ2luTGVmdDogNjAsXG4gIHg6IHhMaW5lLFxuICB5OiB7bGFiZWw6IFwiU2hhcmUgb2YgZ2VuZGVyIHRvdGFsXCIsIGdyaWQ6IHRydWUsIHRpY2tGb3JtYXQ6IGZtdFBjdH0sXG4gIGNvbG9yOiB7bGVnZW5kOiB0cnVlfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LnJ1bGVZKFswXSksXG4gICAgUGxvdC5saW5lKGdlbmRlckRhdGEsIHt4OiBcImRhdGVcIiwgeTogXCJwY3RcIiwgc3Ryb2tlOiBcImdlbmRlclwiLCBzdHJva2VXaWR0aDogMS44fSksXG4gICAgUGxvdC50aXAoZ2VuZGVyRGF0YSwgUGxvdC5wb2ludGVyWCh7XG4gICAgICB4OiBcImRhdGVcIiwgeTogXCJwY3RcIiwgc3Ryb2tlOiBcImdlbmRlclwiLFxuICAgICAgdGl0bGU6IGQgPT4ge1xuICAgICAgICBjb25zdCBsYmwgPSBgJHtNT05bcGFyc2VJbnQoZC5tb250aC5zbGljZSg1LDcpKS0xXX0gJHtkLm1vbnRoLnNsaWNlKDAsNCl9YFxuICAgICAgICByZXR1cm4gYCR7ZC5nZW5kZXJ9IOKAlCAke2xibH1cXG4keyhkLnBjdCAqIDEwMCkudG9GaXhlZCgxKX0lYFxuICAgICAgfVxuICAgIH0pKVxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZEdyb3VwJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3NlbGVjdGVkWWVhcicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzZWxlY3RlZE1vbnRoJykifV19
 </script>

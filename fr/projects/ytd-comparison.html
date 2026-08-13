@@ -688,6 +688,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script>
+// Embedded dashboard pages keep their charts but omit the site-wide help
+// footer. The same pages show the footer when opened directly.
+if (window.self !== window.top) {
+  document.documentElement.classList.add("bq-embedded-page");
+}
+
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
 // Quarto renders the navbar id attribute (it does not).
@@ -774,6 +780,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
     movedToHousing: "Ont obtenu un logement",
+    callsHandled: "appels traités par jour en moyenne",
     januaryTo: "De janvier à ",
     latest: "Plus récent : ",
     trend: "Tendance de l'itinérance active jusqu'à "
@@ -786,15 +793,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
     movedToHousing: "Moved into housing",
+    callsHandled: "calls handled each day on average",
     januaryTo: "January to ",
     latest: "Latest: ",
     trend: "People counted as homeless through "
   };
   var dailyMount = document.getElementById("bq-preview-daily");
   var monthlyMount = document.getElementById("bq-preview-monthly");
+  var callerMount = document.getElementById("bq-preview-caller");
   var ytdMount = document.getElementById("bq-preview-ytd");
   var historyMount = document.getElementById("bq-preview-history");
-  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+  if (!dailyMount && !monthlyMount && !callerMount && !ytdMount && !historyMount) return;
 
   function make(tag, className, text) {
     var node = document.createElement(tag);
@@ -965,6 +974,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       showUnavailable(ytdMount);
       showUnavailable(historyMount);
     });
+
+  if (callerMount) {
+    fetch("/data/central_intake.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("Caller preview data unavailable");
+        return response.json();
+      })
+      .then(function (data) {
+        var latest = (data.monthly || [])
+          .filter(function (row) {
+            return row.handled_mean != null &&
+              Number.isFinite(Number(row.handled_mean));
+          })
+          .slice()
+          .sort(function (a, b) {
+            return (a.year * 100 + a.month) - (b.year * 100 + b.month);
+          })
+          .pop();
+        if (!latest) throw new Error("Caller preview rows unavailable");
+
+        var latestLabel = new Date(latest.year, latest.month - 1, 1)
+          .toLocaleDateString(locale, {month: "long", year: "numeric"});
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", Math.round(latest.handled_mean).toLocaleString(locale)),
+          make("span", "", copy.callsHandled + " · " + latestLabel)
+        );
+        callerMount.replaceChildren(kpi);
+      })
+      .catch(function () { showUnavailable(callerMount); });
+  }
 })();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
@@ -1018,6 +1058,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   addLink("alternate", "x-default", abs(enPath));
 })();
 </script>
+<div id="help-now" class="bq-global-help">
+<div class="bq-help-strip bq-help-en" role="complementary" aria-label="Immediate shelter, violence, outreach, and emergency contacts">
+  <div class="bq-help-copy">
+    <strong>Need a safe place or support now?</strong>
+    <span>These contacts serve Toronto unless another area is named. BonQuery is an independent data project, not a service provider.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Assaulted Women's Helpline</strong><small>Free and confidential, anywhere in Ontario, 24/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Young people: Kids Help Phone</strong><small>Ages 5 to 29, confidential, 24/7. Call, or text CONNECT to 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Thinking about suicide, or worried about someone?</strong><small>Call or text 988 anywhere in Canada, 24/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto emergency shelter line</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto shelter line, toll-free</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto mental-health crisis support</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto street outreach</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 from outside city limits</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>City services TTY relay</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Immediate danger in Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
+  </div>
+</div>
+<div class="bq-help-strip bq-help-fr" role="complementary" aria-label="Contacts immédiats pour un lieu sûr, un refuge, une crise ou une urgence" lang="fr-CA">
+  <div class="bq-help-copy">
+    <strong>Besoin d'un endroit sûr ou de soutien maintenant?</strong>
+    <span>Ces services desservent Toronto, sauf si une autre région est indiquée. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Ligne d'aide aux femmes victimes de violence</strong><small>Gratuite et confidentielle, partout en Ontario, 24 h/24 et 7 j/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Jeunes : Jeunesse, J'écoute</strong><small>De 5 à 29 ans, service confidentiel 24 h/24 et 7 j/7. Appelez ou textez le 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Vous pensez au suicide ou vous vous inquiétez pour quelqu'un?</strong><small>Appelez ou textez le 988 partout au Canada, 24 h/24 et 7 j/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges d'urgence de Toronto</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges de Toronto, sans frais</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Soutien en cas de crise de santé mentale à Toronto</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Intervention de rue à Toronto</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 depuis l'extérieur de la ville</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>Service de relais ATS de la Ville</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Danger immédiat au Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
+  </div>
+</div>
+</div>
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhdGEgPSBGaWxlQXR0YWNobWVudChcIi4uL2RhdGEvc2hlbHRlcl9mbG93Lmpzb25cIikuanNvbigpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJNT04gPSBbXCJqYW52LlwiLFwiZsOpdnIuXCIsXCJtYXJzXCIsXCJhdnIuXCIsXCJtYWlcIixcImp1aW5cIixcbiAgICAgICBcImp1aWxsLlwiLFwiYW/Du3RcIixcInNlcHQuXCIsXCJvY3QuXCIsXCJub3YuXCIsXCJkw6ljLlwiXVxuZm10TiA9IGQgPT4gZC50b0xvY2FsZVN0cmluZyhcImZyLUNBXCIpXG5cbnJlcG9ydGluZ01vbnRoT3B0aW9ucyA9IGRhdGFcbiAgLmZpbHRlcihkID0+IGQucG9wdWxhdGlvbl9ncm91cCA9PT0gXCJBbGwgUG9wdWxhdGlvblwiKVxuICAuc29ydCgoYSwgYikgPT4gYi5mbG93X2RhdGUubG9jYWxlQ29tcGFyZShhLmZsb3dfZGF0ZSkpXG4gIC5tYXAoZCA9PiB7XG4gICAgY29uc3QgW3ksIG1dID0gZC5mbG93X2RhdGUuc3BsaXQoXCItXCIpLm1hcChOdW1iZXIpXG4gICAgcmV0dXJuIHtcbiAgICAgIGxhYmVsOiBuZXcgRGF0ZSh5LCBtIC0gMSwgMTUpLnRvTG9jYWxlU3RyaW5nKFwiZnItQ0FcIiwge21vbnRoOiBcImxvbmdcIiwgeWVhcjogXCJudW1lcmljXCJ9KSxcbiAgICAgIHZhbHVlOiBkLmZsb3dfZGF0ZVxuICAgIH1cbiAgfSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiByZXBvcnRpbmdEYXRlID0gSW5wdXRzLnNlbGVjdChyZXBvcnRpbmdNb250aE9wdGlvbnMsIHtcbiAgbGFiZWw6IFwiTW9pcyBkZSByw6lmw6lyZW5jZVwiLFxuICBmb3JtYXQ6IGQgPT4gZC5sYWJlbCxcbiAgdmFsdWU6IHJlcG9ydGluZ01vbnRoT3B0aW9uc1swXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InJlcG9ydGluZ1llYXIgID0gK3JlcG9ydGluZ0RhdGUudmFsdWUuc2xpY2UoMCwgNClcbnJlcG9ydGluZ01vbnRoID0gK3JlcG9ydGluZ0RhdGUudmFsdWUuc2xpY2UoNSwgNylcblxueXRkQ29tcHV0ZWQgPSB7XG4gIGNvbnN0IHJvd3MgPSBkYXRhXG4gICAgLmZpbHRlcihkID0+IGQucG9wdWxhdGlvbl9ncm91cCA9PT0gXCJBbGwgUG9wdWxhdGlvblwiKVxuICAgIC5maWx0ZXIoZCA9PiB7XG4gICAgICBjb25zdCB5ID0gK2QuZmxvd19kYXRlLnNsaWNlKDAsIDQpXG4gICAgICBjb25zdCBtID0gK2QuZmxvd19kYXRlLnNsaWNlKDUsIDcpXG4gICAgICByZXR1cm4gKHkgPT09IHJlcG9ydGluZ1llYXIgfHwgeSA9PT0gcmVwb3J0aW5nWWVhciAtIDEpICYmIG0gPD0gcmVwb3J0aW5nTW9udGhcbiAgICB9KVxuICAgIC5zb3J0KChhLCBiKSA9PiBhLmZsb3dfZGF0ZS5sb2NhbGVDb21wYXJlKGIuZmxvd19kYXRlKSlcblxuICBjb25zdCBhY2NOSSA9IHt9LCBhY2NNSCA9IHt9XG4gIHJldHVybiByb3dzLm1hcChkID0+IHtcbiAgICBjb25zdCB5ID0gK2QuZmxvd19kYXRlLnNsaWNlKDAsIDQpXG4gICAgY29uc3QgbSA9ICtkLmZsb3dfZGF0ZS5zbGljZSg1LCA3KVxuICAgIGFjY05JW3ldID0gKGFjY05JW3ldIHx8IDApICsgZC5uZXdseV9pZGVudGlmaWVkXG4gICAgYWNjTUhbeV0gPSAoYWNjTUhbeV0gfHwgMCkgKyBkLm1vdmVkX3RvX2hvdXNpbmdcbiAgICByZXR1cm4ge1xuICAgICAgeWVhcjogeSwgbW9udGg6IG0sXG4gICAgICBtb250aExhYmVsOiBNT05bbSAtIDFdLFxuICAgICAgeWVhckxhYmVsOiBTdHJpbmcoeSksXG4gICAgICBpc0N1cnJlbnRZZWFyOiB5ID09PSByZXBvcnRpbmdZZWFyLFxuICAgICAgeXRkX25pOiBhY2NOSVt5XSxcbiAgICAgIHl0ZF9taDogYWNjTUhbeV1cbiAgICB9XG4gIH0pXG59XG5cbnl0ZFNvcnRlZCA9IHl0ZENvbXB1dGVkXG4gIC5zb3J0KChhLCBiKSA9PiBhLm1vbnRoIC0gYi5tb250aCB8fCBhLnllYXIgLSBiLnllYXIpXG4gIC5tYXAoZCA9PiAoey4uLmQsIGJhckxhYmVsOiBgJHtkLm1vbnRoTGFiZWx9ICR7ZC55ZWFyTGFiZWx9YH0pKVxuXG55dGREb21haW4gPSB5dGRTb3J0ZWQubWFwKGQgPT4gZC5iYXJMYWJlbClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIHdpZHRoLFxuICBoZWlnaHQ6IDYwICsgeXRkU29ydGVkLmxlbmd0aCAqIDIyLFxuICBtYXJnaW5MZWZ0OiAxMDAsXG4gIG1hcmdpblJpZ2h0OiA4MCxcbiAgeDoge2xhYmVsOiBcIk5vdXZlbGxlbWVudCByZXDDqXLDqXMgY3VtdWxhdGlmcyAoYW5uLiBjb3VycylcIiwgZ3JpZDogdHJ1ZSwgdGlja0Zvcm1hdDogZm10Tn0sXG4gIHk6IHtsYWJlbDogbnVsbCwgZG9tYWluOiB5dGREb21haW59LFxuICBjb2xvcjoge1xuICAgIGRvbWFpbjogW1N0cmluZyhyZXBvcnRpbmdZZWFyIC0gMSksIFN0cmluZyhyZXBvcnRpbmdZZWFyKV0sXG4gICAgcmFuZ2U6IFtcIiNGRkIzQzFcIiwgXCIjRkYyRDU1XCJdLFxuICAgIGxlZ2VuZDogdHJ1ZVxuICB9LFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVgoWzBdKSxcbiAgICBQbG90LmJhclgoeXRkU29ydGVkLCB7eDogXCJ5dGRfbmlcIiwgeTogXCJiYXJMYWJlbFwiLCBmaWxsOiBcInllYXJMYWJlbFwiLCB0aXA6IHRydWUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGluc2V0VG9wOiAxLCBpbnNldEJvdHRvbTogMX0pLFxuICAgIFBsb3QudGV4dCh5dGRTb3J0ZWQsIHtcbiAgICAgIHg6IFwieXRkX25pXCIsIHk6IFwiYmFyTGFiZWxcIixcbiAgICAgIHRleHQ6IGQgPT4gZC55dGRfbmkudG9Mb2NhbGVTdHJpbmcoXCJmci1DQVwiKSxcbiAgICAgIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZHg6IDUsIGZvbnRTaXplOiAxMVxuICAgIH0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuICB3aWR0aCxcbiAgaGVpZ2h0OiA2MCArIHl0ZFNvcnRlZC5sZW5ndGggKiAyMixcbiAgbWFyZ2luTGVmdDogMTAwLFxuICBtYXJnaW5SaWdodDogODAsXG4gIHg6IHtsYWJlbDogXCJBY2PDqHMgYXUgbG9nZW1lbnQgcGVybWFuZW50IGN1bXVsYXRpZiAoYW5uLiBjb3VycylcIiwgZ3JpZDogdHJ1ZSwgdGlja0Zvcm1hdDogZm10Tn0sXG4gIHk6IHtsYWJlbDogbnVsbCwgZG9tYWluOiB5dGREb21haW59LFxuICBjb2xvcjoge1xuICAgIGRvbWFpbjogW1N0cmluZyhyZXBvcnRpbmdZZWFyIC0gMSksIFN0cmluZyhyZXBvcnRpbmdZZWFyKV0sXG4gICAgcmFuZ2U6IFtcIiNBRUQ1QUVcIiwgXCIjNUJBNzVCXCJdLFxuICAgIGxlZ2VuZDogdHJ1ZVxuICB9LFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVgoWzBdKSxcbiAgICBQbG90LmJhclgoeXRkU29ydGVkLCB7eDogXCJ5dGRfbWhcIiwgeTogXCJiYXJMYWJlbFwiLCBmaWxsOiBcInllYXJMYWJlbFwiLCB0aXA6IHRydWUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgIGluc2V0VG9wOiAxLCBpbnNldEJvdHRvbTogMX0pLFxuICAgIFBsb3QudGV4dCh5dGRTb3J0ZWQsIHtcbiAgICAgIHg6IFwieXRkX21oXCIsIHk6IFwiYmFyTGFiZWxcIixcbiAgICAgIHRleHQ6IGQgPT4gZC55dGRfbWgudG9Mb2NhbGVTdHJpbmcoXCJmci1DQVwiKSxcbiAgICAgIHRleHRBbmNob3I6IFwic3RhcnRcIiwgZHg6IDUsIGZvbnRTaXplOiAxMVxuICAgIH0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3JlcG9ydGluZ0RhdGUnKSJ9XX0=
 </script>

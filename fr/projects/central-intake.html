@@ -461,41 +461,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>L’Admission centrale est le service téléphonique 24 h/24, 7 j/7 de la Ville qui met en relation les personnes ayant besoin d’un refuge d’urgence avec les places disponibles dans le réseau. Lorsqu’une personne a besoin d’un lit, elle appelle l’Admission centrale, où des agents évaluent la demande et orientent les appelants vers les places disponibles dans l’ensemble du réseau. C’est la voie d’orientation principale — mais non la seule — vers les refuges d’urgence de Toronto. Les travailleurs de rue de Streets to Homes font également des orientations directes en dehors de l’Admission centrale.</p>
-<div id="help-now" class="bq-help-strip" role="complementary" aria-label="Contacts immédiats pour un lieu sûr, un refuge, une crise ou une urgence">
-  <div class="bq-help-copy">
-    <strong>Besoin d'un endroit sûr ou de soutien maintenant?</strong>
-    <span>Ces services desservent Toronto, sauf si une autre région est indiquée. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
-  </div>
-  <div class="bq-help-actions">
-    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
-      <i class="bi bi-heart-fill" aria-hidden="true"></i>
-      <span class="bq-help-service"><strong>Ligne d'aide aux femmes victimes de violence</strong><small>Gratuite et confidentielle, partout en Ontario, 24 h/24 et 7 j/7</small></span>
-      <span class="bq-help-number">1-866-863-0511</span>
-    </a>
-    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
-      <i class="bi bi-person-hearts" aria-hidden="true"></i>
-      <span class="bq-help-service"><strong>Jeunes : Jeunesse, J'écoute</strong><small>De 5 à 29 ans, service confidentiel 24 h/24 et 7 j/7. Appelez ou textez le 686868.</small></span>
-      <span class="bq-help-number">1-800-668-6868</span>
-    </a>
-    <a class="bq-help-suicide bq-help-priority" href="tel:988">
-      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
-      <span class="bq-help-service"><strong>Vous pensez au suicide ou vous vous inquiétez pour quelqu'un?</strong><small>Appelez ou textez le 988 partout au Canada, 24 h/24 et 7 j/7.</small></span>
-      <span class="bq-help-number">988</span>
-    </a>
-    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges d'urgence de Toronto</strong><span class="bq-help-number">416-338-4766</span></span></a>
-    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges de Toronto, sans frais</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
-    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Soutien en cas de crise de santé mentale à Toronto</strong><span class="bq-help-number">211</span></span></a>
-    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Intervention de rue à Toronto</strong><span class="bq-help-number">311</span></span></a>
-    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 depuis l'extérieur de la ville</strong><span class="bq-help-number">416-392-2489</span></span></a>
-    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>Service de relais ATS de la Ville</strong><span class="bq-help-number">711</span></span></a>
-    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Danger immédiat au Canada</strong><span class="bq-help-number">911</span></span></a>
-    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
-  </div>
-</div>
 <p>Cette page reproduit trois des quatre graphiques de la page <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-requests-for-referrals/" target="_blank">Demandes d’orientation vers le réseau de refuges</a> de la Ville. Le quatrième — taux d’occupation moyen par nuit — est exclu parce que l’exportation CKAN des données d’occupation quotidiennes omet les programmes de passerelle et de triage, produisant des valeurs systématiquement inférieures aux chiffres publiés par la Ville. BonQuery publie l’occupation nocturne séparément sur la <a href="daily-occupancy.html" target="_blank">page Occupation et capacité quotidiennes</a> ; une estimation mensuelle de l’écart lié aux programmes de passerelle et de triage se trouve sur la <a href="data-validation-central-intake.html" target="_blank">page de validation — Admission centrale</a>.</p>
 <p>La version BonQuery ajoute des contrôles interactifs absents des graphiques statiques de la Ville. Le bouton bascule ci-dessous permet de choisir entre la vue de réplication de la Ville (depuis avril 2024, correspondant au tableau publié par la Ville) et une plage de dates personnalisée couvrant l’ensemble des données depuis novembre 2020. Une case à cocher optionnelle ajoute des barres d’erreur ±2 erreurs standard pour les lecteurs souhaitant visualiser la variabilité intra-mensuelle — les barres représentent l’incertitude autour de chaque moyenne mensuelle compte tenu de la variation quotidienne au cours de ce mois.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="74" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 73;"><span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/central_intake.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="72" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 71;"><span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"../data/central_intake.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -503,33 +472,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="80" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 79;"><span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>MONTH_ABB <span class="op">=</span> [<span class="st">""</span><span class="op">,</span><span class="st">"janv."</span><span class="op">,</span><span class="st">"févr."</span><span class="op">,</span><span class="st">"mars"</span><span class="op">,</span><span class="st">"avr."</span><span class="op">,</span><span class="st">"mai"</span><span class="op">,</span><span class="st">"juin"</span><span class="op">,</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>             <span class="st">"juill."</span><span class="op">,</span><span class="st">"août"</span><span class="op">,</span><span class="st">"sept."</span><span class="op">,</span><span class="st">"oct."</span><span class="op">,</span><span class="st">"nov."</span><span class="op">,</span><span class="st">"déc."</span>]</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>cityRange <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">&gt;</span> <span class="dv">2024</span> <span class="op">||</span> (d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2024</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">month</span> <span class="op">&gt;=</span> <span class="dv">4</span>))</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="78" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 77;"><span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>MONTH_ABB <span class="op">=</span> [<span class="st">""</span><span class="op">,</span><span class="st">"janv."</span><span class="op">,</span><span class="st">"févr."</span><span class="op">,</span><span class="st">"mars"</span><span class="op">,</span><span class="st">"avr."</span><span class="op">,</span><span class="st">"mai"</span><span class="op">,</span><span class="st">"juin"</span><span class="op">,</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>             <span class="st">"juill."</span><span class="op">,</span><span class="st">"août"</span><span class="op">,</span><span class="st">"sept."</span><span class="op">,</span><span class="st">"oct."</span><span class="op">,</span><span class="st">"nov."</span><span class="op">,</span><span class="st">"déc."</span>]</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>cityRange <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">&gt;</span> <span class="dv">2024</span> <span class="op">||</span> (d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2024</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">month</span> <span class="op">&gt;=</span> <span class="dv">4</span>))</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>xDomain <span class="op">=</span> cityRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
 <span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>xDomain <span class="op">=</span> cityRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>xYearLabels <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> first <span class="op">=</span> []</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  xDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>})()</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>xYearLabels <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> first <span class="op">=</span> []</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  xDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>})()</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>xTickFormat <span class="op">=</span> l <span class="kw">=&gt;</span> xYearLabels<span class="op">.</span><span class="fu">includes</span>(l) <span class="op">?</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>) <span class="op">:</span> <span class="st">""</span></span>
 <span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>xTickFormat <span class="op">=</span> l <span class="kw">=&gt;</span> xYearLabels<span class="op">.</span><span class="fu">includes</span>(l) <span class="op">?</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>) <span class="op">:</span> <span class="st">""</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>allMonthOpts <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>    <span class="dt">key</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> d<span class="op">.</span><span class="at">month_label</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  }))</span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">key</span><span class="op">.</span><span class="fu">localeCompare</span>(b<span class="op">.</span><span class="at">key</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>allMonthOpts <span class="op">=</span> data<span class="op">.</span><span class="at">monthly</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    <span class="dt">key</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> d<span class="op">.</span><span class="at">month_label</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">key</span><span class="op">.</span><span class="fu">localeCompare</span>(b<span class="op">.</span><span class="at">key</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -574,68 +543,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="110" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 109;"><span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>viewof controls <span class="op">=</span> {</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> jan2025 <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">find</span>(o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">key</span> <span class="op">===</span> <span class="st">"2025-01"</span>) <span class="op">??</span> allMonthOpts[<span class="dv">0</span>]</span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> last     <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">at</span>(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modeInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Réplication de la Ville"</span><span class="op">,</span> <span class="st">"Période personnalisée"</span>]<span class="op">,</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> <span class="st">"Réplication de la Ville"</span>}</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> startInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"De"</span><span class="op">,</span></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> jan2025</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> endInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"À"</span><span class="op">,</span></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> last</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Afficher les barres ±2 ES (lecteurs techniques)"</span>]<span class="op">,</span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> []}</span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rangeSpan <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;span style="display:none;gap:12px;align-items:flex-end"&gt;</span></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>startInput<span class="sc">}${</span>endInput<span class="sc">}</span></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/span&gt;`</span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bar <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="bq-control-bar"&gt;</span></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>modeInput<span class="sc">}</span></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>rangeSpan<span class="sc">}</span></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>seInput<span class="sc">}</span></span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;small class="bq-hint"&gt;</span></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="vs">        Erreur standard de la moyenne mensuelle, calculée à partir des valeurs</span></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="vs">        quotidiennes du mois. ±2 ES approxime un intervalle de confiance à 95 %.</span></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/small&gt;</span></span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;`</span></span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> getValue <span class="op">=</span> () <span class="kw">=&gt;</span> ({</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">viewMode</span><span class="op">:</span> modeInput<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="dt">startKey</span><span class="op">:</span> startInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>    <span class="dt">endKey</span><span class="op">:</span>   endInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    <span class="dt">showSE</span><span class="op">:</span>   seInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  })</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="108" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 107;"><span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>viewof controls <span class="op">=</span> {</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> jan2025 <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">find</span>(o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">key</span> <span class="op">===</span> <span class="st">"2025-01"</span>) <span class="op">??</span> allMonthOpts[<span class="dv">0</span>]</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> last     <span class="op">=</span> allMonthOpts<span class="op">.</span><span class="fu">at</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modeInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Réplication de la Ville"</span><span class="op">,</span> <span class="st">"Période personnalisée"</span>]<span class="op">,</span></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> <span class="st">"Réplication de la Ville"</span>}</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> startInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"De"</span><span class="op">,</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> jan2025</span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> endInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(allMonthOpts<span class="op">,</span> {</span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"À"</span><span class="op">,</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> o <span class="kw">=&gt;</span> o<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> last</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seInput <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"Afficher les barres ±2 ES (lecteurs techniques)"</span>]<span class="op">,</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">value</span><span class="op">:</span> []}</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rangeSpan <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;span style="display:none;gap:12px;align-items:flex-end"&gt;</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>startInput<span class="sc">}${</span>endInput<span class="sc">}</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/span&gt;`</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bar <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="bq-control-bar"&gt;</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>modeInput<span class="sc">}</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>rangeSpan<span class="sc">}</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div&gt;</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>seInput<span class="sc">}</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;small class="bq-hint"&gt;</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="vs">        Erreur standard de la moyenne mensuelle, calculée à partir des valeurs</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="vs">        quotidiennes du mois. ±2 ES approxime un intervalle de confiance à 95 %.</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/small&gt;</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;`</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> getValue <span class="op">=</span> () <span class="kw">=&gt;</span> ({</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>    <span class="dt">viewMode</span><span class="op">:</span> modeInput<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>    <span class="dt">startKey</span><span class="op">:</span> startInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">endKey</span><span class="op">:</span>   endInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">key</span><span class="op">,</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="dt">showSE</span><span class="op">:</span>   seInput<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
 <span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>  bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fire <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>    rangeSpan<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span></span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>      modeInput<span class="op">.</span><span class="at">value</span> <span class="op">===</span> <span class="st">"Période personnalisée"</span> <span class="op">?</span> <span class="st">"inline-flex"</span> <span class="op">:</span> <span class="st">"none"</span></span>
-<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
-<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(<span class="st">"input"</span><span class="op">,</span> {<span class="dt">bubbles</span><span class="op">:</span> <span class="kw">true</span>}))</span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>  modeInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>  fire)</span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>  startInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> fire)</span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>  endInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>   fire)</span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  seInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>    fire)</span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> bar</span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fire <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    rangeSpan<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>      modeInput<span class="op">.</span><span class="at">value</span> <span class="op">===</span> <span class="st">"Période personnalisée"</span> <span class="op">?</span> <span class="st">"inline-flex"</span> <span class="op">:</span> <span class="st">"none"</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="at">value</span> <span class="op">=</span> <span class="fu">getValue</span>()</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>    bar<span class="op">.</span><span class="fu">dispatchEvent</span>(<span class="kw">new</span> <span class="bu">Event</span>(<span class="st">"input"</span><span class="op">,</span> {<span class="dt">bubbles</span><span class="op">:</span> <span class="kw">true</span>}))</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>  modeInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>  fire)</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>  startInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> fire)</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>  endInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>   fire)</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>  seInput<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span>    fire)</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> bar</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="declaration">
 
@@ -643,50 +612,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="177" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 176;"><span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>activeRange <span class="op">=</span> {</span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span>) <span class="cf">return</span> cityRange</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> {startKey<span class="op">,</span> endKey} <span class="op">=</span> controls</span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (startKey <span class="op">&gt;</span> endKey) <span class="cf">return</span> []</span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">.</span><span class="at">monthly</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> {</span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> k <span class="op">&gt;=</span> startKey <span class="op">&amp;&amp;</span> k <span class="op">&lt;=</span> endKey</span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="175" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 174;"><span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>activeRange <span class="op">=</span> {</span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span>) <span class="cf">return</span> cityRange</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> {startKey<span class="op">,</span> endKey} <span class="op">=</span> controls</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (startKey <span class="op">&gt;</span> endKey) <span class="cf">return</span> []</span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">.</span><span class="at">monthly</span></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> {</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> k <span class="op">=</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">-</span><span class="sc">${</span><span class="bu">String</span>(d<span class="op">.</span><span class="at">month</span>)<span class="op">.</span><span class="fu">padStart</span>(<span class="dv">2</span><span class="op">,</span> <span class="st">"0"</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> k <span class="op">&gt;=</span> startKey <span class="op">&amp;&amp;</span> k <span class="op">&lt;=</span> endKey</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> a<span class="op">.</span><span class="at">month</span> <span class="op">-</span> (b<span class="op">.</span><span class="at">year</span> <span class="op">*</span> <span class="dv">100</span> <span class="op">+</span> b<span class="op">.</span><span class="at">month</span>))</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>activeDomain <span class="op">=</span> activeRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
 <span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>activeDomain <span class="op">=</span> activeRange<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">month_label</span>)</span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>activeYearTicks <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()<span class="op">,</span> first <span class="op">=</span> []</span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>  activeDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>})()</span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>activeX <span class="op">=</span> controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span></span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> {</span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     xDomain<span class="op">,</span></span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      xYearLabels<span class="op">,</span></span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> xTickFormat<span class="op">,</span></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> {</span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     activeDomain<span class="op">,</span></span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      activeYearTicks<span class="op">,</span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> l <span class="kw">=&gt;</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)<span class="op">,</span></span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>activeMarginBottom <span class="op">=</span> <span class="dv">40</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>activeYearTicks <span class="op">=</span> (() <span class="kw">=&gt;</span> {</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seen <span class="op">=</span> <span class="kw">new</span> <span class="bu">Set</span>()<span class="op">,</span> first <span class="op">=</span> []</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>  activeDomain<span class="op">.</span><span class="fu">forEach</span>(l <span class="kw">=&gt;</span> {</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> yr <span class="op">=</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>seen<span class="op">.</span><span class="fu">has</span>(yr)) { seen<span class="op">.</span><span class="fu">add</span>(yr)<span class="op">;</span> first<span class="op">.</span><span class="fu">push</span>(l) }</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> first</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>})()</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>activeX <span class="op">=</span> controls<span class="op">.</span><span class="at">viewMode</span> <span class="op">===</span> <span class="st">"Réplication de la Ville"</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> {</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     xDomain<span class="op">,</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      xYearLabels<span class="op">,</span></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> xTickFormat<span class="op">,</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> {</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span>     activeDomain<span class="op">,</span></span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span>      activeYearTicks<span class="op">,</span></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickSize</span><span class="op">:</span>   <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> l <span class="kw">=&gt;</span> l<span class="op">.</span><span class="fu">slice</span>(<span class="op">-</span><span class="dv">4</span>)<span class="op">,</span></span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span>      <span class="kw">null</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>activeMarginBottom <span class="op">=</span> <span class="dv">40</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -727,38 +696,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la valeur moyenne.
 </p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="229" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 228;"><span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
-<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
-<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
-<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels orientés vers une place en refuge"</span><span class="op">,</span></span>
-<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
-<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
-<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
-<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
-<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"referred_mean"</span><span class="op">,</span></span>
-<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#5BA75B"</span><span class="op">,</span></span>
-<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
-<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
-<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="227" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 226;"><span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels orientés vers une place en refuge"</span><span class="op">,</span></span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"referred_mean"</span><span class="op">,</span></span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#5BA75B"</span><span class="op">,</span></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">referred_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-5" data-nodetype="expression">
 
@@ -766,38 +735,38 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="265" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 264;"><span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appelants individuels sans jumelage"</span><span class="op">,</span></span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appelants quotidiens (moy.)"</span>}<span class="op">,</span></span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"unmatched_mean"</span><span class="op">,</span></span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#FF2D55"</span><span class="op">,</span></span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="263" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 262;"><span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appelants individuels sans jumelage"</span><span class="op">,</span></span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appelants quotidiens (moy.)"</span>}<span class="op">,</span></span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"unmatched_mean"</span><span class="op">,</span></span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#FF2D55"</span><span class="op">,</span></span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">unmatched_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-6" data-nodetype="expression">
 
@@ -805,38 +774,38 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="301" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 300;"><span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
-<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
-<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
-<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels traités"</span><span class="op">,</span></span>
-<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
-<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
-<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
-<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
-<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"handled_mean"</span><span class="op">,</span></span>
-<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#4A90D9"</span><span class="op">,</span></span>
-<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
-<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
-<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
-<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
-<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
-<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb7-331"><a href="#cb7-331" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb7-332"><a href="#cb7-332" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="299" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 298;"><span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (activeRange<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;p class="bq-no-data"&gt;</span></span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a><span class="vs">      ⚠ Le mois « De » doit être antérieur au mois « À ».&lt;/p&gt;`</span></span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a>    <span class="dt">title</span><span class="op">:</span> <span class="st">"Appels traités"</span><span class="op">,</span></span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> activeMarginBottom<span class="op">,</span></span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">55</span><span class="op">,</span></span>
+<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> activeX<span class="op">,</span></span>
+<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {<span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Appels quotidiens (moy.)"</span>}<span class="op">,</span></span>
+<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"handled_mean"</span><span class="op">,</span></span>
+<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#4A90D9"</span><span class="op">,</span></span>
+<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>      <span class="op">...</span>(controls<span class="op">.</span><span class="at">showSE</span> <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(activeRange<span class="op">,</span> {</span>
+<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span>           <span class="st">"month_label"</span><span class="op">,</span></span>
+<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y1</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y2</span><span class="op">:</span>          d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">!=</span> <span class="kw">null</span></span>
+<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>                       <span class="op">?</span> d<span class="op">.</span><span class="at">handled_mean</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> d<span class="op">.</span><span class="at">handled_se</span> <span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span>      <span class="fu">getComputedStyle</span>(<span class="bu">document</span><span class="op">.</span><span class="at">body</span>)<span class="op">.</span><span class="fu">getPropertyValue</span>(<span class="st">"--bq-chart-stroke"</span>)<span class="op">,</span></span>
+<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>      })] <span class="op">:</span> [])</span>
+<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-7" data-nodetype="expression">
 
@@ -845,50 +814,50 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 </div>
 <p>Le tableau ci-dessous présente les mêmes moyennes mensuelles que le tableau publié par la Ville sur la page Demandes d’orientation vers le réseau de refuges, calculées indépendamment par BonQuery à partir des valeurs quotidiennes de l’exportation CKAN des données ouvertes de la Ville.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="343" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 342;"><span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a>thStyle <span class="op">=</span> (extra <span class="op">=</span> <span class="st">""</span>) <span class="kw">=&gt;</span></span>
-<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`border-bottom:2px solid var(--bq-chart-grid);padding:6px 10px;text-align:center;`</span> <span class="op">+</span></span>
-<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`background:var(--bq-bg-accent);</span><span class="sc">${</span>extra<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;table style="width:100%;border-collapse:collapse;font-size:0.9em"&gt;</span></span>
-<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;thead&gt;</span></span>
-<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
-<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Année&lt;/th&gt;</span></span>
-<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Mois&lt;/th&gt;</span></span>
-<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th colspan="3" style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Quotidien moyen&lt;/th&gt;</span></span>
-<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
-<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
-<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
-<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
-<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels orientés vers une place en refuge [1]&lt;/th&gt;</span></span>
-<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appelants individuels sans jumelage [2]&lt;/th&gt;</span></span>
-<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels traités [3]&lt;/th&gt;</span></span>
-<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
-<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/thead&gt;</span></span>
-<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;tbody&gt;</span></span>
-<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>cityRange<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
-<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> bg <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span></span>
-<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="st">"var(--bq-bg-accent)"</span></span>
-<span id="cb8-366"><a href="#cb8-366" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"var(--bq-bg)"</span> <span class="op">:</span> <span class="st">"var(--bq-bg-alt)"</span>)</span>
-<span id="cb8-367"><a href="#cb8-367" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> fw <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"font-weight:600;"</span> <span class="op">:</span> <span class="st">""</span></span>
-<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> td <span class="op">=</span> () <span class="kw">=&gt;</span></span>
-<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`padding:5px 10px;border-bottom:1px solid var(--bq-border);`</span> <span class="op">+</span></span>
-<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`text-align:center;background:</span><span class="sc">${</span>bg<span class="sc">}</span><span class="vs">;</span><span class="sc">${</span>fw<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;</span></span>
-<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>MONTH_ABB[d<span class="op">.</span><span class="at">month</span>]<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">referred_mean</span>  <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)              <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
-<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
-<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)             <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
-<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
-<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
-<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">handled_mean</span>   <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">handled_mean</span>)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">"fr-CA"</span>) <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
-<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
-<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tr&gt;`</span></span>
-<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a>    })<span class="sc">}</span></span>
-<span id="cb8-385"><a href="#cb8-385" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tbody&gt;</span></span>
-<span id="cb8-386"><a href="#cb8-386" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/table&gt;`</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="341" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 340;"><span id="cb8-341"><a href="#cb8-341" aria-hidden="true" tabindex="-1"></a>thStyle <span class="op">=</span> (extra <span class="op">=</span> <span class="st">""</span>) <span class="kw">=&gt;</span></span>
+<span id="cb8-342"><a href="#cb8-342" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`border-bottom:2px solid var(--bq-chart-grid);padding:6px 10px;text-align:center;`</span> <span class="op">+</span></span>
+<span id="cb8-343"><a href="#cb8-343" aria-hidden="true" tabindex="-1"></a>  <span class="vs">`background:var(--bq-bg-accent);</span><span class="sc">${</span>extra<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;table style="width:100%;border-collapse:collapse;font-size:0.9em"&gt;</span></span>
+<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;thead&gt;</span></span>
+<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
+<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Année&lt;/th&gt;</span></span>
+<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Mois&lt;/th&gt;</span></span>
+<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th colspan="3" style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Quotidien moyen&lt;/th&gt;</span></span>
+<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
+<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
+<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
+<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;&lt;/th&gt;</span></span>
+<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels orientés vers une place en refuge [1]&lt;/th&gt;</span></span>
+<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appelants individuels sans jumelage [2]&lt;/th&gt;</span></span>
+<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;th style="</span><span class="sc">${</span><span class="fu">thStyle</span>()<span class="sc">}</span><span class="vs">"&gt;Appels traités [3]&lt;/th&gt;</span></span>
+<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
+<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/thead&gt;</span></span>
+<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;tbody&gt;</span></span>
+<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>cityRange<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> bg <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span></span>
+<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a>        <span class="op">?</span> <span class="st">"var(--bq-bg-accent)"</span></span>
+<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"var(--bq-bg)"</span> <span class="op">:</span> <span class="st">"var(--bq-bg-alt)"</span>)</span>
+<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> fw <span class="op">=</span> d<span class="op">.</span><span class="at">month</span> <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"font-weight:600;"</span> <span class="op">:</span> <span class="st">""</span></span>
+<span id="cb8-366"><a href="#cb8-366" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> td <span class="op">=</span> () <span class="kw">=&gt;</span></span>
+<span id="cb8-367"><a href="#cb8-367" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`padding:5px 10px;border-bottom:1px solid var(--bq-border);`</span> <span class="op">+</span></span>
+<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a>        <span class="vs">`text-align:center;background:</span><span class="sc">${</span>bg<span class="sc">}</span><span class="vs">;</span><span class="sc">${</span>fw<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;</span></span>
+<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>d<span class="op">.</span><span class="at">year</span><span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>MONTH_ABB[d<span class="op">.</span><span class="at">month</span>]<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">referred_mean</span>  <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">referred_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)              <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
+<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
+<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">unmatched_mean</span> <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> d<span class="op">.</span><span class="at">unmatched_mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)             <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
+<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
+<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;td style="</span><span class="sc">${</span><span class="fu">td</span>()<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>d<span class="op">.</span><span class="at">handled_mean</span>   <span class="op">!=</span> <span class="kw">null</span> <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(d<span class="op">.</span><span class="at">handled_mean</span>)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">"fr-CA"</span>) <span class="op">:</span> <span class="st">"—"</span><span class="sc">}</span></span>
+<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/td&gt;</span></span>
+<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tr&gt;`</span></span>
+<span id="cb8-382"><a href="#cb8-382" aria-hidden="true" tabindex="-1"></a>    })<span class="sc">}</span></span>
+<span id="cb8-383"><a href="#cb8-383" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tbody&gt;</span></span>
+<span id="cb8-384"><a href="#cb8-384" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/table&gt;`</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-8-1" data-nodetype="declaration">
@@ -921,6 +890,12 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script>
+// Embedded dashboard pages keep their charts but omit the site-wide help
+// footer. The same pages show the footer when opened directly.
+if (window.self !== window.top) {
+  document.documentElement.classList.add("bq-embedded-page");
+}
+
 // ── Mobile language toggle ────────────────────────────────────────────────
 // Uses location.pathname so the correct label appears regardless of whether
 // Quarto renders the navbar id attribute (it does not).
@@ -1007,6 +982,7 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
     movedToHousing: "Ont obtenu un logement",
+    callsHandled: "appels traités par jour en moyenne",
     januaryTo: "De janvier à ",
     latest: "Plus récent : ",
     trend: "Tendance de l'itinérance active jusqu'à "
@@ -1019,15 +995,17 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
     movedToHousing: "Moved into housing",
+    callsHandled: "calls handled each day on average",
     januaryTo: "January to ",
     latest: "Latest: ",
     trend: "People counted as homeless through "
   };
   var dailyMount = document.getElementById("bq-preview-daily");
   var monthlyMount = document.getElementById("bq-preview-monthly");
+  var callerMount = document.getElementById("bq-preview-caller");
   var ytdMount = document.getElementById("bq-preview-ytd");
   var historyMount = document.getElementById("bq-preview-history");
-  if (!dailyMount && !monthlyMount && !ytdMount && !historyMount) return;
+  if (!dailyMount && !monthlyMount && !callerMount && !ytdMount && !historyMount) return;
 
   function make(tag, className, text) {
     var node = document.createElement(tag);
@@ -1198,6 +1176,37 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
       showUnavailable(ytdMount);
       showUnavailable(historyMount);
     });
+
+  if (callerMount) {
+    fetch("/data/central_intake.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("Caller preview data unavailable");
+        return response.json();
+      })
+      .then(function (data) {
+        var latest = (data.monthly || [])
+          .filter(function (row) {
+            return row.handled_mean != null &&
+              Number.isFinite(Number(row.handled_mean));
+          })
+          .slice()
+          .sort(function (a, b) {
+            return (a.year * 100 + a.month) - (b.year * 100 + b.month);
+          })
+          .pop();
+        if (!latest) throw new Error("Caller preview rows unavailable");
+
+        var latestLabel = new Date(latest.year, latest.month - 1, 1)
+          .toLocaleDateString(locale, {month: "long", year: "numeric"});
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", Math.round(latest.handled_mean).toLocaleString(locale)),
+          make("span", "", copy.callsHandled + " · " + latestLabel)
+        );
+        callerMount.replaceChildren(kpi);
+      })
+      .catch(function () { showUnavailable(callerMount); });
+  }
 })();
 
 // ── Language toggle link + hreflang injection ─────────────────────────────
@@ -1251,6 +1260,70 @@ Touchez ou survolez n’importe quelle barre pour voir le mois, l’année et la
   addLink("alternate", "x-default", abs(enPath));
 })();
 </script>
+<div id="help-now" class="bq-global-help">
+<div class="bq-help-strip bq-help-en" role="complementary" aria-label="Immediate shelter, violence, outreach, and emergency contacts">
+  <div class="bq-help-copy">
+    <strong>Need a safe place or support now?</strong>
+    <span>These contacts serve Toronto unless another area is named. BonQuery is an independent data project, not a service provider.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Assaulted Women's Helpline</strong><small>Free and confidential, anywhere in Ontario, 24/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Young people: Kids Help Phone</strong><small>Ages 5 to 29, confidential, 24/7. Call, or text CONNECT to 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Thinking about suicide, or worried about someone?</strong><small>Call or text 988 anywhere in Canada, 24/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto emergency shelter line</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto shelter line, toll-free</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto mental-health crisis support</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto street outreach</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 from outside city limits</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>City services TTY relay</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Immediate danger in Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
+  </div>
+</div>
+<div class="bq-help-strip bq-help-fr" role="complementary" aria-label="Contacts immédiats pour un lieu sûr, un refuge, une crise ou une urgence" lang="fr-CA">
+  <div class="bq-help-copy">
+    <strong>Besoin d'un endroit sûr ou de soutien maintenant?</strong>
+    <span>Ces services desservent Toronto, sauf si une autre région est indiquée. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Ligne d'aide aux femmes victimes de violence</strong><small>Gratuite et confidentielle, partout en Ontario, 24 h/24 et 7 j/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Jeunes : Jeunesse, J'écoute</strong><small>De 5 à 29 ans, service confidentiel 24 h/24 et 7 j/7. Appelez ou textez le 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Vous pensez au suicide ou vous vous inquiétez pour quelqu'un?</strong><small>Appelez ou textez le 988 partout au Canada, 24 h/24 et 7 j/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges d'urgence de Toronto</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges de Toronto, sans frais</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Soutien en cas de crise de santé mentale à Toronto</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Intervention de rue à Toronto</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 depuis l'extérieur de la ville</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>Service de relais ATS de la Ville</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Danger immédiat au Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
+  </div>
+</div>
+</div>
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRhdGEgPSBGaWxlQXR0YWNobWVudChcIi4uL2RhdGEvY2VudHJhbF9pbnRha2UuanNvblwiKS5qc29uKClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ik1PTlRIX0FCQiA9IFtcIlwiLFwiamFudi5cIixcImbDqXZyLlwiLFwibWFyc1wiLFwiYXZyLlwiLFwibWFpXCIsXCJqdWluXCIsXG4gICAgICAgICAgICAgXCJqdWlsbC5cIixcImFvw7t0XCIsXCJzZXB0LlwiLFwib2N0LlwiLFwibm92LlwiLFwiZMOpYy5cIl1cblxuY2l0eVJhbmdlID0gZGF0YS5tb250aGx5XG4gIC5maWx0ZXIoZCA9PiBkLnllYXIgPiAyMDI0IHx8IChkLnllYXIgPT09IDIwMjQgJiYgZC5tb250aCA+PSA0KSlcbiAgLnNvcnQoKGEsIGIpID0+IGEueWVhciAqIDEwMCArIGEubW9udGggLSAoYi55ZWFyICogMTAwICsgYi5tb250aCkpXG5cbnhEb21haW4gPSBjaXR5UmFuZ2UubWFwKGQgPT4gZC5tb250aF9sYWJlbClcblxueFllYXJMYWJlbHMgPSAoKCkgPT4ge1xuICBjb25zdCBzZWVuID0gbmV3IFNldCgpXG4gIGNvbnN0IGZpcnN0ID0gW11cbiAgeERvbWFpbi5mb3JFYWNoKGwgPT4ge1xuICAgIGNvbnN0IHlyID0gbC5zbGljZSgtNClcbiAgICBpZiAoIXNlZW4uaGFzKHlyKSkgeyBzZWVuLmFkZCh5cik7IGZpcnN0LnB1c2gobCkgfVxuICB9KVxuICByZXR1cm4gZmlyc3Rcbn0pKClcblxueFRpY2tGb3JtYXQgPSBsID0+IHhZZWFyTGFiZWxzLmluY2x1ZGVzKGwpID8gbC5zbGljZSgtNCkgOiBcIlwiXG5cbmFsbE1vbnRoT3B0cyA9IGRhdGEubW9udGhseVxuICAubWFwKGQgPT4gKHtcbiAgICBrZXk6IGAke2QueWVhcn0tJHtTdHJpbmcoZC5tb250aCkucGFkU3RhcnQoMiwgXCIwXCIpfWAsXG4gICAgbGFiZWw6IGQubW9udGhfbGFiZWxcbiAgfSkpXG4gIC5zb3J0KChhLCBiKSA9PiBhLmtleS5sb2NhbGVDb21wYXJlKGIua2V5KSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBjb250cm9scyA9IHtcbiAgY29uc3QgamFuMjAyNSA9IGFsbE1vbnRoT3B0cy5maW5kKG8gPT4gby5rZXkgPT09IFwiMjAyNS0wMVwiKSA/PyBhbGxNb250aE9wdHNbMF1cbiAgY29uc3QgbGFzdCAgICAgPSBhbGxNb250aE9wdHMuYXQoLTEpXG5cbiAgY29uc3QgbW9kZUlucHV0ID0gSW5wdXRzLnJhZGlvKFxuICAgIFtcIlLDqXBsaWNhdGlvbiBkZSBsYSBWaWxsZVwiLCBcIlDDqXJpb2RlIHBlcnNvbm5hbGlzw6llXCJdLFxuICAgIHt2YWx1ZTogXCJSw6lwbGljYXRpb24gZGUgbGEgVmlsbGVcIn1cbiAgKVxuICBjb25zdCBzdGFydElucHV0ID0gSW5wdXRzLnNlbGVjdChhbGxNb250aE9wdHMsIHtcbiAgICBsYWJlbDogXCJEZVwiLFxuICAgIGZvcm1hdDogbyA9PiBvLmxhYmVsLFxuICAgIHZhbHVlOiBqYW4yMDI1XG4gIH0pXG4gIGNvbnN0IGVuZElucHV0ID0gSW5wdXRzLnNlbGVjdChhbGxNb250aE9wdHMsIHtcbiAgICBsYWJlbDogXCLDgFwiLFxuICAgIGZvcm1hdDogbyA9PiBvLmxhYmVsLFxuICAgIHZhbHVlOiBsYXN0XG4gIH0pXG4gIGNvbnN0IHNlSW5wdXQgPSBJbnB1dHMuY2hlY2tib3goXG4gICAgW1wiQWZmaWNoZXIgbGVzIGJhcnJlcyDCsTIgRVMgKGxlY3RldXJzIHRlY2huaXF1ZXMpXCJdLFxuICAgIHt2YWx1ZTogW119XG4gIClcblxuICBjb25zdCByYW5nZVNwYW4gPSBodG1sYDxzcGFuIHN0eWxlPVwiZGlzcGxheTpub25lO2dhcDoxMnB4O2FsaWduLWl0ZW1zOmZsZXgtZW5kXCI+XG4gICAgJHtzdGFydElucHV0fSR7ZW5kSW5wdXR9XG4gIDwvc3Bhbj5gXG5cbiAgY29uc3QgYmFyID0gaHRtbGA8ZGl2IGNsYXNzPVwiYnEtY29udHJvbC1iYXJcIj5cbiAgICAke21vZGVJbnB1dH1cbiAgICAke3JhbmdlU3Bhbn1cbiAgICA8ZGl2PlxuICAgICAgJHtzZUlucHV0fVxuICAgICAgPHNtYWxsIGNsYXNzPVwiYnEtaGludFwiPlxuICAgICAgICBFcnJldXIgc3RhbmRhcmQgZGUgbGEgbW95ZW5uZSBtZW5zdWVsbGUsIGNhbGN1bMOpZSDDoCBwYXJ0aXIgZGVzIHZhbGV1cnNcbiAgICAgICAgcXVvdGlkaWVubmVzIGR1IG1vaXMuIMKxMiBFUyBhcHByb3hpbWUgdW4gaW50ZXJ2YWxsZSBkZSBjb25maWFuY2Ugw6AgOTUgJS5cbiAgICAgIDwvc21hbGw+XG4gICAgPC9kaXY+XG4gIDwvZGl2PmBcblxuICBjb25zdCBnZXRWYWx1ZSA9ICgpID0+ICh7XG4gICAgdmlld01vZGU6IG1vZGVJbnB1dC52YWx1ZSxcbiAgICBzdGFydEtleTogc3RhcnRJbnB1dC52YWx1ZS5rZXksXG4gICAgZW5kS2V5OiAgIGVuZElucHV0LnZhbHVlLmtleSxcbiAgICBzaG93U0U6ICAgc2VJbnB1dC52YWx1ZS5sZW5ndGggPiAwXG4gIH0pXG5cbiAgYmFyLnZhbHVlID0gZ2V0VmFsdWUoKVxuXG4gIGNvbnN0IGZpcmUgPSAoKSA9PiB7XG4gICAgcmFuZ2VTcGFuLnN0eWxlLmRpc3BsYXkgPVxuICAgICAgbW9kZUlucHV0LnZhbHVlID09PSBcIlDDqXJpb2RlIHBlcnNvbm5hbGlzw6llXCIgPyBcImlubGluZS1mbGV4XCIgOiBcIm5vbmVcIlxuICAgIGJhci52YWx1ZSA9IGdldFZhbHVlKClcbiAgICBiYXIuZGlzcGF0Y2hFdmVudChuZXcgRXZlbnQoXCJpbnB1dFwiLCB7YnViYmxlczogdHJ1ZX0pKVxuICB9XG5cbiAgbW9kZUlucHV0LmFkZEV2ZW50TGlzdGVuZXIoXCJpbnB1dFwiLCAgZmlyZSlcbiAgc3RhcnRJbnB1dC5hZGRFdmVudExpc3RlbmVyKFwiaW5wdXRcIiwgZmlyZSlcbiAgZW5kSW5wdXQuYWRkRXZlbnRMaXN0ZW5lcihcImlucHV0XCIsICAgZmlyZSlcbiAgc2VJbnB1dC5hZGRFdmVudExpc3RlbmVyKFwiaW5wdXRcIiwgICAgZmlyZSlcblxuICByZXR1cm4gYmFyXG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJhY3RpdmVSYW5nZSA9IHtcbiAgaWYgKGNvbnRyb2xzLnZpZXdNb2RlID09PSBcIlLDqXBsaWNhdGlvbiBkZSBsYSBWaWxsZVwiKSByZXR1cm4gY2l0eVJhbmdlXG5cbiAgY29uc3Qge3N0YXJ0S2V5LCBlbmRLZXl9ID0gY29udHJvbHNcbiAgaWYgKHN0YXJ0S2V5ID4gZW5kS2V5KSByZXR1cm4gW11cblxuICByZXR1cm4gZGF0YS5tb250aGx5XG4gICAgLmZpbHRlcihkID0+IHtcbiAgICAgIGNvbnN0IGsgPSBgJHtkLnllYXJ9LSR7U3RyaW5nKGQubW9udGgpLnBhZFN0YXJ0KDIsIFwiMFwiKX1gXG4gICAgICByZXR1cm4gayA+PSBzdGFydEtleSAmJiBrIDw9IGVuZEtleVxuICAgIH0pXG4gICAgLnNvcnQoKGEsIGIpID0+IGEueWVhciAqIDEwMCArIGEubW9udGggLSAoYi55ZWFyICogMTAwICsgYi5tb250aCkpXG59XG5cbmFjdGl2ZURvbWFpbiA9IGFjdGl2ZVJhbmdlLm1hcChkID0+IGQubW9udGhfbGFiZWwpXG5cbmFjdGl2ZVllYXJUaWNrcyA9ICgoKSA9PiB7XG4gIGNvbnN0IHNlZW4gPSBuZXcgU2V0KCksIGZpcnN0ID0gW11cbiAgYWN0aXZlRG9tYWluLmZvckVhY2gobCA9PiB7XG4gICAgY29uc3QgeXIgPSBsLnNsaWNlKC00KVxuICAgIGlmICghc2Vlbi5oYXMoeXIpKSB7IHNlZW4uYWRkKHlyKTsgZmlyc3QucHVzaChsKSB9XG4gIH0pXG4gIHJldHVybiBmaXJzdFxufSkoKVxuXG5hY3RpdmVYID0gY29udHJvbHMudmlld01vZGUgPT09IFwiUsOpcGxpY2F0aW9uIGRlIGxhIFZpbGxlXCJcbiAgPyB7XG4gICAgICBkb21haW46ICAgICB4RG9tYWluLFxuICAgICAgdGlja3M6ICAgICAgeFllYXJMYWJlbHMsXG4gICAgICB0aWNrU2l6ZTogICAxMCxcbiAgICAgIHRpY2tGb3JtYXQ6IHhUaWNrRm9ybWF0LFxuICAgICAgdGlja1JvdGF0ZTogMCxcbiAgICAgIGxhYmVsOiAgICAgIG51bGxcbiAgICB9XG4gIDoge1xuICAgICAgZG9tYWluOiAgICAgYWN0aXZlRG9tYWluLFxuICAgICAgdGlja3M6ICAgICAgYWN0aXZlWWVhclRpY2tzLFxuICAgICAgdGlja1NpemU6ICAgMTAsXG4gICAgICB0aWNrRm9ybWF0OiBsID0+IGwuc2xpY2UoLTQpLFxuICAgICAgdGlja1JvdGF0ZTogMCxcbiAgICAgIGxhYmVsOiAgICAgIG51bGxcbiAgICB9XG5cbmFjdGl2ZU1hcmdpbkJvdHRvbSA9IDQwXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ7XG4gIGlmIChhY3RpdmVSYW5nZS5sZW5ndGggPT09IDApXG4gICAgcmV0dXJuIGh0bWxgPHAgY2xhc3M9XCJicS1uby1kYXRhXCI+XG4gICAgICDimqAgTGUgbW9pcyDCqyBEZSDCuyBkb2l0IMOqdHJlIGFudMOpcmlldXIgYXUgbW9pcyDCqyDDgCDCuy48L3A+YFxuXG4gIHJldHVybiBQbG90LnBsb3Qoe1xuICAgIHRpdGxlOiBcIkFwcGVscyBvcmllbnTDqXMgdmVycyB1bmUgcGxhY2UgZW4gcmVmdWdlXCIsXG4gICAgd2lkdGgsXG4gICAgbWFyZ2luVG9wOiA0MCxcbiAgICBtYXJnaW5Cb3R0b206IGFjdGl2ZU1hcmdpbkJvdHRvbSxcbiAgICBtYXJnaW5MZWZ0OiA1NSxcbiAgICB4OiBhY3RpdmVYLFxuICAgIHk6IHtncmlkOiB0cnVlLCBsYWJlbDogXCJBcHBlbHMgcXVvdGlkaWVucyAobW95LilcIn0sXG4gICAgbWFya3M6IFtcbiAgICAgIFBsb3QuYmFyWShhY3RpdmVSYW5nZSwge1xuICAgICAgICB4OiBcIm1vbnRoX2xhYmVsXCIsXG4gICAgICAgIHk6IFwicmVmZXJyZWRfbWVhblwiLFxuICAgICAgICBmaWxsOiBcIiM1QkE3NUJcIixcbiAgICAgICAgdGlwOiB0cnVlXG4gICAgICB9KSxcbiAgICAgIC4uLihjb250cm9scy5zaG93U0UgPyBbUGxvdC5ydWxlWChhY3RpdmVSYW5nZSwge1xuICAgICAgICB4OiAgICAgICAgICAgXCJtb250aF9sYWJlbFwiLFxuICAgICAgICB5MTogICAgICAgICAgZCA9PiBkLnJlZmVycmVkX3NlICE9IG51bGxcbiAgICAgICAgICAgICAgICAgICAgICAgPyBkLnJlZmVycmVkX21lYW4gLSAyICogZC5yZWZlcnJlZF9zZSA6IG51bGwsXG4gICAgICAgIHkyOiAgICAgICAgICBkID0+IGQucmVmZXJyZWRfc2UgIT0gbnVsbFxuICAgICAgICAgICAgICAgICAgICAgICA/IGQucmVmZXJyZWRfbWVhbiArIDIgKiBkLnJlZmVycmVkX3NlIDogbnVsbCxcbiAgICAgICAgc3Ryb2tlOiAgICAgIGdldENvbXB1dGVkU3R5bGUoZG9jdW1lbnQuYm9keSkuZ2V0UHJvcGVydHlWYWx1ZShcIi0tYnEtY2hhcnQtc3Ryb2tlXCIpLFxuICAgICAgICBzdHJva2VXaWR0aDogMS41XG4gICAgICB9KV0gOiBbXSlcbiAgICBdXG4gIH0pXG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ7XG4gIGlmIChhY3RpdmVSYW5nZS5sZW5ndGggPT09IDApXG4gICAgcmV0dXJuIGh0bWxgPHAgY2xhc3M9XCJicS1uby1kYXRhXCI+XG4gICAgICDimqAgTGUgbW9pcyDCqyBEZSDCuyBkb2l0IMOqdHJlIGFudMOpcmlldXIgYXUgbW9pcyDCqyDDgCDCuy48L3A+YFxuXG4gIHJldHVybiBQbG90LnBsb3Qoe1xuICAgIHRpdGxlOiBcIkFwcGVsYW50cyBpbmRpdmlkdWVscyBzYW5zIGp1bWVsYWdlXCIsXG4gICAgd2lkdGgsXG4gICAgbWFyZ2luVG9wOiA0MCxcbiAgICBtYXJnaW5Cb3R0b206IGFjdGl2ZU1hcmdpbkJvdHRvbSxcbiAgICBtYXJnaW5MZWZ0OiA1NSxcbiAgICB4OiBhY3RpdmVYLFxuICAgIHk6IHtncmlkOiB0cnVlLCBsYWJlbDogXCJBcHBlbGFudHMgcXVvdGlkaWVucyAobW95LilcIn0sXG4gICAgbWFya3M6IFtcbiAgICAgIFBsb3QuYmFyWShhY3RpdmVSYW5nZSwge1xuICAgICAgICB4OiBcIm1vbnRoX2xhYmVsXCIsXG4gICAgICAgIHk6IFwidW5tYXRjaGVkX21lYW5cIixcbiAgICAgICAgZmlsbDogXCIjRkYyRDU1XCIsXG4gICAgICAgIHRpcDogdHJ1ZVxuICAgICAgfSksXG4gICAgICAuLi4oY29udHJvbHMuc2hvd1NFID8gW1Bsb3QucnVsZVgoYWN0aXZlUmFuZ2UsIHtcbiAgICAgICAgeDogICAgICAgICAgIFwibW9udGhfbGFiZWxcIixcbiAgICAgICAgeTE6ICAgICAgICAgIGQgPT4gZC51bm1hdGNoZWRfc2UgIT0gbnVsbFxuICAgICAgICAgICAgICAgICAgICAgICA/IGQudW5tYXRjaGVkX21lYW4gLSAyICogZC51bm1hdGNoZWRfc2UgOiBudWxsLFxuICAgICAgICB5MjogICAgICAgICAgZCA9PiBkLnVubWF0Y2hlZF9zZSAhPSBudWxsXG4gICAgICAgICAgICAgICAgICAgICAgID8gZC51bm1hdGNoZWRfbWVhbiArIDIgKiBkLnVubWF0Y2hlZF9zZSA6IG51bGwsXG4gICAgICAgIHN0cm9rZTogICAgICBnZXRDb21wdXRlZFN0eWxlKGRvY3VtZW50LmJvZHkpLmdldFByb3BlcnR5VmFsdWUoXCItLWJxLWNoYXJ0LXN0cm9rZVwiKSxcbiAgICAgICAgc3Ryb2tlV2lkdGg6IDEuNVxuICAgICAgfSldIDogW10pXG4gICAgXVxuICB9KVxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICBpZiAoYWN0aXZlUmFuZ2UubGVuZ3RoID09PSAwKVxuICAgIHJldHVybiBodG1sYDxwIGNsYXNzPVwiYnEtbm8tZGF0YVwiPlxuICAgICAg4pqgIExlIG1vaXMgwqsgRGUgwrsgZG9pdCDDqnRyZSBhbnTDqXJpZXVyIGF1IG1vaXMgwqsgw4AgwrsuPC9wPmBcblxuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICB0aXRsZTogXCJBcHBlbHMgdHJhaXTDqXNcIixcbiAgICB3aWR0aCxcbiAgICBtYXJnaW5Ub3A6IDQwLFxuICAgIG1hcmdpbkJvdHRvbTogYWN0aXZlTWFyZ2luQm90dG9tLFxuICAgIG1hcmdpbkxlZnQ6IDU1LFxuICAgIHg6IGFjdGl2ZVgsXG4gICAgeToge2dyaWQ6IHRydWUsIGxhYmVsOiBcIkFwcGVscyBxdW90aWRpZW5zIChtb3kuKVwifSxcbiAgICBtYXJrczogW1xuICAgICAgUGxvdC5iYXJZKGFjdGl2ZVJhbmdlLCB7XG4gICAgICAgIHg6IFwibW9udGhfbGFiZWxcIixcbiAgICAgICAgeTogXCJoYW5kbGVkX21lYW5cIixcbiAgICAgICAgZmlsbDogXCIjNEE5MEQ5XCIsXG4gICAgICAgIHRpcDogdHJ1ZVxuICAgICAgfSksXG4gICAgICAuLi4oY29udHJvbHMuc2hvd1NFID8gW1Bsb3QucnVsZVgoYWN0aXZlUmFuZ2UsIHtcbiAgICAgICAgeDogICAgICAgICAgIFwibW9udGhfbGFiZWxcIixcbiAgICAgICAgeTE6ICAgICAgICAgIGQgPT4gZC5oYW5kbGVkX3NlICE9IG51bGxcbiAgICAgICAgICAgICAgICAgICAgICAgPyBkLmhhbmRsZWRfbWVhbiAtIDIgKiBkLmhhbmRsZWRfc2UgOiBudWxsLFxuICAgICAgICB5MjogICAgICAgICAgZCA9PiBkLmhhbmRsZWRfc2UgIT0gbnVsbFxuICAgICAgICAgICAgICAgICAgICAgICA/IGQuaGFuZGxlZF9tZWFuICsgMiAqIGQuaGFuZGxlZF9zZSA6IG51bGwsXG4gICAgICAgIHN0cm9rZTogICAgICBnZXRDb21wdXRlZFN0eWxlKGRvY3VtZW50LmJvZHkpLmdldFByb3BlcnR5VmFsdWUoXCItLWJxLWNoYXJ0LXN0cm9rZVwiKSxcbiAgICAgICAgc3Ryb2tlV2lkdGg6IDEuNVxuICAgICAgfSldIDogW10pXG4gICAgXVxuICB9KVxufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC04IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidGhTdHlsZSA9IChleHRyYSA9IFwiXCIpID0+XG4gIGBib3JkZXItYm90dG9tOjJweCBzb2xpZCB2YXIoLS1icS1jaGFydC1ncmlkKTtwYWRkaW5nOjZweCAxMHB4O3RleHQtYWxpZ246Y2VudGVyO2AgK1xuICBgYmFja2dyb3VuZDp2YXIoLS1icS1iZy1hY2NlbnQpOyR7ZXh0cmF9YFxuXG5odG1sYDx0YWJsZSBzdHlsZT1cIndpZHRoOjEwMCU7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlO2ZvbnQtc2l6ZTowLjllbVwiPlxuICA8dGhlYWQ+XG4gICAgPHRyPlxuICAgICAgPHRoIHN0eWxlPVwiJHt0aFN0eWxlKCl9XCI+QW5uw6llPC90aD5cbiAgICAgIDx0aCBzdHlsZT1cIiR7dGhTdHlsZSgpfVwiPk1vaXM8L3RoPlxuICAgICAgPHRoIGNvbHNwYW49XCIzXCIgc3R5bGU9XCIke3RoU3R5bGUoKX1cIj5RdW90aWRpZW4gbW95ZW48L3RoPlxuICAgIDwvdHI+XG4gICAgPHRyPlxuICAgICAgPHRoIHN0eWxlPVwiJHt0aFN0eWxlKCl9XCI+PC90aD5cbiAgICAgIDx0aCBzdHlsZT1cIiR7dGhTdHlsZSgpfVwiPjwvdGg+XG4gICAgICA8dGggc3R5bGU9XCIke3RoU3R5bGUoKX1cIj5BcHBlbHMgb3JpZW50w6lzIHZlcnMgdW5lIHBsYWNlIGVuIHJlZnVnZSBbMV08L3RoPlxuICAgICAgPHRoIHN0eWxlPVwiJHt0aFN0eWxlKCl9XCI+QXBwZWxhbnRzIGluZGl2aWR1ZWxzIHNhbnMganVtZWxhZ2UgWzJdPC90aD5cbiAgICAgIDx0aCBzdHlsZT1cIiR7dGhTdHlsZSgpfVwiPkFwcGVscyB0cmFpdMOpcyBbM108L3RoPlxuICAgIDwvdHI+XG4gIDwvdGhlYWQ+XG4gIDx0Ym9keT5cbiAgICAke2NpdHlSYW5nZS5tYXAoKGQsIGkpID0+IHtcbiAgICAgIGNvbnN0IGJnID0gZC5tb250aCA9PT0gMVxuICAgICAgICA/IFwidmFyKC0tYnEtYmctYWNjZW50KVwiXG4gICAgICAgIDogKGkgJSAyID09PSAwID8gXCJ2YXIoLS1icS1iZylcIiA6IFwidmFyKC0tYnEtYmctYWx0KVwiKVxuICAgICAgY29uc3QgZncgPSBkLm1vbnRoID09PSAxID8gXCJmb250LXdlaWdodDo2MDA7XCIgOiBcIlwiXG4gICAgICBjb25zdCB0ZCA9ICgpID0+XG4gICAgICAgIGBwYWRkaW5nOjVweCAxMHB4O2JvcmRlci1ib3R0b206MXB4IHNvbGlkIHZhcigtLWJxLWJvcmRlcik7YCArXG4gICAgICAgIGB0ZXh0LWFsaWduOmNlbnRlcjtiYWNrZ3JvdW5kOiR7Ymd9OyR7Znd9YFxuICAgICAgcmV0dXJuIGh0bWxgPHRyPlxuICAgICAgICA8dGQgc3R5bGU9XCIke3RkKCl9XCI+JHtkLnllYXJ9PC90ZD5cbiAgICAgICAgPHRkIHN0eWxlPVwiJHt0ZCgpfVwiPiR7TU9OVEhfQUJCW2QubW9udGhdfTwvdGQ+XG4gICAgICAgIDx0ZCBzdHlsZT1cIiR7dGQoKX1cIj5cbiAgICAgICAgICAke2QucmVmZXJyZWRfbWVhbiAgIT0gbnVsbCA/IGQucmVmZXJyZWRfbWVhbi50b0ZpeGVkKDEpICAgICAgICAgICAgICA6IFwi4oCUXCJ9XG4gICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZCBzdHlsZT1cIiR7dGQoKX1cIj5cbiAgICAgICAgICAke2QudW5tYXRjaGVkX21lYW4gIT0gbnVsbCA/IGQudW5tYXRjaGVkX21lYW4udG9GaXhlZCgxKSAgICAgICAgICAgICA6IFwi4oCUXCJ9XG4gICAgICAgIDwvdGQ+XG4gICAgICAgIDx0ZCBzdHlsZT1cIiR7dGQoKX1cIj5cbiAgICAgICAgICAke2QuaGFuZGxlZF9tZWFuICAgIT0gbnVsbCA/IE1hdGgucm91bmQoZC5oYW5kbGVkX21lYW4pLnRvTG9jYWxlU3RyaW5nKFwiZnItQ0FcIikgOiBcIuKAlFwifVxuICAgICAgICA8L3RkPlxuICAgICAgPC90cj5gXG4gICAgfSl9XG4gIDwvdGJvZHk+XG48L3RhYmxlPmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnY29udHJvbHMnKSJ9XX0=
 </script>

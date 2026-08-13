@@ -309,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="./projects/data-validation.html">
- <span class="dropdown-text">Occupancy Data Validation</span></a>
+ <span class="dropdown-text">Daily Data Sources</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./projects/data-validation-central-intake.html">
@@ -491,9 +491,10 @@ ul.task-list li input[type="checkbox"] {
   var locale = isFR ? "fr-CA" : "en-CA";
   var copy = isFR ? {
     unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
-    offlineBedsBefore: "lits financés du secteur des personnes seules ",
-    offlineBedsEmphasis: "indisponibles",
-    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    accommodated: "personnes hébergées à 4 h",
+    cityWebpage: "Page Web de la Ville",
+    openData: "Données ouvertes",
+    openDataThrough: "Fichier détaillé de données ouvertes jusqu'au ",
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
     movedToHousing: "Ont obtenu un logement",
@@ -502,9 +503,10 @@ ul.task-list li input[type="checkbox"] {
     trend: "Tendance de l'itinérance active jusqu'à "
   } : {
     unavailable: "Preview unavailable. Open the dashboard.",
-    offlineBedsBefore: "funded shelter beds for single adults were ",
-    offlineBedsEmphasis: "unavailable",
-    acrossPrograms: " people staying in shelter programs",
+    accommodated: "people accommodated at 4 a.m.",
+    cityWebpage: "City webpage",
+    openData: "Open data",
+    openDataThrough: "Detailed Open Data file through ",
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
     movedToHousing: "Moved into housing",
@@ -544,36 +546,60 @@ ul.task-list li input[type="checkbox"] {
     mount.replaceChildren(make("span", "", copy.unavailable));
   }
 
-  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
-    .then(function (response) {
-      if (!response.ok) throw new Error("Daily preview data unavailable");
-      return response.json();
-    })
-    .then(function (data) {
-      if (!dailyMount || !data.length) return;
-      var latestDate = data.reduce(function (latest, row) {
+  Promise.all([
+    fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("Open data preview unavailable");
+        return response.json();
+      })
+      .catch(function () { return []; }),
+    fetch("/data/city_bridging_triage.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("City webpage preview unavailable");
+        return response.json();
+      })
+      .catch(function () { return {}; })
+  ]).then(function (sources) {
+      if (!dailyMount) return;
+      var openRows = sources[0];
+      var cityData = sources[1];
+      var latestOpenDate = openRows.reduce(function (latest, row) {
         return row.date > latest ? row.date : latest;
       }, "");
-      var rows = data.filter(function (row) { return row.date === latestDate; });
-      var singles = rows.find(function (row) { return row.key === "singles_total"; });
-      var system = rows.find(function (row) { return row.key === "all_shelter"; });
-      if (!singles || !system) throw new Error("Daily preview rows unavailable");
-      var dateParts = latestDate.split("-").map(Number);
-      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
-        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
-      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var latestCityDate = Object.keys(cityData.entries || {}).sort().reverse()
+        .find(function (date) {
+          var entry = cityData.entries[date];
+          return entry && entry.total_people != null &&
+            Number.isFinite(Number(entry.total_people));
+        }) || "";
+      var citySystem = latestCityDate ? cityData.entries[latestCityDate] : null;
+      var openSystem = openRows.find(function (row) {
+        return row.date === latestOpenDate && row.key === "all_shelter";
+      });
+      var useCity = citySystem && (!latestOpenDate || latestCityDate >= latestOpenDate);
+      var displayDate = useCity ? latestCityDate : latestOpenDate;
+      var displayTotal = useCity ? citySystem.total_people : openSystem && openSystem.ind;
+      if (!displayDate || displayTotal === undefined || displayTotal === null) {
+        throw new Error("Daily preview rows unavailable");
+      }
+
+      function dateLabel(isoDate) {
+        var parts = isoDate.split("-").map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]).toLocaleDateString(
+          locale, {year: "numeric", month: "long", day: "numeric"}
+        );
+      }
+
       var daily = make("div", "bq-preview-kpi bq-preview-daily");
-      var offlineLabel = make("span");
-      offlineLabel.append(
-        document.createTextNode(copy.offlineBedsBefore),
-        make("strong", "bq-preview-word", copy.offlineBedsEmphasis),
-        document.createTextNode(" · " + dateLabel)
-      );
       daily.append(
-        make("strong", "", Number(offline).toLocaleString(locale)),
-        offlineLabel,
-        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+        make("strong", "", Number(displayTotal).toLocaleString(locale)),
+        make("span", "", copy.accommodated),
+        make("small", "", (useCity ? copy.cityWebpage : copy.openData) +
+          " · " + dateLabel(displayDate))
       );
+      if (useCity && latestOpenDate && latestCityDate > latestOpenDate) {
+        daily.append(make("small", "", copy.openDataThrough + dateLabel(latestOpenDate)));
+      }
       dailyMount.replaceChildren(daily);
     })
     .catch(function () { showUnavailable(dailyMount); });

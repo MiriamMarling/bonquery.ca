@@ -306,7 +306,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../projects/data-validation.html">
- <span class="dropdown-text">Occupancy Data Validation</span></a>
+ <span class="dropdown-text">Daily Data Sources</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../projects/data-validation-central-intake.html">
@@ -354,7 +354,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#newly-identified-means-something-different-for-the-chronic-group" id="toc-newly-identified-means-something-different-for-the-chronic-group" class="nav-link" data-scroll-target="#newly-identified-means-something-different-for-the-chronic-group">“Newly Identified” means something different for the Chronic group</a></li>
   </ul></li>
   <li><a href="#for-analysts-the-refugee-split-is-a-clean-partition" id="toc-for-analysts-the-refugee-split-is-a-clean-partition" class="nav-link" data-scroll-target="#for-analysts-the-refugee-split-is-a-clean-partition">For analysts: the refugee split is a clean partition</a></li>
-  <li><a href="#corrections-context-and-collaboration" id="toc-corrections-context-and-collaboration" class="nav-link" data-scroll-target="#corrections-context-and-collaboration">Corrections, context, and collaboration</a></li>
+  <li><a href="#context-and-collaboration" id="toc-context-and-collaboration" class="nav-link" data-scroll-target="#context-and-collaboration">Context and collaboration</a></li>
   <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
@@ -395,9 +395,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="bq-status-note">
-<p><strong>WINTER MONITORING RETURNS IN NOVEMBER 2026.</strong> BonQuery will track the gap between the City’s reported capacity and its published source data throughout the 2026–2027 cold season. The standard is zero people left unplaced on nights reaching −5 °C.</p>
+<p><strong>COLD-WEATHER ARTICLE IN PREPARATION.</strong> BonQuery is preparing an article with its findings, sources, methods and limitations.</p>
 </div>
-<p>The figures across BonQuery’s dashboards come from open data the City of Toronto publishes about its shelter system. This page explains what that data is, where it comes from, and the few places where careful reading changes the conclusion you should draw. These are notes about the data itself, not findings about Toronto’s shelter system; the findings are on the audit and dashboard pages. How these numbers are checked against the City’s own published figures is documented separately on the <a href="../projects/data-validation.html" target="_blank">Emergency Occupancy Audit</a> and <a href="../projects/data-validation-central-intake.html" target="_blank">Central Intake Audit</a> pages.</p>
+<p>The figures across BonQuery’s dashboards come from open data the City of Toronto publishes about its shelter system. This page explains what that data is, where it comes from, and the few places where careful reading changes the conclusion you should draw. These are notes about the data itself, not findings about Toronto’s shelter system; the findings are on the audit and dashboard pages. How these numbers are checked against the City’s own published figures is documented separately on the <a href="../projects/data-validation.html" target="_blank">Daily Shelter Data Sources</a> and <a href="../projects/data-validation-central-intake.html" target="_blank">Central Intake Audit</a> pages.</p>
 <section id="where-the-data-comes-from" class="level2">
 <h2 class="anchored" data-anchor-id="where-the-data-comes-from">Where the data comes from</h2>
 <p>BonQuery draws on three datasets, all published by the City of Toronto on its <a href="https://open.toronto.ca/" target="_blank">Open Data portal</a> under the Open Government Licence – Toronto. Each is an aggregated product derived from the City’s internal Shelter Management Information System (SMIS); none is a raw feed of individual case records.</p>
@@ -460,11 +460,11 @@ ul.task-list li input[type="checkbox"] {
 <p>In every month from January 2018 to the present, the Refugees and Non-refugees values sum exactly to the All Population value for every column checked: people entering, people leaving, and the actively homeless stock. No other population dimension behaves this way.</p>
 <p>In practice: if an analysis needs mutually exclusive categories, for a stacked bar chart, a share-of-total calculation, or anything that assumes groups do not overlap, the refugee split is the one place in this data where that is mathematically safe.</p>
 </section>
-<section id="corrections-context-and-collaboration" class="level2">
-<h2 class="anchored" data-anchor-id="corrections-context-and-collaboration">Corrections, context, and collaboration</h2>
-<p>BonQuery is independent, but the work is intended to be useful to the City as well as to the public. We distinguish published policy, observed operations, and measured outcomes. City staff, service operators, researchers, and advocates are invited to identify errors, provide missing context, or point us to newer public records. When evidence changes a finding, we will document the correction.</p>
+<section id="context-and-collaboration" class="level2">
+<h2 class="anchored" data-anchor-id="context-and-collaboration">Context and collaboration</h2>
+<p>BonQuery is independent, but the work is intended to be useful to the City as well as to the public. We distinguish published policy, observed operations, and measured outcomes. City staff, service operators, researchers, and advocates are invited to share source context or point us to newer public records. When evidence changes a finding, we will document the change.</p>
 <p>The practical goal is to help improve the public record and support the work the <a href="https://www.toronto.ca/legdocs/mmis/2025/au/bgrd/backgroundfile-252902.pdf" target="_blank">Auditor General has already recommended</a>: better overflow and turnaway data, stronger estimates of winter space needs, more funded beds available for more of the season, timely readiness, consistent ramp-up and ramp-down practices, and a contingency plan when the shelter system is full. City management agreed with those recommendations. BonQuery will apply the same standard to progress and remaining gaps.</p>
-<p>To share a correction or discuss collaboration, contact <a href="mailto:info@BonQuery.ca">info@BonQuery.ca</a>.</p>
+<p>To discuss a source question or collaboration, contact <a href="mailto:info@BonQuery.ca">info@BonQuery.ca</a>.</p>
 </section>
 <section id="sources" class="level2">
 <h2 class="anchored" data-anchor-id="sources">Sources</h2>
@@ -554,9 +554,10 @@ ul.task-list li input[type="checkbox"] {
   var locale = isFR ? "fr-CA" : "en-CA";
   var copy = isFR ? {
     unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
-    offlineBedsBefore: "lits financés du secteur des personnes seules ",
-    offlineBedsEmphasis: "indisponibles",
-    acrossPrograms: " personnes recensées dans l'ensemble des programmes de refuge",
+    accommodated: "personnes hébergées à 4 h",
+    cityWebpage: "Page Web de la Ville",
+    openData: "Données ouvertes",
+    openDataThrough: "Fichier détaillé de données ouvertes jusqu'au ",
     activelyHomeless: "personnes en situation d'itinérance active",
     newlyIdentified: "Nouvellement identifiées",
     movedToHousing: "Ont obtenu un logement",
@@ -565,9 +566,10 @@ ul.task-list li input[type="checkbox"] {
     trend: "Tendance de l'itinérance active jusqu'à "
   } : {
     unavailable: "Preview unavailable. Open the dashboard.",
-    offlineBedsBefore: "funded shelter beds for single adults were ",
-    offlineBedsEmphasis: "unavailable",
-    acrossPrograms: " people staying in shelter programs",
+    accommodated: "people accommodated at 4 a.m.",
+    cityWebpage: "City webpage",
+    openData: "Open data",
+    openDataThrough: "Detailed Open Data file through ",
     activelyHomeless: "people counted as homeless",
     newlyIdentified: "Newly counted as homeless",
     movedToHousing: "Moved into housing",
@@ -607,36 +609,60 @@ ul.task-list li input[type="checkbox"] {
     mount.replaceChildren(make("span", "", copy.unavailable));
   }
 
-  fetch("/data/daily_occupancy.json", {cache: "no-cache"})
-    .then(function (response) {
-      if (!response.ok) throw new Error("Daily preview data unavailable");
-      return response.json();
-    })
-    .then(function (data) {
-      if (!dailyMount || !data.length) return;
-      var latestDate = data.reduce(function (latest, row) {
+  Promise.all([
+    fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("Open data preview unavailable");
+        return response.json();
+      })
+      .catch(function () { return []; }),
+    fetch("/data/city_bridging_triage.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("City webpage preview unavailable");
+        return response.json();
+      })
+      .catch(function () { return {}; })
+  ]).then(function (sources) {
+      if (!dailyMount) return;
+      var openRows = sources[0];
+      var cityData = sources[1];
+      var latestOpenDate = openRows.reduce(function (latest, row) {
         return row.date > latest ? row.date : latest;
       }, "");
-      var rows = data.filter(function (row) { return row.date === latestDate; });
-      var singles = rows.find(function (row) { return row.key === "singles_total"; });
-      var system = rows.find(function (row) { return row.key === "all_shelter"; });
-      if (!singles || !system) throw new Error("Daily preview rows unavailable");
-      var dateParts = latestDate.split("-").map(Number);
-      var dateLabel = new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
-        .toLocaleDateString(locale, {year: "numeric", month: "long", day: "numeric"});
-      var offline = Math.max((+singles.cap_funding || 0) - (+singles.cap || 0), 0);
+      var latestCityDate = Object.keys(cityData.entries || {}).sort().reverse()
+        .find(function (date) {
+          var entry = cityData.entries[date];
+          return entry && entry.total_people != null &&
+            Number.isFinite(Number(entry.total_people));
+        }) || "";
+      var citySystem = latestCityDate ? cityData.entries[latestCityDate] : null;
+      var openSystem = openRows.find(function (row) {
+        return row.date === latestOpenDate && row.key === "all_shelter";
+      });
+      var useCity = citySystem && (!latestOpenDate || latestCityDate >= latestOpenDate);
+      var displayDate = useCity ? latestCityDate : latestOpenDate;
+      var displayTotal = useCity ? citySystem.total_people : openSystem && openSystem.ind;
+      if (!displayDate || displayTotal === undefined || displayTotal === null) {
+        throw new Error("Daily preview rows unavailable");
+      }
+
+      function dateLabel(isoDate) {
+        var parts = isoDate.split("-").map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]).toLocaleDateString(
+          locale, {year: "numeric", month: "long", day: "numeric"}
+        );
+      }
+
       var daily = make("div", "bq-preview-kpi bq-preview-daily");
-      var offlineLabel = make("span");
-      offlineLabel.append(
-        document.createTextNode(copy.offlineBedsBefore),
-        make("strong", "bq-preview-word", copy.offlineBedsEmphasis),
-        document.createTextNode(" · " + dateLabel)
-      );
       daily.append(
-        make("strong", "", Number(offline).toLocaleString(locale)),
-        offlineLabel,
-        make("small", "", Number(system.ind).toLocaleString(locale) + copy.acrossPrograms)
+        make("strong", "", Number(displayTotal).toLocaleString(locale)),
+        make("span", "", copy.accommodated),
+        make("small", "", (useCity ? copy.cityWebpage : copy.openData) +
+          " · " + dateLabel(displayDate))
       );
+      if (useCity && latestOpenDate && latestCityDate > latestOpenDate) {
+        daily.append(make("small", "", copy.openDataThrough + dateLabel(latestOpenDate)));
+      }
       dailyMount.replaceChildren(daily);
     })
     .catch(function () { showUnavailable(dailyMount); });

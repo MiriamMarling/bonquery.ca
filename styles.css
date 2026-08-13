@@ -231,7 +231,7 @@ body:has(.bq-home-lede) #title-block-header .description {
   margin: 0 0 1.4rem;
 }
 
-.bq-purpose-grid a {
+.bq-purpose-grid > :is(a, button) {
   display: flex;
   min-width: 0;
   align-items: center;
@@ -244,10 +244,18 @@ body:has(.bq-home-lede) #title-block-header .description {
   text-decoration: none !important;
 }
 
-.bq-purpose-grid a:nth-child(1) { border-top: 3px solid var(--bq-success); }
-.bq-purpose-grid a:nth-child(2) { border-top: 3px solid var(--bq-chart-blue); }
-.bq-purpose-grid a:nth-child(3) { border-top: 3px solid var(--bq-caution); }
-.bq-purpose-grid a.bq-purpose-proof {
+.bq-purpose-grid > :nth-child(1) { border-top: 3px solid var(--bq-success); }
+.bq-purpose-grid > :nth-child(2) { border-top: 3px solid var(--bq-chart-blue); }
+.bq-purpose-grid > :nth-child(3) { border-top: 3px solid var(--bq-caution); }
+
+.bq-purpose-grid button {
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bq-purpose-grid .bq-purpose-proof {
   border-top-color: var(--bq-caution);
 }
 
@@ -261,6 +269,16 @@ body:has(.bq-home-lede) #title-block-header .description {
   color: var(--bq-fg-muted);
   font-size: 0.75rem;
   line-height: 1.3;
+}
+
+.bq-purpose-chevron {
+  margin-left: auto;
+  font-size: 0.85rem !important;
+  transition: transform 0.2s ease;
+}
+
+.bq-purpose-proof[aria-expanded="true"] .bq-purpose-chevron {
+  transform: rotate(180deg);
 }
 
 .bq-home-status {
@@ -762,6 +780,10 @@ body:has(.bq-home-lede) .bq-quick-links { margin-bottom: 0; }
   border-left-color: var(--bq-caution);
 }
 
+.bq-proof-collapse .bq-proof-note {
+  margin-top: 0;
+}
+
 @media (max-width: 900px) {
   .bq-dashboard-grid,
   .bq-work-rhythm,
@@ -779,6 +801,7 @@ body:has(.bq-home-lede) .bq-quick-links { margin-bottom: 0; }
   .bq-dashboard-card { transition: none; }
   .bq-help-actions a { transition: none; }
   .bq-preview-skeleton { animation: none; }
+  .bq-purpose-chevron { transition: none; }
 }
 
 /* Style the "Audit Evidence ↓" / "Tables ↓" section headers in the Evidence

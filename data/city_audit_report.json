@@ -1,8 +1,35 @@
 {
-  "generated_at": "2026-08-13T20:13:26.239148Z",
+  "generated_at": "2026-08-18T15:12:54.712040Z",
   "dates": [
     {
-      "date": "2026-08-12",
+      "date": "2026-08-13",
+      "status": "pending",
+      "passed": null,
+      "pending": true,
+      "sectors_compared": 0,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    {
+      "date": "2026-08-14",
+      "status": "pending",
+      "passed": null,
+      "pending": true,
+      "sectors_compared": 0,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    {
+      "date": "2026-08-15",
+      "status": "pending",
+      "passed": null,
+      "pending": true,
+      "sectors_compared": 0,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    {
+      "date": "2026-08-16",
       "status": "pending",
       "passed": null,
       "pending": true,
@@ -13,8 +40,8 @@
   ],
   "total_mismatches": 0,
   "any_pending": true,
-  "city_date": "2026-08-12",
-  "audit_date": "2026-08-12",
+  "city_date": "2026-08-16",
+  "audit_date": "2026-08-16",
   "our_date": "2026-08-05",
   "mismatch_count": 0,
   "passed": false,

@@ -277,6 +277,18 @@
     "2026-08-20": {
       "bridging_triage": 4,
       "total_people": 7629
+    },
+    "2026-08-21": {
+      "bridging_triage": 4,
+      "total_people": 7637
+    },
+    "2026-08-22": {
+      "bridging_triage": 0,
+      "total_people": 7626
+    },
+    "2026-08-23": {
+      "bridging_triage": 0,
+      "total_people": 7626
     }
   }
 }

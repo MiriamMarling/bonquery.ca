@@ -1,4 +1,34 @@
 date,key,label,ind,occ,unocc,cap,cap_funding,rate,col_type,indent,is_total
+2026-08-28,all_shelter,"All Shelter Programs, Total",7574,,,,,,summary,0,True
+2026-08-28,room_based,"Shelter Programs, Room-Based, Total",1936,,,,,,summary,1,True
+2026-08-28,singles_sector,"Singles Sector Programs, Total",5638,,,,,,summary,1,True
+2026-08-28,singles_shelter,"  Shelter Programs, Singles, Total",3252,3252,124,3376,3490,96.3,summary,2,False
+2026-08-28,allied_summ,"  Allied Services, Total",358,358,10,368,368,97.3,summary,2,False
+2026-08-28,temp_summ,"  Temporary Programs, Total",2028,,,,,,summary,2,False
+2026-08-28,iso_summ,Temporary Isolation/Recovery Programs,0,0,0,0,0,,summary,1,False
+2026-08-28,fam_total,"Family Sector, Total",1521,489,3,492,586,99.4,room,0,True
+2026-08-28,fam_emerg,"Families, Emergency Shelter Programs",683,230,2,232,249,99.1,room,1,False
+2026-08-28,fam_trans_r,"Families, Transitional Shelter Programs",341,120,0,120,119,100.0,room,1,False
+2026-08-28,fam_hotel,"Families, Motel/Hotel Programs",497,139,1,140,218,99.3,room,1,False
+2026-08-28,sng_hotel,"Single Sector Motel/Hotel, Total",415,199,0,199,258,100.0,room,0,True
+2026-08-28,singles_total,"Singles Sectors, Total",3252,3252,124,3376,3490,96.3,bed,0,True
+2026-08-28,emerg_total,"Emergency Shelter Programs, Total",2480,2480,63,2543,2645,97.5,bed,1,True
+2026-08-28,mix_emerg,"Mixed Adult, Emergency",525,525,3,528,537,99.4,bed,2,False
+2026-08-28,men_emerg,"Men, Emergency",1030,1030,50,1080,1166,95.4,bed,2,False
+2026-08-28,wom_emerg,"Women, Emergency",485,485,1,486,492,99.8,bed,2,False
+2026-08-28,yth_emerg,"Youth, Emergency",440,440,9,449,450,98.0,bed,2,False
+2026-08-28,trans_total,"Transitional Shelter Programs, Total",772,772,61,833,845,92.7,bed,1,True
+2026-08-28,mix_trans,"Mixed Adult, Transitional",212,212,7,219,219,96.8,bed,2,False
+2026-08-28,fam_trans_b,"Families, Transitional",7,7,14,21,22,33.3,bed,2,False
+2026-08-28,men_trans,"Men, Transitional",166,166,16,182,185,91.2,bed,2,False
+2026-08-28,wom_trans,"Women, Transitional",120,120,2,122,128,98.4,bed,2,False
+2026-08-28,yth_trans,"Youth, Transitional",267,267,22,289,291,92.4,bed,2,False
+2026-08-28,allied_total,"Allied Services, Total",358,358,10,368,368,97.3,bed,0,True
+2026-08-28,respites,24-Hour Respites,298,298,2,300,300,99.3,bed,1,False
+2026-08-28,dropin,24-Hour Women's Drop-ins,60,60,8,68,68,88.2,bed,1,False
+2026-08-28,temp_resp,24-Hour Temporary Response Sites,49,49,0,49,50,100.0,bed,0,False
+2026-08-28,hotels,Hotels,1979,1485,4,1489,1515,99.7,room,0,False
+2026-08-28,iso,Isolation/Recovery Programs Combined Total,0,0,0,0,0,,room,0,False
 2026-08-27,all_shelter,"All Shelter Programs, Total",7592,,,,,,summary,0,True
 2026-08-27,room_based,"Shelter Programs, Room-Based, Total",1944,,,,,,summary,1,True
 2026-08-27,singles_sector,"Singles Sector Programs, Total",5648,,,,,,summary,1,True

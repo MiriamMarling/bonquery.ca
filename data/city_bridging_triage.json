@@ -325,6 +325,10 @@
     "2026-09-01": {
       "bridging_triage": 1,
       "total_people": 7509
+    },
+    "2026-09-02": {
+      "bridging_triage": 1,
+      "total_people": 7483
     }
   }
 }

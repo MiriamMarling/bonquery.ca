@@ -1,64 +1,14 @@
 {
-  "generated_at": "2026-09-18T14:31:17.524859Z",
+  "generated_at": "2026-09-18T19:19:31.877639Z",
   "dates": [
     {
-      "date": "2026-09-16",
+      "date": "2026-09-17",
       "status": "fail",
       "passed": false,
       "pending": false,
       "sectors_compared": 28,
-      "mismatch_count": 32,
+      "mismatch_count": 19,
       "mismatches": [
-        {
-          "key": "allied_total",
-          "label": "Allied Services, Total",
-          "column": "individuals",
-          "city_col": "city_ind",
-          "our_col": "ind",
-          "city_val": 355,
-          "our_val": 354,
-          "delta": 1.0
-        },
-        {
-          "key": "allied_total",
-          "label": "Allied Services, Total",
-          "column": "occupied",
-          "city_col": "city_occ",
-          "our_col": "occ",
-          "city_val": 355,
-          "our_val": 354,
-          "delta": 1.0
-        },
-        {
-          "key": "allied_total",
-          "label": "Allied Services, Total",
-          "column": "unoccupied",
-          "city_col": "city_unocc",
-          "our_col": "unocc",
-          "city_val": 12,
-          "our_val": 13,
-          "delta": -1.0
-        },
-        {
-          "key": "allied_total",
-          "label": "Allied Services, Total",
-          "column": "occupancy rate",
-          "city_col": "city_rate",
-          "our_col": "rate",
-          "city_val": 96.7,
-          "our_val": 96.5,
-          "delta": 0.2
-        },
-        {
-          "key": "temp_summ",
-          "label": "Temporary Programs, Total",
-          "column": "individuals",
-          "city_col": "city_ind",
-          "our_col": "ind",
-          "city_val": 1954,
-          "our_val": 1955,
-          "delta": -1.0
-        },
         {
           "key": "iso",
           "label": "Temporary Isolation/Recovery Programs Combined Total",
@@ -75,8 +25,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 180,
-          "our_val": 116,
+          "city_val": 185,
+          "our_val": 121,
           "delta": 64.0
         },
         {
@@ -85,8 +35,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 3400,
-          "our_val": 3336,
+          "city_val": 3397,
+          "our_val": 3333,
           "delta": 64.0
         },
         {
@@ -95,8 +45,8 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 94.7,
-          "our_val": 96.5,
+          "city_val": 94.6,
+          "our_val": 96.4,
           "delta": -1.8
         },
         {
@@ -105,8 +55,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 125,
-          "our_val": 61,
+          "city_val": 132,
+          "our_val": 68,
           "delta": 64.0
         },
         {
@@ -115,8 +65,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 2571,
-          "our_val": 2507,
+          "city_val": 2568,
+          "our_val": 2504,
           "delta": 64.0
         },
         {
@@ -125,9 +75,9 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 95.1,
-          "our_val": 97.6,
-          "delta": -2.5
+          "city_val": 94.9,
+          "our_val": 97.3,
+          "delta": -2.4
         },
         {
           "key": "mix_emerg",
@@ -135,8 +85,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 28,
-          "our_val": 3,
+          "city_val": 29,
+          "our_val": 4,
           "delta": 25.0
         },
         {
@@ -145,8 +95,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 558,
-          "our_val": 533,
+          "city_val": 557,
+          "our_val": 532,
           "delta": 25.0
         },
         {
@@ -155,8 +105,8 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 95.0,
-          "our_val": 99.4,
+          "city_val": 94.8,
+          "our_val": 99.2,
           "delta": -4.4
         },
         {
@@ -165,8 +115,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 65,
-          "our_val": 43,
+          "city_val": 70,
+          "our_val": 48,
           "delta": 22.0
         },
         {
@@ -175,8 +125,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 1076,
-          "our_val": 1054,
+          "city_val": 1072,
+          "our_val": 1050,
           "delta": 22.0
         },
         {
@@ -185,8 +135,8 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 94.0,
-          "our_val": 95.9,
+          "city_val": 93.5,
+          "our_val": 95.4,
           "delta": -1.9
         },
         {
@@ -225,8 +175,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 22,
-          "our_val": 15,
+          "city_val": 23,
+          "our_val": 16,
           "delta": 7.0
         },
         {
@@ -235,8 +185,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 454,
-          "our_val": 447,
+          "city_val": 456,
+          "our_val": 449,
           "delta": 7.0
         },
         {
@@ -245,151 +195,21 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 95.2,
-          "our_val": 96.6,
+          "city_val": 95.0,
+          "our_val": 96.4,
           "delta": -1.4
-        },
-        {
-          "key": "respites",
-          "label": "24-Hour Respites",
-          "column": "individuals",
-          "city_col": "city_ind",
-          "our_col": "ind",
-          "city_val": 298,
-          "our_val": 297,
-          "delta": 1.0
-        },
-        {
-          "key": "respites",
-          "label": "24-Hour Respites",
-          "column": "occupied",
-          "city_col": "city_occ",
-          "our_col": "occ",
-          "city_val": 298,
-          "our_val": 297,
-          "delta": 1.0
-        },
-        {
-          "key": "respites",
-          "label": "24-Hour Respites",
-          "column": "unoccupied",
-          "city_col": "city_unocc",
-          "our_col": "unocc",
-          "city_val": 1,
-          "our_val": 2,
-          "delta": -1.0
-        },
-        {
-          "key": "respites",
-          "label": "24-Hour Respites",
-          "column": "occupancy rate",
-          "city_col": "city_rate",
-          "our_col": "rate",
-          "city_val": 99.7,
-          "our_val": 99.3,
-          "delta": 0.4
-        },
-        {
-          "key": "temp_resp",
-          "label": "24-Hour Temporary Response Sites",
-          "column": "individuals",
-          "city_col": "city_ind",
-          "our_col": "ind",
-          "city_val": 49,
-          "our_val": 50,
-          "delta": -1.0
-        },
-        {
-          "key": "temp_resp",
-          "label": "24-Hour Temporary Response Sites",
-          "column": "occupied",
-          "city_col": "city_occ",
-          "our_col": "occ",
-          "city_val": 49,
-          "our_val": 50,
-          "delta": -1.0
-        },
-        {
-          "key": "temp_resp",
-          "label": "24-Hour Temporary Response Sites",
-          "column": "unoccupied",
-          "city_col": "city_unocc",
-          "our_col": "unocc",
-          "city_val": 1,
-          "our_val": 0,
-          "delta": 1.0
-        },
-        {
-          "key": "temp_resp",
-          "label": "24-Hour Temporary Response Sites",
-          "column": "occupancy rate",
-          "city_col": "city_rate",
-          "our_col": "rate",
-          "city_val": 98.0,
-          "our_val": 100.0,
-          "delta": -2.0
         }
       ]
     }
   ],
-  "total_mismatches": 32,
+  "total_mismatches": 19,
   "any_pending": false,
-  "city_date": "2026-09-16",
-  "audit_date": "2026-09-16",
+  "city_date": "2026-09-17",
+  "audit_date": "2026-09-17",
   "our_date": "2026-09-17",
-  "mismatch_count": 32,
+  "mismatch_count": 19,
   "passed": false,
   "mismatches": [
-    {
-      "key": "allied_total",
-      "label": "Allied Services, Total",
-      "column": "individuals",
-      "city_col": "city_ind",
-      "our_col": "ind",
-      "city_val": 355,
-      "our_val": 354,
-      "delta": 1.0
-    },
-    {
-      "key": "allied_total",
-      "label": "Allied Services, Total",
-      "column": "occupied",
-      "city_col": "city_occ",
-      "our_col": "occ",
-      "city_val": 355,
-      "our_val": 354,
-      "delta": 1.0
-    },
-    {
-      "key": "allied_total",
-      "label": "Allied Services, Total",
-      "column": "unoccupied",
-      "city_col": "city_unocc",
-      "our_col": "unocc",
-      "city_val": 12,
-      "our_val": 13,
-      "delta": -1.0
-    },
-    {
-      "key": "allied_total",
-      "label": "Allied Services, Total",
-      "column": "occupancy rate",
-      "city_col": "city_rate",
-      "our_col": "rate",
-      "city_val": 96.7,
-      "our_val": 96.5,
-      "delta": 0.2
-    },
-    {
-      "key": "temp_summ",
-      "label": "Temporary Programs, Total",
-      "column": "individuals",
-      "city_col": "city_ind",
-      "our_col": "ind",
-      "city_val": 1954,
-      "our_val": 1955,
-      "delta": -1.0
-    },
     {
       "key": "iso",
       "label": "Temporary Isolation/Recovery Programs Combined Total",
@@ -406,8 +226,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 180,
-      "our_val": 116,
+      "city_val": 185,
+      "our_val": 121,
       "delta": 64.0
     },
     {
@@ -416,8 +236,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 3400,
-      "our_val": 3336,
+      "city_val": 3397,
+      "our_val": 3333,
       "delta": 64.0
     },
     {
@@ -426,8 +246,8 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 94.7,
-      "our_val": 96.5,
+      "city_val": 94.6,
+      "our_val": 96.4,
       "delta": -1.8
     },
     {
@@ -436,8 +256,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 125,
-      "our_val": 61,
+      "city_val": 132,
+      "our_val": 68,
       "delta": 64.0
     },
     {
@@ -446,8 +266,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 2571,
-      "our_val": 2507,
+      "city_val": 2568,
+      "our_val": 2504,
       "delta": 64.0
     },
     {
@@ -456,9 +276,9 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 95.1,
-      "our_val": 97.6,
-      "delta": -2.5
+      "city_val": 94.9,
+      "our_val": 97.3,
+      "delta": -2.4
     },
     {
       "key": "mix_emerg",
@@ -466,8 +286,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 28,
-      "our_val": 3,
+      "city_val": 29,
+      "our_val": 4,
       "delta": 25.0
     },
     {
@@ -476,8 +296,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 558,
-      "our_val": 533,
+      "city_val": 557,
+      "our_val": 532,
       "delta": 25.0
     },
     {
@@ -486,8 +306,8 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 95.0,
-      "our_val": 99.4,
+      "city_val": 94.8,
+      "our_val": 99.2,
       "delta": -4.4
     },
     {
@@ -496,8 +316,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 65,
-      "our_val": 43,
+      "city_val": 70,
+      "our_val": 48,
       "delta": 22.0
     },
     {
@@ -506,8 +326,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 1076,
-      "our_val": 1054,
+      "city_val": 1072,
+      "our_val": 1050,
       "delta": 22.0
     },
     {
@@ -516,8 +336,8 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 94.0,
-      "our_val": 95.9,
+      "city_val": 93.5,
+      "our_val": 95.4,
       "delta": -1.9
     },
     {
@@ -556,8 +376,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 22,
-      "our_val": 15,
+      "city_val": 23,
+      "our_val": 16,
       "delta": 7.0
     },
     {
@@ -566,8 +386,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 454,
-      "our_val": 447,
+      "city_val": 456,
+      "our_val": 449,
       "delta": 7.0
     },
     {
@@ -576,89 +396,9 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 95.2,
-      "our_val": 96.6,
+      "city_val": 95.0,
+      "our_val": 96.4,
       "delta": -1.4
-    },
-    {
-      "key": "respites",
-      "label": "24-Hour Respites",
-      "column": "individuals",
-      "city_col": "city_ind",
-      "our_col": "ind",
-      "city_val": 298,
-      "our_val": 297,
-      "delta": 1.0
-    },
-    {
-      "key": "respites",
-      "label": "24-Hour Respites",
-      "column": "occupied",
-      "city_col": "city_occ",
-      "our_col": "occ",
-      "city_val": 298,
-      "our_val": 297,
-      "delta": 1.0
-    },
-    {
-      "key": "respites",
-      "label": "24-Hour Respites",
-      "column": "unoccupied",
-      "city_col": "city_unocc",
-      "our_col": "unocc",
-      "city_val": 1,
-      "our_val": 2,
-      "delta": -1.0
-    },
-    {
-      "key": "respites",
-      "label": "24-Hour Respites",
-      "column": "occupancy rate",
-      "city_col": "city_rate",
-      "our_col": "rate",
-      "city_val": 99.7,
-      "our_val": 99.3,
-      "delta": 0.4
-    },
-    {
-      "key": "temp_resp",
-      "label": "24-Hour Temporary Response Sites",
-      "column": "individuals",
-      "city_col": "city_ind",
-      "our_col": "ind",
-      "city_val": 49,
-      "our_val": 50,
-      "delta": -1.0
-    },
-    {
-      "key": "temp_resp",
-      "label": "24-Hour Temporary Response Sites",
-      "column": "occupied",
-      "city_col": "city_occ",
-      "our_col": "occ",
-      "city_val": 49,
-      "our_val": 50,
-      "delta": -1.0
-    },
-    {
-      "key": "temp_resp",
-      "label": "24-Hour Temporary Response Sites",
-      "column": "unoccupied",
-      "city_col": "city_unocc",
-      "our_col": "unocc",
-      "city_val": 1,
-      "our_val": 0,
-      "delta": 1.0
-    },
-    {
-      "key": "temp_resp",
-      "label": "24-Hour Temporary Response Sites",
-      "column": "occupancy rate",
-      "city_col": "city_rate",
-      "our_col": "rate",
-      "city_val": 98.0,
-      "our_val": 100.0,
-      "delta": -2.0
     }
   ]
 }

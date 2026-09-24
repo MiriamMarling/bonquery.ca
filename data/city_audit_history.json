@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-23T15:04:15.377985Z",
+  "updated_at": "2026-09-24T15:09:22.754456Z",
   "coverage": {
     "first_audit_date": "2026-05-27",
-    "last_audit_date": "2026-09-21",
-    "successfully_parsed_dates": 85,
-    "dates_with_mismatches": 85,
-    "exact_detail_records": 45,
+    "last_audit_date": "2026-09-22",
+    "successfully_parsed_dates": 86,
+    "dates_with_mismatches": 86,
+    "exact_detail_records": 46,
     "parser_failures_counted_as_passes": false
   },
   "retrospective_evidence": [
@@ -13717,6 +13717,210 @@
           "city_val": 50,
           "our_val": 49,
           "delta": 1.0
+        }
+      ],
+      "evidence_source": "automated-city-table-comparison",
+      "details_complete": true
+    },
+    {
+      "date": "2026-09-22",
+      "status": "fail",
+      "passed": false,
+      "first_audited_at": "2026-09-24T15:09:22.754456Z",
+      "last_audited_at": "2026-09-24T15:09:22.754456Z",
+      "our_latest_date": "2026-09-23",
+      "sectors_compared": 28,
+      "mismatch_count": 19,
+      "mismatches": [
+        {
+          "key": "iso",
+          "label": "Temporary Isolation/Recovery Programs Combined Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 0.0,
+          "our_val": null,
+          "delta": null
+        },
+        {
+          "key": "singles_total",
+          "label": "Singles Sectors, Total",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 194,
+          "our_val": 130,
+          "delta": 64.0
+        },
+        {
+          "key": "singles_total",
+          "label": "Singles Sectors, Total",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 3394,
+          "our_val": 3330,
+          "delta": 64.0
+        },
+        {
+          "key": "singles_total",
+          "label": "Singles Sectors, Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 94.3,
+          "our_val": 96.1,
+          "delta": -1.8
+        },
+        {
+          "key": "emerg_total",
+          "label": "Emergency Shelter Programs, Total",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 135,
+          "our_val": 71,
+          "delta": 64.0
+        },
+        {
+          "key": "emerg_total",
+          "label": "Emergency Shelter Programs, Total",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 2565,
+          "our_val": 2501,
+          "delta": 64.0
+        },
+        {
+          "key": "emerg_total",
+          "label": "Emergency Shelter Programs, Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 94.7,
+          "our_val": 97.2,
+          "delta": -2.5
+        },
+        {
+          "key": "mix_emerg",
+          "label": "Mixed Adult, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 32,
+          "our_val": 7,
+          "delta": 25.0
+        },
+        {
+          "key": "mix_emerg",
+          "label": "Mixed Adult, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 557,
+          "our_val": 532,
+          "delta": 25.0
+        },
+        {
+          "key": "mix_emerg",
+          "label": "Mixed Adult, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 94.3,
+          "our_val": 98.7,
+          "delta": -4.4
+        },
+        {
+          "key": "men_emerg",
+          "label": "Men, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 73,
+          "our_val": 51,
+          "delta": 22.0
+        },
+        {
+          "key": "men_emerg",
+          "label": "Men, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 1068,
+          "our_val": 1046,
+          "delta": 22.0
+        },
+        {
+          "key": "men_emerg",
+          "label": "Men, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 93.2,
+          "our_val": 95.1,
+          "delta": -1.9
+        },
+        {
+          "key": "wom_emerg",
+          "label": "Women, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 11,
+          "our_val": 1,
+          "delta": 10.0
+        },
+        {
+          "key": "wom_emerg",
+          "label": "Women, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 484,
+          "our_val": 474,
+          "delta": 10.0
+        },
+        {
+          "key": "wom_emerg",
+          "label": "Women, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 97.7,
+          "our_val": 99.8,
+          "delta": -2.1
+        },
+        {
+          "key": "yth_emerg",
+          "label": "Youth, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 19,
+          "our_val": 12,
+          "delta": 7.0
+        },
+        {
+          "key": "yth_emerg",
+          "label": "Youth, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 456,
+          "our_val": 449,
+          "delta": 7.0
+        },
+        {
+          "key": "yth_emerg",
+          "label": "Youth, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 95.8,
+          "our_val": 97.3,
+          "delta": -1.5
         }
       ],
       "evidence_source": "automated-city-table-comparison",

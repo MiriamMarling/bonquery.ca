@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-29T16:39:51.794525Z",
+  "updated_at": "2026-09-30T16:32:41.678228Z",
   "coverage": {
     "first_audit_date": "2026-05-27",
     "last_audit_date": "2026-09-27",
@@ -14539,8 +14539,8 @@
       "status": "fail",
       "passed": false,
       "first_audited_at": "2026-09-29T16:39:51.794525Z",
-      "last_audited_at": "2026-09-29T16:39:51.794525Z",
-      "our_latest_date": "2026-09-28",
+      "last_audited_at": "2026-09-30T16:32:41.678228Z",
+      "our_latest_date": "2026-09-29",
       "sectors_compared": 28,
       "mismatch_count": 29,
       "mismatches": [
@@ -14843,8 +14843,8 @@
       "status": "fail",
       "passed": false,
       "first_audited_at": "2026-09-29T16:39:51.794525Z",
-      "last_audited_at": "2026-09-29T16:39:51.794525Z",
-      "our_latest_date": "2026-09-28",
+      "last_audited_at": "2026-09-30T16:32:41.678228Z",
+      "our_latest_date": "2026-09-29",
       "sectors_compared": 28,
       "mismatch_count": 29,
       "mismatches": [
@@ -15147,8 +15147,8 @@
       "status": "fail",
       "passed": false,
       "first_audited_at": "2026-09-29T16:39:51.794525Z",
-      "last_audited_at": "2026-09-29T16:39:51.794525Z",
-      "our_latest_date": "2026-09-28",
+      "last_audited_at": "2026-09-30T16:32:41.678228Z",
+      "our_latest_date": "2026-09-29",
       "sectors_compared": 28,
       "mismatch_count": 29,
       "mismatches": [

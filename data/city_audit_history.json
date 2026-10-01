@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-30T21:05:11.669690Z",
+  "updated_at": "2026-10-01T17:12:45.874057Z",
   "coverage": {
     "first_audit_date": "2026-05-27",
     "last_audit_date": "2026-09-29",
@@ -15655,8 +15655,8 @@
       "status": "fail",
       "passed": false,
       "first_audited_at": "2026-09-30T21:05:11.669690Z",
-      "last_audited_at": "2026-09-30T21:05:11.669690Z",
-      "our_latest_date": "2026-09-29",
+      "last_audited_at": "2026-10-01T17:12:45.874057Z",
+      "our_latest_date": "2026-09-30",
       "sectors_compared": 28,
       "mismatch_count": 19,
       "mismatches": [

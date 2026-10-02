@@ -437,6 +437,14 @@
     "2026-09-29": {
       "bridging_triage": 0,
       "total_people": 7234
+    },
+    "2026-09-30": {
+      "bridging_triage": 0,
+      "total_people": 7221
+    },
+    "2026-10-01": {
+      "bridging_triage": 2,
+      "total_people": 7155
     }
   }
 }

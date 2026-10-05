@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Normal Distribution &amp; z-Score Explorer - PSYC 2020</title>
+<!--
+  Self-contained, offline single-file HTML5 widget for PSYC 2020 (Test 1, Ch 6:
+  Using Frequency Distributions / z-scores). No external assets, fonts, scripts,
+  or network calls - host on eClass as a File / URL / Page resource, or import
+  into H5P. Pairs with the static z-score materials (T1-035 questions,
+  T1-036 solutions). Built during the Test 1 content-review session.
+  Defaults to the classic IQ scale (mu=100, sd=15). The raw-score slider range
+  follows mu +/- 4 sd, so it always spans the full curve regardless of settings.
+-->
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#ffffff; --fg:#1a1a1a; --muted:#666; --line:#e2e2e2; --card:#f7f7f8;
+    --accent:#3355bb; --curve:#3355bb; --fill:rgba(51,85,187,.28);
+    --grid:#ececec; --axis:#888; --good:#2a7d4f;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#16181c; --fg:#e6e6e6; --muted:#9aa0a8; --line:#2c2f36; --card:#1e2127;
+      --accent:#8fa8ff; --curve:#8fa8ff; --fill:rgba(143,168,255,.30);
+      --grid:#262a31; --axis:#7d838c; --good:#5fd39a;}
+  }
+  :root[data-theme=dark]{--bg:#16181c; --fg:#e6e6e6; --muted:#9aa0a8; --line:#2c2f36; --card:#1e2127;
+    --accent:#8fa8ff; --curve:#8fa8ff; --fill:rgba(143,168,255,.30); --grid:#262a31; --axis:#7d838c; --good:#5fd39a;}
+  :root[data-theme=light]{--bg:#ffffff; --fg:#1a1a1a; --muted:#666; --line:#e2e2e2; --card:#f7f7f8;
+    --accent:#3355bb; --curve:#3355bb; --fill:rgba(51,85,187,.28); --grid:#ececec; --axis:#888; --good:#2a7d4f;}
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:1.2rem; max-width:56rem; margin:0 auto;}
+  h1{font-size:1.3rem; margin:0 0 .2rem}
+  .sub{color:var(--muted); font-size:1rem; margin:0 0 1rem}
+  .wrap{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1rem;}
+  canvas{width:100%; height:auto; display:block; border-radius:6px; touch-action:none;}
+  .controls{display:grid; grid-template-columns:1fr 1fr; gap:.8rem 1.4rem; margin-top:1rem;}
+  @media (max-width:560px){.controls{grid-template-columns:1fr}}
+  .ctrl label{display:flex; justify-content:space-between; font-size:1rem; font-weight:600; margin-bottom:.15rem}
+  .ctrl label .val{font-family:ui-monospace,Menlo,monospace; color:var(--accent)}
+  input[type=range]{width:100%; accent-color:var(--accent)}
+  .presets{grid-column:1/-1; display:flex; flex-wrap:wrap; gap:.5rem; align-items:center}
+  .mode{grid-column:1/-1; display:flex; flex-wrap:wrap; gap:.4rem .9rem; align-items:center; font-size:1rem}
+  .mode fieldset{border:0; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.3rem .9rem}
+  .mode legend{font-weight:600; padding:0; float:left; margin-right:.6rem}
+  .readout{grid-column:1/-1; display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.2rem}
+  .stat{flex:1 1 8rem; background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:.5rem .7rem}
+  .stat .k{font-size:1rem; color:var(--muted); text-transform:uppercase; letter-spacing:.03em}
+  .stat .v{font-size:1.15rem; font-weight:700; font-family:ui-monospace,Menlo,monospace}
+  .stat .v.big{color:var(--good)}
+  .note{font-size:1rem; color:var(--muted); margin-top:.9rem; line-height:1.45}
+  .note code{font-family:ui-monospace,Menlo,monospace}
+  button.btn{font:inherit; font-size:1rem; padding:.25rem .7rem; border:1px solid var(--line);
+    background:var(--bg); color:var(--fg); border-radius:6px; cursor:pointer;}
+  button.btn:hover{border-color:var(--accent)}
+  .eq{background:var(--bg); border:1px dashed var(--line); border-radius:6px; padding:.4rem .7rem;
+    font-family:ui-monospace,Menlo,monospace; font-size:1rem; grid-column:1/-1}
+</style>
+</head>
+<body>
+<h1>Normal Distribution &amp; <i>z</i>-Score Explorer</h1>
+<p class="sub">Change the mean (μ) and standard deviation (σ) and watch the curve move and rescale.
+Drag on the graph (or use the score slider) to pick a raw score X; the shaded area is the probability,
+and <code>z = (X − μ) / σ</code>. Defaults to the IQ scale (μ = 100, σ = 15).</p>
+
+<div class="wrap">
+  <canvas id="c" width="900" height="380" aria-label="Normal distribution curve with shaded area"></canvas>
+
+  <div class="controls">
+    <div class="ctrl">
+      <label for="mu">Mean μ <span class="val" id="muv">100</span></label>
+      <input type="range" id="mu" min="0" max="200" step="1" value="100">
+    </div>
+    <div class="ctrl">
+      <label for="sd">Std&nbsp;dev σ <span class="val" id="sdv">15</span></label>
+      <input type="range" id="sd" min="1" max="40" step="0.5" value="15">
+    </div>
+    <div class="ctrl">
+      <label for="x">Raw score X <span class="val" id="xv">130</span></label>
+      <input type="range" id="x" min="40" max="160" step="1" value="130">
+    </div>
+    <div class="presets">
+      <span style="font-size:1rem;font-weight:600;color:var(--muted)">Presets:</span>
+      <button class="btn" id="iq" type="button">IQ scale (μ=100, σ=15)</button>
+      <button class="btn" id="std" type="button">Standard normal (μ=0, σ=1)</button>
+    </div>
+
+    <div class="mode">
+      <fieldset>
+        <legend>Shade area</legend>
+        <label><input type="radio" name="mode" value="below" checked> below X</label>
+        <label><input type="radio" name="mode" value="above"> above X</label>
+        <label><input type="radio" name="mode" value="between"> between μ and X</label>
+        <label><input type="radio" name="mode" value="tails"> beyond ±z (two tails)</label>
+      </fieldset>
+    </div>
+
+    <div class="eq" id="eq">z = (130 − 100) / 15 = +2.00</div>
+
+    <div class="readout">
+      <div class="stat"><div class="k">z-score</div><div class="v big" id="z">+2.00</div></div>
+      <div class="stat"><div class="k">Shaded area (probability)</div><div class="v" id="area">0.9772</div></div>
+      <div class="stat"><div class="k">As a percentage</div><div class="v" id="pct">97.72%</div></div>
+      <div class="stat"><div class="k">Percentile of X</div><div class="v" id="pctile">98th</div></div>
+    </div>
+  </div>
+
+  <p class="note">
+    The total area under the curve is always <strong>1</strong>, no matter what μ and σ are - this is the
+    distribution of <em>scores</em> (not a sampling distribution). Moving <strong>μ</strong> slides the whole
+    curve left/right; changing <strong>σ</strong> stretches or squeezes its spread (the peak height adjusts so
+    the area stays 1). The raw-score slider automatically spans <code>μ ± 4σ</code>, so it reaches wherever the
+    curve does (e.g. up to 160 on the default IQ scale). Areas are computed from the standard normal, so a raw
+    score and its z-score always cut off the same area - that is the whole point of standardizing. Values match
+    the textbook z-table to ~4 decimals.
+    <br><br>
+    <strong>For slides:</strong> take a screenshot at σ = 1, 2, 3 (same μ) to make a static "small-multiples"
+    filmstrip showing how spread changes the curve. One build serves both the live eClass demo and the slide graphic.
+  </p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  // ---- standard normal CDF via erf (Abramowitz & Stegun 7.1.26); good to ~1e-7 ----
+  function erf(x){
+    var s = x<0 ? -1 : 1; x = Math.abs(x);
+    var t = 1/(1+0.3275911*x);
+    var y = 1 - (((((1.061405429*t - 1.453152027)*t) + 1.421413741)*t - 0.284496736)*t + 0.254829592)*t*Math.exp(-x*x);
+    return s*y;
+  }
+  function Phi(z){ return 0.5*(1+erf(z/Math.SQRT2)); }      // area below z
+  function ordinate(x, mu, sd){                              // normal pdf
+    var a=(x-mu)/sd; return Math.exp(-0.5*a*a)/(sd*Math.sqrt(2*Math.PI));
+  }
+
+  var cv = document.getElementById('c'), ctx = cv.getContext('2d');
+  var muI=document.getElementById('mu'), sdI=document.getElementById('sd'), xI=document.getElementById('x');
+  var muV=document.getElementById('muv'), sdV=document.getElementById('sdv'), xV=document.getElementById('xv');
+  var zEl=document.getElementById('z'), areaEl=document.getElementById('area'),
+      pctEl=document.getElementById('pct'), pctileEl=document.getElementById('pctile'), eqEl=document.getElementById('eq');
+
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function mode(){ return document.querySelector('input[name=mode]:checked').value; }
+
+  // domain always mu +/- 4.2 sd so the curve fits regardless of settings
+  function domain(mu, sd){ return [mu-4.2*sd, mu+4.2*sd]; }
+
+  // keep the raw-score slider range tracking mu +/- 4 sd (this is the real fix:
+  // X is no longer hard-capped, it spans wherever the curve is)
+  function niceStep(sd){ return sd>=8 ? 1 : (sd>=3 ? 0.5 : 0.1); }
+  function syncXRange(){
+    var mu=+muI.value, sd=+sdI.value, lo=mu-4*sd, hi=mu+4*sd;
+    xI.min=lo; xI.max=hi; xI.step=niceStep(sd);
+    if(+xI.value<lo) xI.value=lo;
+    if(+xI.value>hi) xI.value=hi;
+  }
+
+  function ordinalSuffix(n){
+    n = Math.round(n);
+    var s=["th","st","nd","rd"], v=n%100;
+    return n + (s[(v-20)%10]||s[v]||s[0]);
+  }
+
+  function draw(){
+    var mu=+muI.value, sd=+sdI.value, x=+xI.value;
+    muV.textContent = mu; sdV.textContent = sd; xV.textContent = (Math.round(x*100)/100);
+    var z = (x-mu)/sd;
+
+    // readouts
+    var below = Phi(z), area;
+    var m = mode();
+    if(m==='below'){ area = below; }
+    else if(m==='above'){ area = 1-below; }
+    else if(m==='between'){ area = Math.abs(below-0.5); }
+    else { area = 2*(1-Phi(Math.abs(z))); } // tails beyond +/- |z|
+    zEl.textContent = (z>=0?'+':'') + z.toFixed(2);
+    areaEl.textContent = area.toFixed(4);
+    pctEl.textContent = (area*100).toFixed(2)+'%';
+    pctileEl.textContent = ordinalSuffix(below*100);
+    eqEl.textContent = 'z = (' + (Math.round(x*100)/100) + ' − ' + mu + ') / ' + sd + ' = ' + (z>=0?'+':'') + z.toFixed(2);
+
+    // ---- canvas ----
+    // Keep graph labels at 16 displayed pixels as the canvas width changes.
+    var labelScale=cv.width/(cv.clientWidth || cv.width);
+    cv.height=Math.max(380, Math.round(300*labelScale));
+    var W=cv.width, H=cv.height, padL=8, padR=8;
+    var padB=52*labelScale, padT=30*labelScale;
+    ctx.clearRect(0,0,W,H);
+    var d=domain(mu,sd), x0=d[0], x1=d[1];
+    var peak=ordinate(mu,mu,sd);
+    function sx(v){ return padL + (v-x0)/(x1-x0)*(W-padL-padR); }
+    function sy(p){ return H-padB - p/(peak*1.08)*(H-padB-padT); }
+
+    // gridlines & x-axis ticks at mu + k*sd
+    ctx.strokeStyle=css('--grid'); ctx.lineWidth=1;
+    ctx.font=(16*labelScale)+'px -apple-system,Helvetica,Arial,sans-serif'; ctx.textAlign='center';
+    for(var k=-4;k<=4;k++){
+      if(labelScale>1.6 && k%2!==0) continue;
+      var vx=mu+k*sd; if(vx<x0||vx>x1) continue;
+      var px=sx(vx);
+      ctx.beginPath(); ctx.moveTo(px,padT); ctx.lineTo(px,H-padB); ctx.stroke();
+      ctx.fillStyle=css('--muted');
+      ctx.fillText(Math.round(vx*100)/100, px, H-padB+20*labelScale);
+      ctx.fillStyle=css('--axis');
+      ctx.fillText((k===0?'μ':(k>0?'+':'')+k+'σ'), px, H-padB+42*labelScale);
+    }
+    // baseline
+    ctx.strokeStyle=css('--axis'); ctx.beginPath(); ctx.moveTo(padL,H-padB); ctx.lineTo(W-padR,H-padB); ctx.stroke();
+
+    // shaded region
+    function inRegion(v){
+      var zz=(v-mu)/sd;
+      if(m==='below') return v<=x;
+      if(m==='above') return v>=x;
+      if(m==='between') return (mu<=x)? (v>=mu&&v<=x) : (v>=x&&v<=mu);
+      return Math.abs(zz)>=Math.abs(z); // tails
+    }
+    ctx.fillStyle=css('--fill'); ctx.beginPath(); var started=false;
+    for(var i=0;i<=600;i++){
+      var v=x0+(x1-x0)*i/600;
+      if(inRegion(v)){
+        var pxv=sx(v), pyv=sy(ordinate(v,mu,sd));
+        if(!started){ ctx.moveTo(pxv,H-padB); ctx.lineTo(pxv,pyv); started=true; }
+        else ctx.lineTo(pxv,pyv);
+      } else if(started){
+        ctx.lineTo(sx(v),H-padB); ctx.fill(); ctx.beginPath(); started=false;
+      }
+    }
+    if(started){ ctx.lineTo(sx(x1),H-padB); ctx.fill(); }
+
+    // curve
+    ctx.strokeStyle=css('--curve'); ctx.lineWidth=2.5; ctx.beginPath();
+    for(var j=0;j<=600;j++){
+      var vv=x0+(x1-x0)*j/600, pj=sx(vv), qj=sy(ordinate(vv,mu,sd));
+      j===0?ctx.moveTo(pj,qj):ctx.lineTo(pj,qj);
+    }
+    ctx.stroke();
+
+    // mean line
+    ctx.strokeStyle=css('--axis'); ctx.setLineDash([4,4]); ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(sx(mu),sy(peak)); ctx.lineTo(sx(mu),H-padB); ctx.stroke(); ctx.setLineDash([]);
+
+    // score marker X
+    var mxx=sx(x);
+    ctx.strokeStyle=css('--good'); ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(mxx,padT); ctx.lineTo(mxx,H-padB); ctx.stroke();
+    ctx.fillStyle=css('--good'); ctx.textAlign='center';
+    ctx.textAlign='center';
+    var markerWidth=ctx.measureText('X=200  (z=+4.00)').width;
+    mxx=Math.max(markerWidth/2, Math.min(W-markerWidth/2,mxx));
+    ctx.fillText('X='+(Math.round(x*100)/100)+'  (z='+(z>=0?'+':'')+z.toFixed(2)+')', mxx, padT-5*labelScale);
+  }
+
+  // dragging on canvas sets X
+  function pick(ev){
+    var r=cv.getBoundingClientRect();
+    var clientX=(ev.touches?ev.touches[0].clientX:ev.clientX);
+    var px=(clientX-r.left)/r.width*cv.width;
+    var mu=+muI.value, sd=+sdI.value, d=domain(mu,sd);
+    var padL=8,padR=8;
+    var v=d[0]+(px-padL)/(cv.width-padL-padR)*(d[1]-d[0]);
+    var st=niceStep(sd);
+    v=Math.max(+xI.min, Math.min(+xI.max, Math.round(v/st)*st));
+    xI.value=v; draw();
+  }
+  var dragging=false;
+  cv.addEventListener('mousedown',function(e){dragging=true;pick(e);});
+  window.addEventListener('mousemove',function(e){if(dragging)pick(e);});
+  window.addEventListener('mouseup',function(){dragging=false;});
+  cv.addEventListener('touchstart',function(e){dragging=true;pick(e);e.preventDefault();},{passive:false});
+  cv.addEventListener('touchmove',function(e){if(dragging){pick(e);e.preventDefault();}},{passive:false});
+  cv.addEventListener('touchend',function(){dragging=false;});
+
+  muI.addEventListener('input',function(){syncXRange();draw();});
+  sdI.addEventListener('input',function(){syncXRange();draw();});
+  xI.addEventListener('input',draw);
+  document.querySelectorAll('input[name=mode]').forEach(function(el){el.addEventListener('change',draw);});
+
+  function preset(mu,sd,x){ muI.value=mu; sdI.value=sd; syncXRange(); xI.value=x; draw(); }
+  document.getElementById('iq').addEventListener('click',function(){ preset(100,15,130); });
+  document.getElementById('std').addEventListener('click',function(){ preset(0,1,1); });
+
+  syncXRange();
+  draw();
+})();
+</script>
+</body>
+</html>

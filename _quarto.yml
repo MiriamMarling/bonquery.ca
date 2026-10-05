@@ -15,6 +15,7 @@ project:
     - projects/toronto-shelter.qmd
     - projects/ytd-comparison.qmd
   resources:
+    - portfolio/**  # Generated learning portfolio. Keep it in scheduled publications.
     - data/daily_occupancy.json                   # live daily-card preview
     - data/daily_occupancy.csv                    # not FileAttachment-referenced
     - data/shelter_flow.json                      # homepage dashboard previews

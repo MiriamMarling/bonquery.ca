@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learning and technical training portfolio prepared for WES. Working practice, job aids and course support examples.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Miriam (Mary) Marling | Portfolio prepared for WES</title>
+  <link rel="stylesheet" href="training.css?v=5b7692689f27">
+  <link rel="stylesheet" href="styles.css?v=9f6163cb7aff">
+  <script src="training.js?v=aa72b962fc9d" defer></script>
+  <script src="portfolio.js?v=3fe233bc241f" defer></script>
+  <script src="presentation.js?v=c78c7f964f80" defer></script>
+  <script src="wes-studio.js?v=4e729b468910" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the portfolio</a>
+  <header class="banner">
+    <a class="name" href="#main">MIRIAM (MARY) MARLING</a>
+    <p class="headline">PROGRAMMER · COMPUTER EXPERT · LEARNING TECHNOLOGY</p>
+    <p class="banner-link"><span class="wes-tag">WES APPLICATION</span><a href="#training-demo">Watch the training sample</a>
+      <span aria-hidden="true"> · </span><a href="#training">Try the learning samples</a></p>
+    <p class="contact"><a href="mailto:mmarling@yorku.ca">mmarling@yorku.ca</a>
+      <span aria-hidden="true"> · </span>
+      <a href="https://www.linkedin.com/in/mmarling/">LinkedIn</a></p>
+  </header>
+  <nav class="nav" aria-label="Portfolio sections">
+    <a href="#course"><span aria-hidden="true">01</span>Course work</a>
+    <a href="#training"><span aria-hidden="true">02</span>Training sample</a>
+    <a href="#implementation"><span aria-hidden="true">03</span>Programming</a>
+    <a href="#guide"><span aria-hidden="true">04</span>Training guide</a>
+  </nav>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">CODE + SYSTEMS + PRACTICAL SUPPORT</p>
+        <h1 id="hero-title">Programmer.<br><span>Computer expert.</span></h1>
+        <p class="intro">Course development, software training and hands-on technical support.
+          Programming and computer expertise carry the work from source materials
+          to functioning courses, with faculty and TA support throughout.</p>
+        <p class="platform-confidence">Android, Linux, macOS and Windows. Unfamiliar systems learned quickly, with the same programming and troubleshooting skills.</p>
+        <div class="proof-tags" aria-label="Technical experience">
+          <a href="#implementation">Independent programming ↗</a>
+          <a href="#course">Moodle/eClass since 2013 ↗</a>
+          <a href="#systems">Android · Linux · macOS · Windows · iPhone</a>
+        </div>
+        <div class="actions"><a class="button" href="#training">Try the working lesson
+          <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#training-demo">Watch the 55-second walkthrough</a></div>
+        <div class="hero-code" aria-label="Independent programming source excerpt">
+          <p><span>INDEPENDENT MATLAB / PSYCHTOOLBOX</span><span>2013</span></p>
+          <pre><code>% Written by Miriam Marling December 2013
+Screen(w,&#x27;Flip&#x27;); % show new image
+[cx,cy,buttons]=GetMouse(w,mouseIndices);
+% ...
+if buttons(2)
+    break;
+end</code></pre>
+          <a href="#implementation">Explore the source and its context ↗</a>
+        </div>
+        <p class="hero-detail">A personal learning and technology portfolio, selected for
+          WES’s Training and Instructional Design Specialist role.</p><a class="faculty-link" href="#faculty-reference">Faculty reference · Dr. James V. P. Check ↗</a>
+      </div>
+      <div class="hero-studio">
+      <div class="wes-studio" id="wes-studio">
+        <div class="studio-bar"><strong>Open the workbench.</strong><span>YORK UNIVERSITY SAMPLES</span></div>
+        <div class="studio-tabs" role="tablist" aria-label="Explore the work samples">
+          <button type="button" role="tab" id="studio-tab-results" aria-selected="true"
+            aria-controls="studio-results">Work reel</button>
+          <button type="button" role="tab" id="studio-tab-practice" aria-selected="false"
+            aria-controls="studio-practice" tabindex="-1">Lesson</button>
+          <button type="button" role="tab" id="studio-tab-guide" aria-selected="false"
+            aria-controls="studio-guide" tabindex="-1">Guide</button>
+          <button type="button" role="tab" id="studio-tab-support" aria-selected="false"
+            aria-controls="studio-support" tabindex="-1">Support</button>
+        </div>
+        <div class="studio-panel studio-results" role="tabpanel"
+          id="studio-results" aria-labelledby="studio-tab-results">
+          <p class="eyebrow">COURSE CREATION + TECHNICAL DELIVERY</p>
+          <h2>Original code.<br>Working course experiences.</h2>
+          <video controls muted playsinline preload="metadata" poster="assets/showreel-poster.png?v=8ffcfd392511"
+            aria-label="32-second work reel showing original code, assessments and course delivery">
+            <source src="assets/Miriam_Marling_Learning_Evidence.mp4?v=c8c4a2a2e912" type="video/mp4">
+            <track kind="captions" src="assets/showreel-captions.vtt?v=f35e6f249695" srclang="en"
+              label="English">
+            <a href="assets/Miriam_Marling_Learning_Evidence.mp4?v=c8c4a2a2e912">Open the work reel.</a>
+          </video>
+          <p class="reel-caption">32 seconds. Original programming, self-grading assessments,
+            course delivery and current interactive work. Attribution appears in the reel.</p>
+          <a class="text-link" href="#implementation">Inspect the code and its context ↗</a>
+        </div>
+        <div class="studio-panel" role="tabpanel" id="studio-practice"
+          aria-labelledby="studio-tab-practice" hidden>
+          <p class="eyebrow">TRAINING SAMPLE / LEARNER VIEW</p>
+          <p class="studio-audience">A software lesson for teaching assistants. Choose a destination to try the coaching.</p>
+          <h2 id="studio-question">Choose the learner identifier.</h2>
+          <div class="studio-source"><span>Source column</span><code>Student_ID</code></div>
+          <div class="studio-choices" id="studio-choices" aria-labelledby="studio-question">
+          </div>
+          <p class="studio-feedback" id="studio-feedback" role="status" aria-live="polite"
+            aria-atomic="true">Choose a destination. See why it works or what needs another look.</p>
+          <a class="text-link" href="#training">Continue to the full 3-decision lesson ↗</a>
+          <noscript><p>Open the illustrated guide below for the same workflow.</p></noscript>
+        </div>
+        <div class="studio-panel" role="tabpanel" id="studio-guide"
+          aria-labelledby="studio-tab-guide" hidden>
+          <p class="eyebrow">REFERENCE AT THE POINT OF WORK</p>
+          <h2>Put the screen beside the action.</h2>
+          <div class="studio-guide">
+            <a href="assets/Miriam_Marling_eClass_Grade_Import_Guide.pdf" target="_blank"
+              rel="noopener"><img src="assets/guide-preview.png"
+                alt="First page of the illustrated grade-import guide"></a>
+            <div><p>Actual interface screens make the identifier and assessment choices easier
+              to find while working.</p>
+              <a class="text-link" href="assets/Miriam_Marling_eClass_Grade_Import_Guide.pdf"
+                target="_blank" rel="noopener">Open the 2-page sample ↗</a>
+              <p class="small">Adapted from the 32-page teaching assistant manual.</p></div>
+          </div>
+        </div>
+        <div class="studio-panel" role="tabpanel" id="studio-support"
+          aria-labelledby="studio-tab-support" hidden>
+          <p class="eyebrow">ILLUSTRATED COURSE-SUPPORT CASE</p>
+          <h2>Restore access to learning.</h2>
+          <div id="support-case" data-step="ready">
+            <div class="support-steps">
+              <div class="support-event"><span>01</span><div><strong>Access problem</strong>
+                <p>Course recordings unavailable to students using my.yorku.ca accounts.</p>
+              </div></div>
+              <div class="support-event"><span>02</span><div><strong>Access restored</strong>
+                <p>Resolved recording access for those accounts.</p></div></div>
+              <div class="support-event"><span>03</span><div><strong>Instructor acknowledgement</strong>
+                <p>“Thanks so much to Miriam for this assistance.”</p></div></div>
+            </div>
+            <div class="support-track" aria-hidden="true"><span id="support-progress"></span></div>
+          </div>
+          <div class="support-controls">
+            <button type="button" id="support-play">Play support case</button>
+            <button type="button" class="support-pause" id="support-pause" hidden>Pause</button>
+          </div>
+          <p class="support-caption">Dr. James V. P. Check, September 22, 2026.
+            <a href="#course">View the actual announcement ↗</a></p>
+          <p id="support-status" class="sr-only" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+      <a class="studio-code" href="#implementation">
+        <span>Explore independent programming ↗</span><code>Screen(w,'Flip');</code></a>
+      <p class="studio-caption">York course examples. A working demonstration of training,
+        reference materials and practical technical support for the WES role.</p>
+    </div>
+    </section>
+
+    <section class="hiring-case" aria-label="Work relevant to the WES role">
+      <div><p class="eyebrow">COURSE DEVELOPMENT</p>
+        <p class="result">Build the course.</p>
+        <p>Complete eClass courses, presentations and typeset statistics materials.
+          Three sections moved fully online in under a month in 2020.</p>
+        <a class="text-link" href="#course">See the course work ↗</a></div>
+      <div><p class="eyebrow">TRAINING + SUPPORT</p>
+        <p class="result">Support the team.</p>
+        <p>Faculty and TA instruction through screen sharing, guides and video.
+          An authored 32-page manual supports teaching, Zoom and grade reporting.</p>
+        <a class="text-link" href="#guide">Open the guide ↗</a></div>
+      <div><p class="eyebrow">LMS DEVELOPMENT</p>
+        <p class="result">Keep it working.</p>
+        <p>Moodle/eClass development since 2013, through the interface and PHP/XML.
+          Course setup, content maintenance, assessment configuration and reporting.</p>
+        <a class="text-link" href="#faculty-reference">See faculty recognition ↗</a></div>
+    </section>
+
+    <section class="work-section" id="course" aria-labelledby="course-title">
+      <div class="section-heading"><p class="eyebrow">02 / COURSE DEVELOPMENT</p>
+        <h2 id="course-title">Complete courses.<br><span>Ready for delivery.</span></h2>
+        <p>Statistical Methods I and II, York University. Section D, 2026-2027.</p></div>
+      <div class="course-story">
+        <figure><div class="capture-label"><span>YORK UNIVERSITY</span>
+          <span>eCLASS / SECTION D</span></div>
+          <img src="assets/section-d-resources.png" loading="lazy"
+          alt="Section D course resources showing statistics practice, worked
+            solutions, a worksheet and PDF and PowerPoint presentation formats">
+          <figcaption>Section D resources in eClass, October 4, 2026. Edit mode off. No student records shown.</figcaption>
+        </figure>
+        <div class="course-copy"><h3>From handwritten notes to a course package.</h3><p>Students found the handwritten notes difficult to use. Transformed the notes and equations into a typeset course package in under a week. Proofread the notes, full solutions, self-quizzes and interactive visualizations.</p><p>The first half reached students in September 2026 following the professor’s approval.</p>
+          <details class="development-note"><summary>Development details</summary>
+            <p class="small">Directed the recent modernization using AI-supported workflows,
+              with proofreading and the professor’s review before delivery. Earlier MATLAB
+              programming and hand-coded assessments were independently developed.</p>
+          </details><p>Maintain the complete online course content in eClass/Moodle, using the interface and PHP 5/XML alongside hand-coded LaTeX equations and assessments. Train faculty and teaching assistants through screen sharing, written guides and videos.</p><p class="attribution">Developed from the professor’s and teaching assistant’s source notes and existing course materials.</p></div></div>
+      <div class="recognition recognition-single" id="faculty-reference">
+        <div><p class="eyebrow">COURSE SUPPORT</p>
+          <blockquote>“Thanks so much to Miriam for this assistance.”</blockquote>
+          <p>Dr. James V. P. Check, York University. Faculty reference available.</p><p>Course announcement, September 22, 2026.</p>
+          <p>Resolved access to Zoom course recordings for students using my.yorku.ca accounts. The announcement acknowledges that support.</p><p>Faculty support also includes adding Zoom meetings to eClass. The TA manual supplies illustrated setup guidance.</p>
+          <details><summary>View the announcement excerpt</summary>
+            <img src="assets/check-acknowledgement.png" loading="lazy"
+              alt="September 22 course announcement by James V.P. Check identifying
+                the course technical expert and acknowledging restored access">
+          </details></div>
+
+      </div>
+    </section>
+
+    <section class="training-sample" id="training"
+      aria-labelledby="training-title">
+      <div class="training-intro">
+        <div><p class="eyebrow">SOFTWARE TRAINING / WORKING SAMPLE</p>
+          <h2 id="training-title">Before you import.</h2>
+          <p>You have prepared Assignment 2 marks. The gradebook already has the assessment item. Three decisions will connect the right learner with the right mark.</p></div>
+        <div class="training-goal"><h3>The learner's task</h3>
+          <p>Match the learner and the assessment, then resolve a preview mismatch before importing.</p>
+          <p><strong>Audience.</strong> Teaching assistants with gradebook access.</p>
+          <p>New portfolio lesson based on the existing TA guide. The practice labels and preview counts are fictional. No records are imported.</p></div>
+      </div>
+      <div class="training-shell" id="training-root">
+        <div class="training-top"><strong id="lesson-progress">Decision 1 of 3</strong>
+          <ol class="lesson-steps" aria-label="Lesson decisions"><li data-lesson-step>Match the learner</li><li data-lesson-step>Match the assessment</li><li data-lesson-step>Check the preview</li></ol></div>
+        <div class="training-stage" id="lesson-stage">
+          <div class="training-context" id="lesson-context"></div>
+          <div><h3 id="lesson-question" tabindex="-1">Choose an identifier.</h3>
+            <div id="lesson-choices" aria-labelledby="lesson-question"></div>
+            <p class="lesson-feedback" id="lesson-feedback" role="status"
+              aria-live="polite" aria-atomic="true"></p>
+            <button class="button" id="lesson-next" type="button" disabled>
+              Next decision →</button></div>
+        </div>
+        <div class="training-summary" id="lesson-summary" hidden>
+          <p class="eyebrow">READY FOR THE NEXT STEP</p>
+          <h3 id="lesson-summary-title" tabindex="-1">Match. Map. Verify.</h3>
+          <p id="lesson-score"></p>
+          <p>You resolved all three decisions. In a real import, verify the result
+            against the source and check exceptions. Use the job aid below.</p>
+          <p class="small">This is feedback for this practice run. It is not a
+            measured training outcome. No answers or learner records are sent.</p>
+        </div>
+        <div class="training-bottom"><a href="#job-aid">Use the job aid at any point ↗</a>
+          <button class="reset" id="lesson-restart" type="button">Start again</button></div>
+        <noscript><p>The practice needs JavaScript. The job aid and video below
+          remain available.</p></noscript>
+      </div>
+      <details class="lesson-walkthrough" id="training-demo">
+      <summary>Watch the 55-second walkthrough</summary>
+      <p>Identifier, assessment and preview decisions, demonstrated with actual
+        interface crops and a labelled fictional practice example.</p>
+      <video controls playsinline preload="metadata" poster="assets/training-demo-poster.png?v=e40d939088ab"
+        aria-label="Captioned and narrated grade-import training demonstration">
+        <source src="assets/Miriam_Marling_Training_Demo.mp4?v=c35083603b1a" type="video/mp4">
+        <track kind="captions" src="assets/training-demo-captions.vtt?v=468bad41771e" srclang="en"
+          label="English">
+        <a href="assets/Miriam_Marling_Training_Demo.mp4?v=c35083603b1a">Download the lesson.</a>
+      </video>
+      <p class="small"><a href="assets/training-demo-transcript.txt">Read the transcript ↗</a>
+        · Synthetic narration. Animated instructional walkthrough, rather than a
+        recording of a live grade import. No student data appear.</p>
+    </details>
+      <div class="job-aid" id="job-aid"><p class="eyebrow">TAKE IT INTO THE WORK</p>
+        <h3>Five checks for the next import.</h3><ol><li>Match student numbers to ID number.</li><li>Map marks to the intended existing Grade item.</li><li>Check preview counts, identifiers, assessment names, scale and marks.</li><li>After success, compare the Gradebook with the source and check exceptions.</li><li>Retain the backup and import copy.</li></ol>
+        <a class="button" href="assets/Miriam_Marling_eClass_Grade_Import_Guide.pdf"
+          target="_blank" rel="noopener">Open the illustrated 2-page guide ↗</a>
+        <p class="small">Controls can vary by platform version and institutional
+          setup. Follow your course's approved workflow.</p></div>
+      <details class="design-notes"><summary>Design choices and evaluation plan</summary><div><section><h3>Practise the decisions</h3><p>Adapted a task from the TA manual into three decisions. Learners match an identifier, select the assessment destination and resolve a preview mismatch before importing.</p></section><section><h3>Explain the consequence</h3><p>Each choice receives coaching. Learners can retry, consult the five-point job aid or watch the walkthrough. Actual interface crops sit alongside a labelled fictional preview.</p></section><section><h3>Evaluate in a pilot</h3><p>Proposed evaluation. Observe first-choice accuracy and requests for help. Ask learners to explain an identifier mismatch, then follow up on import errors and support requests. Use the findings to revise the lesson with the subject expert. No training-effectiveness or business-outcome results have been measured for this sample.</p></section></div><p class="small">Directed this portfolio adaptation with assisted tools, using the existing TA guide as the workflow source.</p>
+      </details>
+      <script type="application/json" id="lesson-data">{"title": "Before you import", "goal": "Match the learner and the assessment, then resolve a preview mismatch before importing.", "audience": "Teaching assistants with gradebook access", "context": "You have prepared Assignment 2 marks. The gradebook already has the assessment item. Three decisions will connect the right learner with the right mark.", "boundary": "New portfolio lesson based on the existing TA guide. The practice labels and preview counts are fictional. No records are imported.", "stages": [{"id": "identity", "label": "Match the learner", "question": "Your source column is Student_ID. Which destination identifies the learner?", "image": "grade-import-identity.jpg", "image_alt": "Actual eClass Identify user by controls from the TA guide", "source_label": "Student_ID", "correct_label": "ID number", "options": [{"id": "userid", "label": "User ID", "correct": false, "feedback": "User ID is a separate platform identifier. A student number belongs with ID number. Check what identifier your source contains, then try again."}, {"id": "idnumber", "label": "ID number", "correct": true, "feedback": "Yes. Student_ID contains student numbers, so map it to ID number. Matching identifier types connects each row to its intended learner."}, {"id": "name", "label": "Last name", "correct": false, "feedback": "The source contains student numbers, not surnames. Names can also repeat. Match the student-number column to ID number, then try again."}]}, {"id": "assessment", "label": "Match the assessment", "question": "Assignment 2 already exists in the gradebook. Where should its numeric marks go?", "image": "grade-import-assessment.jpg", "image_alt": "Actual eClass grade-item mappings from the TA guide", "source_label": "Assignment 2 marks", "correct_label": "Assignment 2 - Grade", "options": [{"id": "feedback", "label": "Assignment 2 - Feedback", "correct": false, "feedback": "Feedback stores comments. It is a different destination from the numeric grade item. Choose the Grade item to update the existing marks."}, {"id": "grade", "label": "Assignment 2 - Grade", "correct": true, "feedback": "Yes. The marks belong in the existing Grade item. Similar labels need checking because Grade and Feedback serve different purposes."}, {"id": "new", "label": "New grade item", "correct": false, "feedback": "The intended assessment item already exists. A new item would create another column instead of updating that item. Choose the existing Grade item."}]}, {"id": "preview", "label": "Check the preview", "question": "Your practice preview has 3 source rows but only 2 matched learners. What is the next step?", "image": null, "image_alt": "", "source_label": "3 source rows / 2 matches", "correct_label": "Resolve the mismatch and preview again", "options": [{"id": "continue", "label": "Import the matched rows now", "correct": false, "feedback": "A missing match can leave a learner without their intended mark. Resolve the unmatched identifier before treating this import as ready."}, {"id": "delete", "label": "Delete the unmatched row", "correct": false, "feedback": "Removing the row hides the issue rather than explaining it. Check the identifier, its formatting and the current roster, then preview again."}, {"id": "resolve", "label": "Resolve the mismatch and preview again", "correct": true, "feedback": "Yes. Check the identifier and roster, correct the source if needed, then repeat the preview. Continue after the intended records and marks have been checked."}]}], "job_aid": ["Match student numbers to ID number.", "Map marks to the intended existing Grade item.", "Check preview counts, identifiers, assessment names, scale and marks.", "After success, compare the Gradebook with the source and check exceptions.", "Retain the backup and import copy."], "evaluation": "Proposed evaluation. Observe first-choice accuracy and requests for help during a pilot. Ask learners to explain an identifier mismatch. Follow up on import errors and support requests, then revise the lesson with the subject expert. No effectiveness or business-outcome results have been measured for this new sample.", "video_scenes": [{"kind": "opening", "title": "Before you import", "narration": "You've finished marking. Before importing, three decisions connect the right learner with the right mark. Try them in this short lesson."}, {"kind": "identity", "title": "Match the learner", "narration": "First, match the student-number column to ID number. User ID is a different platform identifier. Choose the identifier your source actually contains."}, {"kind": "assessment", "title": "Match the assessment", "narration": "Next, send the assessment marks to the Grade item. The Feedback item stores comments. A plausible label can still be the wrong destination."}, {"kind": "preview", "title": "Check the preview", "narration": "The practice preview shows three source rows but only two matches. Stop and investigate the unmatched identifier. Correct the source or roster issue, then preview again."}, {"kind": "verify", "title": "Verify the result", "narration": "After the import succeeds, compare the Gradebook with your source. Check exceptions as well as a few boundary cases. Keep the backup and import copy."}, {"kind": "case", "title": "Teaching that becomes usable training", "narration": "Teaching, programming and practical software training. Explore the working samples, explanations and job aid in the portfolio."}]}</script>
+    </section>
+
+
+
+
+    <!-- Keep implementation evidence close to the hiring case and its working sample. -->
+    <section class="work-section" id="implementation"><div class="section-heading"><p class="eyebrow">PROGRAMMING</p><h2>Build interactive practice.</h2><p>Independent MATLAB programming handles display, input and response. The current course explorer connects scores, probability and visual feedback. Read the actual excerpts beside their work examples.</p></div><div class="code-story"><div><h3>Display, input and response</h3><p>Programmed a visual experiment to display a stimulus, capture mouse input and respond to a selection. The same programming fundamentals support interactive learning.</p><div class="source-panel"><p>MATLAB / Psychtoolbox / actual source excerpt</p><pre><code>% Written by Miriam Marling December 2013
+Screen(w,&#x27;Flip&#x27;); % show new image
+[cx,cy,buttons]=GetMouse(w,mouseIndices);
+% ...
+if buttons(2)
+    break;
+end</code></pre></div><p class="code-context">Independently written MATLAB/Psychtoolbox experiment for graduate research, December 2013.</p><a class="text-link" href="assets/independent-matlab-excerpt.txt" download>Explore the source ↗</a></div><div><h3>Make the calculation visible</h3><p>Designed the explorer to connect a raw score with its z-score, probability and position on the curve. Learners can change a value and compare the numbers with the graph.</p><div class="source-panel"><p>JavaScript / Canvas / actual source excerpt</p><pre><code>var z = (x-mu)/sd;
+
+// readouts
+var below = Phi(z), area;
+var m = mode();
+if(m===&#x27;below&#x27;){ area = below; }
+else if(m===&#x27;above&#x27;){ area = 1-below; }
+else if(m===&#x27;between&#x27;){ area = Math.abs(below-0.5); }
+else { area = 2*(1-Phi(Math.abs(z))); } // tails beyond +/- |z|
+zEl.textContent = (z&gt;=0?&#x27;+&#x27;:&#x27;&#x27;) + z.toFixed(2);
+areaEl.textContent = area.toFixed(4);</code></pre></div><p class="code-context">Directed development with assisted implementation. This JavaScript excerpt comes from the working course activity below.</p><a class="text-link" href="activity.html" download>Explore the source ↗</a></div></div></section>
+
+    <aside class="technical-range" id="systems" aria-label="Programming and systems experience">
+      <p class="eyebrow">PROGRAMMING + SYSTEMS</p>
+      <h3>Across languages. Across platforms.</h3>
+      <p>Independent R, MATLAB and VBA programming, plus PHP 5, XML, LaTeX and
+        Moodle/eClass development. Practical technical support spanning more than
+        20 years across Linux, macOS, Windows, iPhone and Android.</p>
+      <p>Recent systems work includes restoring a Dell laptop with Lubuntu and
+        building an Ubuntu rig to support complex analytical work.</p>
+    </aside>
+
+    <section class="work-section" id="interactive" aria-labelledby="activity-title">
+      <div class="section-heading"><p class="eyebrow">01 / INTERACTIVE LEARNING</p>
+        <h2 id="activity-title">Explore the normal distribution.</h2>
+        <p>Learn how a raw score relates to the mean, standard deviation and
+          probability under a normal distribution.</p></div>
+      <div class="case-brief">
+        <div><h3>Learner goal</h3><p>Interpret a z-score and explain why the same raw
+          score can occupy a different position in two distributions.</p></div>
+        <div><h3>Learning design</h3><p>Predict a result, manipulate the parameters,
+          compare numerical and visual feedback, then check the explanation.</p></div>
+        <div><h3>Work represented</h3><p>Directed development of the course explorer with assisted implementation. Added the guided practice and knowledge check for this portfolio.</p></div>
+      </div>
+      <div class="lesson">
+        <aside class="lesson-instructions">
+          <p class="eyebrow">A 3-MINUTE EXPLORATION</p>
+          <h3>Predict. Try. Check.</h3>
+          <ol>
+            <li><strong>Start with the IQ preset.</strong> The mean is 100, standard
+              deviation is 15 and raw score is 130. Predict the z-score.</li>
+            <li><strong>Increase the standard deviation to 30.</strong> Keep the mean
+              and raw score unchanged. Compare the new z-score and percentile.</li>
+            <li><strong>Switch to “above X”.</strong> Compare the upper-tail area with
+              the area below X. Together, they account for the whole distribution.</li>
+          </ol>
+          <p class="small">The graph rescales its axes as the parameters change.
+            Compare the axis labels and numerical readouts as well as the shaded area.</p>
+          <a class="text-link" href="activity.html" target="_blank" rel="noopener">
+            Open the activity in a full window ↗</a>
+        </aside>
+        <div class="activity-frame"><iframe src="activity.html" loading="lazy"
+          title="Interactive normal distribution and z-score course activity"></iframe></div>
+      </div>
+      <div class="knowledge-check" aria-labelledby="check-title">
+        <div><p class="eyebrow">CHECK YOUR UNDERSTANDING</p>
+          <h3 id="check-title">What changed when the standard deviation doubled?</h3>
+          <p>Keep μ = 100 and X = 130. Change σ from 15 to 30.</p></div>
+        <form id="check-form">
+          <fieldset><legend class="sr-only">Choose an explanation</legend>
+            <label><input type="radio" name="answer" value="half">
+              The z-score falls from 2 to 1. The score is less unusual.</label>
+            <label><input type="radio" name="answer" value="same">
+              The z-score stays at 2 because the raw score has not changed.</label>
+            <label><input type="radio" name="answer" value="double">
+              The z-score rises to 4 because the spread doubled.</label>
+          </fieldset>
+          <button class="button" type="submit">Check the reasoning</button>
+          <p id="check-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <p class="work-note">Prepared in eClass for the upcoming z-score week. The course activity remains hidden until that week’s release.</p>
+    </section>
+
+    <section class="work-section" id="guide" aria-labelledby="guide-title">
+      <div class="section-heading"><p class="eyebrow">03 / SOFTWARE TRAINING</p>
+        <h2 id="guide-title">Give staff guidance<br><span>they can use on the job.</span></h2>
+        <p>For WES, pair process instructions with the screen staff will use, so they can find the right action while working.</p></div>
+      <div class="guide-story">
+        <a class="guide-cover" href="assets/Miriam_Marling_eClass_Grade_Import_Guide.pdf"
+          target="_blank" rel="noopener"><img src="assets/guide-preview.png"
+            loading="lazy" alt="First page of the eClass grade-import training guide"></a>
+        <div><h3>An illustrated reference for course delivery.</h3><p>Authored a TA manual covering teaching, Zoom, assessments and grade reporting. This sample explains the grade-import workflow, with actual eClass screens showing the identifier and assessment choices that need particular care.</p>
+          <div class="manual-stats" aria-label="Full manual scope">
+            <span><strong>32</strong> pages</span>
+            <span><strong>27</strong> sections</span>
+            <span><strong>Oct. 2</strong> 2026 draft</span></div>
+
+          <a class="button" href="assets/Miriam_Marling_eClass_Grade_Import_Guide.pdf"
+            target="_blank" rel="noopener">Open the 2-page guide <span aria-hidden="true">↗</span></a>
+          <p class="small">The download is a two-page portfolio adaptation. The full manual remains in its teaching context.</p>
+        </div>
+      </div>
+    </section>
+    <section class="closing" aria-labelledby="contact-title">
+      <p class="eyebrow">FOR WES'S KNOWLEDGE MANAGEMENT AND OPTIMIZATION TEAM</p>
+      <h2 id="contact-title">Support WES staff as processes change.</h2>
+      <p>Develop the materials with subject experts, deliver the training and stay involved when questions arise. Bring practical teaching, course development and programming to WES’s Knowledge Management and Optimization team.</p><p>Use learner feedback to keep explanations, practice and job aids useful as policies, processes and systems change.</p>
+      <a class="button" href="mailto:mmarling@yorku.ca">Discuss the role</a>
+      <a class="text-link" href="https://www.linkedin.com/in/mmarling/">View professional profile ↗</a>
+    </section>
+  </main>
+  <footer><p>Miriam (Mary) Marling · Prepared for WES · October 2026</p>
+    <p>This preview contains selected work samples. The course and full staff manual
+      remain in their original teaching context.</p></footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+Before you import
+
+Synthetic narration. This is an animated instructional walkthrough.
+Actual interface crops are from the TA guide. Practice counts are fictional.
+
+Before you import
+You've finished marking. Before importing, three decisions connect the right learner with the right mark. Try them in this short lesson.
+
+Match the learner
+First, match the student-number column to ID number. User ID is a different platform identifier. Choose the identifier your source actually contains.
+
+Match the assessment
+Next, send the assessment marks to the Grade item. The Feedback item stores comments. A plausible label can still be the wrong destination.
+
+Check the preview
+The practice preview shows three source rows but only two matches. Stop and investigate the unmatched identifier. Correct the source or roster issue, then preview again.
+
+Verify the result
+After the import succeeds, compare the Gradebook with your source. Check exceptions as well as a few boundary cases. Keep the backup and import copy.
+
+Teaching that becomes usable training
+Teaching, programming and practical software training. Explore the working samples, explanations and job aid in the portfolio.

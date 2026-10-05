@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Display, input and response",
+    "language": "MATLAB / Psychtoolbox",
+    "code": "% Written by Miriam Marling December 2013\nScreen(w,'Flip'); % show new image\n[cx,cy,buttons]=GetMouse(w,mouseIndices);\n% ...\nif buttons(2)\n    break;\nend",
+    "relevance": "Programmed a visual experiment to display a stimulus, capture mouse input and respond to a selection. The same programming fundamentals support interactive learning.",
+    "attribution": "Independently written MATLAB/Psychtoolbox experiment for graduate research, December 2013.",
+    "source_label": "Ebbinghaus experiment / December 2013"
+  },
+  {
+    "title": "Make the calculation visible",
+    "language": "JavaScript / Canvas",
+    "code": "var z = (x-mu)/sd;\n\n// readouts\nvar below = Phi(z), area;\nvar m = mode();\nif(m==='below'){ area = below; }\nelse if(m==='above'){ area = 1-below; }\nelse if(m==='between'){ area = Math.abs(below-0.5); }\nelse { area = 2*(1-Phi(Math.abs(z))); } // tails beyond +/- |z|\nzEl.textContent = (z>=0?'+':'') + z.toFixed(2);\nareaEl.textContent = area.toFixed(4);",
+    "relevance": "Designed the explorer to connect a raw score with its z-score, probability and position on the curve. Learners can change a value and compare the numbers with the graph.",
+    "attribution": "Directed development with assisted implementation. This JavaScript excerpt comes from the working course activity below.",
+    "source_label": "Normal Distribution and z-Score Explorer / current course"
+  }
+]

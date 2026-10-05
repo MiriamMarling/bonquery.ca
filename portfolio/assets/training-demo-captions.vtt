@@ -1,0 +1,20 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.750
+You've finished marking. Before importing, three decisions connect the right learner with the right mark. Try them in this short lesson.
+
+00:00:07.750 --> 00:00:17.833
+First, match the student-number column to ID number. User ID is a different platform identifier. Choose the identifier your source actually contains.
+
+00:00:17.833 --> 00:00:26.708
+Next, send the assessment marks to the Grade item. The Feedback item stores comments. A plausible label can still be the wrong destination.
+
+00:00:26.708 --> 00:00:37.333
+The practice preview shows three source rows but only two matches. Stop and investigate the unmatched identifier. Correct the source or roster issue, then preview again.
+
+00:00:37.333 --> 00:00:46.875
+After the import succeeds, compare the Gradebook with your source. Check exceptions as well as a few boundary cases. Keep the backup and import copy.
+
+00:00:46.875 --> 00:00:55.167
+Teaching, programming and practical software training. Explore the working samples, explanations and job aid in the portfolio.
+

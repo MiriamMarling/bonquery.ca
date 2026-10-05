@@ -1,0 +1,7 @@
+% Written by Miriam Marling December 2013
+Screen(w,'Flip'); % show new image
+[cx,cy,buttons]=GetMouse(w,mouseIndices);
+% ...
+if buttons(2)
+    break;
+end

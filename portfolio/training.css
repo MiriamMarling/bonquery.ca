@@ -1,0 +1,100 @@
+/* Keep the lesson in the established portfolio palette and accessible type. */
+.training-sample { padding: 45px 0 55px; border-top: 1px solid var(--line); }
+.training-intro { display: grid; grid-template-columns: 1fr .85fr; gap: 32px; margin-bottom: 26px; }
+.training-goal { border-left: 4px solid var(--green); padding: 8px 0 8px 20px; }
+.training-goal p { font-size: 16px; line-height: 1.5; margin: 6px 0; }
+.training-shell { border: 1px solid var(--line); border-radius: 19px; overflow: hidden;
+  box-shadow: 0 18px 42px #123d2112; }
+.training-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  background: var(--deep); color: #fff; padding: 17px 24px; font-size: 16px; }
+.training-top strong { font-weight: 600; }
+.lesson-steps { display: flex; list-style: none; margin: 0; padding: 0; gap: 18px; flex-wrap: wrap; }
+.lesson-steps li { opacity: .7; }
+.lesson-steps li.current { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.lesson-steps li.done { opacity: 1; color: #c7eccf; }
+.training-stage { display: grid; grid-template-columns: .92fr 1.08fr; gap: 30px;
+  padding: 32px; background: #fff; align-items: start; }
+[hidden] { display: none !important; }
+.training-stage h3 { font-size: 25px; line-height: 1.35; margin: 0 0 22px; }
+.practice-label { font-size: 16px; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em; margin-top: 0; }
+.training-context img { background: #fff; border: 1px solid var(--line); border-radius: 6px; }
+.lesson-choice { display: block; width: 100%; text-align: left; background: #fff;
+  color: var(--ink); font: 600 17px/1.5 Plex, sans-serif; border: 1px solid #9fbaa9;
+  border-radius: 10px; padding: 16px 18px; margin-bottom: 12px; cursor: pointer; }
+.lesson-choice:hover { background: var(--tint); }
+.lesson-choice[aria-pressed=true] { background: #edf7f1; border: 2px solid var(--deep);
+  padding: 15px 17px; }
+.lesson-feedback { font-size: 16px; line-height: 1.6; border-left: 4px solid #a6581a;
+  padding: 14px 18px; background: #fff6eb; margin: 18px 0; }
+.lesson-feedback:empty { display: none; }
+.lesson-feedback.accepted { border-color: var(--green); background: var(--tint); }
+.training-stage .button:disabled { opacity: .55; cursor: default; }
+.training-stage .button:disabled:hover { background: var(--deep); }
+.preview-counts { background: #fff; padding: 18px; border: 1px solid var(--line); border-radius: 7px; }
+.preview-counts p { font-size: 23px; font-weight: 600; margin: 15px 0; }
+.preview-counts p:last-child { color: #945119; border-top: 1px solid var(--line); padding-top: 15px; }
+.training-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+  padding: 16px 24px; border-top: 1px solid var(--line); background: var(--tint); }
+.training-summary { padding: 30px; background: var(--tint); }
+.training-summary p { max-width: 730px; }
+.reset { font: 16px Plex, sans-serif; color: var(--deep); border: 0; background: none;
+  text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.showreel a, .showreel summary { color: #d5e9dd; }
+.evidence-video summary { font-size: 18px; margin-bottom: 22px; }
+.job-aid { background: var(--tint); padding: 26px; margin-top: 24px; border-radius: 15px;
+  border: 1px solid var(--line); }
+.job-aid ol { padding-left: 22px; margin: 16px 0 24px; font-size: 16px; }
+.job-aid li { padding: 5px 0; }
+.design-notes { margin-top: 24px; font-size: 16px; }
+.design-notes > div { padding: 24px 0 5px; display: grid;
+  grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.design-notes h3 { font-size: 18px; }
+.design-notes p { line-height: 1.55; }
+.hero .hero-preview.training-cover { background: #156039; color: #fff; padding: 27px; }
+.training-cover img { background: #fff; border: 0; }
+.training-cover > span { color: #c7eccf; }
+@media (max-width: 720px) {
+  .training-intro, .training-stage, .design-notes > div { grid-template-columns: 1fr; }
+  .training-stage, .training-summary, .job-aid { padding: 22px; }
+  .training-top, .training-bottom { padding: 16px 20px; }
+  .training-stage h3 { font-size: 23px; }
+  .lesson-steps { font-size: 16px; gap: 12px; }
+}
+
+/* Give choices a stable visual order and let feedback explain the selected state. */
+#lesson-choices { counter-reset: decision; }
+.lesson-choice { counter-increment: decision; display: flex; gap: 13px; align-items: center;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease; }
+.lesson-choice::before { content: counter(decision, upper-alpha); width: 28px; height: 28px;
+  flex: 0 0 28px; display: inline-grid; place-items: center; background: #edf7f1;
+  color: var(--deep); border-radius: 50%; font-size: 16px; }
+.lesson-choice:hover { border-color: var(--green); transform: translateX(3px); }
+.lesson-choice[aria-pressed=true]::before { background: var(--deep); color: #fff; }
+.lesson-feedback:not(:empty) { animation: feedback-arrival .18s ease-out; border-radius: 0 8px 8px 0; }
+.training-context { padding: 22px; background: #f0f5ee; border-radius: 13px;
+  border: 1px solid #d5e0d9; }
+.training-context .practice-label { line-height: 1.5; }
+.training-goal { background: #edf7f1; border-radius: 0 13px 13px 0; padding: 20px 22px; }
+.training-goal h3 { font-size: 22px; margin-bottom: 12px; }
+.job-aid ol li::marker { color: var(--deep); font-weight: 700; }
+@keyframes feedback-arrival {
+  from { transform: translateY(5px); }
+  to { transform: translateY(0); }
+}
+@media (max-width: 720px) {
+  .training-context { padding: 17px; }
+  .training-top { gap: 13px; }
+  .lesson-steps { gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lesson-choice:hover { transform: none; }
+}
+
+/* Match the choice emphasis to the actual coaching or accepted feedback. */
+.lesson-choice[data-result=coaching] { background: #fff6eb; border-color: #945119; }
+.lesson-choice[data-result=coaching]::before { background: #945119; color: #fff; }
+.training-context img { aspect-ratio: 3.6; object-fit: cover; object-position: left; }
+.training-context img[src*=assessment] { aspect-ratio: 3; }
+.source-cue { font-size: 23px; font-weight: 600; color: var(--deep);
+  line-height: 1.3; margin: 19px 0 0; overflow-wrap: anywhere; }

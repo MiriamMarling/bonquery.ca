@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T15:24:13.599710Z",
+  "updated_at": "2026-10-05T05:29:13.969879Z",
   "coverage": {
     "first_audit_date": "2026-05-27",
     "last_audit_date": "2026-10-01",
@@ -15859,7 +15859,7 @@
       "status": "fail",
       "passed": false,
       "first_audited_at": "2026-10-02T16:20:44.130568Z",
-      "last_audited_at": "2026-10-04T15:24:13.599710Z",
+      "last_audited_at": "2026-10-05T05:29:13.969879Z",
       "our_latest_date": "2026-10-03",
       "sectors_compared": 28,
       "mismatch_count": 19,
@@ -16063,7 +16063,7 @@
       "status": "fail",
       "passed": false,
       "first_audited_at": "2026-10-02T16:20:44.130568Z",
-      "last_audited_at": "2026-10-04T15:24:13.599710Z",
+      "last_audited_at": "2026-10-05T05:29:13.969879Z",
       "our_latest_date": "2026-10-03",
       "sectors_compared": 28,
       "mismatch_count": 28,

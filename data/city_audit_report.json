@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T21:40:50.980737Z",
+  "generated_at": "2026-10-08T17:26:58.599987Z",
   "dates": [
     {
       "date": "2026-10-06",
@@ -306,7 +306,7 @@
   "any_pending": false,
   "city_date": "2026-10-06",
   "audit_date": "2026-10-06",
-  "our_date": "2026-10-06",
+  "our_date": "2026-10-07",
   "mismatch_count": 29,
   "passed": false,
   "mismatches": [

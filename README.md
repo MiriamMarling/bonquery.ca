@@ -16,8 +16,6 @@ publication from being lost to a page-format change.
 
 **Note:** This repository contains only the front-end website files, aggregated chart data, and rendering configurations for BonQuery.ca. The raw data pipelines, backend processing, and primary analysis scripts are currently kept in a separate, private repository
 
-Website built with the help of [Claude Code](https://claude.com/product/claude-code).
-
 ## License
 
 This repository holds the BonQuery.ca front-end (site files, styles, rendering
@@ -58,8 +56,6 @@ un tableau publié pour une seule journée n'est pas perdu à cause d'un changem
 de format de page.
 
 **Note :** Ce dépôt contient uniquement les fichiers du site front-end, les données agrégées utilisées pour les graphiques et les configurations de rendu de BonQuery.ca. Les pipelines de données brutes, le traitement backend et les scripts d'analyse principaux sont actuellement conservés dans un dépôt privé distinct.
-
-Site web développé avec l’aide de [Claude Code](https://claude.com/product/claude-code).
 
 ## Licence
 

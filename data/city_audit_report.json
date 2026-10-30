@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-30T16:44:54.053830Z",
+  "generated_at": "2026-10-30T19:43:41.312618Z",
   "dates": [
     {
-      "date": "2026-10-28",
+      "date": "2026-10-29",
       "status": "fail",
       "passed": false,
       "pending": false,
@@ -15,8 +15,8 @@
           "column": "individuals",
           "city_col": "city_ind",
           "our_col": "ind",
-          "city_val": 6890,
-          "our_val": 6902,
+          "city_val": 6869,
+          "our_val": 6881,
           "delta": -12.0
         },
         {
@@ -35,9 +35,9 @@
           "column": "individuals",
           "city_col": "city_ind",
           "our_col": "ind",
-          "city_val": 320,
+          "city_val": 319,
           "our_val": 323,
-          "delta": -3.0
+          "delta": -4.0
         },
         {
           "key": "allied_total",
@@ -45,9 +45,9 @@
           "column": "occupied",
           "city_col": "city_occ",
           "our_col": "occ",
-          "city_val": 320,
+          "city_val": 319,
           "our_val": 323,
-          "delta": -3.0
+          "delta": -4.0
         },
         {
           "key": "allied_total",
@@ -55,9 +55,9 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 327,
-          "our_val": 330,
-          "delta": -3.0
+          "city_val": 324,
+          "our_val": 328,
+          "delta": -4.0
         },
         {
           "key": "temp_summ",
@@ -65,9 +65,9 @@
           "column": "individuals",
           "city_col": "city_ind",
           "our_col": "ind",
-          "city_val": 1879,
-          "our_val": 1876,
-          "delta": 3.0
+          "city_val": 1873,
+          "our_val": 1869,
+          "delta": 4.0
         },
         {
           "key": "iso",
@@ -85,8 +85,8 @@
           "column": "individuals",
           "city_col": "city_ind",
           "our_col": "ind",
-          "city_val": 146,
-          "our_val": 158,
+          "city_val": 143,
+          "our_val": 155,
           "delta": -12.0
         },
         {
@@ -95,8 +95,8 @@
           "column": "occupied",
           "city_col": "city_occ",
           "our_col": "occ",
-          "city_val": 74,
-          "our_val": 81,
+          "city_val": 71,
+          "our_val": 78,
           "delta": -7.0
         },
         {
@@ -105,8 +105,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 74,
-          "our_val": 81,
+          "city_val": 71,
+          "our_val": 78,
           "delta": -7.0
         },
         {
@@ -115,8 +115,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 194,
-          "our_val": 130,
+          "city_val": 209,
+          "our_val": 145,
           "delta": 64.0
         },
         {
@@ -125,8 +125,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 3394,
-          "our_val": 3330,
+          "city_val": 3395,
+          "our_val": 3331,
           "delta": 64.0
         },
         {
@@ -135,8 +135,8 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 94.3,
-          "our_val": 96.1,
+          "city_val": 93.8,
+          "our_val": 95.6,
           "delta": -1.8
         },
         {
@@ -145,8 +145,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 132,
-          "our_val": 68,
+          "city_val": 143,
+          "our_val": 79,
           "delta": 64.0
         },
         {
@@ -155,8 +155,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 2559,
-          "our_val": 2495,
+          "city_val": 2560,
+          "our_val": 2496,
           "delta": 64.0
         },
         {
@@ -165,9 +165,9 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 94.8,
-          "our_val": 97.3,
-          "delta": -2.5
+          "city_val": 94.4,
+          "our_val": 96.8,
+          "delta": -2.4
         },
         {
           "key": "mix_emerg",
@@ -205,8 +205,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 68,
-          "our_val": 46,
+          "city_val": 77,
+          "our_val": 55,
           "delta": 22.0
         },
         {
@@ -215,8 +215,8 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 1049,
-          "our_val": 1027,
+          "city_val": 1050,
+          "our_val": 1028,
           "delta": 22.0
         },
         {
@@ -225,9 +225,9 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 93.5,
-          "our_val": 95.5,
-          "delta": -2.0
+          "city_val": 92.7,
+          "our_val": 94.6,
+          "delta": -1.9
         },
         {
           "key": "wom_emerg",
@@ -235,8 +235,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 12,
-          "our_val": 2,
+          "city_val": 13,
+          "our_val": 3,
           "delta": 10.0
         },
         {
@@ -255,8 +255,8 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 97.6,
-          "our_val": 99.6,
+          "city_val": 97.4,
+          "our_val": 99.4,
           "delta": -2.0
         },
         {
@@ -265,8 +265,8 @@
           "column": "unoccupied",
           "city_col": "city_unocc",
           "our_col": "unocc",
-          "city_val": 25,
-          "our_val": 18,
+          "city_val": 26,
+          "our_val": 19,
           "delta": 7.0
         },
         {
@@ -285,8 +285,8 @@
           "column": "occupancy rate",
           "city_col": "city_rate",
           "our_col": "rate",
-          "city_val": 94.5,
-          "our_val": 96.0,
+          "city_val": 94.3,
+          "our_val": 95.8,
           "delta": -1.5
         },
         {
@@ -296,8 +296,8 @@
           "city_col": "city_ind",
           "our_col": "ind",
           "city_val": 296,
-          "our_val": 299,
-          "delta": -3.0
+          "our_val": 300,
+          "delta": -4.0
         },
         {
           "key": "respites",
@@ -306,8 +306,8 @@
           "city_col": "city_occ",
           "our_col": "occ",
           "city_val": 296,
-          "our_val": 299,
-          "delta": -3.0
+          "our_val": 300,
+          "delta": -4.0
         },
         {
           "key": "respites",
@@ -315,9 +315,9 @@
           "column": "actual capacity",
           "city_col": "city_cap",
           "our_col": "cap",
-          "city_val": 297,
+          "city_val": 296,
           "our_val": 300,
-          "delta": -3.0
+          "delta": -4.0
         },
         {
           "key": "temp_resp",
@@ -326,8 +326,8 @@
           "city_col": "city_ind",
           "our_col": "ind",
           "city_val": 50,
-          "our_val": 47,
-          "delta": 3.0
+          "our_val": 46,
+          "delta": 4.0
         },
         {
           "key": "temp_resp",
@@ -336,8 +336,8 @@
           "city_col": "city_occ",
           "our_col": "occ",
           "city_val": 50,
-          "our_val": 47,
-          "delta": 3.0
+          "our_val": 46,
+          "delta": 4.0
         },
         {
           "key": "temp_resp",
@@ -346,16 +346,16 @@
           "city_col": "city_cap",
           "our_col": "cap",
           "city_val": 50,
-          "our_val": 47,
-          "delta": 3.0
+          "our_val": 46,
+          "delta": 4.0
         }
       ]
     }
   ],
   "total_mismatches": 34,
   "any_pending": false,
-  "city_date": "2026-10-28",
-  "audit_date": "2026-10-28",
+  "city_date": "2026-10-29",
+  "audit_date": "2026-10-29",
   "our_date": "2026-10-29",
   "mismatch_count": 34,
   "passed": false,
@@ -366,8 +366,8 @@
       "column": "individuals",
       "city_col": "city_ind",
       "our_col": "ind",
-      "city_val": 6890,
-      "our_val": 6902,
+      "city_val": 6869,
+      "our_val": 6881,
       "delta": -12.0
     },
     {
@@ -386,9 +386,9 @@
       "column": "individuals",
       "city_col": "city_ind",
       "our_col": "ind",
-      "city_val": 320,
+      "city_val": 319,
       "our_val": 323,
-      "delta": -3.0
+      "delta": -4.0
     },
     {
       "key": "allied_total",
@@ -396,9 +396,9 @@
       "column": "occupied",
       "city_col": "city_occ",
       "our_col": "occ",
-      "city_val": 320,
+      "city_val": 319,
       "our_val": 323,
-      "delta": -3.0
+      "delta": -4.0
     },
     {
       "key": "allied_total",
@@ -406,9 +406,9 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 327,
-      "our_val": 330,
-      "delta": -3.0
+      "city_val": 324,
+      "our_val": 328,
+      "delta": -4.0
     },
     {
       "key": "temp_summ",
@@ -416,9 +416,9 @@
       "column": "individuals",
       "city_col": "city_ind",
       "our_col": "ind",
-      "city_val": 1879,
-      "our_val": 1876,
-      "delta": 3.0
+      "city_val": 1873,
+      "our_val": 1869,
+      "delta": 4.0
     },
     {
       "key": "iso",
@@ -436,8 +436,8 @@
       "column": "individuals",
       "city_col": "city_ind",
       "our_col": "ind",
-      "city_val": 146,
-      "our_val": 158,
+      "city_val": 143,
+      "our_val": 155,
       "delta": -12.0
     },
     {
@@ -446,8 +446,8 @@
       "column": "occupied",
       "city_col": "city_occ",
       "our_col": "occ",
-      "city_val": 74,
-      "our_val": 81,
+      "city_val": 71,
+      "our_val": 78,
       "delta": -7.0
     },
     {
@@ -456,8 +456,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 74,
-      "our_val": 81,
+      "city_val": 71,
+      "our_val": 78,
       "delta": -7.0
     },
     {
@@ -466,8 +466,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 194,
-      "our_val": 130,
+      "city_val": 209,
+      "our_val": 145,
       "delta": 64.0
     },
     {
@@ -476,8 +476,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 3394,
-      "our_val": 3330,
+      "city_val": 3395,
+      "our_val": 3331,
       "delta": 64.0
     },
     {
@@ -486,8 +486,8 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 94.3,
-      "our_val": 96.1,
+      "city_val": 93.8,
+      "our_val": 95.6,
       "delta": -1.8
     },
     {
@@ -496,8 +496,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 132,
-      "our_val": 68,
+      "city_val": 143,
+      "our_val": 79,
       "delta": 64.0
     },
     {
@@ -506,8 +506,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 2559,
-      "our_val": 2495,
+      "city_val": 2560,
+      "our_val": 2496,
       "delta": 64.0
     },
     {
@@ -516,9 +516,9 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 94.8,
-      "our_val": 97.3,
-      "delta": -2.5
+      "city_val": 94.4,
+      "our_val": 96.8,
+      "delta": -2.4
     },
     {
       "key": "mix_emerg",
@@ -556,8 +556,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 68,
-      "our_val": 46,
+      "city_val": 77,
+      "our_val": 55,
       "delta": 22.0
     },
     {
@@ -566,8 +566,8 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 1049,
-      "our_val": 1027,
+      "city_val": 1050,
+      "our_val": 1028,
       "delta": 22.0
     },
     {
@@ -576,9 +576,9 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 93.5,
-      "our_val": 95.5,
-      "delta": -2.0
+      "city_val": 92.7,
+      "our_val": 94.6,
+      "delta": -1.9
     },
     {
       "key": "wom_emerg",
@@ -586,8 +586,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 12,
-      "our_val": 2,
+      "city_val": 13,
+      "our_val": 3,
       "delta": 10.0
     },
     {
@@ -606,8 +606,8 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 97.6,
-      "our_val": 99.6,
+      "city_val": 97.4,
+      "our_val": 99.4,
       "delta": -2.0
     },
     {
@@ -616,8 +616,8 @@
       "column": "unoccupied",
       "city_col": "city_unocc",
       "our_col": "unocc",
-      "city_val": 25,
-      "our_val": 18,
+      "city_val": 26,
+      "our_val": 19,
       "delta": 7.0
     },
     {
@@ -636,8 +636,8 @@
       "column": "occupancy rate",
       "city_col": "city_rate",
       "our_col": "rate",
-      "city_val": 94.5,
-      "our_val": 96.0,
+      "city_val": 94.3,
+      "our_val": 95.8,
       "delta": -1.5
     },
     {
@@ -647,8 +647,8 @@
       "city_col": "city_ind",
       "our_col": "ind",
       "city_val": 296,
-      "our_val": 299,
-      "delta": -3.0
+      "our_val": 300,
+      "delta": -4.0
     },
     {
       "key": "respites",
@@ -657,8 +657,8 @@
       "city_col": "city_occ",
       "our_col": "occ",
       "city_val": 296,
-      "our_val": 299,
-      "delta": -3.0
+      "our_val": 300,
+      "delta": -4.0
     },
     {
       "key": "respites",
@@ -666,9 +666,9 @@
       "column": "actual capacity",
       "city_col": "city_cap",
       "our_col": "cap",
-      "city_val": 297,
+      "city_val": 296,
       "our_val": 300,
-      "delta": -3.0
+      "delta": -4.0
     },
     {
       "key": "temp_resp",
@@ -677,8 +677,8 @@
       "city_col": "city_ind",
       "our_col": "ind",
       "city_val": 50,
-      "our_val": 47,
-      "delta": 3.0
+      "our_val": 46,
+      "delta": 4.0
     },
     {
       "key": "temp_resp",
@@ -687,8 +687,8 @@
       "city_col": "city_occ",
       "our_col": "occ",
       "city_val": 50,
-      "our_val": 47,
-      "delta": 3.0
+      "our_val": 46,
+      "delta": 4.0
     },
     {
       "key": "temp_resp",
@@ -697,8 +697,8 @@
       "city_col": "city_cap",
       "our_col": "cap",
       "city_val": 50,
-      "our_val": 47,
-      "delta": 3.0
+      "our_val": 46,
+      "delta": 4.0
     }
   ]
 }

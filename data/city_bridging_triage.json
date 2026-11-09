@@ -585,6 +585,18 @@
     "2026-11-05": {
       "bridging_triage": 5,
       "total_people": 6780
+    },
+    "2026-11-06": {
+      "bridging_triage": 8,
+      "total_people": 6767
+    },
+    "2026-11-07": {
+      "bridging_triage": 8,
+      "total_people": 6774
+    },
+    "2026-11-08": {
+      "bridging_triage": 11,
+      "total_people": 6764
     }
   }
 }

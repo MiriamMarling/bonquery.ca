@@ -601,6 +601,18 @@
     "2026-11-09": {
       "bridging_triage": 11,
       "total_people": 6766
+    },
+    "2026-11-10": {
+      "bridging_triage": 11,
+      "total_people": 6741
+    },
+    "2026-11-11": {
+      "bridging_triage": 20,
+      "total_people": 6747
+    },
+    "2026-11-12": {
+      "bridging_triage": 16,
+      "total_people": 6735
     }
   }
 }

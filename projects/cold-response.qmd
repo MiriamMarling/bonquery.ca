@@ -117,10 +117,10 @@ seasonColorMap = new Map([
 
 ```{ojs}
 //| echo: false
-viewof selectedWinters = {
-  const allSeasons = [
-    "2020-21","2021-22","2022-23","2023-24","2024-25","2025-26"
-  ];
+// One builder for the season checkboxes, shared by Figure 1 and Figure 2 so the
+// two controls look and behave the same. `allSeasons` is the list to offer and
+// `colorOf` returns the swatch colour for a season.
+seasonPicker = (allSeasons, colorOf) => {
   const selected = new Set(allSeasons);
 
   // Inject custom checkbox styles once — guarded so OJS re-runs don't duplicate
@@ -186,7 +186,7 @@ viewof selectedWinters = {
     "display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center;";
 
   for (const season of allSeasons) {
-    const color = seasonColorMap.get(season);
+    const color = colorOf(season);
 
     const cb = document.createElement("input");
     cb.type = "checkbox"; cb.value = season; cb.checked = true;
@@ -212,6 +212,14 @@ viewof selectedWinters = {
   root.value = allSeasons;
   return root;
 }
+```
+
+```{ojs}
+//| echo: false
+viewof selectedWinters = seasonPicker(
+  [...seasonColorMap.keys()],
+  season => seasonColorMap.get(season)
+)
 ```
 
 ```{ojs}
@@ -432,6 +440,17 @@ reserveSeasonStyle = new Map([
 
 ```{ojs}
 //| echo: false
+//| output: false
+
+// Only the chart follows the season checkboxes. The cards above and Table 2
+// below keep all three seasons, so they still match the figures in the text.
+visibleReserveRows = selectedReserveRows.filter(
+  d => reserveSeasons.includes(d.winter_season)
+)
+```
+
+```{ojs}
+//| echo: false
 {
   const s = selectedReserveSummary
   const cards = [
@@ -466,12 +485,21 @@ reserveSeasonStyle = new Map([
 
 ```{ojs}
 //| echo: false
+viewof reserveSeasons = seasonPicker(
+  [...reserveSeasonStyle.keys()],
+  season => reserveSeasonStyle.get(season).color
+)
+```
+
+```{ojs}
+//| echo: false
 //| label: fig-reserve-shortfall
 //| fig-cap: |
 //|   *Additional walk-in spaces required to preserve the selected operating
 //|   reserve on nights at or below −5 °C, 2023–24 through 2025–26.* Each marker
 //|   is one night. Earlier seasons are not shown because warming centres then
-//|   opened only at −15 °C, so their −5 °C nights are not comparable. The
+//|   opened only at −15 °C, so their −5 °C nights are not comparable. Use the
+//|   checkboxes above the chart to show or hide a season. The
 //|   calculation uses admitted occupancy only, so it is a lower bound on total
 //|   need.
 
@@ -497,15 +525,20 @@ Plot.plot({
     domain: [...reserveSeasonStyle.keys()],
     range: [...reserveSeasonStyle.values()].map(d => d.symbol)
   },
+  // Both axes take their range from all three seasons, so hiding a season
+  // leaves the remaining markers where they were.
   x: {
     label: "Overnight minimum temperature (°C)",
     labelAnchor: "center",
-    reverse: true
+    reverse: true,
+    domain: d3.extent(selectedReserveRows, d => d.min_temp)
   },
   y: {
     label: `Additional spaces for ${reserveTarget}% reserve`,
     labelAnchor: "top",
-    grid: true
+    grid: true,
+    domain: [0, d3.max(selectedReserveRows, d => d.additional_spaces_needed)],
+    nice: true
   },
   marks: [
     Plot.ruleY([0], { stroke: refLine }),
@@ -514,7 +547,7 @@ Plot.plot({
       strokeWidth: 1,
       strokeDasharray: "4,3"
     }),
-    Plot.dot(selectedReserveRows, {
+    Plot.dot(visibleReserveRows, {
       x: "min_temp",
       y: "additional_spaces_needed",
       fill: "winter_season",
@@ -522,7 +555,7 @@ Plot.plot({
       r: 4.5,
       fillOpacity: 0.8
     }),
-    Plot.tip(selectedReserveRows, Plot.pointer({
+    Plot.tip(visibleReserveRows, Plot.pointer({
       x: "min_temp",
       y: "additional_spaces_needed",
       title: d =>

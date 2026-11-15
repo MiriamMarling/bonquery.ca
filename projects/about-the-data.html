@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-CA" xml:lang="en-CA"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Miriam Marling">
+<meta name="description" content="How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.">
+
+<title>About the Data – BonQuery</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-447e42e69aaa9833c0ba1b986f430b20.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8d3ad9c781c51ccd60b292c95058b2c2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-32280d01ff3a7ff5cbe701a37ed6ca11.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-8d3ad9c781c51ccd60b292c95058b2c2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="About the Data — Toronto Shelter System">
+<meta property="og:description" content="How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.">
+<meta property="og:image" content="https://bonquery.ca/images/bonquery-social-card.png">
+<meta property="og:site_name" content="BonQuery — Data for the Greater Good">
+<meta property="og:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta name="twitter:title" content="About the Data — Toronto Shelter System">
+<meta name="twitter:description" content="How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.">
+<meta name="twitter:image" content="https://bonquery.ca/images/bonquery-social-card.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image:alt" content="BonQuery: Toronto Shelter Data Updated Daily">
+<link rel="canonical" href="https://bonquery.ca/projects/about-the-data.html">
+</head>
+
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
+        setTimeout(() => {
+          window.scrollTo(0, scrollY);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const queryPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeDefault = queryPrefersDark.matches;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    queryPrefersDark.addEventListener("change", e => {
+      if(window.localStorage.getItem("quarto-color-scheme") !== null)
+        return;
+      const alternate = e.matches
+      toggleColorMode(alternate);
+      refreshSafariScrollbar();
+      localAlternateSentinel = e.matches ? 'alternate' : 'default'; // this is used alongside local storage!
+      toggleGiscusIfUsed(alternate, darkModeDefault);
+    });
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">BonQuery</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/toronto-shelter.html"> 
+<span class="menu-text">Dashboards</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/cold-response.html"> 
+<span class="menu-text">Left in the Cold</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data--methods" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data &amp; Methods</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data--methods">    
+        <li>
+    <a class="dropdown-item" href="../projects/about-the-data.html">
+ <span class="dropdown-text">About the Data</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects/data-validation.html">
+ <span class="dropdown-text">Daily Data Sources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects/data-validation-central-intake.html">
+ <span class="dropdown-text">Central Intake Validation</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../fr/"> 
+<span class="menu-text">FR</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#where-the-data-comes-from" id="toc-where-the-data-comes-from" class="nav-link active" data-scroll-target="#where-the-data-comes-from">Where the data comes from</a></li>
+  <li><a href="#a-monthly-snapshot-with-a-three-month-lookback" id="toc-a-monthly-snapshot-with-a-three-month-lookback" class="nav-link" data-scroll-target="#a-monthly-snapshot-with-a-three-month-lookback">A monthly snapshot with a three-month lookback</a></li>
+  <li><a href="#three-different-homelessness-numbers" id="toc-three-different-homelessness-numbers" class="nav-link" data-scroll-target="#three-different-homelessness-numbers">Three different “homelessness” numbers</a></li>
+  <li><a href="#what-the-headline-number-leaves-out-the-18-undercount" id="toc-what-the-headline-number-leaves-out-the-18-undercount" class="nav-link" data-scroll-target="#what-the-headline-number-leaves-out-the-18-undercount">What the headline number leaves out: the 18% undercount</a></li>
+  <li><a href="#who-the-data-misses-and-why-words-matter" id="toc-who-the-data-misses-and-why-words-matter" class="nav-link" data-scroll-target="#who-the-data-misses-and-why-words-matter">Who the data misses, and why words matter</a>
+  <ul class="collapse">
+  <li><a href="#how-bonquery-uses-these-words" id="toc-how-bonquery-uses-these-words" class="nav-link" data-scroll-target="#how-bonquery-uses-these-words">How BonQuery uses these words</a></li>
+  </ul></li>
+  <li><a href="#how-the-population-groups-relate" id="toc-how-the-population-groups-relate" class="nav-link" data-scroll-target="#how-the-population-groups-relate">How the population groups relate</a>
+  <ul class="collapse">
+  <li><a href="#newly-identified-means-something-different-for-the-chronic-group" id="toc-newly-identified-means-something-different-for-the-chronic-group" class="nav-link" data-scroll-target="#newly-identified-means-something-different-for-the-chronic-group">“Newly Identified” means something different for the Chronic group</a></li>
+  </ul></li>
+  <li><a href="#for-analysts-the-refugee-split-is-a-clean-partition" id="toc-for-analysts-the-refugee-split-is-a-clean-partition" class="nav-link" data-scroll-target="#for-analysts-the-refugee-split-is-a-clean-partition">For analysts: the refugee split is a clean partition</a></li>
+  <li><a href="#context-and-collaboration" id="toc-context-and-collaboration" class="nav-link" data-scroll-target="#context-and-collaboration">Context and collaboration</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">About the Data</h1>
+<p class="subtitle lead">How to read Toronto’s shelter numbers, and where the data has limits</p>
+</div>
+
+<div>
+  <div class="description">
+    How to read Toronto shelter data: who is counted, who is missing, the City’s estimated 18% undercount, and BonQuery’s use of homeless and unhoused.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Miriam Marling </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="bq-status-note">
+<p><strong>COLD-WEATHER ARTICLE IN PREPARATION.</strong> BonQuery is preparing an article with its findings, sources, methods and limitations.</p>
+</div>
+<p>The figures across BonQuery’s dashboards come from open data the City of Toronto publishes about its shelter system. This page explains what that data is, where it comes from, and the few places where careful reading changes the conclusion you should draw. These are notes about the data itself, not findings about Toronto’s shelter system; the findings are on the audit and dashboard pages. How these numbers are checked against the City’s own published figures is documented separately on the <a href="../projects/data-validation.html" target="_blank">Daily Shelter Data Sources</a> and <a href="../projects/data-validation-central-intake.html" target="_blank">Central Intake Audit</a> pages.</p>
+<section id="where-the-data-comes-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-the-data-comes-from">Where the data comes from</h2>
+<p>BonQuery draws on three datasets, all published by the City of Toronto on its <a href="https://open.toronto.ca/" target="_blank">Open Data portal</a> under the Open Government Licence – Toronto. Each is an aggregated product derived from the City’s internal Shelter Management Information System (SMIS); none is a raw feed of individual case records.</p>
+<ul>
+<li><strong><a href="https://open.toronto.ca/dataset/toronto-shelter-system-flow/" target="_blank">Shelter System Flow</a></strong>: a monthly summary of how many people enter, leave, and remain in the shelter system. This is the source of the headline actively homeless count.</li>
+<li><strong><a href="https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/" target="_blank">Daily Shelter &amp; Overnight Service Occupancy &amp; Capacity</a></strong>: a nightly snapshot of occupancy and capacity, program by program, from 2021 to the present.</li>
+<li><strong><a href="https://open.toronto.ca/dataset/central-intake-calls/" target="_blank">Central Intake Calls</a></strong>: records from the City’s 24/7 shelter referral line, including call outcomes and the count of callers still waiting for a space.</li>
+</ul>
+<p>BonQuery’s cold-weather analysis also draws on hourly weather records for the Toronto station, published by Environment and Climate Change Canada and retrieved via the <a href="https://docs.ropensci.org/weathercan/" target="_blank">weathercan</a> R package.</p>
+</section>
+<section id="a-monthly-snapshot-with-a-three-month-lookback" class="level2">
+<h2 class="anchored" data-anchor-id="a-monthly-snapshot-with-a-three-month-lookback">A monthly snapshot with a three-month lookback</h2>
+<p>The City generates the Shelter System Flow data on the last day of each month and publishes it around the 15th of the following month. Each month’s figures retroactively consider everyone who used shelter services in the previous three months.</p>
+<p>Two things follow. First, the actively homeless count for any month includes anyone who used the system even once in that three-month window, not only people in shelter during that month; the same person can appear in three consecutive monthly counts after a single stay. Second, month-over-month changes are smaller than they look, because adjacent months share two-thirds of their lookback window. Comparing January and February side by side compares two heavily overlapping groups, not two distinct ones.</p>
+</section>
+<section id="three-different-homelessness-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="three-different-homelessness-numbers">Three different “homelessness” numbers</h2>
+<p>Toronto publishes several counts related to homelessness, and they measure different populations. Comparing figures across sources, a reader can easily think two numbers contradict each other when they simply count different things.</p>
+<ul>
+<li><strong>Nightly occupancy</strong>: how many people are in a shelter space on a given night, from the <a href="https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/" target="_blank">Daily Shelter &amp; Overnight Service Occupancy &amp; Capacity</a> dataset.</li>
+<li><strong>Actively homeless</strong>: how many people used the shelter system at least once in the past three months and have not since been recorded as housed or otherwise inactive. This is the headline number on the dashboards.</li>
+<li><strong>Annual unique individuals</strong>: how many different people used the shelter system at any point in a calendar year, published by the City in occasional reports rather than a standing dataset.</li>
+</ul>
+<p>All three are valid measures of related but different populations. The actively homeless count normally sits between nightly occupancy, which is smaller because it counts a single night, and annual unique individuals, which is larger because it counts a whole year. Treating any of the three as interchangeable misreads them.</p>
+</section>
+<section id="what-the-headline-number-leaves-out-the-18-undercount" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-headline-number-leaves-out-the-18-undercount">What the headline number leaves out: the 18% undercount</h2>
+<p>Every count above describes people who used a City-funded overnight service. People sleeping outside, using a service the City does not fund, or staying temporarily with friends or family are not in this data.</p>
+<p>The City <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/" target="_blank">estimates</a> that roughly 18% of people experiencing absolute homelessness in Toronto are not reflected in these numbers, an estimate drawn from its Street Needs Assessment, a separate periodic count of unsheltered homelessness.</p>
+<p>In practice: when the actively homeless count rises or falls, the change describes the shelter system specifically. Whether total homelessness is moving at the same rate depends on the part of the population this data does not see, which this dataset cannot answer on its own.</p>
+</section>
+<section id="who-the-data-misses-and-why-words-matter" class="level2">
+<h2 class="anchored" data-anchor-id="who-the-data-misses-and-why-words-matter">Who the data misses, and why words matter</h2>
+<p><strong>The 18% estimate above concerns people experiencing absolute homelessness. It does not measure everyone who needs a safe place.</strong> Adults, children, and families fleeing violence may still have an address but no safe home to return to. They may use a program that is not listed in these files, or they may not reach a listed service at all.</p>
+<p>People may be <strong>housing insecure</strong>, <strong>unhoused</strong>, or <strong>experiencing homelessness</strong>. These situations can overlap, but they are not the same. BonQuery uses <strong>housing insecure</strong> for the wider group of people whose housing is unsafe, unstable, unaffordable, or about to be lost.</p>
+<p>Being <strong>unhoused</strong> is not one experience either. It can mean sleeping outside, using a shelter, or moving between temporary places without one safe home to count on. A row in a data file cannot tell us which word a person uses for their own situation.</p>
+<section id="how-bonquery-uses-these-words" class="level3">
+<h3 class="anchored" data-anchor-id="how-bonquery-uses-these-words">How BonQuery uses these words</h3>
+<p>People use <strong>homeless</strong>, <strong>unhoused</strong>, and <strong>people experiencing homelessness</strong>. Some people and activists prefer <strong>unhoused</strong> because it names the lack of housing, not a fixed identity. Others use <strong>homeless</strong> for themselves and for established research, services, and advocacy. No single term speaks for everyone.</p>
+<p>BonQuery usually says <strong>people experiencing homelessness</strong> or <strong>people without housing</strong>. We use <strong>homeless</strong> when it is part of an official name, a direct quote, a research title, or a common search term. We do not call people “the homeless.” We will keep listening to people with lived experience and change our wording when needed.</p>
+<p>Canada’s formal definition includes people staying in emergency shelters because of family violence, but a person may describe their own situation differently. This approach is informed by the <a href="https://homelesshub.ca/book/pandemic-preparedness-and-homelessness-lessons-from-h1n1-in-canada/appendix-a-canadian-definition-of-homelessness/" target="_blank">Canadian definition of homelessness</a>, <a href="https://nhchc.org/research/publications/trauma-informed-organizations-change-package/strengths-based/" target="_blank">person-first language guidance</a>, and research on <a href="https://homelesshub.ca/book/finding-home-policy-options-for-addressing-homelessness-in-canada/0-introduction/homelessness-whats-in-a-word/" target="_blank">why housing is central to the meaning of homelessness</a>.</p>
+<p>The data can show only the people and programs captured in its files. Whatever words people use, the practical questions are the same: Is there a safe place tonight? What is changing? Are the public numbers right?</p>
+</section>
+</section>
+<section id="how-the-population-groups-relate" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-population-groups-relate">How the population groups relate</h2>
+<p>The data breaks people into population groups: All Population, Refugees, Non-refugees, Chronic, Families, Single Adult, Youth, and Indigenous. These groups do not all relate to the total in the same way, which matters whenever an analysis compares them.</p>
+<p>Refugees and Non-refugees together account for every person in All Population, with no overlap. Stack the two and the result equals the total. This holds in every month of the data.</p>
+<p>The other groups, Chronic, Families, Single Adult, Youth, and Indigenous, are overlapping attributes rather than divisions of the total. One person can belong to several at once. For example, an Indigenous youth experiencing chronic homelessness is counted in the Indigenous, Youth, and Chronic groups simultaneously, and also sits on the Non-refugees side of the refugee split and within the All Population total. There is no way to isolate people who belong to only one of these groups from this data alone.</p>
+<p>In practice: summing or stacking these overlapping groups produces a number larger than the real population, because each person is counted once in every group they belong to. This is why the City’s own per-group percentages for these groups add up to well beyond 100%.</p>
+<section id="newly-identified-means-something-different-for-the-chronic-group" class="level3">
+<h3 class="anchored" data-anchor-id="newly-identified-means-something-different-for-the-chronic-group">“Newly Identified” means something different for the Chronic group</h3>
+<p>For most groups, Newly Identified counts people entering the shelter system for the first time. For the Chronic group, the same column counts people who became chronically homeless during the reporting month, regardless of how long they had already been in the system. Most of those people were already using shelters; they had just newly crossed the federal threshold for chronic homelessness (180 nights in a year, or 546 over three years).</p>
+<p>This is noted in the shelter system audit and in the City’s own documentation, but it is worth repeating because the column name invites the wrong reading. Any cross-group comparison of Newly Identified figures that includes the Chronic row mixes two different measurements.</p>
+</section>
+</section>
+<section id="for-analysts-the-refugee-split-is-a-clean-partition" class="level2">
+<h2 class="anchored" data-anchor-id="for-analysts-the-refugee-split-is-a-clean-partition">For analysts: the refugee split is a clean partition</h2>
+<p>One structural feature is worth stating precisely for anyone working with the data closely. The split between Refugees and Non-refugees behaves as a clean mathematical partition, and not only for the headline actively homeless count: it holds for every flow column as well.</p>
+<p>In every month from January 2018 to the present, the Refugees and Non-refugees values sum exactly to the All Population value for every column checked: people entering, people leaving, and the actively homeless stock. No other population dimension behaves this way.</p>
+<p>In practice: if an analysis needs mutually exclusive categories, for a stacked bar chart, a share-of-total calculation, or anything that assumes groups do not overlap, the refugee split is the one place in this data where that is mathematically safe.</p>
+</section>
+<section id="context-and-collaboration" class="level2">
+<h2 class="anchored" data-anchor-id="context-and-collaboration">Context and collaboration</h2>
+<p>BonQuery is independent, but the work is intended to be useful to the City as well as to the public. We distinguish published policy, observed operations, and measured outcomes. City staff, service operators, researchers, and advocates are invited to share source context or point us to newer public records. When evidence changes a finding, we will document the change.</p>
+<p>The practical goal is to help improve the public record and support the work the <a href="https://www.toronto.ca/legdocs/mmis/2025/au/bgrd/backgroundfile-252902.pdf" target="_blank">Auditor General has already recommended</a>: better overflow and turnaway data, stronger estimates of winter space needs, more funded beds available for more of the season, timely readiness, consistent ramp-up and ramp-down practices, and a contingency plan when the shelter system is full. City management agreed with those recommendations. BonQuery will apply the same standard to progress and remaining gaps.</p>
+<p>To discuss a source question or collaboration, contact <a href="mailto:info@BonQuery.ca">info@BonQuery.ca</a>.</p>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<p>The structural observations on this page were verified by querying the data directly. Definitions and the 18% undercount estimate come from the City of Toronto’s <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/housing-and-homelessness-research-and-reports/shelter-system-flow-data/" target="_blank">Shelter System Flow Data page</a>. The three datasets are published on the City’s Open Data portal, all under the <a href="https://open.toronto.ca/open-data-licence/" target="_blank">Open Government Licence – Toronto</a>.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script>
+// Embedded dashboard pages keep their charts but omit the site-wide help
+// footer. The same pages show the footer when opened directly.
+if (window.self !== window.top) {
+  document.documentElement.classList.add("bq-embedded-page");
+}
+
+// ── Mobile language toggle ────────────────────────────────────────────────
+// Uses location.pathname so the correct label appears regardless of whether
+// Quarto renders the navbar id attribute (it does not).
+(function () {
+  var darkTog = document.querySelector(".quarto-color-scheme-toggle");
+  if (!darkTog) return;
+  var isFR  = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var clone = document.createElement("a");
+  clone.className = "bq-lang-mobile";
+  clone.href      = isFR ? "/" : "/fr/";
+  clone.textContent = isFR ? "EN" : "FR";
+  darkTog.parentNode.insertBefore(clone, darkTog.nextSibling);
+})();
+
+// ── Nav cleanup ───────────────────────────────────────────────────────────
+// The Quarto FR profile render re-renders all pages with a merged navbar
+// (EN items + FR items concatenated). This script removes the wrong-language
+// items at runtime on every page load.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+
+  // Left nav: keep items whose links match the current language.
+  // Each top-level <li> contains only same-language hrefs, so checking for
+  // "fr/" is a reliable discriminator.
+  var leftNav = document.querySelector(".navbar-nav.me-auto");
+  if (leftNav) {
+    Array.from(leftNav.querySelectorAll(":scope > li")).forEach(function (li) {
+      var links = Array.from(li.querySelectorAll("a[href]"));
+      var hasFRLink = links.some(function (a) {
+        return (a.getAttribute("href") || "").indexOf("fr/") !== -1;
+      });
+      if (isFR ? !hasFRLink : hasFRLink) li.remove();
+    });
+  }
+
+  // Right nav: remove the self-referential language-toggle link that merges
+  // in from the other profile (the EN config's "FR" link rides along with
+  // the FR config's "EN" link, and vice versa).
+  var rightNav = document.querySelector(".navbar-nav.ms-auto");
+  if (rightNav) {
+    Array.from(rightNav.querySelectorAll("li")).forEach(function (li) {
+      var a = li.querySelector("a[href]");
+      var hasFRLink = a && (a.getAttribute("href") || "").indexOf("fr/") !== -1;
+      if (isFR) {
+        if (hasFRLink) li.remove();
+      } else {
+        if (!hasFRLink) li.remove();
+      }
+    });
+  }
+})();
+
+// ── Theme toggle label ("Light" / "Dark") ────────────────────────────────
+(function () {
+  var tog = document.querySelector(".quarto-color-scheme-toggle");
+  if (!tog) return;
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var label = document.createElement("span");
+  label.className = "bq-theme-label";
+  var update = function () {
+    var isDark = document.body.classList.contains("quarto-dark");
+    label.textContent = isFR
+      ? (isDark ? "Clair" : "Sombre")
+      : (isDark ? "Light" : "Dark");
+  };
+  tog.appendChild(label);
+  update();
+  new MutationObserver(update).observe(
+    document.body, { attributes: true, attributeFilter: ["class"] }
+  );
+})();
+
+// Live dashboard-card previews. This runs only on pages that contain the
+// shared dashboard cards and uses the same generated file as the dashboards.
+(function () {
+  var isFR = location.pathname.startsWith("/fr/") || location.pathname === "/fr";
+  var locale = isFR ? "fr-CA" : "en-CA";
+  var copy = isFR ? {
+    unavailable: "Aperçu indisponible. Ouvrez le tableau de bord.",
+    accommodated: "personnes hébergées à 4 h",
+    cityWebpage: "Page Web de la Ville",
+    openData: "Données ouvertes",
+    openDataThrough: "Fichier détaillé de données ouvertes jusqu'au ",
+    activelyHomeless: "personnes en situation d'itinérance active",
+    newlyIdentified: "Nouvellement identifiées",
+    movedToHousing: "Ont obtenu un logement",
+    callsHandled: "appels traités par jour en moyenne",
+    januaryTo: "De janvier à ",
+    latest: "Plus récent : ",
+    trend: "Tendance de l'itinérance active jusqu'à "
+  } : {
+    unavailable: "Preview unavailable. Open the dashboard.",
+    accommodated: "people accommodated at 4 a.m.",
+    cityWebpage: "City webpage",
+    openData: "Open data",
+    openDataThrough: "Detailed Open Data file through ",
+    activelyHomeless: "people counted as homeless",
+    newlyIdentified: "Newly counted as homeless",
+    movedToHousing: "Moved into housing",
+    callsHandled: "calls handled each day on average",
+    januaryTo: "January to ",
+    latest: "Latest: ",
+    trend: "People counted as homeless through "
+  };
+  var dailyMount = document.getElementById("bq-preview-daily");
+  var monthlyMount = document.getElementById("bq-preview-monthly");
+  var callerMount = document.getElementById("bq-preview-caller");
+  var ytdMount = document.getElementById("bq-preview-ytd");
+  var historyMount = document.getElementById("bq-preview-history");
+  if (!dailyMount && !monthlyMount && !callerMount && !ytdMount && !historyMount) return;
+
+  function make(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function metricRow(label, value) {
+    var row = make("div");
+    row.append(make("span", "", label), make("strong", "", value));
+    return row;
+  }
+
+  function meter(value, maximum, good) {
+    var track = make("i");
+    var bar = make("b", good ? "bq-preview-bar-good" : "");
+    bar.style.width = ((value / maximum) * 100) + "%";
+    track.append(bar);
+    return track;
+  }
+
+  function showUnavailable(mount) {
+    if (!mount) return;
+    mount.replaceChildren(make("span", "", copy.unavailable));
+  }
+
+  Promise.all([
+    fetch("/data/daily_occupancy.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("Open data preview unavailable");
+        return response.json();
+      })
+      .catch(function () { return []; }),
+    fetch("/data/city_bridging_triage.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("City webpage preview unavailable");
+        return response.json();
+      })
+      .catch(function () { return {}; })
+  ]).then(function (sources) {
+      if (!dailyMount) return;
+      var openRows = sources[0];
+      var cityData = sources[1];
+      var latestOpenDate = openRows.reduce(function (latest, row) {
+        return row.date > latest ? row.date : latest;
+      }, "");
+      var latestCityDate = Object.keys(cityData.entries || {}).sort().reverse()
+        .find(function (date) {
+          var entry = cityData.entries[date];
+          return entry && entry.total_people != null &&
+            Number.isFinite(Number(entry.total_people));
+        }) || "";
+      var citySystem = latestCityDate ? cityData.entries[latestCityDate] : null;
+      var openSystem = openRows.find(function (row) {
+        return row.date === latestOpenDate && row.key === "all_shelter";
+      });
+      var useCity = citySystem && (!latestOpenDate || latestCityDate >= latestOpenDate);
+      var displayDate = useCity ? latestCityDate : latestOpenDate;
+      var displayTotal = useCity ? citySystem.total_people : openSystem && openSystem.ind;
+      if (!displayDate || displayTotal === undefined || displayTotal === null) {
+        throw new Error("Daily preview rows unavailable");
+      }
+
+      function dateLabel(isoDate) {
+        var parts = isoDate.split("-").map(Number);
+        return new Date(parts[0], parts[1] - 1, parts[2]).toLocaleDateString(
+          locale, {year: "numeric", month: "long", day: "numeric"}
+        );
+      }
+
+      var daily = make("div", "bq-preview-kpi bq-preview-daily");
+      daily.append(
+        make("strong", "", Number(displayTotal).toLocaleString(locale)),
+        make("span", "", copy.accommodated),
+        make("small", "", (useCity ? copy.cityWebpage : copy.openData) +
+          " · " + dateLabel(displayDate))
+      );
+      if (useCity && latestOpenDate && latestCityDate > latestOpenDate) {
+        daily.append(make("small", "", copy.openDataThrough + dateLabel(latestOpenDate)));
+      }
+      dailyMount.replaceChildren(daily);
+    })
+    .catch(function () { showUnavailable(dailyMount); });
+
+  fetch("/data/shelter_flow.json", {cache: "no-cache"})
+    .then(function (response) {
+      if (!response.ok) throw new Error("Dashboard preview data unavailable");
+      return response.json();
+    })
+    .then(function (data) {
+      var rows = data
+        .filter(function (row) { return row.population_group === "All Population"; })
+        .slice()
+        .sort(function (a, b) { return a.flow_date.localeCompare(b.flow_date); });
+      if (!rows.length) throw new Error("Dashboard preview data empty");
+
+      var latest = rows[rows.length - 1];
+      var dateParts = latest.flow_date.split("-").map(Number);
+      var latestYear = dateParts[0];
+      var latestMonth = dateParts[1];
+      var latestLabel = new Date(latestYear, latestMonth - 1, 1)
+        .toLocaleDateString(locale, {month: "long", year: "numeric"});
+      var fmt = function (value) {
+        return Number(value).toLocaleString(locale);
+      };
+
+      if (monthlyMount) {
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", fmt(latest.actively_homeless)),
+          make("span", "", copy.activelyHomeless + " · " + latestLabel)
+        );
+        monthlyMount.replaceChildren(kpi);
+      }
+
+      var ytdRows = rows.filter(function (row) {
+        var parts = row.flow_date.split("-").map(Number);
+        return parts[0] === latestYear && parts[1] <= latestMonth;
+      });
+      var ytdNew = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.newly_identified || 0);
+      }, 0);
+      var ytdHoused = ytdRows.reduce(function (sum, row) {
+        return sum + (+row.moved_to_housing || 0);
+      }, 0);
+      var ytdMax = Math.max(ytdNew, ytdHoused, 1);
+
+      if (ytdMount) {
+        var bars = make("div", "bq-preview-bars");
+        bars.append(
+          metricRow(copy.newlyIdentified, fmt(ytdNew)),
+          meter(ytdNew, ytdMax, false),
+          metricRow(copy.movedToHousing, fmt(ytdHoused)),
+          meter(ytdHoused, ytdMax, true),
+          make("small", "", copy.januaryTo + latestLabel)
+        );
+        ytdMount.replaceChildren(bars);
+      }
+
+      if (historyMount) {
+        var trend = rows.slice(-48).map(function (row) {
+          return +row.actively_homeless;
+        });
+        var minimum = Math.min.apply(null, trend);
+        var maximum = Math.max.apply(null, trend);
+        var spread = Math.max(maximum - minimum, 1);
+        var wrap = make("div", "bq-preview-history-wrap");
+        var spark = make("div", "bq-preview-spark");
+        spark.setAttribute("role", "img");
+        spark.setAttribute(
+          "aria-label",
+          copy.trend + latestLabel +
+            (isFR ? "; valeur la plus récente " : "; latest value ") +
+            fmt(latest.actively_homeless)
+        );
+        trend.forEach(function (value, index) {
+          var bar = make("span", index === trend.length - 1 ? "is-latest" : "");
+          bar.style.height = (20 + ((value - minimum) / spread) * 80) + "%";
+          spark.append(bar);
+        });
+        wrap.append(spark, make("small", "", copy.latest + fmt(latest.actively_homeless)));
+        historyMount.replaceChildren(wrap);
+      }
+    })
+    .catch(function () {
+      showUnavailable(monthlyMount);
+      showUnavailable(ytdMount);
+      showUnavailable(historyMount);
+    });
+
+  if (callerMount) {
+    fetch("/data/central_intake.json", {cache: "no-cache"})
+      .then(function (response) {
+        if (!response.ok) throw new Error("Caller preview data unavailable");
+        return response.json();
+      })
+      .then(function (data) {
+        var latest = (data.monthly || [])
+          .filter(function (row) {
+            return row.handled_mean != null &&
+              Number.isFinite(Number(row.handled_mean));
+          })
+          .slice()
+          .sort(function (a, b) {
+            return (a.year * 100 + a.month) - (b.year * 100 + b.month);
+          })
+          .pop();
+        if (!latest) throw new Error("Caller preview rows unavailable");
+
+        var latestLabel = new Date(latest.year, latest.month - 1, 1)
+          .toLocaleDateString(locale, {month: "long", year: "numeric"});
+        var kpi = make("div", "bq-preview-kpi");
+        kpi.append(
+          make("strong", "", Math.round(latest.handled_mean).toLocaleString(locale)),
+          make("span", "", copy.callsHandled + " · " + latestLabel)
+        );
+        callerMount.replaceChildren(kpi);
+      })
+      .catch(function () { showUnavailable(callerMount); });
+  }
+})();
+
+// ── Language toggle link + hreflang injection ─────────────────────────────
+// Computes the exact mirror URL from the current pathname and updates the
+// navbar toggle link, then injects hreflang <link> tags for search engines.
+(function () {
+  var frPfx = "/fr/";
+  var path  = location.pathname;
+  var isFR  = path.startsWith(frPfx) || path === "/fr";
+
+  var enPath, frPath;
+  if (isFR) {
+    enPath = (path === "/fr" || path === "/fr/")
+      ? "/"
+      : path.replace(frPfx, "/");
+    frPath = (path === "/fr") ? "/fr/" : path;
+  } else {
+    enPath = path;
+    frPath = frPfx + path.replace(/^\//, "");
+  }
+
+  function abs(p) { return location.origin + p; }
+
+  // Update the navbar toggle link. After nav cleanup the right nav has
+  // exactly one <a>: the link to the other language.
+  var rightNav = document.querySelector(".navbar-nav.ms-auto");
+  if (rightNav) {
+    var tog = rightNav.querySelector("a.nav-link");
+    if (tog) {
+      tog.href        = isFR ? abs(enPath) : abs(frPath);
+      tog.textContent = isFR ? "EN" : "FR";
+    }
+  }
+
+  // Also sync the mobile clone's href to the specific counterpart page.
+  var mobileClone = document.querySelector(".bq-lang-mobile");
+  if (mobileClone) {
+    mobileClone.href = isFR ? abs(enPath) : abs(frPath);
+  }
+
+  // Hreflang <link> tags for search engines.
+  function addLink(rel, hreflang, href) {
+    var el = document.createElement("link");
+    el.rel = rel;
+    if (hreflang) el.setAttribute("hreflang", hreflang);
+    el.href = href;
+    document.head.appendChild(el);
+  }
+  addLink("alternate", "en-CA",    abs(enPath));
+  addLink("alternate", "fr-CA",    abs(frPath));
+  addLink("alternate", "x-default", abs(enPath));
+})();
+</script>
+<div id="help-now" class="bq-global-help">
+<div class="bq-help-strip bq-help-en" role="complementary" aria-label="Immediate shelter, violence, outreach, and emergency contacts">
+  <div class="bq-help-copy">
+    <strong>Need a safe place or support now?</strong>
+    <span>These contacts serve Toronto unless another area is named. BonQuery is an independent data project, not a service provider.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Assaulted Women's Helpline</strong><small>Free and confidential, anywhere in Ontario, 24/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Young people: Kids Help Phone</strong><small>Ages 5 to 29, confidential, 24/7. Call, or text CONNECT to 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Thinking about suicide, or worried about someone?</strong><small>Call or text 988 anywhere in Canada, 24/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto emergency shelter line</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto shelter line, toll-free</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto mental-health crisis support</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto street outreach</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 from outside city limits</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>City services TTY relay</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Immediate danger in Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Toronto warming-centre status</a>
+  </div>
+</div>
+<div class="bq-help-strip bq-help-fr" role="complementary" aria-label="Contacts immédiats pour un lieu sûr, un refuge, une crise ou une urgence" lang="fr-CA">
+  <div class="bq-help-copy">
+    <strong>Besoin d'un endroit sûr ou de soutien maintenant?</strong>
+    <span>Ces services desservent Toronto, sauf si une autre région est indiquée. BonQuery est un projet de données indépendant, pas un fournisseur de services.</span>
+  </div>
+  <div class="bq-help-actions">
+    <a class="bq-help-women bq-help-priority" href="tel:+18668630511">
+      <i class="bi bi-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Ligne d'aide aux femmes victimes de violence</strong><small>Gratuite et confidentielle, partout en Ontario, 24 h/24 et 7 j/7</small></span>
+      <span class="bq-help-number">1-866-863-0511</span>
+    </a>
+    <a class="bq-help-youth bq-help-priority" href="tel:+18006686868">
+      <i class="bi bi-person-hearts" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Jeunes : Jeunesse, J'écoute</strong><small>De 5 à 29 ans, service confidentiel 24 h/24 et 7 j/7. Appelez ou textez le 686868.</small></span>
+      <span class="bq-help-number">1-800-668-6868</span>
+    </a>
+    <a class="bq-help-suicide bq-help-priority" href="tel:988">
+      <i class="bi bi-chat-square-heart-fill" aria-hidden="true"></i>
+      <span class="bq-help-service"><strong>Vous pensez au suicide ou vous vous inquiétez pour quelqu'un?</strong><small>Appelez ou textez le 988 partout au Canada, 24 h/24 et 7 j/7.</small></span>
+      <span class="bq-help-number">988</span>
+    </a>
+    <a class="bq-help-intake" href="tel:+14163384766"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges d'urgence de Toronto</strong><span class="bq-help-number">416-338-4766</span></span></a>
+    <a class="bq-help-intake-free" href="tel:+18773383398"><i class="bi bi-telephone" aria-hidden="true"></i><span class="bq-help-service"><strong>Ligne des refuges de Toronto, sans frais</strong><span class="bq-help-number">1-877-338-3398</span></span></a>
+    <a class="bq-help-referrals" href="tel:211"><i class="bi bi-chat-heart" aria-hidden="true"></i><span class="bq-help-service"><strong>Soutien en cas de crise de santé mentale à Toronto</strong><span class="bq-help-number">211</span></span></a>
+    <a class="bq-help-outreach" href="tel:311"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Intervention de rue à Toronto</strong><span class="bq-help-number">311</span></span></a>
+    <a class="bq-help-outside" href="tel:+14163922489"><i class="bi bi-geo-alt" aria-hidden="true"></i><span class="bq-help-service"><strong>Toronto 311 depuis l'extérieur de la ville</strong><span class="bq-help-number">416-392-2489</span></span></a>
+    <a class="bq-help-tty" href="tel:711"><i class="bi bi-universal-access" aria-hidden="true"></i><span class="bq-help-service"><strong>Service de relais ATS de la Ville</strong><span class="bq-help-number">711</span></span></a>
+    <a class="bq-help-danger" href="tel:911"><i class="bi bi-exclamation-triangle" aria-hidden="true"></i><span class="bq-help-service"><strong>Danger immédiat au Canada</strong><span class="bq-help-number">911</span></span></a>
+    <a class="bq-help-warming" href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/toronto-warming-centres/" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> État des centres de réchauffement de Toronto</a>
+  </div>
+</div>
+</div>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/bonquery\.ca");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Independent public-interest analysis of Toronto’s shelter system. <br> <span style="font-size: 0.85em; opacity: 0.7;">© 2026 Miriam Marling · BonQuery</span></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

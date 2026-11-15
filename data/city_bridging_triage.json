@@ -1,0 +1,618 @@
+{
+  "note": "Bridging & Triage Programs and Total People Accommodated are not published to the City of Toronto open data (CKAN) export. These figures are scraped daily from the City's shelter census page (toronto.ca/shelter-census) when the City posts them. Data is available from 2026-05-26 onward. Days where the City did not publish a table (weekends, holidays) will be absent unless the City retroactively posts catch-up tables on a subsequent day.",
+  "first_captured": "2026-05-26",
+  "entries": {
+    "2026-05-26": {
+      "bridging_triage": 30,
+      "total_people": 7948
+    },
+    "2026-05-27": {
+      "bridging_triage": 30,
+      "total_people": 7948
+    },
+    "2026-05-28": {
+      "bridging_triage": 30,
+      "total_people": 7943
+    },
+    "2026-05-29": {
+      "bridging_triage": 30,
+      "total_people": 7938
+    },
+    "2026-05-30": {
+      "bridging_triage": 31,
+      "total_people": 7938
+    },
+    "2026-05-31": {
+      "bridging_triage": 31,
+      "total_people": 7933
+    },
+    "2026-06-01": {
+      "bridging_triage": 31,
+      "total_people": 7933
+    },
+    "2026-06-02": {
+      "bridging_triage": 38,
+      "total_people": 7873
+    },
+    "2026-06-03": {
+      "bridging_triage": 38,
+      "total_people": 7862
+    },
+    "2026-06-04": {
+      "bridging_triage": 38,
+      "total_people": 7856
+    },
+    "2026-06-05": {
+      "bridging_triage": 36,
+      "total_people": 7849
+    },
+    "2026-06-06": {
+      "bridging_triage": 36,
+      "total_people": 7839
+    },
+    "2026-06-07": {
+      "bridging_triage": 37,
+      "total_people": 7831
+    },
+    "2026-06-08": {
+      "bridging_triage": 37,
+      "total_people": 7827
+    },
+    "2026-06-09": {
+      "bridging_triage": 30,
+      "total_people": 7821
+    },
+    "2026-06-10": {
+      "bridging_triage": 32,
+      "total_people": 7822
+    },
+    "2026-06-11": {
+      "bridging_triage": 36,
+      "total_people": 7832
+    },
+    "2026-06-12": {
+      "bridging_triage": 36,
+      "total_people": 7827
+    },
+    "2026-06-13": {
+      "bridging_triage": 32,
+      "total_people": 7828
+    },
+    "2026-06-14": {
+      "bridging_triage": 32,
+      "total_people": 7829
+    },
+    "2026-06-15": {
+      "bridging_triage": 31,
+      "total_people": 7832
+    },
+    "2026-06-17": {
+      "bridging_triage": 22,
+      "total_people": 7823
+    },
+    "2026-06-18": {
+      "bridging_triage": 18,
+      "total_people": 7807
+    },
+    "2026-06-22": {
+      "bridging_triage": 18,
+      "total_people": 7814
+    },
+    "2026-06-23": {
+      "bridging_triage": 18,
+      "total_people": 7808
+    },
+    "2026-06-24": {
+      "bridging_triage": 16,
+      "total_people": 7819
+    },
+    "2026-06-25": {
+      "bridging_triage": 22,
+      "total_people": 7823
+    },
+    "2026-06-26": {
+      "bridging_triage": 22,
+      "total_people": 7864
+    },
+    "2026-06-27": {
+      "bridging_triage": 22,
+      "total_people": 7862
+    },
+    "2026-06-28": {
+      "bridging_triage": 22,
+      "total_people": 7850
+    },
+    "2026-06-29": {
+      "bridging_triage": 18,
+      "total_people": 7841
+    },
+    "2026-06-30": {
+      "bridging_triage": 30,
+      "total_people": 7871
+    },
+    "2026-07-02": {
+      "bridging_triage": 23,
+      "total_people": 7863
+    },
+    "2026-07-03": {
+      "bridging_triage": 23,
+      "total_people": 7870
+    },
+    "2026-07-04": {
+      "bridging_triage": 18,
+      "total_people": 7865
+    },
+    "2026-07-05": {
+      "bridging_triage": 18,
+      "total_people": 7831
+    },
+    "2026-07-06": {
+      "bridging_triage": 21,
+      "total_people": 7802
+    },
+    "2026-07-07": {
+      "bridging_triage": 28,
+      "total_people": 7782
+    },
+    "2026-07-08": {
+      "bridging_triage": 28,
+      "total_people": 7760
+    },
+    "2026-07-09": {
+      "bridging_triage": 28,
+      "total_people": 7753
+    },
+    "2026-07-10": {
+      "bridging_triage": 22,
+      "total_people": 7741
+    },
+    "2026-07-11": {
+      "bridging_triage": 22,
+      "total_people": 7743
+    },
+    "2026-07-12": {
+      "bridging_triage": 24,
+      "total_people": 7744
+    },
+    "2026-07-13": {
+      "bridging_triage": 22,
+      "total_people": 7782
+    },
+    "2026-07-15": {
+      "bridging_triage": 21,
+      "total_people": 7814
+    },
+    "2026-07-16": {
+      "bridging_triage": 21,
+      "total_people": 7811
+    },
+    "2026-07-17": {
+      "bridging_triage": 21,
+      "total_people": 7798
+    },
+    "2026-07-18": {
+      "bridging_triage": 19,
+      "total_people": 7811
+    },
+    "2026-07-19": {
+      "bridging_triage": 19,
+      "total_people": 7796
+    },
+    "2026-07-28": {
+      "bridging_triage": 12,
+      "total_people": 7713
+    },
+    "2026-07-29": {
+      "bridging_triage": 10,
+      "total_people": 7718
+    },
+    "2026-07-30": {
+      "bridging_triage": 0,
+      "total_people": 7716
+    },
+    "2026-07-31": {
+      "bridging_triage": 0,
+      "total_people": 7708
+    },
+    "2026-08-04": {
+      "bridging_triage": 0,
+      "total_people": 7687
+    },
+    "2026-08-05": {
+      "bridging_triage": 0,
+      "total_people": 7686
+    },
+    "2026-08-06": {
+      "bridging_triage": 0,
+      "total_people": 7689
+    },
+    "2026-08-07": {
+      "bridging_triage": 0,
+      "total_people": 7687
+    },
+    "2026-08-08": {
+      "bridging_triage": 1,
+      "total_people": 7685
+    },
+    "2026-08-09": {
+      "bridging_triage": 0,
+      "total_people": 7681
+    },
+    "2026-08-10": {
+      "bridging_triage": 0,
+      "total_people": 7656
+    },
+    "2026-08-11": {
+      "bridging_triage": 0,
+      "total_people": 7653
+    },
+    "2026-08-12": {
+      "bridging_triage": 0,
+      "total_people": 7644
+    },
+    "2026-08-13": {
+      "bridging_triage": 0,
+      "total_people": 7650
+    },
+    "2026-08-14": {
+      "bridging_triage": 0,
+      "total_people": 7656
+    },
+    "2026-08-15": {
+      "bridging_triage": 0,
+      "total_people": 7653
+    },
+    "2026-08-16": {
+      "bridging_triage": 0,
+      "total_people": 7648
+    },
+    "2026-08-17": {
+      "bridging_triage": 0,
+      "total_people": 7634
+    },
+    "2026-08-19": {
+      "bridging_triage": 0,
+      "total_people": 7619
+    },
+    "2026-08-20": {
+      "bridging_triage": 4,
+      "total_people": 7629
+    },
+    "2026-08-21": {
+      "bridging_triage": 4,
+      "total_people": 7637
+    },
+    "2026-08-22": {
+      "bridging_triage": 0,
+      "total_people": 7626
+    },
+    "2026-08-23": {
+      "bridging_triage": 0,
+      "total_people": 7626
+    },
+    "2026-08-24": {
+      "bridging_triage": 0,
+      "total_people": 7633
+    },
+    "2026-08-25": {
+      "bridging_triage": 2,
+      "total_people": 7621
+    },
+    "2026-08-26": {
+      "bridging_triage": 0,
+      "total_people": 7601
+    },
+    "2026-08-27": {
+      "bridging_triage": 4,
+      "total_people": 7596
+    },
+    "2026-08-28": {
+      "bridging_triage": 6,
+      "total_people": 7580
+    },
+    "2026-08-29": {
+      "bridging_triage": 6,
+      "total_people": 7585
+    },
+    "2026-08-30": {
+      "bridging_triage": 6,
+      "total_people": 7569
+    },
+    "2026-08-31": {
+      "bridging_triage": 1,
+      "total_people": 7543
+    },
+    "2026-09-01": {
+      "bridging_triage": 1,
+      "total_people": 7509
+    },
+    "2026-09-02": {
+      "bridging_triage": 1,
+      "total_people": 7483
+    },
+    "2026-09-03": {
+      "bridging_triage": 1,
+      "total_people": 7464
+    },
+    "2026-09-04": {
+      "bridging_triage": 5,
+      "total_people": 7427
+    },
+    "2026-09-05": {
+      "bridging_triage": 5,
+      "total_people": 7389
+    },
+    "2026-09-06": {
+      "bridging_triage": 8,
+      "total_people": 7388
+    },
+    "2026-09-07": {
+      "bridging_triage": 5,
+      "total_people": 7390
+    },
+    "2026-09-08": {
+      "bridging_triage": 9,
+      "total_people": 7362
+    },
+    "2026-09-09": {
+      "bridging_triage": 7,
+      "total_people": 7346
+    },
+    "2026-09-10": {
+      "bridging_triage": 9,
+      "total_people": 7344
+    },
+    "2026-09-11": {
+      "bridging_triage": 5,
+      "total_people": 7343
+    },
+    "2026-09-12": {
+      "bridging_triage": 4,
+      "total_people": 7347
+    },
+    "2026-09-13": {
+      "bridging_triage": 3,
+      "total_people": 7347
+    },
+    "2026-09-14": {
+      "bridging_triage": 11,
+      "total_people": 7321
+    },
+    "2026-09-15": {
+      "bridging_triage": 11,
+      "total_people": 7318
+    },
+    "2026-09-16": {
+      "bridging_triage": 6,
+      "total_people": 7307
+    },
+    "2026-09-17": {
+      "bridging_triage": 0,
+      "total_people": 7295
+    },
+    "2026-09-18": {
+      "bridging_triage": 9,
+      "total_people": 7298
+    },
+    "2026-09-19": {
+      "bridging_triage": 9,
+      "total_people": 7295
+    },
+    "2026-09-20": {
+      "bridging_triage": 7,
+      "total_people": 7289
+    },
+    "2026-09-21": {
+      "bridging_triage": 0,
+      "total_people": 7288
+    },
+    "2026-09-22": {
+      "bridging_triage": 0,
+      "total_people": 7268
+    },
+    "2026-09-23": {
+      "bridging_triage": 0,
+      "total_people": 7267
+    },
+    "2026-09-24": {
+      "bridging_triage": 0,
+      "total_people": 7262
+    },
+    "2026-09-25": {
+      "bridging_triage": 0,
+      "total_people": 7262
+    },
+    "2026-09-26": {
+      "bridging_triage": 0,
+      "total_people": 7261
+    },
+    "2026-09-27": {
+      "bridging_triage": 0,
+      "total_people": 7255
+    },
+    "2026-09-28": {
+      "bridging_triage": 0,
+      "total_people": 7247
+    },
+    "2026-09-29": {
+      "bridging_triage": 0,
+      "total_people": 7234
+    },
+    "2026-09-30": {
+      "bridging_triage": 0,
+      "total_people": 7221
+    },
+    "2026-10-01": {
+      "bridging_triage": 2,
+      "total_people": 7155
+    },
+    "2026-10-02": {
+      "bridging_triage": 0,
+      "total_people": 7115
+    },
+    "2026-10-03": {
+      "bridging_triage": 0,
+      "total_people": 7093
+    },
+    "2026-10-04": {
+      "bridging_triage": 0,
+      "total_people": 7087
+    },
+    "2026-10-05": {
+      "bridging_triage": 0,
+      "total_people": 7069
+    },
+    "2026-10-06": {
+      "bridging_triage": 0,
+      "total_people": 7042
+    },
+    "2026-10-07": {
+      "bridging_triage": 0,
+      "total_people": 7026
+    },
+    "2026-10-08": {
+      "bridging_triage": 0,
+      "total_people": 7018
+    },
+    "2026-10-09": {
+      "bridging_triage": 0,
+      "total_people": 7009
+    },
+    "2026-10-10": {
+      "bridging_triage": 0,
+      "total_people": 7010
+    },
+    "2026-10-11": {
+      "bridging_triage": 0,
+      "total_people": 7015
+    },
+    "2026-10-12": {
+      "bridging_triage": 0,
+      "total_people": 7001
+    },
+    "2026-10-13": {
+      "bridging_triage": 0,
+      "total_people": 6969
+    },
+    "2026-10-14": {
+      "bridging_triage": 0,
+      "total_people": 6971
+    },
+    "2026-10-15": {
+      "bridging_triage": 0,
+      "total_people": 6960
+    },
+    "2026-10-16": {
+      "bridging_triage": 0,
+      "total_people": 6959
+    },
+    "2026-10-17": {
+      "bridging_triage": 0,
+      "total_people": 6959
+    },
+    "2026-10-18": {
+      "bridging_triage": 0,
+      "total_people": 6953
+    },
+    "2026-10-19": {
+      "bridging_triage": 0,
+      "total_people": 6929
+    },
+    "2026-10-20": {
+      "bridging_triage": 0,
+      "total_people": 6923
+    },
+    "2026-10-21": {
+      "bridging_triage": 0,
+      "total_people": 6909
+    },
+    "2026-10-22": {
+      "bridging_triage": 0,
+      "total_people": 6920
+    },
+    "2026-10-23": {
+      "bridging_triage": 0,
+      "total_people": 6907
+    },
+    "2026-10-24": {
+      "bridging_triage": 0,
+      "total_people": 6909
+    },
+    "2026-10-25": {
+      "bridging_triage": 0,
+      "total_people": 6914
+    },
+    "2026-10-26": {
+      "bridging_triage": 0,
+      "total_people": 6903
+    },
+    "2026-10-27": {
+      "bridging_triage": 0,
+      "total_people": 6894
+    },
+    "2026-10-28": {
+      "bridging_triage": 0,
+      "total_people": 6890
+    },
+    "2026-10-29": {
+      "bridging_triage": 0,
+      "total_people": 6869
+    },
+    "2026-10-30": {
+      "bridging_triage": 0,
+      "total_people": 6873
+    },
+    "2026-10-31": {
+      "bridging_triage": 0,
+      "total_people": 6861
+    },
+    "2026-11-01": {
+      "bridging_triage": 0,
+      "total_people": 6825
+    },
+    "2026-11-02": {
+      "bridging_triage": 0,
+      "total_people": 6801
+    },
+    "2026-11-03": {
+      "bridging_triage": 0,
+      "total_people": 6788
+    },
+    "2026-11-04": {
+      "bridging_triage": 8,
+      "total_people": 6796
+    },
+    "2026-11-05": {
+      "bridging_triage": 5,
+      "total_people": 6780
+    },
+    "2026-11-06": {
+      "bridging_triage": 8,
+      "total_people": 6767
+    },
+    "2026-11-07": {
+      "bridging_triage": 8,
+      "total_people": 6774
+    },
+    "2026-11-08": {
+      "bridging_triage": 11,
+      "total_people": 6764
+    },
+    "2026-11-09": {
+      "bridging_triage": 11,
+      "total_people": 6766
+    },
+    "2026-11-10": {
+      "bridging_triage": 11,
+      "total_people": 6741
+    },
+    "2026-11-11": {
+      "bridging_triage": 20,
+      "total_people": 6747
+    },
+    "2026-11-12": {
+      "bridging_triage": 16,
+      "total_people": 6735
+    }
+  }
+}

@@ -103,7 +103,11 @@ jobs:
           ssf_month = max(r['flow_date'] for r in flow)[:7]
 
           ci = json.loads(Path('data/central_intake.json').read_text())
-          months = ci.get('monthly', [])
+          # The monthly table also carries rows that hold only nightly occupancy,
+          # and occupancy runs weeks ahead of the call data. Keep only months with
+          # at least one day of calls, so the marker follows the City's intake release.
+          call_keys = ('handled_n_days', 'referred_n_days', 'unmatched_n_days')
+          months = [m for m in ci.get('monthly', []) if any(m.get(k) for k in call_keys)]
           if months:
               latest = max(months, key=lambda m: (m['year'], m['month']))
               intake_month = '%04d-%02d' % (latest['year'], latest['month'])

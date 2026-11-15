@@ -420,6 +420,14 @@ selectedReserveRows = reserveRows.filter(
 selectedReserveSummary = reserveSummaryRows.find(
   d => d.target === reserveTarget
 )
+
+// Figure 2 covers three seasons only, so it gets its own colour and shape per
+// season. The six-season map above stays as is for Figure 1.
+reserveSeasonStyle = new Map([
+  ["2023-24", { color: "#1F77D0", symbol: "circle" }],
+  ["2024-25", { color: "#F0A202", symbol: "triangle" }],
+  ["2025-26", { color: "#C2185B", symbol: "square" }]
+])
 ```
 
 ```{ojs}
@@ -461,9 +469,11 @@ selectedReserveSummary = reserveSummaryRows.find(
 //| label: fig-reserve-shortfall
 //| fig-cap: |
 //|   *Additional walk-in spaces required to preserve the selected operating
-//|   reserve on nights at or below −5 °C, current activation period.* Each dot
-//|   is one night. The calculation uses admitted occupancy only, so it is a
-//|   lower bound on total need.
+//|   reserve on nights at or below −5 °C, 2023–24 through 2025–26.* Each marker
+//|   is one night. Earlier seasons are not shown because warming centres then
+//|   opened only at −15 °C, so their −5 °C nights are not comparable. The
+//|   calculation uses admitted occupancy only, so it is a lower bound on total
+//|   need.
 
 Plot.plot({
   width: 720,
@@ -472,12 +482,20 @@ Plot.plot({
   marginRight: 20,
   marginTop: 20,
   marginBottom: 55,
+  // Only the three seasons under the −5 °C activation rule have rows here, so
+  // the scales list just those. Colour and shape both vary by season, which
+  // keeps the seasons apart for readers who cannot rely on colour alone.
   color: {
     type: "ordinal",
+    label: "Winter season",
+    domain: [...reserveSeasonStyle.keys()],
+    range: [...reserveSeasonStyle.values()].map(d => d.color)
+  },
+  symbol: {
     legend: true,
     label: "Winter season",
-    domain: [...seasonColorMap.keys()],
-    range: [...seasonColorMap.values()]
+    domain: [...reserveSeasonStyle.keys()],
+    range: [...reserveSeasonStyle.values()].map(d => d.symbol)
   },
   x: {
     label: "Overnight minimum temperature (°C)",
@@ -500,8 +518,9 @@ Plot.plot({
       x: "min_temp",
       y: "additional_spaces_needed",
       fill: "winter_season",
-      r: 4,
-      fillOpacity: 0.75
+      symbol: "winter_season",
+      r: 4.5,
+      fillOpacity: 0.8
     }),
     Plot.tip(selectedReserveRows, Plot.pointer({
       x: "min_temp",

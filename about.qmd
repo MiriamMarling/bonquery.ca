@@ -21,7 +21,7 @@ about:
 open-graph:
   title: "About | BonQuery"
   description: "About Miriam Marling and BonQuery's independent Toronto shelter data and public-accountability work."
-  site_name: "BonQuery"
+  site-name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "About | BonQuery"

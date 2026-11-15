@@ -6,7 +6,7 @@ author: "Miriam Marling"
 open-graph:
   title: "YTD Comparison — Toronto Shelter System"
   description: "Year-to-date (YTD) comparison of Toronto's shelter system — see whether the YTD selected in the dropdown is tracking above or below prior years on the inflow/outflow categories: Newly Identified and Moved to Permanent Housing."
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "YTD Comparison — Toronto Shelter System"

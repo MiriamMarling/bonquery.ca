@@ -8,7 +8,7 @@ draft: true
 open-graph:
   title: "Discrepancy Tracker — Toronto Shelter Audit"
   description: "A running log of discrepancies between the City's official overnight shelter counts and the raw SMIS data, by date."
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Discrepancy Tracker — Toronto Shelter Audit"

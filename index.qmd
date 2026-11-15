@@ -7,7 +7,7 @@ date-modified: 2026-08-12
 open-graph:
   title: "Toronto Shelter Data Updated Daily | BonQuery"
   description: "Daily Toronto shelter data for people who need somewhere safe to stay, including people who are housing insecure, unhoused, or experiencing homelessness."
-  site_name: "BonQuery"
+  site-name: "BonQuery"
   image: images/bonquery-social-card.png
   image-alt: "BonQuery: Toronto Shelter Data Updated Daily"
 twitter-card:

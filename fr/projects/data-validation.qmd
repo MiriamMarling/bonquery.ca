@@ -8,7 +8,7 @@ open-graph:
   description: >
     Comment BonQuery compare et combine la page Web quotidienne et le fichier
     détaillé de données ouvertes sur les refuges de Toronto.
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Validation des données de BonQuery — Ville de Toronto"

@@ -12,7 +12,7 @@ open-graph:
     Portrait mensuel interactif du réseau de refuges de Toronto — dénombrements
     de l'itinérance active, indicateurs de flux et répartitions par groupe de
     population pour tout mois depuis janvier 2018.
-  site_name: "BonQuery — Des données pour le bien commun"
+  site-name: "BonQuery — Des données pour le bien commun"
 twitter-card:
   card-style: summary
   title: "Portrait mensuel — Réseau de refuges de Toronto"

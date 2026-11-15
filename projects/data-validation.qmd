@@ -6,7 +6,7 @@ author: "Miriam Marling"
 open-graph:
   title: "Comparing Toronto's Daily Shelter Data Sources | BonQuery"
   description: "How BonQuery compares and combines Toronto's daily shelter webpage and detailed open-data file."
-  site_name: "BonQuery"
+  site-name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "Comparing Toronto's Daily Shelter Data Sources | BonQuery"

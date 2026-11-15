@@ -12,7 +12,7 @@ open-graph:
     Moyennes quotidiennes mensuelles des appels au service téléphonique
     d'orientation en refuge de l'Admission centrale de Toronto, provenant
     du portail de données ouvertes de la Ville de Toronto.
-  site_name: "BonQuery — Des données pour le bien commun"
+  site-name: "BonQuery — Des données pour le bien commun"
 twitter-card:
   card-style: summary
   title: "Demandes d'orientation en refuge — Admission centrale de Toronto"

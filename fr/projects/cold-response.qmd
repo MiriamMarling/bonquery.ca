@@ -16,7 +16,7 @@ open-graph:
     Lors de 95,9 % des nuits sous −5 °C au cours de six hivers torontois,
     des personnes étaient sans place à 4 h. Zéro est un choix budgétaire que
     la ville fait chaque été.
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Laissés dans le froid — Réseau de refuges de Toronto"

@@ -8,7 +8,7 @@ open-graph:
   description: >
     Données sur le réseau de refuges de Toronto — occupation et capacité
     quotidiennes, flux mensuel, validées par les données ouvertes de la Ville.
-  site_name: "BonQuery"
+  site-name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "Le réseau de refuges de Toronto"

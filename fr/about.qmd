@@ -21,7 +21,7 @@ about:
 open-graph:
   title: "À propos | BonQuery"
   description: "À propos de Miriam Marling et du travail indépendant de BonQuery sur les données des refuges de Toronto et la reddition de comptes publique."
-  site_name: "BonQuery"
+  site-name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "À propos | BonQuery"

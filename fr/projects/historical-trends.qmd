@@ -12,7 +12,7 @@ open-graph:
     Tendances historiques pluriannuelles du réseau de refuges de Toronto —
     itinérance active, sorties vers le logement et itinérance chronique de
     janvier 2018 à aujourd'hui, avec filtres interactifs.
-  site_name: "BonQuery — Des données pour le bien commun"
+  site-name: "BonQuery — Des données pour le bien commun"
 twitter-card:
   card-style: summary
   title: "Tendances historiques — Réseau de refuges de Toronto"

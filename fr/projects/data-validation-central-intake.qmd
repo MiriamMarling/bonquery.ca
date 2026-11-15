@@ -13,7 +13,7 @@ open-graph:
     Validation des statistiques d'appels à l'Admission centrale de BonQuery
     par rapport au tableau des demandes d'orientation dans les refuges publié
     par la Ville de Toronto.
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Validation — Admission centrale — BonQuery"

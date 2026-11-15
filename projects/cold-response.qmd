@@ -8,7 +8,7 @@ date-modified: 2026-08-07
 open-graph:
   title: "Left in the Cold: Toronto Shelter Access"
   description: "Across six Toronto winters, at least one person or couple remained without a place at 4 a.m. on 257 of 268 nights at or below −5 °C."
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Left in the Cold: Toronto Shelter Access"

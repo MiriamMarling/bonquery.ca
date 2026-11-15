@@ -6,7 +6,7 @@ author: "Miriam Marling"
 open-graph:
   title: "Calls Asking for Shelter | BonQuery"
   description: "What happened when people called Toronto Central Intake because they needed somewhere safe to stay."
-  site_name: "BonQuery"
+  site-name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "Calls Asking for Shelter | BonQuery"

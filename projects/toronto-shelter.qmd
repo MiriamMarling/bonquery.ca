@@ -6,7 +6,7 @@ author: "Miriam Marling"
 open-graph:
   title: "Inside Toronto's Shelter System"
   description: "Toronto shelter system data — daily occupancy and capacity, monthly system flow, validated against the City of Toronto's open data. Interactive tables with date selectors."
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Inside Toronto's Shelter System"

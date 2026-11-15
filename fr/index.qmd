@@ -7,7 +7,7 @@ date-modified: 2026-08-12
 open-graph:
   title: "Données sur les refuges de Toronto mises à jour quotidiennement | BonQuery"
   description: "Réplication indépendante des tableaux de bord des refuges de Toronto, mises à jour quotidiennes de l'occupation et de la capacité, validation des données sources et reddition de comptes."
-  site_name: "BonQuery"
+  site-name: "BonQuery"
   image: ../images/bonquery-social-card.png
   image-alt: "BonQuery : données sur les refuges de Toronto mises à jour quotidiennement"
 twitter-card:

@@ -14,7 +14,7 @@ open-graph:
     Comment lire les données sur les refuges de Toronto : qui est compté, qui
     manque, le sous-dénombrement estimé de 18 % et le choix entre sans-abri, sans
     logement et personnes en situation d'itinérance.
-  site_name: "BonQuery | Des données au service du bien commun"
+  site-name: "BonQuery | Des données au service du bien commun"
 twitter-card:
   card-style: summary
   title: "À propos des données | Réseau de refuges de Toronto"

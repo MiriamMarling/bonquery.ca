@@ -15,7 +15,7 @@ open-graph:
   description: >
     Journal des divergences entre les dénombrements officiels de nuit de la
     Ville de Toronto et les données brutes du SMIS, par date.
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Suivi des divergences — Audit du réseau de refuges de Toronto"

@@ -6,7 +6,7 @@ author: "Miriam Marling"
 open-graph:
   title: "Central Intake Data Validation — BonQuery"
   description: "Validation of BonQuery's Central Intake call statistics against the City of Toronto's published Shelter System Requests for Referrals table."
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "Central Intake Data Validation — BonQuery"

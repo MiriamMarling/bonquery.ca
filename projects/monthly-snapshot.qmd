@@ -6,7 +6,7 @@ author: "Miriam Marling"
 open-graph:
   title: "Monthly Toronto Shelter Numbers | BonQuery"
   description: "See what Toronto's shelter numbers show for any month from 2018 onward."
-  site_name: "BonQuery"
+  site-name: "BonQuery"
 twitter-card:
   card-style: summary
   title: "Monthly Toronto Shelter Numbers | BonQuery"

@@ -6,7 +6,7 @@ author: "Miriam Marling"
 open-graph:
   title: "About the Data — Toronto Shelter System"
   description: "How to read Toronto shelter data: who is counted, who is missing, the City's estimated 18% undercount, and BonQuery's use of homeless and unhoused."
-  site_name: "BonQuery — Data for the Greater Good"
+  site-name: "BonQuery — Data for the Greater Good"
 twitter-card:
   card-style: summary
   title: "About the Data — Toronto Shelter System"

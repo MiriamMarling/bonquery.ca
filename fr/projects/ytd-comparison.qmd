@@ -13,7 +13,7 @@ open-graph:
     Comparaison annuelle cumulative du réseau de refuges de Toronto — vérifiez si
     l'année en cours suit un rythme supérieur ou inférieur aux années précédentes
     pour les catégories nouvellement repérés et accès au logement permanent.
-  site_name: "BonQuery — Des données pour le bien commun"
+  site-name: "BonQuery — Des données pour le bien commun"
 twitter-card:
   card-style: summary
   title: "Comparaison annuelle cumulative — Réseau de refuges de Toronto"

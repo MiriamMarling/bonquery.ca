@@ -613,6 +613,18 @@
     "2026-11-12": {
       "bridging_triage": 16,
       "total_people": 6735
+    },
+    "2026-11-13": {
+      "bridging_triage": 16,
+      "total_people": 6791
+    },
+    "2026-11-14": {
+      "bridging_triage": 18,
+      "total_people": 6793
+    },
+    "2026-11-15": {
+      "bridging_triage": 18,
+      "total_people": 6796
     }
   }
 }

@@ -1166,3 +1166,35 @@ body.quarto-dark .quarto-color-scheme-toggle .bi:hover {
   margin: 1.5rem 0;
 }
 .bq-cta p { margin: 0; }
+
+/* Homepage video. Same width as the finding panel above it. */
+.bq-film {
+  max-width: 54rem;
+  margin: 0 0 2.4rem;
+}
+
+.bq-film video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.45rem;
+  background: #070c18;
+}
+
+.bq-film-note {
+  margin: 0.5rem 0 0.4rem;
+  color: var(--bq-fg-muted);
+  font-size: 0.9rem;
+}
+
+.bq-film-text summary {
+  color: var(--bq-fg-secondary);
+  font-size: 0.94rem;
+  cursor: pointer;
+}
+
+.bq-film-text p {
+  max-width: 44rem;
+  margin: 0.7rem 0 0;
+  font-size: 0.95rem;
+}

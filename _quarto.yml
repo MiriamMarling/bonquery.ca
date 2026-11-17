@@ -20,6 +20,8 @@ project:
     - data/daily_occupancy.csv                    # not FileAttachment-referenced
     - data/shelter_flow.json                      # homepage dashboard previews
     - data/central_intake.json                    # homepage caller-card preview
+    - videos/**                                   # homepage video
+    - images/left-in-the-cold-poster.jpg          # homepage video poster frame
     - data/season_rug.csv                         # cold-response: temperature rug
     - data/cold_response_binned_by_winter_sc.csv  # cold-response: observed means
 

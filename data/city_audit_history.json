@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-24T00:05:54.706650Z",
+  "updated_at": "2026-11-24T20:39:19.991370Z",
   "coverage": {
     "first_audit_date": "2026-05-27",
-    "last_audit_date": "2026-11-22",
-    "successfully_parsed_dates": 147,
-    "dates_with_mismatches": 147,
-    "exact_detail_records": 107,
+    "last_audit_date": "2026-11-23",
+    "successfully_parsed_dates": 148,
+    "dates_with_mismatches": 148,
+    "exact_detail_records": 108,
     "parser_failures_counted_as_passes": false
   },
   "retrospective_evidence": [
@@ -33635,6 +33635,440 @@
           "city_val": 94.1,
           "our_val": 93.8,
           "delta": 0.3
+        },
+        {
+          "key": "temp_resp",
+          "label": "24-Hour Temporary Response Sites",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 50,
+          "our_val": 65,
+          "delta": -15.0
+        },
+        {
+          "key": "temp_resp",
+          "label": "24-Hour Temporary Response Sites",
+          "column": "occupied",
+          "city_col": "city_occ",
+          "our_col": "occ",
+          "city_val": 50,
+          "our_val": 65,
+          "delta": -15.0
+        },
+        {
+          "key": "temp_resp",
+          "label": "24-Hour Temporary Response Sites",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 50,
+          "our_val": 65,
+          "delta": -15.0
+        }
+      ],
+      "evidence_source": "automated-city-table-comparison",
+      "details_complete": true
+    },
+    {
+      "date": "2026-11-23",
+      "status": "fail",
+      "passed": false,
+      "first_audited_at": "2026-11-24T20:39:19.991370Z",
+      "last_audited_at": "2026-11-24T20:39:19.991370Z",
+      "our_latest_date": "2026-11-23",
+      "sectors_compared": 28,
+      "mismatch_count": 42,
+      "mismatches": [
+        {
+          "key": "all_shelter",
+          "label": "All Shelter Programs, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 7005,
+          "our_val": 6952,
+          "delta": 53.0
+        },
+        {
+          "key": "room_based",
+          "label": "Shelter Programs, Room-Based, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 1547,
+          "our_val": 1595,
+          "delta": -48.0
+        },
+        {
+          "key": "singles_sector",
+          "label": "Singles Sector Programs, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 5458,
+          "our_val": 5357,
+          "delta": 101.0
+        },
+        {
+          "key": "allied_total",
+          "label": "Allied Services, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 442,
+          "our_val": 338,
+          "delta": 104.0
+        },
+        {
+          "key": "allied_total",
+          "label": "Allied Services, Total",
+          "column": "occupied",
+          "city_col": "city_occ",
+          "our_col": "occ",
+          "city_val": 442,
+          "our_val": 338,
+          "delta": 104.0
+        },
+        {
+          "key": "allied_total",
+          "label": "Allied Services, Total",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 157,
+          "our_val": 35,
+          "delta": 122.0
+        },
+        {
+          "key": "allied_total",
+          "label": "Allied Services, Total",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 599,
+          "our_val": 373,
+          "delta": 226.0
+        },
+        {
+          "key": "allied_total",
+          "label": "Allied Services, Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 73.8,
+          "our_val": 90.6,
+          "delta": -16.8
+        },
+        {
+          "key": "temp_summ",
+          "label": "Temporary Programs, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 1794,
+          "our_val": 1809,
+          "delta": -15.0
+        },
+        {
+          "key": "iso",
+          "label": "Temporary Isolation/Recovery Programs Combined Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 0.0,
+          "our_val": null,
+          "delta": null
+        },
+        {
+          "key": "sng_hotel",
+          "label": "Single Sector Motel/Hotel, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 216,
+          "our_val": 264,
+          "delta": -48.0
+        },
+        {
+          "key": "sng_hotel",
+          "label": "Single Sector Motel/Hotel, Total",
+          "column": "occupied",
+          "city_col": "city_occ",
+          "our_col": "occ",
+          "city_val": 131,
+          "our_val": 159,
+          "delta": -28.0
+        },
+        {
+          "key": "sng_hotel",
+          "label": "Single Sector Motel/Hotel, Total",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 134,
+          "our_val": 162,
+          "delta": -28.0
+        },
+        {
+          "key": "sng_hotel",
+          "label": "Single Sector Motel/Hotel, Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 97.8,
+          "our_val": 98.1,
+          "delta": -0.3
+        },
+        {
+          "key": "singles_total",
+          "label": "Singles Sectors, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 3222,
+          "our_val": 3210,
+          "delta": 12.0
+        },
+        {
+          "key": "singles_total",
+          "label": "Singles Sectors, Total",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 226,
+          "our_val": 162,
+          "delta": 64.0
+        },
+        {
+          "key": "singles_total",
+          "label": "Singles Sectors, Total",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 3436,
+          "our_val": 3372,
+          "delta": 64.0
+        },
+        {
+          "key": "singles_total",
+          "label": "Singles Sectors, Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 93.4,
+          "our_val": 95.2,
+          "delta": -1.8
+        },
+        {
+          "key": "emerg_total",
+          "label": "Emergency Shelter Programs, Total",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 2456,
+          "our_val": 2444,
+          "delta": 12.0
+        },
+        {
+          "key": "emerg_total",
+          "label": "Emergency Shelter Programs, Total",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 164,
+          "our_val": 100,
+          "delta": 64.0
+        },
+        {
+          "key": "emerg_total",
+          "label": "Emergency Shelter Programs, Total",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 2608,
+          "our_val": 2544,
+          "delta": 64.0
+        },
+        {
+          "key": "emerg_total",
+          "label": "Emergency Shelter Programs, Total",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 93.7,
+          "our_val": 96.1,
+          "delta": -2.4
+        },
+        {
+          "key": "mix_emerg",
+          "label": "Mixed Adult, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 29,
+          "our_val": 4,
+          "delta": 25.0
+        },
+        {
+          "key": "mix_emerg",
+          "label": "Mixed Adult, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 576,
+          "our_val": 551,
+          "delta": 25.0
+        },
+        {
+          "key": "mix_emerg",
+          "label": "Mixed Adult, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 95.0,
+          "our_val": 99.3,
+          "delta": -4.3
+        },
+        {
+          "key": "men_emerg",
+          "label": "Men, Emergency",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 1015,
+          "our_val": 1003,
+          "delta": 12.0
+        },
+        {
+          "key": "men_emerg",
+          "label": "Men, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 68,
+          "our_val": 46,
+          "delta": 22.0
+        },
+        {
+          "key": "men_emerg",
+          "label": "Men, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 1071,
+          "our_val": 1049,
+          "delta": 22.0
+        },
+        {
+          "key": "men_emerg",
+          "label": "Men, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 93.7,
+          "our_val": 95.6,
+          "delta": -1.9
+        },
+        {
+          "key": "wom_emerg",
+          "label": "Women, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 22,
+          "our_val": 12,
+          "delta": 10.0
+        },
+        {
+          "key": "wom_emerg",
+          "label": "Women, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 516,
+          "our_val": 506,
+          "delta": 10.0
+        },
+        {
+          "key": "wom_emerg",
+          "label": "Women, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 95.7,
+          "our_val": 97.6,
+          "delta": -1.9
+        },
+        {
+          "key": "yth_emerg",
+          "label": "Youth, Emergency",
+          "column": "unoccupied",
+          "city_col": "city_unocc",
+          "our_col": "unocc",
+          "city_val": 45,
+          "our_val": 38,
+          "delta": 7.0
+        },
+        {
+          "key": "yth_emerg",
+          "label": "Youth, Emergency",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 445,
+          "our_val": 438,
+          "delta": 7.0
+        },
+        {
+          "key": "yth_emerg",
+          "label": "Youth, Emergency",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 89.9,
+          "our_val": 91.3,
+          "delta": -1.4
+        },
+        {
+          "key": "respites",
+          "label": "24-Hour Respites",
+          "column": "individuals",
+          "city_col": "city_ind",
+          "our_col": "ind",
+          "city_val": 341,
+          "our_val": 326,
+          "delta": 15.0
+        },
+        {
+          "key": "respites",
+          "label": "24-Hour Respites",
+          "column": "occupied",
+          "city_col": "city_occ",
+          "our_col": "occ",
+          "city_val": 341,
+          "our_val": 326,
+          "delta": 15.0
+        },
+        {
+          "key": "respites",
+          "label": "24-Hour Respites",
+          "column": "actual capacity",
+          "city_col": "city_cap",
+          "our_col": "cap",
+          "city_val": 370,
+          "our_val": 355,
+          "delta": 15.0
+        },
+        {
+          "key": "respites",
+          "label": "24-Hour Respites",
+          "column": "occupancy rate",
+          "city_col": "city_rate",
+          "our_col": "rate",
+          "city_val": 92.2,
+          "our_val": 91.8,
+          "delta": 0.4
         },
         {
           "key": "temp_resp",
